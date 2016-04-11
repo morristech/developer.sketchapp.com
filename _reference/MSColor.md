@@ -111,3 +111,7 @@ var alphaBlack = blackColor.colorWithAlpha(0.5)
 log(blackColor.stringValueWithAlpha(true)) // #000000
 log(alphaBlack.stringValueWithAlpha(true)) // rgba(0,0,0,0.50)
 ```
+
+### colorSpace
+
+Returns the NSColorSpace that this MSColor is in. When rendering to the screen, Sketch will use the screen's color space. When exporting, this will be the sRGB color space
