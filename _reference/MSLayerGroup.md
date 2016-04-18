@@ -26,9 +26,9 @@ Available in Sketch 3.4 and below, removed in Sketch 3.5 (see `resizeToFitChildr
 
 Added in Sketch 3.5. Resizes the group to fit around all of its sub-layers. `option` is either 0 (MSLayerGroupResizeOptionLayerOnly) or 1 (MSLayerGroupResizeOptionResizeParentUponRectChange).
 
-### addLayer:
+### addLayers:(NSArray)layers
 
-Add a layer to this group.
+Add layers to this group.
 
 ### removeLayer:
 
