@@ -7,7 +7,6 @@ rels:
   - GKRect
   - MSStyle
   - MSPage
-  - MSShapeGroup
 ---
 
 MSLayer is the base class that represents a layer object.
