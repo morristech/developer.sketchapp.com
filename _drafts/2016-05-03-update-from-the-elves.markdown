@@ -24,19 +24,18 @@ Following on from that, a later version of Sketch will no longer load old plugin
 
 We encourage you to move your plugins over to the new format now! It’s a pretty simple job, and it will future-proof you.
 
-(Note to self: mention that old-style plugins won’t be featured on our website)
+We're sure that you are completely sold on this change by now, but one more little nudge, just in case: if you want to have your plugin featured on our website, you'll need to change them to the new format!
 
 
 ## Action API
 
 With 3.8, we are introducing the much-requested ability for plugins to be able to respond to actions that the user performs in Sketch.
 
+We will post some documentation and example plugins for action support later, but consider this an early warning that it's coming.
 
-We will post some documentation and example plugins on this later, but this is an early warning.
+We want to make it clear at this point that this is version 1.0 of action support, and more will follow. We are aware that there are some inconsistencies with the way it works right now, and not all the things a user can do will be available to begin with. It's also worth saying that some things may never be available as actions, for performance reasons.
 
-We want to make it clear at this point that this is definitely version 1.0 of action support, and more will follow. We are aware that there are some inconsistencies with the way it works right now, and not all the things a user can do will be available to begin with (and some things may never be available, for performance reasons).
-
-This feature should greatly expand the range of things that plugins can usefully do, and we look forward to seeing what you do with it. Please send us feedback on how it works for you, and what you’d like to see change.
+Even having said that though, this feature should greatly expand the range of things that plugins can usefully do, and we look forward to seeing what you do with it. Please send us feedback on how it works for you, and what you’d like to see change.
 
 
 ## Scripting API
