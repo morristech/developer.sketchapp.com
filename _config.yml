@@ -36,7 +36,7 @@ collections:
   introduction:
     output: true
     permalink: /introduction/:path/
-  blog-posts:
+  posts:
     output: true
     permalink: /blog/:path/
 
@@ -67,6 +67,6 @@ defaults:
       script: "/js/search.js"
   -
     scope:
-      type: "blog-posts"
+      type: "posts"
     values:
-      layout: "blog-post"
+      layout: "post"
