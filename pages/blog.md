@@ -4,8 +4,8 @@ permalink: /blog/
 ---
 
 {% assign posts = site.posts | sort: 'date' %}
+<ul>
 {% for post in posts %}
-  <ul>
     <li><a href="{{post.url}}">{{post.title}}</a> — {{post.date | date: '%B %d, %Y'}}</li>
-  <ul>
 {% endfor %}
+</ul>
