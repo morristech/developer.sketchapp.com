@@ -3,7 +3,7 @@ layout: post
 title:  "An Update From The Plugin Elves..."
 categories: scripting update
 ---
-We've been hard at work over the last few weeks here at Bohemian Towers on some updates to Sketch's Plugin system.
+We've been hard at work over the last few weeks here at Sketch Towers on some updates to the plugin system.
 
 Some of these will be rolling out along with the upcoming 3.8 release, and others will come later, but in both cases, we wanted to give everyone in the developer community some early warning.
 
