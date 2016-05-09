@@ -4,7 +4,7 @@ scripts=`dirname $0`
 cd "$scripts/.."
 base=`pwd`
 
-examples=( "plugins.actions.selected" )
+examples=( "plugins.examples.selected-layers" "plugins.examples.svgo-export" )
 
 for e in $examples
 do
