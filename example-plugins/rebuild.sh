@@ -18,5 +18,7 @@ do
     git pull
   fi
 
-  docco --output "$base/example-plugins/docs/$e" *.sketchplugin/Contents/Sketch/*.js
+  docout="$base/example-plugins/docs/$e"
+  docco --output "$docout" *.sketchplugin/Contents/Sketch/*.js
+  open "$docout/"*.html
 done
