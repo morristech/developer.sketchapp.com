@@ -116,3 +116,14 @@ td {
 .developer .content footer .h5 {
   margin: 0 0 1rem;
 }
+
+article.post header {
+  margin-bottom: 2em;
+  h1 {
+    margin-bottom: 0.2em;
+  }
+  p.meta {
+    color: $text-dark-ultra-low;
+    margin-top: 0.3em;
+  }
+}

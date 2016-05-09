@@ -46,4 +46,4 @@ The intention with this is to make a smaller, more stable set of functionality a
 
 Version 3.8 does contain a slightly updated version of this, but we don’t consider it ready for prime-time, and it isn’t documented properly. The design of the API also definitely isn’t stable at this point, and we don’t recommend using it yet as the names of classes and methods are likely to change.
 
-Consider this an early warning that it is coming, and again, please send us feedback on how you’d like to see it work.
+Consider this an early warning that it is coming, and again, please [send us feedback](mailto:developer@sketchapp.com) on how you’d like to see it work.
