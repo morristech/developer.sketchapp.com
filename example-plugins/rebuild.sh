@@ -20,6 +20,6 @@ do
   fi
 
   docout="$base/example-plugins/docs/$e"
-  docco --output "$docout" *.sketchplugin/Contents/Sketch/*.js
+  docco --output "$docout" --template "$base/example-plugins/docco.jst" --css "$base/example-plugins/docco.css" *.sketchplugin/Contents/Sketch/*.js
   open "$docout/"*.html
 done
