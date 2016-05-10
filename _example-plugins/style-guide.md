@@ -34,3 +34,20 @@ The author email should be a sketchapp.com address.
 Handler names should be `onXXX`, where `XXX` is the name of the action to intercept, or "run", "setUp", "tearDown" etc for the other standard handlers.
 
 For simple examples with only one command, the name should match the plugin name, the identifier can just be the last part of the plugin bundle's id, and the script name should match the name of the command.
+
+
+## Comments
+
+Don't include the version in the comment - it'll only get out of date with the one in the manifest!
+
+## Code
+
+Don't use Cocoa syntax.
+
+Use ES5 syntax for functions etc.
+
+
+
+
+
+```

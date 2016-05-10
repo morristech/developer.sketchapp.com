@@ -22,5 +22,13 @@ do
 
   docout="$base/example-plugins"
   docco --output "$docout" --template "$scripts/docco.jst" --css "$scripts/docco.css" *.sketchplugin/Contents/Sketch/*.js
-  open "http://localhost:4000/example-plugins/$e/"
 done
+
+open "http://localhost:4000/example-plugins"
+
+additionalFolders=`defaults read com.bohemiancoding.sketch3.xcode AdditionalPluginFolders`
+if ! [[ "$additionalFolders" == *"$scripts"* ]]
+then
+    echo "Adding $scripts to the AdditionalPluginFolders setting."
+    defaults write com.bohemiancoding.sketch3.xcode AdditionalPluginFolders -array-add "$scripts"
+fi
