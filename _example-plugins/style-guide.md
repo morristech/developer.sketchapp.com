@@ -17,6 +17,8 @@ The manifest should list keys in a sensible order, eg:
 "commands" : [
 ```
 
-The bundle id should be com.sketchapp.examples.<name>, where <name> is the name of the plugin. Hyphens in the <name> part are fine, eg com.sketchapp.examples.selected-layers.
+The bundle id should be com.sketchapp.examples.XXX, where XXX is the name of the plugin. Hyphens in the <name> part are fine, eg com.sketchapp.examples.selected-layers.
 
 The author email should be a sketchapp.com address.
+
+Handler names should be `onXXX`, where `XXX` is the name of the action to intercept, or "run", "setUp", "tearDown" etc for the other standard handlers.
