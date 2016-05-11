@@ -120,10 +120,24 @@ actions = [
     "ToggleLayerHighlight",
 ]
 
+fakeActions = [
+    "DocumentSaved",
+    "OpenDocument",
+    "CloseDocument",
+    "ExportSlices",
+    "SelectionChanged",
+    "ArtboardChanged",
+    "LayersMoved",
+    "TextChanged"
+]
+
+allActions = actions + fakeActions
+
 actionsPath = "_actions"
 if not os.path.exists(actionsPath):
     os.mkdir(actionsPath)
-for action in actions:
+
+for action in allActions:
     with open(os.path.join(actionsPath, action +".md"), "w") as f:
         stub = "---\ntitle: {0}\nsummary: {0}\n---\n\n{0}".format(action)
         f.write(stub)
