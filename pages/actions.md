@@ -1,7 +1,7 @@
 ---
 layout: sidebar-page
 title: Actions
-permalink: /actions/
+permalink: /reference/actions/
 ---
 
 ## List of actions

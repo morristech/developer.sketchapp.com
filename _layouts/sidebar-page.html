@@ -36,7 +36,7 @@ layout: base
             {% endif %}
             {% if page.url contains '/action/' %}
               <li>
-                <h2>Classes</h2>
+                <h2>Actions</h2>
                 <ol>
                   {% assign action = site.actions | sort:"title"%}
                   {% for action in actions %}
