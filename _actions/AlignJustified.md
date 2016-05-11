@@ -3,4 +3,6 @@ title: AlignJustified
 summary: AlignJustified
 ---
 
-AlignJustified
+Work In Progress
+
+Documentation for the AlignJustified action will appear here.

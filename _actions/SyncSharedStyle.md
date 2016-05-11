@@ -3,4 +3,6 @@ title: SyncSharedStyle
 summary: SyncSharedStyle
 ---
 
-SyncSharedStyle
+Work In Progress
+
+Documentation for the SyncSharedStyle action will appear here.

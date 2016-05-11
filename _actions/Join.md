@@ -3,4 +3,6 @@ title: Join
 summary: Join
 ---
 
-Join
+Work In Progress
+
+Documentation for the Join action will appear here.

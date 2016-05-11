@@ -3,4 +3,6 @@ title: HideAllGridsAndLayouts
 summary: HideAllGridsAndLayouts
 ---
 
-HideAllGridsAndLayouts
+Work In Progress
+
+Documentation for the HideAllGridsAndLayouts action will appear here.

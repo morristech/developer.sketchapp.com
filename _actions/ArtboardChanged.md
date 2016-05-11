@@ -3,4 +3,6 @@ title: ArtboardChanged
 summary: ArtboardChanged
 ---
 
-ArtboardChanged
+Work In Progress
+
+Documentation for the ArtboardChanged action will appear here.

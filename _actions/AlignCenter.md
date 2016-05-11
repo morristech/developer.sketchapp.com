@@ -3,4 +3,6 @@ title: AlignCenter
 summary: AlignCenter
 ---
 
-AlignCenter
+Work In Progress
+
+Documentation for the AlignCenter action will appear here.

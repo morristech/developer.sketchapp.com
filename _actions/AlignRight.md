@@ -3,4 +3,6 @@ title: AlignRight
 summary: AlignRight
 ---
 
-AlignRight
+Work In Progress
+
+Documentation for the AlignRight action will appear here.

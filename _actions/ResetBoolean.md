@@ -3,4 +3,6 @@ title: ResetBoolean
 summary: ResetBoolean
 ---
 
-ResetBoolean
+Work In Progress
+
+Documentation for the ResetBoolean action will appear here.

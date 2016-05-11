@@ -3,4 +3,6 @@ title: ViewMenu
 summary: ViewMenu
 ---
 
-ViewMenu
+Work In Progress
+
+Documentation for the ViewMenu action will appear here.

@@ -3,4 +3,6 @@ title: RectangleShape
 summary: RectangleShape
 ---
 
-RectangleShape
+Work In Progress
+
+Documentation for the RectangleShape action will appear here.

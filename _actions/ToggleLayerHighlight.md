@@ -3,4 +3,6 @@ title: ToggleLayerHighlight
 summary: ToggleLayerHighlight
 ---
 
-ToggleLayerHighlight
+Work In Progress
+
+Documentation for the ToggleLayerHighlight action will appear here.

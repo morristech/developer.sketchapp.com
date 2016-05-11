@@ -3,4 +3,6 @@ title: SpiralShape
 summary: SpiralShape
 ---
 
-SpiralShape
+Work In Progress
+
+Documentation for the SpiralShape action will appear here.

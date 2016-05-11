@@ -3,4 +3,6 @@ title: SmartRotate
 summary: SmartRotate
 ---
 
-SmartRotate
+Work In Progress
+
+Documentation for the SmartRotate action will appear here.

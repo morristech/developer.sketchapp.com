@@ -3,4 +3,6 @@ title: CollapseAllGroups
 summary: CollapseAllGroups
 ---
 
-CollapseAllGroups
+Work In Progress
+
+Documentation for the CollapseAllGroups action will appear here.

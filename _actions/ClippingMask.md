@@ -3,4 +3,6 @@ title: ClippingMask
 summary: ClippingMask
 ---
 
-ClippingMask
+Work In Progress
+
+Documentation for the ClippingMask action will appear here.

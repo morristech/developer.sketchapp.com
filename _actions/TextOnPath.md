@@ -3,4 +3,6 @@ title: TextOnPath
 summary: TextOnPath
 ---
 
-TextOnPath
+Work In Progress
+
+Documentation for the TextOnPath action will appear here.

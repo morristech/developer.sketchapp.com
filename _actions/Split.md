@@ -3,4 +3,6 @@ title: Split
 summary: Split
 ---
 
-Split
+Work In Progress
+
+Documentation for the Split action will appear here.

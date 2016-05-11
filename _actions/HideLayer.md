@@ -3,4 +3,6 @@ title: HideLayer
 summary: HideLayer
 ---
 
-HideLayer
+Work In Progress
+
+Documentation for the HideLayer action will appear here.

@@ -3,4 +3,6 @@ title: Flatten
 summary: Flatten
 ---
 
-Flatten
+Work In Progress
+
+Documentation for the Flatten action will appear here.

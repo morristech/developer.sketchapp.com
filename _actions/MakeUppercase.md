@@ -3,4 +3,6 @@ title: MakeUppercase
 summary: MakeUppercase
 ---
 
-MakeUppercase
+Work In Progress
+
+Documentation for the MakeUppercase action will appear here.

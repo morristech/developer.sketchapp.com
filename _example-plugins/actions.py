@@ -139,5 +139,5 @@ if not os.path.exists(actionsPath):
 
 for action in allActions:
     with open(os.path.join(actionsPath, action +".md"), "w") as f:
-        stub = "---\ntitle: {0}\nsummary: {0}\n---\n\n{0}".format(action)
+        stub = "---\ntitle: {0}\nsummary: {0}\n---\n\nWork In Progress\n\nDocumentation for the {0} action will appear here.".format(action)
         f.write(stub)

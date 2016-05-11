@@ -3,4 +3,6 @@ title: SelectAllArtboards
 summary: SelectAllArtboards
 ---
 
-SelectAllArtboards
+Work In Progress
+
+Documentation for the SelectAllArtboards action will appear here.

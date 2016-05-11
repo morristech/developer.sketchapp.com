@@ -3,4 +3,6 @@ title: DistributeVertically
 summary: DistributeVertically
 ---
 
-DistributeVertically
+Work In Progress
+
+Documentation for the DistributeVertically action will appear here.

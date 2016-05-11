@@ -3,4 +3,6 @@ title: Pencil
 summary: Pencil
 ---
 
-Pencil
+Work In Progress
+
+Documentation for the Pencil action will appear here.

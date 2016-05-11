@@ -3,4 +3,6 @@ title: ImageOriginalSize
 summary: ImageOriginalSize
 ---
 
-ImageOriginalSize
+Work In Progress
+
+Documentation for the ImageOriginalSize action will appear here.

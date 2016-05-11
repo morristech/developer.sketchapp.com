@@ -3,4 +3,6 @@ title: TogglePresentationMode
 summary: TogglePresentationMode
 ---
 
-TogglePresentationMode
+Work In Progress
+
+Documentation for the TogglePresentationMode action will appear here.

@@ -3,4 +3,6 @@ title: CreateSymbol
 summary: CreateSymbol
 ---
 
-CreateSymbol
+Work In Progress
+
+Documentation for the CreateSymbol action will appear here.

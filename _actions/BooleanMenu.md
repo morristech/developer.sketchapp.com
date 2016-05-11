@@ -3,4 +3,6 @@ title: BooleanMenu
 summary: BooleanMenu
 ---
 
-BooleanMenu
+Work In Progress
+
+Documentation for the BooleanMenu action will appear here.
