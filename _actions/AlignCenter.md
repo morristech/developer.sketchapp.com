@@ -1,0 +1,5 @@
+---
+title: AlignCenter
+---
+
+AlignCenter

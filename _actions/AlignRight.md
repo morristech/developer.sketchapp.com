@@ -1,0 +1,5 @@
+---
+title: AlignRight
+---
+
+AlignRight

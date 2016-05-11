@@ -1,0 +1,5 @@
+---
+title: BooleanMenu
+---
+
+BooleanMenu
