@@ -1,13 +1,13 @@
 ---
 layout: sidebar-page
-title: Code Examples
+title: Code Snippets
 permalink: /examples/code/
 script: /js/search.js
 ---
 
-## Learn by reading
+Sometimes the best way of learning how to do something is reading about it.
 
-Sometimes the best way of learning how to do something is reading about it. So here are some examples of basic techniques you'll probably want to use on your own plugins:
+So here are some snippets of code which demonstrate basic techniques you'll probably want to use on your own plugins:
 
 ## Contents
 <table>

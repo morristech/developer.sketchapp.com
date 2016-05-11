@@ -1,15 +1,12 @@
 ---
-layout: sidebar-page
+layout: single-page
 title: Examples
 permalink: /examples/
 script: /js/search.js
 ---
 
-## Learn by reading
+Here are some example plugins, and some code snippets, which should help you to get going.
 
-Sometimes the best way of learning how to do something is reading about it.
+- [Sample Plugins](/examples/plugins/): fully-fledged plugins illustrating how to perform certain tasks. You can download these and try them out for yourself, read along with the annotated source code to see how they work, even fork the code and modify it to make something of your own.
 
-So here are some examples of basic techniques you'll probably want to use on your own plugins:
-
-- [Sample Plugins](/examples/plugins/)
-- [Code Snippets](/examples/code/)
+- [Code Snippets](/examples/code/): some standalone chunks of code showing you how to perform various common tasks.
