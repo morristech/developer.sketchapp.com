@@ -80,7 +80,7 @@ True if the layer is selected, false otherwise.
 
 ### select:byExpandingSelection:
 
-Check the [Working with Selections](/code-examples/working-with-selections/) section for some examples.
+Check the [Working with Selections](/examples/code/working-with-selections/) section for some examples.
 
 ### absoluteRect: (readonly)
 

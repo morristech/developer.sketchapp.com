@@ -49,5 +49,5 @@ $ tail -f /var/log/system.log|grep Sketch
 
 Sometimes, when debugging Plugins, you may want to check the output of a command without having to switch to another app. For those cases, you have two options:
 
-1. You can use one of the techniques discussed in [User Input & Feedback](/code-examples/user-interaction/) (`alert`, `[doc showMessage]` or Cocoa dialogs)
+1. You can use one of the techniques discussed in [User Input & Feedback](/examples/code/user-interaction/) (`alert`, `[doc showMessage]` or Cocoa dialogs)
 2. Consider using text-to-speech to output information that you can hear. The plugin [Sketch Speaker](https://github.com/marcosvidal/sketch-speaker ) illustrates this technique. They use it for the actual command implementation, but there's nothing to stop you using a similar approach for debugging.
