@@ -4,6 +4,17 @@ title: Actions
 permalink: /actions/
 ---
 
-Work in progress
+{{site.actions}}
 
-List of actions to go here.
+## List of actions
+<table>
+  <tbody>
+  {% assign actions = site.actions %}
+  {% for action in actions %}
+    <tr>
+      <td><a href="{{action.url}}">{{action.title}}</a></td>
+      <td>{{action.summary}}</td>
+    <tr>
+  {% endfor %}
+  </tbody>
+</table>

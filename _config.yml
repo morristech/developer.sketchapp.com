@@ -39,6 +39,9 @@ collections:
   posts:
     output: true
     permalink: /blog/:path/
+  actions:
+    output: true
+    permalink: /actions/:path/
 
 # Defaults
 defaults:
@@ -50,9 +53,15 @@ defaults:
   -
     scope:
       type: "reference"
+      script: "/js/search.js"
     values:
       layout: "sidebar-page"
       script: "/js/search.js"
+  -
+    scope:
+      type: "actions"
+    values:
+      layout: "sidebar-page"
   -
     scope:
       type: "code-examples"

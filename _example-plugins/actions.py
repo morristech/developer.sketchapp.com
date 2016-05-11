@@ -125,5 +125,5 @@ if not os.path.exists(actionsPath):
     os.mkdir(actionsPath)
 for action in actions:
     with open(os.path.join(actionsPath, action +".md"), "w") as f:
-        stub = "---\ntitle: {0}\n---\n\n{0}".format(action)
+        stub = "---\ntitle: {0}\nsummary: {0}\n---\n\n{0}".format(action)
         f.write(stub)
