@@ -38,7 +38,7 @@ layout: base
               <li>
                 <h2>Actions</h2>
                 <ol>
-                  {% assign action = site.actions | sort:"title"%}
+                  {% assign actions = site.actions | sort:"title"%}
                   {% for action in actions %}
                   <li><a href="{{action.url}}" {% if page.url == action.url %} class="active"{% endif %}>{{ action.title }}</a></li>
                   {% endfor %}
