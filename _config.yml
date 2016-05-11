@@ -27,9 +27,12 @@ exclude:
 
 # Dynamic Content
 collections:
-  reference:
+  classes:
     output: true
-    permalink: /reference/:path/
+    permalink: /reference/class/:path/
+  actions:
+    output: true
+    permalink: /reference/action/:path/
   code-examples:
     output: true
     permalink: /code-examples/:path/
@@ -39,9 +42,6 @@ collections:
   posts:
     output: true
     permalink: /blog/:path/
-  actions:
-    output: true
-    permalink: /actions/:path/
 
 # Defaults
 defaults:
@@ -52,8 +52,7 @@ defaults:
       layout: "single-page"
   -
     scope:
-      type: "reference"
-      script: "/js/search.js"
+      type: "classes"
     values:
       layout: "sidebar-page"
       script: "/js/search.js"

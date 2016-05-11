@@ -4,12 +4,10 @@ title: Actions
 permalink: /actions/
 ---
 
-{{site.actions}}
-
 ## List of actions
 <table>
   <tbody>
-  {% assign actions = site.actions %}
+  {% assign actions = site.actions | sort: 'title' %}
   {% for action in actions %}
     <tr>
       <td><a href="{{action.url}}">{{action.title}}</a></td>
