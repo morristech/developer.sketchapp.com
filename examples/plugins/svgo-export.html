@@ -6,22 +6,20 @@ layout: docco-page
     <div id="background"></div>
     
     <ul class="sections">
-        
-          <li id="title">
-              <div class="annotation">
-                  <h1>svgo-export.js</h1>
-              </div>
-          </li>
-        
-        
-        
-        <li id="section-1">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-1">&#182;</a>
-              </div>
-              <p>SVGO v0.1α, by Ale Muñoz — Source code available at <a href="https://github.com/BohemianCoding/plugins.examples.svgo-export">GitHub</a></p>
+      
+      <li id="title">
+        <div class="annotation"><h1>svgo-export.js</h1></div>
+      </li>
+      
+      
+      
+      <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          <p>SVGO v0.1α, by Ale Muñoz — Source code available at <a href="https://github.com/BohemianCoding/plugins.examples.svgo-export">GitHub</a></p>
 <p>This Plugin compresses SVG assets using <a href="https://github.com/svg/svgo">SVGO</a> right after they’re exported from Sketch.</p>
 <p>It uses the new Action API in Sketch 3.8, and requires svgo to be installed in <code>/usr/local/bin</code></p>
 <p>This is the content of the <code>manifest.json</code> file for this Plugin. See how we’re attaching the Plugin to the <code>ExportSlices.finish</code> event in <code>handlers.actions</code> by assigning a function name (<code>compressSVG</code>, defined in <code>svgo.js</code> to the action name we’re interested in).</p>
@@ -47,43 +45,43 @@ layout: docco-page
 }
 </code></pre>
 
-            </div>
-            
-        </li>
+        </div>
         
-        
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>Utility function we’ll use later, to remove duplicates on an Array</p>
+      </li>
+      
+      
+      <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <p>Utility function we’ll use later, to remove duplicates on an Array</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> uniqueArray = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">arrArg</span>) </span>{
+        </div>
+        
+        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> uniqueArray = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">arrArg</span>) </span>{
   <span class="hljs-keyword">return</span> arrArg.filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">elem, pos,arr</span>) </span>{
     <span class="hljs-keyword">return</span> arr.indexOf(elem) == pos;
   });
 };</pre></div></div>
-            
-        </li>
         
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>This is the function where we’ll do the heavy lifting (i.e: compress all SVG files in a given folder).
+      </li>
+      
+      
+      <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>This is the function where we’ll do the heavy lifting (i.e: compress all SVG files in a given folder).
 Make sure you either have svgo installed on <code>/usr/local/bin</code> or adjust the path accordingly in the code.
 The SVGO options are based on our experience working with Sketch’s exported SVGs, and to the best of our knowledge they shouldn’t effect the rendering of your assets, just reduce their size.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">optimizeFolderWithSVGO</span>(<span class="hljs-params">folderPath</span>) </span>{
+        </div>
+        
+        <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">optimizeFolderWithSVGO</span>(<span class="hljs-params">folderPath</span>) </span>{
   <span class="hljs-keyword">var</span> command = <span class="hljs-string">"/usr/local/bin/svgo --folder='"</span> + folderPath + <span class="hljs-string">"' --pretty --disable=convertShapeToPath --enable=removeTitle --enable=removeDesc --enable=removeDoctype --enable=removeEmptyAttrs --enable=removeUnknownsAndDefaults --enable=removeUnusedNS --enable=removeEditorsNSData"</span>
 
   <span class="hljs-keyword">var</span> task = [[NSTask alloc] init]
@@ -98,17 +96,17 @@ The SVGO options are based on our experience working with Sketch’s exported SV
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
   }
 }</pre></div></div>
-            
-        </li>
         
-        
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>This is the handler we defined on <code>manifest.json</code> for the event (<code>ExportSlices.finish</code>). It will be passed a <code>context</code> object as a parameter.
+      </li>
+      
+      
+      <li id="section-4">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>This is the handler we defined on <code>manifest.json</code> for the event (<code>ExportSlices.finish</code>). It will be passed a <code>context</code> object as a parameter.
 <code>context.actionContext</code> is the action that has been triggered, and it looks like this:</p>
 <pre><code class="lang-json">{
   <span class="hljs-attr">"document"</span>: <span class="hljs-string">"&lt;MSImmutableDocumentData: 0x7fbe8644fae0&gt; (6125882F-2DBB-4E1C-856B-92C6761BA0E3)"</span>,
@@ -120,97 +118,97 @@ The SVGO options are based on our experience working with Sketch’s exported SV
 </code></pre>
 <p>In this particular example, there’s only one item in the <code>exports</code> array, but if you’ve exported 10.000 assets it will be a bit more crowded. The <code>ExportSlices.finish</code> event is only called once for the whole export operation, rather than being triggered 10.000 times.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> onExportSlices = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>)</span>{
+        </div>
+        
+        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> onExportSlices = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>)</span>{
   <span class="hljs-keyword">var</span> exports = context.actionContext.exports,
       shouldCompressSVG = <span class="hljs-literal">false</span>,
       pathsToCompress = []</pre></div></div>
-            
-        </li>
         
-        
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
-              <p>We’ll take a look at the Array that contains all the exported assets…</p>
+      </li>
+      
+      
+      <li id="section-5">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>We’ll take a look at the Array that contains all the exported assets…</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i &lt; exports.count(); i++) {
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i &lt; exports.count(); i++) {
     <span class="hljs-keyword">var</span> currentExport = exports.objectAtIndex(i)</pre></div></div>
-            
-        </li>
         
-        
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
-              </div>
-              <p>When we find an asset in SVG format, then we’ll want to compress the folder it’s been exported to.</p>
+      </li>
+      
+      
+      <li id="section-6">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <p>When we find an asset in SVG format, then we’ll want to compress the folder it’s been exported to.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (currentExport.request.format() == <span class="hljs-string">'svg'</span>) {
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (currentExport.request.format() == <span class="hljs-string">'svg'</span>) {
       shouldCompressSVG = <span class="hljs-literal">true</span>
       <span class="hljs-keyword">var</span> currentPath = <span class="hljs-string">""</span> + currentExport.path.stringByDeletingLastPathComponent() <span class="hljs-comment">// the ("" + ) trick coerces the value into a JS string, otherwise the uniqueArray function won't sort the array properly</span>
       pathsToCompress.push(currentPath)
     }
   }</pre></div></div>
-            
-        </li>
         
-        
-        <li id="section-7">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
-              </div>
-              <p>Time to compress some folders</p>
+      </li>
+      
+      
+      <li id="section-7">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <p>Time to compress some folders</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (shouldCompressSVG) {</pre></div></div>
-            
-        </li>
+        </div>
         
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (shouldCompressSVG) {</pre></div></div>
         
-        <li id="section-8">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
-              </div>
-              <p>Let’s remove duplicates</p>
+      </li>
+      
+      
+      <li id="section-8">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>Let’s remove duplicates</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> paths = uniqueArray(pathsToCompress),
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> paths = uniqueArray(pathsToCompress),
         success = <span class="hljs-literal">false</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> p=<span class="hljs-number">0</span>; p &lt; paths.length; p++) {
       <span class="hljs-keyword">var</span> path = paths[p]
       log(<span class="hljs-string">'Compressing SVG files in '</span> + path)</pre></div></div>
-            
-        </li>
         
-        
-        <li id="section-9">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
-              </div>
-              <p>Exporting!</p>
+      </li>
+      
+      
+      <li id="section-9">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <p>Exporting!</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span>(optimizeFolderWithSVGO(paths[p])) {
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span>(optimizeFolderWithSVGO(paths[p])) {
         log(<span class="hljs-string">'✅ compression ok'</span>)
         success = <span class="hljs-literal">true</span>
       } <span class="hljs-keyword">else</span> {
@@ -218,21 +216,21 @@ The SVGO options are based on our experience working with Sketch’s exported SV
         success = <span class="hljs-literal">false</span>
       }
     }</pre></div></div>
-            
-        </li>
         
-        
-        <li id="section-10">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
-              </div>
-              <p>And finally, make some noise to let the user know if the command worked as expected or not (this can take a while if you’re exporting many assets, so it’s a nice touch :-)</p>
+      </li>
+      
+      
+      <li id="section-10">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
+          <p>And finally, make some noise to let the user know if the command worked as expected or not (this can take a while if you’re exporting many assets, so it’s a nice touch :-)</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> ding = [[NSTask alloc] init],
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> ding = [[NSTask alloc] init],
         audio = <span class="hljs-string">""</span>
 
     [ding setLaunchPath:@<span class="hljs-string">"/bin/bash"</span>]
@@ -245,21 +243,21 @@ The SVGO options are based on our experience working with Sketch’s exported SV
     [ding launch]
   }
 }</pre></div></div>
-            
-        </li>
         
-        
-        <li id="section-11">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
-              </div>
-              <p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x64;&#x65;&#118;&#101;&#x6c;&#x6f;&#112;&#101;&#x72;&#x40;&#115;&#x6b;&#x65;&#x74;&#x63;&#x68;&#x61;&#112;&#112;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#x65;&#118;&#101;&#x6c;&#x6f;&#112;&#101;&#x72;&#x40;&#115;&#x6b;&#x65;&#x74;&#x63;&#x68;&#x61;&#112;&#112;&#x2e;&#x63;&#x6f;&#109;</a>!</p>
+      </li>
+      
+      
+      <li id="section-11">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-11">&#182;</a>
+          </div>
+          <p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#100;&#x65;&#x76;&#x65;&#108;&#111;&#112;&#101;&#114;&#64;&#115;&#107;&#x65;&#116;&#x63;&#104;&#97;&#112;&#x70;&#46;&#x63;&#x6f;&#x6d;">&#100;&#x65;&#x76;&#x65;&#108;&#111;&#112;&#101;&#114;&#64;&#115;&#107;&#x65;&#116;&#x63;&#104;&#97;&#112;&#x70;&#46;&#x63;&#x6f;&#x6d;</a>!</p>
 
-            </div>
-            
-        </li>
+        </div>
         
+      </li>
+      
     </ul>
   </div>

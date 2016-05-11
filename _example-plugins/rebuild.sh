@@ -20,11 +20,11 @@ do
     git pull
   fi
 
-  docout="$base/example-plugins"
+  docout="$base/examples/plugins"
   docco --output "$docout" --template "$scripts/docco.jst" --css "$scripts/docco.css" *.sketchplugin/Contents/Sketch/*.js
 done
 
-open "http://localhost:4000/example-plugins"
+open "http://localhost:4000/examples/plugins"
 
 additionalFolders=`defaults read com.bohemiancoding.sketch3.xcode AdditionalPluginFolders`
 if ! [[ "$additionalFolders" == *"$scripts"* ]]
