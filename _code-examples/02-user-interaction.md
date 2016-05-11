@@ -1,7 +1,7 @@
 ---
 title: User Input & Feedback
 summary: Techniques to show information to users and interact with them.
-permalink: /code-examples/user-interaction/
+permalink: /examples/code/user-interaction/
 order: 200
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: sidebar-page
 title: Code Examples
-permalink: /code-examples/
+permalink: /examples/code/
 script: /js/search.js
 ---
 

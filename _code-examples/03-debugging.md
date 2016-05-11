@@ -1,6 +1,6 @@
 ---
 title: Debugging
-permalink: /code-examples/debugging/
+permalink: /examples/code/debugging/
 summary: Techniques for making your plugins work when they don’t.
 order: 300
 ---

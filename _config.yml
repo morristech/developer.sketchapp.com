@@ -35,7 +35,7 @@ collections:
     permalink: /reference/action/:path/
   code-examples:
     output: true
-    permalink: /code-examples/:path/
+    permalink: /examples/code/:path/
   introduction:
     output: true
     permalink: /introduction/:path/

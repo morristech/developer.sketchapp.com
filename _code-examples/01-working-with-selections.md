@@ -1,7 +1,7 @@
 ---
 title: Working with Selections
 summary: Techniques for selecting objects.
-permalink: /code-examples/working-with-selections/
+permalink: /examples/code/working-with-selections/
 order: 100
 ---
 

@@ -5,5 +5,5 @@ permalink: /reference/
 script: /js/search.js
 ---
 
-- [Classes](/reference/classes)
-- [Actions](/reference/actions)
+- [Classes](/reference/class)
+- [Actions](/reference/action)

@@ -1,7 +1,7 @@
 ---
 title: Third Party Integrations
 date: 2015-10-13
-permalink: /code-examples/third-party-integrations/
+permalink: /examples/code/third-party-integrations/
 order: 600
 ---
 

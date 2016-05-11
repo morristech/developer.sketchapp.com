@@ -1,7 +1,7 @@
 ---
 layout: sidebar-page
 title: Reference
-permalink: /reference/classes/
+permalink: /reference/class/
 script: /js/search.js
 ---
 
