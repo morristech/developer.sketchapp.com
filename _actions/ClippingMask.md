@@ -1,6 +1,6 @@
 ---
 title: ClippingMask
-summary: ClippingMask
+summary: work in progress
 ---
 
 Work In Progress

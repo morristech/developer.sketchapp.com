@@ -1,6 +1,6 @@
 ---
 title: SmartRotate
-summary: SmartRotate
+summary: work in progress
 ---
 
 Work In Progress

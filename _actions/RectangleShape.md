@@ -1,6 +1,6 @@
 ---
 title: RectangleShape
-summary: RectangleShape
+summary: work in progress
 ---
 
 Work In Progress

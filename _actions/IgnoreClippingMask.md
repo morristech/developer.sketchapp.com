@@ -1,6 +1,6 @@
 ---
 title: IgnoreClippingMask
-summary: IgnoreClippingMask
+summary: work in progress
 ---
 
 Work In Progress

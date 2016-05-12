@@ -1,6 +1,6 @@
 ---
 title: Group
-summary: Group
+summary: work in progress
 ---
 
 Work In Progress

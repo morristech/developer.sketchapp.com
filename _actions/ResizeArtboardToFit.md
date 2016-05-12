@@ -1,6 +1,6 @@
 ---
 title: ResizeArtboardToFit
-summary: ResizeArtboardToFit
+summary: work in progress
 ---
 
 Work In Progress

@@ -1,6 +1,6 @@
 ---
 title: ResetSharedStyle
-summary: ResetSharedStyle
+summary: work in progress
 ---
 
 Work In Progress

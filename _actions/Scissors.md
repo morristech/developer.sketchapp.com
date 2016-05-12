@@ -1,6 +1,6 @@
 ---
 title: Scissors
-summary: Scissors
+summary: work in progress
 ---
 
 Work In Progress

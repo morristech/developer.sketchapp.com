@@ -1,6 +1,6 @@
 ---
 title: TogglePixelGrid
-summary: TogglePixelGrid
+summary: work in progress
 ---
 
 Work In Progress

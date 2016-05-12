@@ -1,6 +1,6 @@
 ---
 title: ReduceImageSize
-summary: ReduceImageSize
+summary: work in progress
 ---
 
 Work In Progress

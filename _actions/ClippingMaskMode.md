@@ -1,6 +1,6 @@
 ---
 title: ClippingMaskMode
-summary: ClippingMaskMode
+summary: work in progress
 ---
 
 Work In Progress

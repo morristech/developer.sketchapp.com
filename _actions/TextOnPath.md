@@ -1,6 +1,6 @@
 ---
 title: TextOnPath
-summary: TextOnPath
+summary: work in progress
 ---
 
 Work In Progress

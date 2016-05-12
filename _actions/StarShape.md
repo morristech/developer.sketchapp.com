@@ -1,6 +1,6 @@
 ---
 title: StarShape
-summary: StarShape
+summary: work in progress
 ---
 
 Work In Progress

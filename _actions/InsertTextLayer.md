@@ -1,6 +1,6 @@
 ---
 title: InsertTextLayer
-summary: InsertTextLayer
+summary: work in progress
 ---
 
 Work In Progress

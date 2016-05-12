@@ -1,6 +1,6 @@
 ---
 title: PolygonShape
-summary: PolygonShape
+summary: work in progress
 ---
 
 Work In Progress

@@ -1,6 +1,6 @@
 ---
 title: CollapseAllGroups
-summary: CollapseAllGroups
+summary: work in progress
 ---
 
 Work In Progress

@@ -1,6 +1,6 @@
 ---
 title: SpiralShape
-summary: SpiralShape
+summary: work in progress
 ---
 
 Work In Progress

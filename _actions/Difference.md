@@ -1,6 +1,6 @@
 ---
 title: Difference
-summary: Difference
+summary: work in progress
 ---
 
 Work In Progress

@@ -1,6 +1,6 @@
 ---
 title: BooleanMenu
-summary: BooleanMenu
+summary: work in progress
 ---
 
 Work In Progress

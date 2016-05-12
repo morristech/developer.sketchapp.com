@@ -1,6 +1,6 @@
 ---
 title: Pencil
-summary: Pencil
+summary: work in progress
 ---
 
 Work In Progress

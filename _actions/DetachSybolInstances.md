@@ -1,6 +1,6 @@
 ---
 title: DetachSybolInstances
-summary: DetachSybolInstances
+summary: work in progress
 ---
 
 Work In Progress

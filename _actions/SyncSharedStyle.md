@@ -1,6 +1,6 @@
 ---
 title: SyncSharedStyle
-summary: SyncSharedStyle
+summary: work in progress
 ---
 
 Work In Progress

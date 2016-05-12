@@ -1,6 +1,6 @@
 ---
 title: CreateSymbol
-summary: CreateSymbol
+summary: work in progress
 ---
 
 Work In Progress

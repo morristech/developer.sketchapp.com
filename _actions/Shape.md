@@ -1,6 +1,6 @@
 ---
 title: Shape
-summary: Shape
+summary: work in progress
 ---
 
 Work In Progress

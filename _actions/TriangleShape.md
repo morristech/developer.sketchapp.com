@@ -1,6 +1,6 @@
 ---
 title: TriangleShape
-summary: TriangleShape
+summary: work in progress
 ---
 
 Work In Progress

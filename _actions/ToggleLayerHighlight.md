@@ -1,6 +1,6 @@
 ---
 title: ToggleLayerHighlight
-summary: ToggleLayerHighlight
+summary: work in progress
 ---
 
 Work In Progress

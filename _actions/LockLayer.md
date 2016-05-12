@@ -1,6 +1,6 @@
 ---
 title: LockLayer
-summary: LockLayer
+summary: work in progress
 ---
 
 Work In Progress

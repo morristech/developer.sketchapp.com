@@ -1,6 +1,6 @@
 ---
 title: DistributeHorizontally
-summary: DistributeHorizontally
+summary: work in progress
 ---
 
 Work In Progress

@@ -6,6 +6,11 @@ permalink: /reference/action/
 
 Work In Progress
 
+This is a list of the actions that plugins can respond to.
+
+It's a long list, and most haven't been documented yet, but we're providing it now to allow people to experiment whilst the documentation catches up.
+
+
 ## List of actions
 <table>
   <tbody>
