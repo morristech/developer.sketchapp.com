@@ -15,3 +15,5 @@ then
     echo "Adding $scripts to the AdditionalPluginFolders setting."
     defaults write com.bohemiancoding.sketch3.xcode AdditionalPluginFolders -array-add "$scripts"
 fi
+
+git commit "$base/examples/plugins" -m "rebuilt plugin pages"
