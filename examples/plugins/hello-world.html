@@ -1,0 +1,156 @@
+---
+title: hello-world.js
+layout: docco-page
+---
+  <div id="container">
+    
+    <ul class="sections">
+      
+      <li id="title">
+        <div class="annotation"><h1>hello-world.js</h1></div>
+      </li>
+      
+      
+      
+      <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>@<span class="hljs-keyword">import</span> <span class="hljs-string">"library.js"</span>;
+
+<span class="hljs-keyword">var</span> onRun = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <p>Context is a dictionary containing a reference to the document,
+the current selection, the plugin, curren URL and more.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+  <span class="hljs-keyword">var</span> doc = context.document;            <span class="hljs-comment">// the current document (MSDocument)</span>
+  <span class="hljs-keyword">var</span> plugin = context.plugin;          <span class="hljs-comment">// the plugin (MSPluginBundle)</span>
+  <span class="hljs-keyword">var</span> page = [doc currentPage];         <span class="hljs-comment">// the current page (MSPage)</span></pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>create a new group to contain the new layers (MSLayerGroup)</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> group = SketchLib.addLayerGroup(page, {<span class="hljs-string">"name"</span>: [plugin name] });</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-4">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>create an image layer using a resource from the plugin bundle’s Contents/Resouces folder</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> imageLayer = SketchLib.addImageLayer(group, {<span class="hljs-string">"name"</span>: <span class="hljs-string">"World"</span>, <span class="hljs-string">"url"</span>: [plugin urlForResourceNamed:<span class="hljs-string">"World.pdf"</span>]})</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-5">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>center on the canvas</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  SketchLib.util.centerLayer(imageLayer);</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-6">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <p>create a text layer using the plugin’s name</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> textLayer = SketchLib.addTextLayer(group, {<span class="hljs-string">"text"</span>: [plugin name], <span class="hljs-string">"fontSize"</span>: <span class="hljs-number">96</span>});</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-7">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <p>center on the canvas</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  SketchLib.util.centerLayer(textLayer);</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-8">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>resize the group to contain its children</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  [group resizeRoot:<span class="hljs-literal">true</span>];</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-9">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <p>center the view on our new group</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  [[doc currentView] centerRect:[group rect]];
+};</pre></div></div>
+        
+      </li>
+      
+    </ul>
+  </div>
