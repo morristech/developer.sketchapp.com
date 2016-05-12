@@ -16,6 +16,10 @@ kramdown:
     span:
       disable: true
 
+gems:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
 sass:
   style: compressed
 exclude:
