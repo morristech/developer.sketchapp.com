@@ -3,7 +3,6 @@ title: Example Plugins
 permalink: /examples/plugins/
 ---
 
-<ul>
-  <li><a href="selection-changed.html">Selection Changed</a></li>
-  <li><a href="svgo-export.html">SVGO Export</a></li>
-</ul>
+- [Hello World](hello-world.html) ([download](hello-world.zip))
+- [Selection Changed](selection-changed.html) ([download](selection-changed.zip))
+- [SVGO Export](svgo-export.html) ([download](svgo-export.zip))
