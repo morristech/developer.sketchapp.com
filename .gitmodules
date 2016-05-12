@@ -7,3 +7,6 @@
 [submodule "_example-plugins/plugins/plugins.examples.hello-world"]
 	path = _example-plugins/plugins/plugins.examples.hello-world
 	url = git@github.com:BohemianCoding/plugins.examples.hello-world
+[submodule "plugins.examples.selection-changed"]
+	path = plugins.examples.selection-changed
+	url = git@github.com:BohemianCoding/plugins.examples.selection-changed
