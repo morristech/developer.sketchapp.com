@@ -229,21 +229,12 @@ they shouldn’t effect the rendering of your assets, just reduce their size.</p
         </div>
         
         <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">optimizeFolderWithSVGO</span>(<span class="hljs-params">folderPath</span>) </span>{
-    args = [
-        <span class="hljs-string">"/usr/local/bin/svgo"</span>,
-        <span class="hljs-string">"--folder='"</span> + folderPath + <span class="hljs-string">"'"</span>,
-        <span class="hljs-string">"--pretty"</span>,
-        <span class="hljs-string">"--disable=convertShapeToPath"</span>,
-        <span class="hljs-string">"--enable=removeTitle"</span>,
-        <span class="hljs-string">"--enable=removeDesc"</span>,
-        <span class="hljs-string">"--enable=removeDoctype"</span>,
-        <span class="hljs-string">"--enable=removeEmptyAttrs"</span>,
-        <span class="hljs-string">"--enable=removeUnknownsAndDefaults"</span>,
-        <span class="hljs-string">"--enable=removeUnusedNS"</span>,
-        <span class="hljs-string">"--enable=removeEditorsNSData"</span>
-    ]
-
-    <span class="hljs-keyword">return</span> runCommand(<span class="hljs-string">"/usr/local/bin/node"</span>, args)
+  <span class="hljs-keyword">var</span> args = [
+    <span class="hljs-string">"-l"</span>,
+    <span class="hljs-string">"-c"</span>,
+    <span class="hljs-string">"svgo --folder='"</span> + folderPath + <span class="hljs-string">"' --pretty --disable=convertShapeToPath --enable=removeTitle --enable=removeDesc --enable=removeDoctype --enable=removeEmptyAttrs --enable=removeUnknownsAndDefaults --enable=removeUnusedNS --enable=removeEditorsNSData"</span>
+  ]
+  <span class="hljs-keyword">return</span> runCommand(<span class="hljs-string">"/bin/bash"</span>, args)
 }</pre></div></div>
         
       </li>
@@ -275,7 +266,7 @@ of a system sound.</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>    runCommand(<span class="hljs-string">"/usr/bin/afplay"</span>, [<span class="hljs-string">"/System/Library/Sounds/"</span> + sound + <span class="hljs-string">".aiff"</span>])
+        <div class="content"><div class='highlight'><pre>  runCommand(<span class="hljs-string">"/usr/bin/afplay"</span>, [<span class="hljs-string">"/System/Library/Sounds/"</span> + sound + <span class="hljs-string">".aiff"</span>])
 }</pre></div></div>
         
       </li>
@@ -311,13 +302,12 @@ of a system sound.</p>
         </div>
         
         <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runCommand</span>(<span class="hljs-params">command, args</span>) </span>{
-    <span class="hljs-keyword">var</span> task = NSTask.alloc().init();
-    task.launchPath = command;
-    task.arguments = args;
-    task.launch();
-    task.waitUntilExit();
-
-    <span class="hljs-keyword">return</span> (task.terminationStatus() == <span class="hljs-number">0</span>)
+  <span class="hljs-keyword">var</span> task = NSTask.alloc().init();
+  task.launchPath = command;
+  task.arguments = args;
+  task.launch();
+  task.waitUntilExit();
+  <span class="hljs-keyword">return</span> (task.terminationStatus() == <span class="hljs-number">0</span>)
 }</pre></div></div>
         
       </li>
@@ -329,7 +319,7 @@ of a system sound.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-16">&#182;</a>
           </div>
-          <p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x64;&#101;&#118;&#101;&#x6c;&#x6f;&#x70;&#x65;&#114;&#64;&#115;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#x70;&#x70;&#x2e;&#99;&#111;&#109;">&#x64;&#101;&#118;&#101;&#x6c;&#x6f;&#x70;&#x65;&#114;&#64;&#115;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#x70;&#x70;&#x2e;&#99;&#111;&#109;</a>!</p>
+          <p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#100;&#x65;&#118;&#101;&#x6c;&#x6f;&#x70;&#101;&#x72;&#x73;&#64;&#x73;&#107;&#101;&#x74;&#99;&#x68;&#x61;&#112;&#112;&#46;&#99;&#x6f;&#109;">&#100;&#x65;&#118;&#101;&#x6c;&#x6f;&#x70;&#101;&#x72;&#x73;&#64;&#x73;&#107;&#101;&#x74;&#99;&#x68;&#x61;&#112;&#112;&#46;&#99;&#x6f;&#109;</a>!</p>
 
         </div>
         
