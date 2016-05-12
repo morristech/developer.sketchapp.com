@@ -35,7 +35,7 @@ We will post some documentation and example Plugins for action support later, bu
 
 We want to make it clear at this point that this is version 1.0 of action support, and more will follow. We are aware that there are some inconsistencies with the way it works right now, and not all the things a user can do will be available to begin with. It's also worth saying that some things may never be available as actions, for performance reasons.
 
-Even having said that though, this feature should greatly expand the range of things that Plugins can usefully do, and we look forward to seeing what you do with it. Please send us feedback on how it works for you, and what you’d like to see change.
+Even having said that though, this feature should greatly expand the range of things that Plugins can usefully do, and we look forward to seeing what you do with it. Please [send us feedback](mailto:developer@sketchapp.com) on how it works for you, and what you’d like to see change.
 
 
 ## Scripting API
