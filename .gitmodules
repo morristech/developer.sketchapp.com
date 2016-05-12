@@ -4,3 +4,6 @@
 [submodule "_example-plugins/plugins/plugins.examples.selected-layers"]
 	path = _example-plugins/plugins/plugins.examples.selected-layers
 	url = git@github.com:BohemianCoding/plugins.examples.selected-layers
+[submodule "_example-plugins/plugins/plugins.examples.hello-world"]
+	path = _example-plugins/plugins/plugins.examples.hello-world
+	url = git@github.com:BohemianCoding/plugins.examples.hello-world
