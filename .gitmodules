@@ -1,0 +1,6 @@
+[submodule "_example-plugins/plugins/plugins.examples.svgo-export"]
+	path = _example-plugins/plugins/plugins.examples.svgo-export
+	url = git@github.com:BohemianCoding/plugins.examples.svgo-export
+[submodule "_example-plugins/plugins/plugins.examples.selected-layers"]
+	path = _example-plugins/plugins/plugins.examples.selected-layers
+	url = git@github.com:BohemianCoding/plugins.examples.selected-layers

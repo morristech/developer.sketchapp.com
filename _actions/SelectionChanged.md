@@ -1,8 +1,14 @@
 ---
 title: SelectionChanged
-summary: SelectionChanged
+summary: Triggered whenever the user changes which layers are selected in a document.
 ---
 
-Work In Progress
+{{page.summary}}
 
-Documentation for the SelectionChanged action will appear here.
+## Action Context
+
+The action context for this action contains three keys:
+
+- `document`: the document that the change occurred in.
+- `oldSelection`: a list of the previously selected layers.
+- `newSelection`: a list of the newly selected layers.
