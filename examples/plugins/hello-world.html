@@ -18,12 +18,11 @@ layout: docco-page
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-1">&#182;</a>
           </div>
-          
-        </div>
-        
-        <div class="content"><div class='highlight'><pre>@<span class="hljs-keyword">import</span> <span class="hljs-string">"library.js"</span>;
+          <p>Hello World, by Sam Deane — Source code available at <a href="https://github.com/BohemianCoding/plugins.examples.hello-world">GitHub</a></p>
+<p>This is an extremely simple plugin example, which illustrates how to add a menu command to the Plugins menu
+and execute some code when it is selected.</p>
 
-<span class="hljs-keyword">var</span> onRun = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{</pre></div></div>
+        </div>
         
       </li>
       
@@ -34,15 +33,39 @@ layout: docco-page
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-2">&#182;</a>
           </div>
-          <p>Context is a dictionary containing a reference to the document,
-the current selection, the plugin, curren URL and more.</p>
+          <h2 id="layout">Layout</h2>
+<p>The first thing to do when making a plugin is to setup the folder structure, which should
+look something like this:</p>
+<pre><code>   MyPlugin.sketchplugin/
+     Contents/
+       Sketch/
+         manifest.json
+         script.js
+</code></pre><h2 id="manifest">Manifest</h2>
+<p>The plugin needs a manifest.json file. This tells Sketch which menu items your plugin supplies,
+as well as giving some general information about the plugin such as its name, author, and so on.</p>
+<p>A single plugin can supply multiple menu items, and each one can execute different code,
+or they can all share code. In our case though, we just have one command.</p>
+<pre><code class="lang-json">{
+    <span class="hljs-attr">"name"</span> : <span class="hljs-string">"Hello World!"</span>,
+    <span class="hljs-attr">"identifier"</span> : <span class="hljs-string">"com.sketchapp.examples.helloworld"</span>,
+    <span class="hljs-attr">"version"</span> : <span class="hljs-string">"1.0"</span>,
+    <span class="hljs-attr">"description"</span> : <span class="hljs-string">"Pretty much the smallest example Sketch Plugin you could have."</span>,
+    <span class="hljs-attr">"authorEmail"</span> : <span class="hljs-string">"sam@sketchapp.com"</span>,
+    <span class="hljs-attr">"author"</span> : <span class="hljs-string">"Sam Deane"</span>,
+    <span class="hljs-attr">"commands"</span> : [
+    {
+      <span class="hljs-attr">"script"</span> : <span class="hljs-string">"hello-world.js"</span>,
+      <span class="hljs-attr">"handler"</span> : <span class="hljs-string">"onRun"</span>,
+      <span class="hljs-attr">"shortcut"</span> : <span class="hljs-string">""</span>,
+      <span class="hljs-attr">"name"</span> : <span class="hljs-string">"Hello World!"</span>,
+      <span class="hljs-attr">"identifier"</span> : <span class="hljs-string">"helloworld"</span>
+    }
+  ]
+}
+</code></pre>
 
         </div>
-        
-        <div class="content"><div class='highlight'><pre>
-  <span class="hljs-keyword">var</span> doc = context.document;            <span class="hljs-comment">// the current document (MSDocument)</span>
-  <span class="hljs-keyword">var</span> plugin = context.plugin;          <span class="hljs-comment">// the plugin (MSPluginBundle)</span>
-  <span class="hljs-keyword">var</span> page = [doc currentPage];         <span class="hljs-comment">// the current page (MSPage)</span></pre></div></div>
         
       </li>
       
@@ -53,11 +76,16 @@ the current selection, the plugin, curren URL and more.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-3">&#182;</a>
           </div>
-          <p>create a new group to contain the new layers (MSLayerGroup)</p>
+          <h2 id="code">Code</h2>
+<h3 id="defining-the-run-handler">Defining The Run Handler</h3>
+<p>In the manifest, we told Sketch that every time the “Hello World!” menu is selected,
+we want to execute  a javascript handler called <code>onRun</code>.</p>
+<p>So now we need to put some code into the <code>hello-world.js</code> file to implement that command.</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> group = SketchLib.addLayerGroup(page, {<span class="hljs-string">"name"</span>: [plugin name] });</pre></div></div>
+        <div class="content"><div class='highlight'><pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRun</span>(<span class="hljs-params">context</span>) </span>{</pre></div></div>
         
       </li>
       
@@ -68,11 +96,11 @@ the current selection, the plugin, curren URL and more.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-4">&#182;</a>
           </div>
-          <p>create an image layer using a resource from the plugin bundle’s Contents/Resouces folder</p>
+          <p>We are passed a context variable when we’re run.
+This is a dictionary containing a reference to the document,
+the current selection, the plugin, curren URL and more.</p>
 
         </div>
-        
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> imageLayer = SketchLib.addImageLayer(group, {<span class="hljs-string">"name"</span>: <span class="hljs-string">"World"</span>, <span class="hljs-string">"url"</span>: [plugin urlForResourceNamed:<span class="hljs-string">"World.pdf"</span>]})</pre></div></div>
         
       </li>
       
@@ -83,11 +111,12 @@ the current selection, the plugin, curren URL and more.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-5">&#182;</a>
           </div>
-          <p>center on the canvas</p>
+          <p>One of the things that the context contains is the current document,
+so let’s fetch that.</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  SketchLib.util.centerLayer(imageLayer);</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> doc = context.document;</pre></div></div>
         
       </li>
       
@@ -98,11 +127,11 @@ the current selection, the plugin, curren URL and more.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-6">&#182;</a>
           </div>
-          <p>create a text layer using the plugin’s name</p>
+          <p>From the document, we can fetch the current page that the user is looking at.</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> textLayer = SketchLib.addTextLayer(group, {<span class="hljs-string">"text"</span>: [plugin name], <span class="hljs-string">"fontSize"</span>: <span class="hljs-number">96</span>});</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> page = [doc currentPage];</pre></div></div>
         
       </li>
       
@@ -113,11 +142,11 @@ the current selection, the plugin, curren URL and more.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-7">&#182;</a>
           </div>
-          <p>center on the canvas</p>
+          <p>We can now use this page to create a new text layer…</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  SketchLib.util.centerLayer(textLayer);</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> layer = page.addLayerOfType(<span class="hljs-string">"text"</span>)</pre></div></div>
         
       </li>
       
@@ -128,11 +157,11 @@ the current selection, the plugin, curren URL and more.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-8">&#182;</a>
           </div>
-          <p>resize the group to contain its children</p>
+          <p>…give it a large font…</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  [group resizeRoot:<span class="hljs-literal">true</span>];</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  layer.font = NSFont.systemFontOfSize_(<span class="hljs-number">36.0</span>)</pre></div></div>
         
       </li>
       
@@ -143,11 +172,27 @@ the current selection, the plugin, curren URL and more.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-9">&#182;</a>
           </div>
-          <p>center the view on our new group</p>
+          <p>And set its text to a traditional value…</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  [[doc currentView] centerRect:[group rect]];
+        <div class="content"><div class='highlight'><pre>  layer.stringValue = <span class="hljs-string">"Hello World!"</span></pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-10">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
+          <p>Finally, lets center the view on our new layer
+so that we can see where it is.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  doc.currentView.centerRect_(layer.rect())
 };</pre></div></div>
         
       </li>
