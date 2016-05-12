@@ -22,8 +22,12 @@
 }
 .docco .annotation {
   width: 50%;
-  h1 {
+  h1, h2 {
+    margin: 0;
     padding-bottom: 0.2em;
+  }
+  h2 {
+    margin-bottom: 0.5em;
   }
 }
 .docco .content {
@@ -260,7 +264,6 @@ pre {
   }
 
   ul.sections > li > div.content {
-//    overflow-x:auto;
     white-space: pre-wrap;
     overflow-wrap: break-word;
     margin:5px 10px 5px 10px;
@@ -317,7 +320,6 @@ pre {
   .docco ul.sections > li > div.annotation {
     min-height: 5px;
     padding: 13px;
-    overflow-x: hidden;
     white-space: normal;
     vertical-align: top;
     text-align: left;
@@ -332,7 +334,6 @@ pre {
     position: relative;
     display: inline;
   }
-
   .pilcrow {
     font: 12px Arial;
     text-decoration: none;
@@ -340,17 +341,16 @@ pre {
     position: absolute;
     top: 3px; left: -20px;
     padding: 1px 2px;
-    opacity: 0;
+    opacity: 0.1;
     -webkit-transition: opacity 0.2s linear;
   }
-    .for-h1 .pilcrow {
-      top: 47px;
-    }
-    .for-h2 .pilcrow, .for-h3 .pilcrow, .for-h4 .pilcrow {
-      top: 35px;
-    }
-
-  .docco ul.sections > li > div.annotation:hover .pilcrow {
+  .for-h1 .pilcrow {
+    top: 47px;
+  }
+  .for-h2 .pilcrow, .for-h3 .pilcrow, .for-h4 .pilcrow {
+    top: 35px;
+  }
+  ul.sections > li > div.annotation:hover .pilcrow {
     opacity: 1;
   }
 }
