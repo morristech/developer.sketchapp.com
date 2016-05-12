@@ -19,6 +19,6 @@ do
     rm -rf temp
 
     echo "Making zip"
-    ditto -ck --keepParent *.sketchplugin "$scripts/../examples/plugins/$name.zip"
+    ditto -ck --keepParent *.sketchplugin "$scripts/../downloads/plugins/$name.zip"
 
 done
