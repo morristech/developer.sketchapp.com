@@ -31,7 +31,7 @@ We're sure that you are completely sold on this change by now, but one more litt
 
 With 3.8, we are introducing the much-requested ability for Plugins to be able to respond to actions that the user performs in Sketch.
 
-We will post some documentation and [example Plugins](/examples/plugins/) for action support later, but consider this an early warning that it's coming.
+We will post some documentation and example Plugins for action support later, but consider this an early warning that it's coming.
 
 We want to make it clear at this point that this is version 1.0 of action support, and more will follow. We are aware that there are some inconsistencies with the way it works right now, and not all the things a user can do will be available to begin with. It's also worth saying that some things may never be available as actions, for performance reasons.
 
