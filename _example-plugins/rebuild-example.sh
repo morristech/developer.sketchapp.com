@@ -2,17 +2,23 @@
 
 dest="$1"
 scripts="$2"
-name=`basename *.sketchplugin .sketchplugin`
+fullname=$(basename "$dest")
+name="${fullname##*.}"
 
-echo "Updating $dest"
-git pull
+echo "Updating $name"
+git pull --ff-only
 
 echo "Regenerating $dest"
 docout="$scripts/../examples/plugins"
-docco --output temp --template "$scripts/docco.jst" --css "$scripts/docco.css" *.sketchplugin/Contents/Sketch/*.js
-name=`basename temp/*.html .html`
-mv -f "temp/$name.html" "$scripts/../examples/plugins/"
-rm -rf temp
+for plugin in *.sketchplugin
+do
+    echo "Found plugin $plugin"
+    docco --output temp --template "$scripts/docco.jst" --css "$scripts/docco.css" "$plugin/Contents/Sketch/$name.js"
 
-echo "Making zip"
-ditto -ck *.sketchplugin "$scripts/../examples/plugins/$name.zip"
+    mv -f "temp/$name.html" "$scripts/../examples/plugins/"
+    rm -rf temp
+
+    echo "Making zip"
+    ditto -ck *.sketchplugin "$scripts/../examples/plugins/$name.zip"
+
+done
