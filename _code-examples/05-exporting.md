@@ -1,7 +1,7 @@
 ---
 title:  "Exporting Examples"
 date: 2015-09-23
-permalink: /code-examples/exporting/
+permalink: /examples/code/exporting/
 order: 500
 ---
 

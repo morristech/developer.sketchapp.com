@@ -1,21 +1,12 @@
 ---
-layout: sidebar-page
+layout: single-page
 title: Reference
 permalink: /reference/
 script: /js/search.js
 ---
 
-Work in progress
+The pages below contain brief descriptions of all the actions that your plugin can listen for, and some of the key Sketch classes that they can interact with.
 
-## List of classes
-<table>
-  <tbody>
-  {% assign classes = site.reference | sort: 'title' %}
-  {% for class in classes %}
-    <tr>
-      <td><a href="{{class.url}}">{{class.title}}</a></td>
-      <td>{{class.summary}}</td>
-    <tr>
-  {% endfor %}
-  </tbody>
-</table>
+- [Classes](/reference/class)
+- [Actions](/reference/action)
+- Javascript API (coming soon)

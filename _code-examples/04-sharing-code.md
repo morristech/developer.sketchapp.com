@@ -1,7 +1,7 @@
 ---
 title: Sharing Code
 summary: How to share code between commands and plugins.
-permalink: /code-examples/sharing-code/
+permalink: /examples/code/sharing-code/
 order: 400
 ---
 

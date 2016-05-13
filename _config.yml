@@ -31,12 +31,15 @@ exclude:
 
 # Dynamic Content
 collections:
-  reference:
+  classes:
     output: true
-    permalink: /reference/:path/
+    permalink: /reference/class/:path/
+  actions:
+    output: true
+    permalink: /reference/action/:path/
   code-examples:
     output: true
-    permalink: /code-examples/:path/
+    permalink: /examples/code/:path/
   introduction:
     output: true
     permalink: /introduction/:path/
@@ -53,7 +56,13 @@ defaults:
       layout: "single-page"
   -
     scope:
-      type: "reference"
+      type: "classes"
+    values:
+      layout: "sidebar-page"
+      script: "/js/search.js"
+  -
+    scope:
+      type: "actions"
     values:
       layout: "sidebar-page"
       script: "/js/search.js"

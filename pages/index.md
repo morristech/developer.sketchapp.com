@@ -36,8 +36,8 @@ If you want to learn how to do that, you’ve come to the right place.
 We’ve divided the contents into four parts:
 
 1. **[Introduction](/introduction/)**, which is a general overview of the scripting features in Sketch.
-2. **[Code Examples](/code-examples/)**, which will take you on a tour of all the different things you can do with Plugins.
-3. **[Reference](/reference/)**, which is a detailed list of all classes and methods, with relevant examples for each item.
+2. **[Examples](/examples/)**, some example plugins and code snippets which will help to get you started.
+3. **[Reference](/reference/)**, which is a detailed list of key classes, methods and actions that you can use.
 4. **[Resources](/resources/)**, with links and pointers to resources you may find useful as a plugin developer.
 
 ## Help us improve!

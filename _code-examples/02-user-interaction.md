@@ -1,7 +1,7 @@
 ---
 title: User Input & Feedback
 summary: Techniques to show information to users and interact with them.
-permalink: /code-examples/user-interaction/
+permalink: /examples/code/user-interaction/
 order: 200
 ---
 
@@ -83,4 +83,4 @@ and you’ll get a dialog like this:
 
 ![](/images/developer/alert.png)
 
-If you want to use feedback for debugging purposes, we recommend you to take a look at the [Debugging](/code-examples/debugging/) section.
+If you want to use feedback for debugging purposes, we recommend you to take a look at the [Debugging](/examples/code/debugging/) section.
