@@ -18,3 +18,7 @@ Each entry in the `exports` property of the action context is a dictionary conta
 
 - `request`: an `MSExportRequest` object, which contains the details of the export, such as the scale, the format, whether trimming was enabled, and so on.
 - `path`: the path of the exported file on disc. Examining the file extension of this path is a quick way to filter out exports of a particular type (eg ".svg").
+
+## Example
+
+For an example of this action, see [the SVGO Export Plugin](/examples/plugins/svgo-export/)
