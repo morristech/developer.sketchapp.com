@@ -2,6 +2,7 @@
 layout: sidebar-page
 title: Actions
 permalink: /reference/action/
+script: /js/search.js
 ---
 
 Work In Progress
