@@ -1,6 +1,5 @@
 ---
-layout: post
-title:  "Plugin News"
+title: Plugin News
 categories: scripting update
 ---
 We've been hard at work over the last few weeks here on some updates to the Plugin system.

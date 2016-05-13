@@ -3,8 +3,8 @@ title: Blog
 layout: blog-index
 permalink: /blog/
 ---
-<section>
-{% assign posts = site.posts | sort: 'date' %}
+<section class="blog">
+{% assign posts = site.posts | sort: 'date' | reverse %}
 {% for post in posts %}
     <article class="post">
       <header>
