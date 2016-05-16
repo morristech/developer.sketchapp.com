@@ -1,12 +1,12 @@
 [submodule "_example-plugins/plugins/plugins.examples.svgo-export"]
 	path = _example-plugins/plugins/plugins.examples.svgo-export
-	url = git@github.com:BohemianCoding/plugins.examples.svgo-export
+	url = https://github.com/BohemianCoding/plugins.examples.svgo-export.git
 [submodule "_example-plugins/plugins/plugins.examples.selected-layers"]
 	path = _example-plugins/plugins/plugins.examples.selected-layers
-	url = git@github.com:BohemianCoding/plugins.examples.selected-layers
+	url = https://github.com/BohemianCoding/plugins.examples.selected-layers.git
 [submodule "_example-plugins/plugins/plugins.examples.hello-world"]
 	path = _example-plugins/plugins/plugins.examples.hello-world
-	url = git@github.com:BohemianCoding/plugins.examples.hello-world
+	url = https://github.com/BohemianCoding/plugins.examples.hello-world.git
 [submodule "_example-plugins/plugins/plugins.examples.selection-changed"]
 	path = _example-plugins/plugins/plugins.examples.selection-changed
-	url = git@github.com:BohemianCoding/plugins.examples.selection-changed
+	url = https://github.com/BohemianCoding/plugins.examples.selection-changed.git
