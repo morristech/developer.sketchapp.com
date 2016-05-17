@@ -4,13 +4,13 @@ var gulp         = require('gulp')
 var runSequence  = require('run-sequence') // This is temporary, until Gulp 4.0 ships with support for sequential tasks
 
 gulp.task('build:jekyll', function(callback) {
-  exec('jekyll build --incremental', function(err, stdout, stderr){
+  exec('bundle exec jekyll build --incremental', function(err, stdout, stderr){
     callback(err)
   })
 })
 
 gulp.task('watch', function() {
-  return exec('jekyll build --incremental --watch', function(err, stdout, stderr) {
+  return exec('bundle exec jekyll build --incremental --watch', function(err, stdout, stderr) {
     if (err) {
       console.log(err, stdout, stderr)
     }

@@ -10,12 +10,11 @@ We use [Jekyll](http://jekyllrb.com) as our content backend, so make sure to rea
 
 ## Setup
 
-If you want to get the site working locally, run this:
+If you want to get the site working locally, you'll need to have [node](https://nodejs.org/en/) and [bundler](http://bundler.io) installed. Once you have them, run this:
 
 ```
-brew install node # if you don't have it already
-sudo npm install -g gulp # if you don't have it already
-sudo gem install jekyll pygments.rb
+npm install --global gulp
+bundle install --path _vendor
 npm install
 ```
 
