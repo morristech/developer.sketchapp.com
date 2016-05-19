@@ -17,11 +17,11 @@ A color fill (0), gradient (1) or pattern (4). Other values make no sense and ca
 
 ### colorGeneric
 
-A [MSColor](/reference/MSColor/) object that will be used if the `fillType` is set to fill.
+A [MSColor](/reference/class/MSColor/) object that will be used if the `fillType` is set to fill.
 
 ### gradient
 
-A [MSGradient](/reference/MSGradient/) object that will only be used if the `fillType` is set to a gradient.
+A [MSGradient](/reference/class/MSGradient/) object that will only be used if the `fillType` is set to a gradient.
 
 ### image
 

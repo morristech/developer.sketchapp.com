@@ -13,9 +13,9 @@ rels:
 
 ### (NSImage)image:
 
-### ([MSImageCollection](/reference/MSImageCollection/))collection:
+### ([MSImageCollection](/reference/class/MSImageCollection/))collection:
 
 ### (NSDictionary)imageInfo:
 
-### (MSImageData)initWithImage:([MSImage](/reference/MSImage/))image convertColorSpace:(BOOL)boolean;
+### (MSImageData)initWithImage:([MSImage](/reference/class/MSImage/))image convertColorSpace:(BOOL)boolean;
 

@@ -18,8 +18,8 @@ Some layers will ignore unsupported attributes though (such as a text layer only
 
 ### borders, fills, shadows, shadows, innerShadows
 
-Each returns an [MSStylePartCollection](/reference/MSStylePartCollection/) that contains an array of each represented object. See [MSStyleBorder](/reference/MSStyleBorder/), [MSStyleFill](/reference/MSStyleFill/), [MSStyleShadow](/reference/MSStyleShadow/) and [MSStyleInnerShadow](/reference/MSStyleInnerShadow/) for details.
+Each returns an [MSStylePartCollection](/reference/class/MSStylePartCollection/) that contains an array of each represented object. See [MSStyleBorder](/reference/class/MSStyleBorder/), [MSStyleFill](/reference/class/MSStyleFill/), [MSStyleShadow](/reference/class/MSStyleShadow/) and [MSStyleInnerShadow](/reference/class/MSStyleInnerShadow/) for details.
 
 ### contextSettings
 
-Contains and [MSGraphicsContextSettings](/reference/MSGraphicsContextSettings/) object that holds the opacity and blending mode of its layer
+Contains and [MSGraphicsContextSettings](/reference/class/MSGraphicsContextSettings/) object that holds the opacity and blending mode of its layer

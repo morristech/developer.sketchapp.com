@@ -13,7 +13,7 @@ Return the number of unique images in the collection. Images can be referenced m
 
 ### (MSImageData)addNSImage:(NSImage)image convertColourspace:(BOOL)convertColorspace
 
-Available in Sketch 3.4 and below, removed in Sketch 3.5 (see [MSImageData](/reference/MSImageData/)), add an image to the collection. We calculate a SHA1 for it, and only actually add a new item to the collection if it's not already present. The returned proxy is immediately usable as it has its imageData resolved already.
+Available in Sketch 3.4 and below, removed in Sketch 3.5 (see [MSImageData](/reference/class/MSImageData/)), add an image to the collection. We calculate a SHA1 for it, and only actually add a new item to the collection if it's not already present. The returned proxy is immediately usable as it has its imageData resolved already.
 
 ### (NSDictionary)rawImageDataIndexedBySHAs:(NSSet)shas;
 
@@ -25,7 +25,7 @@ Add images with known SHAs to the collection. Typically the dictionary passed in
 
 ### (MSImageData)imageWithSHA1:(NSData*)sha1
 
-Return an image from the collection matching a given SHA1. This is used by [MSBitmapLayer](/reference/MSBitmapLayer/) to retrieve the actual image to draw.
+Return an image from the collection matching a given SHA1. This is used by [MSBitmapLayer](/reference/class/MSBitmapLayer/) to retrieve the actual image to draw.
 
 ### (void)purgeImagesNotMatchingSHAs:(NSSet)shas
 

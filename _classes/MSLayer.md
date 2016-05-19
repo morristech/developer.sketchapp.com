@@ -15,11 +15,11 @@ MSLayer is the base class that represents a layer object.
 
 ### frame: (readonly)
 
-An instance of [MSRect](/reference/MSRect/). Determines size and position on the canvas.
+An instance of [MSRect](/reference/class/MSRect/). Determines size and position on the canvas.
 
 ### style: (readonly)
 
-An instance of [MSStyle](/reference/MSStyle/). Determines all style-related attributes such as Borders, Fills, Shadows and more
+An instance of [MSStyle](/reference/class/MSStyle/). Determines all style-related attributes such as Borders, Fills, Shadows and more
 
 ### name: setName:(NSString)name
 
@@ -72,7 +72,7 @@ layer.isFlippedHorizontal()
 
 ### parentGroup:
 
-Returns the parent group of this layer. Note that this can return an [MSPage](/reference/MSPage/) or [MSArtboardGroup](/reference/MSArtboardGroup/) as well as an [MSLayerGroup](/reference/MSLayerGroup/)
+Returns the parent group of this layer. Note that this can return an [MSPage](/reference/class/MSPage/) or [MSArtboardGroup](/reference/class/MSArtboardGroup/) as well as an [MSLayerGroup](/reference/class/MSLayerGroup/)
 
 ### isSelected:, setIsSelected:
 
@@ -84,7 +84,7 @@ Check the [Working with Selections](/examples/code/working-with-selections/) sec
 
 ### absoluteRect: (readonly)
 
-Returns a [MSAbsoluteRect](/reference/MSAbsoluteRect/) object that returns the bounds of this layer in absolute coordinates; it takes into account the layer’s rotation and that of any of its parents.
+Returns a [MSAbsoluteRect](/reference/class/MSAbsoluteRect/) object that returns the bounds of this layer in absolute coordinates; it takes into account the layer’s rotation and that of any of its parents.
 
 ### duplicate:
 
@@ -92,7 +92,7 @@ Duplicates the layer and insert the copy above itself.
 
 ### userInfo:
 
-Returns a dictionary of metadata keys and values, if they have been using the corresponding methods in [MSPluginCommand](/reference/MSPluginCommand/) (`setValue:forKey:onLayer:` or `setValue:forKey:onLayer:forPluginIdentifier:`)
+Returns a dictionary of metadata keys and values, if they have been using the corresponding methods in [MSPluginCommand](/reference/class/MSPluginCommand/) (`setValue:forKey:onLayer:` or `setValue:forKey:onLayer:forPluginIdentifier:`)
 
 ### CSSAttributeString:
 

@@ -37,7 +37,7 @@ A Bool indicating if the Artboard has a background color. 'backgroundColorGeneri
 
 ### backgroundColorGeneric
 
-A [MSColor](/reference/MSColor/) of the Artboard's background color. Only valid if 'hasBackgroundColor' is YES
+A [MSColor](/reference/class/MSColor/) of the Artboard's background color. Only valid if 'hasBackgroundColor' is YES
 
 ### hasGuides:
 
@@ -45,11 +45,11 @@ Returns `1` if the Artboard has guides, `0` otherwise.
 
 ### slice:
 
-Returns an [MSSliceLayer](/reference/MSSliceLayer/) for the Artboard.
+Returns an [MSSliceLayer](/reference/class/MSSliceLayer/) for the Artboard.
 
 ### frame
 
-An [MSRect](/reference/MSRect/) which determines its position in the canvas.
+An [MSRect](/reference/class/MSRect/) which determines its position in the canvas.
 
 ### layers
 
@@ -57,7 +57,7 @@ To see which layers are inside the Artboard, use the layers property.
 
 ### horizontalRulerData & verticalRulerData
 
-Both return the [MSRulerData](/reference/MSRulerData/) object used to store rulers for their respective axes. Note that this data is only used on the artboard itself.
+Both return the [MSRulerData](/reference/class/MSRulerData/) object used to store rulers for their respective axes. Note that this data is only used on the artboard itself.
 
 ## Examples
 

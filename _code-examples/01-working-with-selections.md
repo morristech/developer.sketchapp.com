@@ -57,7 +57,7 @@ doc.currentPage().deselectAllLayers()
 
 ## Selecting items
 
-Once you are comfortable iterating through the selection, you’ll probably want to modify it. To do that, there’s one method in [MSLayer](/reference/MSLayer/) you’ll be using a lot: `select:byExpandingSelection`.
+Once you are comfortable iterating through the selection, you’ll probably want to modify it. To do that, there’s one method in [MSLayer](/reference/class/MSLayer/) you’ll be using a lot: `select:byExpandingSelection`.
 
 As an example, we’ll select all layers named 'Rectangle':
 

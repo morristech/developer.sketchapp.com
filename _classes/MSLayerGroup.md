@@ -6,7 +6,7 @@ rels:
   - MSLayer
 ---
 
-MSLayerGroup represents a group in the document, but is an [MSLayer](/reference/MSLayer/) itself. Two important subclasses of MSLayerGroup are [MSArtboardGroup](/reference/MSArtboardGroup/) and [MSPage](/reference/MSPage/).
+MSLayerGroup represents a group in the document, but is an [MSLayer](/reference/class/MSLayer/) itself. Two important subclasses of MSLayerGroup are [MSArtboardGroup](/reference/class/MSArtboardGroup/) and [MSPage](/reference/class/MSPage/).
 
 ## Methods & Attributes
 

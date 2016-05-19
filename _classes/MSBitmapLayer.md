@@ -12,7 +12,7 @@ rels:
 
 ### initWithFrame:(NSRect)frame image:(MSImageProxy)image
 
-See [MSImageProxy](/reference/MSImageProxy/)
+See [MSImageProxy](/reference/class/MSImageProxy/)
 
 ### reduceImageSize:
 

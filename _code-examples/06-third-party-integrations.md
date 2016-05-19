@@ -30,7 +30,7 @@ Is yours missing? Add it by [editing this page]({{site.github_repo}}/tree/gh-pag
 
 ## Controlling Sketch using CocoaScript
 
-If you develop a third party app, chances are that you'll want to drive Sketch from it. That's pretty easy to do using CocoaScript and the `runPlugin*` methods documented at [AppController](/reference/AppController/) in combination with `coscript` (the CocoaScript binary, which you can download from [here](/downloads/coscript.zip)).
+If you develop a third party app, chances are that you'll want to drive Sketch from it. That's pretty easy to do using CocoaScript and the `runPlugin*` methods documented at [AppController](/reference/class/AppController/) in combination with `coscript` (the CocoaScript binary, which you can download from [here](/downloads/coscript.zip)).
 
 You can think of `coscript` as the CocoaScript cousin of `osascript`, a command-line tool to run AppleScript code.
 
@@ -44,7 +44,7 @@ The REPL part is cool, but we're going to play with the second: let's use coscri
 
 ### Running arbitrary code
 
-Let's make Sketch run some CocoaScript code. For this example, we'll have it show an message, using MSDocument's [showMessage](/reference/MSDocument/#showmessage).
+Let's make Sketch run some CocoaScript code. For this example, we'll have it show an message, using MSDocument's [showMessage](/reference/class/MSDocument/#showmessage).
 
 We want Sketch to run this bit of code:
 
