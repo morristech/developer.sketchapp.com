@@ -30,7 +30,7 @@ When Sketch starts up, it scans a folder on your disk looking for Plugins.
 You can access this Plugins folder easily by creating a Plugin with this code:
 
 ```
-NSWorkspace.sharedWorkspace().openURL(MSPluginManager.pluginsURL())
+NSWorkspace.sharedWorkspace().openURL(MSPluginManager.mainPluginsFolderURL())
 ```
 
 ### Installing Plugins
