@@ -2,7 +2,6 @@
 title: MSStyle
 summary: Represents all style attributes on a layer. Whatever kind of layer you have, each has a valid style object.
 rels:
-  - MSStylePartCollection
   - MSStyleBorder
   - MSStyleFill
   - MSStyleShadow
@@ -16,9 +15,20 @@ Some layers will ignore unsupported attributes though (such as a text layer only
 
 ## Methods & Attributes
 
-### borders, fills, shadows, shadows, innerShadows
+### borders(), fills(), shadows(), innerShadows()
 
-Each returns an [MSStylePartCollection](/reference/class/MSStylePartCollection/) that contains an array of each represented object. See [MSStyleBorder](/reference/class/MSStyleBorder/), [MSStyleFill](/reference/class/MSStyleFill/), [MSStyleShadow](/reference/class/MSStyleShadow/) and [MSStyleInnerShadow](/reference/class/MSStyleInnerShadow/) for details.
+Each returns an [MSArray](/reference/class/MSArray/) of each represented object. See [MSStyleBorder](/reference/class/MSStyleBorder/), [MSStyleFill](/reference/class/MSStyleFill/), [MSStyleShadow](/reference/class/MSStyleShadow/) and [MSStyleInnerShadow](/reference/class/MSStyleInnerShadow/) for details.
+
+### addStylePartOfType(type)
+
+Adds a new style of the specified `type`.
+
+```
+layer.style().addStylePartOfType(0) // To add a new fill
+layer.style().addStylePartOfType(1) // To add a new border
+layer.style().addStylePartOfType(2) // To add a new shadow
+layer.style().addStylePartOfType(3) // To add a new inner shadow
+```
 
 ### contextSettings
 
