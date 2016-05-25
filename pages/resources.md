@@ -27,7 +27,7 @@ permalink: /resources/
 - [Debugging Sketch Plugins](https://sketchplugindev.james.ooo/debugging-sketch-plugins-11cafc86df87#.64891ewop)
 - [How I made a Sketch Plugin for my team without knowing code](http://hackingui.com/design/how-to-create-a-sketch-plugin/)
 - [Programmers Design Differently: Why I Built a CSS Plugin for Sketch 3](https://medium.com/sketch-app-sources/programmers-design-differently-why-i-built-a-css-plugin-for-sketch-3-52a1246305a4#.v0qjvzsfd)
-- [Sketch Runner] (https://medium.com/sketch-app-sources/runner-speed-up-your-sketch-workflow-fba470ed43c1#.bgdpr68wy)
+- [Sketch Runner](https://medium.com/sketch-app-sources/runner-speed-up-your-sketch-workflow-fba470ed43c1#.bgdpr68wy)
 
 ## Sample Plugins
 
