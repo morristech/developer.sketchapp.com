@@ -22,6 +22,12 @@ permalink: /resources/
 ## CocoaScript
 
 - [Sketch Plugins Cookbook](https://github.com/turbobabr/Sketch-Plugins-Cookbook), an amazing collection of tips and information, from [Andrey Shakhmin](https://github.com/turbobabr)
+- [Sketch Plugin Snippets for Plugin Developers](https://medium.com/sketch-app-sources/sketch-plugin-snippets-for-plugin-developers-e9e1d2ab6827#.a3xn6hth6)
+- [I made a Sketch Plugin. You can too](https://medium.com/sketch-app-sources/i-made-a-sketch-plugin-you-can-too-58a28b7277f1#.52umaxe3i)
+- [Debugging Sketch Plugins](https://sketchplugindev.james.ooo/debugging-sketch-plugins-11cafc86df87#.64891ewop)
+- [How I made a Sketch Plugin for my team without knowing code](http://hackingui.com/design/how-to-create-a-sketch-plugin/)
+- [Programmers Design Differently: Why I Built a CSS Plugin for Sketch 3](https://medium.com/sketch-app-sources/programmers-design-differently-why-i-built-a-css-plugin-for-sketch-3-52a1246305a4#.v0qjvzsfd)
+- [Sketch Runner] (https://medium.com/sketch-app-sources/runner-speed-up-your-sketch-workflow-fba470ed43c1#.bgdpr68wy)
 
 ## Sample Plugins
 
