@@ -5,12 +5,19 @@ permalink: /examples/plugins/
 
 The following examples should help you to get up & running with Plugin development.
 
-Follow the main link for each one for an annotated view of the source code, or click on the download link to try the plugin out.
+Follow the main link for each one for an annotated view of the source code, or click on the links on the right to try the plugin out or view its github repo.
 
-[Hello World](hello-world): A super-simple plugin which just makes a single "Hello World!" text layer in the current document ([download](/downloads/plugins/hello-world.zip)).
-
-[Resources](resources): An example which shows how to bundle resources along with your plugin, then retrieve them from code. ([download](/downloads/plugins/resources.zip)).
-
-[Selection Changed](selection-changed): Displays a counter at the bottom of the canvas showing how many layers are selected. Illustrates how to respond to the SelectionChanged action, which is sent whenever the user selects/de-selects layers ([download](/downloads/plugins/selection-changed.zip)).
-
-[SVGO Export](svgo-export): Post-processes any exported SVG files using svgo. Illustrates how to respond to the ExportSlices action, which is sent whenever an export occurs ([download](/downloads/plugins/svgo-export.zip)).
+<table>
+  <tbody>
+  {% assign plugins = site.plugins | sort: 'title' %}
+  {% for plugin in plugins %}
+    {% assign info = site.data.plugins[plugin.title] %}
+    <tr>
+      <td><a href="{{plugin.url}}">{{info.name}}</a></td>
+      <td>{{info.summary}}</td>
+      <td><a href="/downloads/plugins/{{plugin.title}}.zip">download</a></td>
+      <td><a href="{{plugin.repo}}">github</a></td>
+    <tr>
+  {% endfor %}
+  </tbody>
+</table>

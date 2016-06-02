@@ -6,7 +6,7 @@ fullname=$(basename "$dest")
 name="${fullname##*.}"
 
 echo "Regenerating $dest"
-docout="$scripts/../examples/plugins"
+docout="$scripts/../_plugins"
 for plugin in *.sketchplugin
 do
     echo "Found plugin $plugin"

@@ -14,6 +14,6 @@ then
     defaults write com.bohemiancoding.sketch3.xcode AdditionalPluginFolders -array-add "$scripts"
 fi
 
-git commit "$base/examples/plugins" -m "rebuilt plugin pages"
+git commit "$base/_plugins" -m "rebuilt plugin pages"
 
 open "http://localhost:3000/examples/plugins"
