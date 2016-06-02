@@ -119,19 +119,19 @@ the current selection, the plugin, curren URL and more.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-5">&#182;</a>
           </div>
-          <p>One of the things that the context contains is an api function, which
-when called gives you back a series javascript objects that you can
+          <p>One of the things that the context contains is a sketch api function,
+which when called gives you back a javascript objects that you can
 use to interact with Sketch.</p>
 <p>There are ways of interacting directly with the Sketch classes instead,
 but by going through the API, you gain an extra level of protection
 against changes to Sketch, so it’s the recommended way to work if you can.</p>
-<p>So first, let’s fetch the API into a variable we’ll call <code>sketch</code>:</p>
+<p>So first, let’s fetch the sketch object.</p>
 
         </div>
         
         <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> sketch = context.api()
-  print(sketch)
-};</pre></div></div>
+  sketch.log(<span class="hljs-string">"Sketch version is "</span> + sketch.version)
+  sketch.log(<span class="hljs-string">"Sketch API version is "</span> + sketch.api_version)</pre></div></div>
         
       </li>
       
@@ -142,9 +142,85 @@ against changes to Sketch, so it’s the recommended way to work if you can.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-6">&#182;</a>
           </div>
+          <p>We are going to make a new image layer using the PDF file we included in
+our Resources folder. To do this, we’ll need to fetch the full location
+of the resource.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> imageURL = sketch.resourceNamed(<span class="hljs-string">'World.pdf'</span>)
+  sketch.log(imageURL)</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-7">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <p>Next we want to use the api to extract the selected page of the front-most document</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> <span class="hljs-built_in">document</span> = sketch.frontDocument
+  <span class="hljs-keyword">var</span> page = <span class="hljs-built_in">document</span>.selectedPage</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-8">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>we want to make a new group on the page,
+then put a new image layer into it, and set
+that layer to use our resource image</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> group = page.newGroup(<span class="hljs-string">"Group"</span>, sketch.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>))
+  <span class="hljs-keyword">var</span> image = group.newImage(<span class="hljs-string">"Image"</span>, sketch.rectangle(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>))
+  image.setImageFromURL(imageURL)</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-9">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <p>lets also make a text layer with a message
+to the world on it…</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> textFrame = sketch.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">160</span>, <span class="hljs-number">200</span>, <span class="hljs-number">30</span>)
+  <span class="hljs-keyword">var</span> text = group.newText(<span class="hljs-string">"Text"</span>, textFrame)
+  text.fixedWidth = <span class="hljs-literal">true</span>
+  text.useSystemFontOfSize(<span class="hljs-number">24</span>)
+  text.alignment = NSTextAlignmentCenter
+  text.text = <span class="hljs-string">"Hello World"</span>
+  text.frame = textFrame
+};</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-10">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
           <p>And that’s it. Job done.</p>
 <p>Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.</p>
-<p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x64;&#x65;&#x76;&#101;&#x6c;&#111;&#112;&#101;&#x72;&#x73;&#x40;&#x73;&#107;&#101;&#x74;&#99;&#x68;&#x61;&#x70;&#112;&#46;&#99;&#x6f;&#109;">&#x64;&#x65;&#x76;&#101;&#x6c;&#111;&#112;&#101;&#x72;&#x73;&#x40;&#x73;&#107;&#101;&#x74;&#99;&#x68;&#x61;&#x70;&#112;&#46;&#99;&#x6f;&#109;</a>!</p>
+<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#x64;&#101;&#118;&#101;&#x6c;&#x6f;&#x70;&#x65;&#114;&#x73;&#x40;&#115;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#112;&#112;&#x2e;&#x63;&#111;&#109;">&#x64;&#101;&#118;&#101;&#x6c;&#x6f;&#x70;&#x65;&#114;&#x73;&#x40;&#115;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#112;&#112;&#x2e;&#x63;&#111;&#109;</a>!</p>
 
         </div>
         
