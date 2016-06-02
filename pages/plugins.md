@@ -9,6 +9,8 @@ Follow the main link for each one for an annotated view of the source code, or c
 
 [Hello World](hello-world): A super-simple plugin which just makes a single "Hello World!" text layer in the current document ([download](/downloads/plugins/hello-world.zip)).
 
+[Resources](resources): An example which shows how to bundle resources along with your plugin, then retrieve them from code. ([download](/downloads/plugins/resources.zip)).
+
 [Selection Changed](selection-changed): Displays a counter at the bottom of the canvas showing how many layers are selected. Illustrates how to respond to the SelectionChanged action, which is sent whenever the user selects/de-selects layers ([download](/downloads/plugins/selection-changed.zip)).
 
 [SVGO Export](svgo-export): Post-processes any exported SVG files using svgo. Illustrates how to respond to the ExportSlices action, which is sent whenever an export occurs ([download](/downloads/plugins/svgo-export.zip)).
