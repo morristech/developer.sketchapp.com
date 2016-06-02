@@ -1,8 +1,6 @@
 ---
+name: <%= title.replace(/\.[^/.]+$/, "") %>
 title: <%= title %>
-layout: docco-page
-permalink: /examples/plugins/<%= title.replace(/\.[^/.]+$/, "") %>/
-repo: git@github.com:BohemianCoding/plugins.examples.<%= title.replace(/\.[^/.]+$/, "") %>.git
 ---
   <div id="container">
     <% if (sources.length > 1) { %>

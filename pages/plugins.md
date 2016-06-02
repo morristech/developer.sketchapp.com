@@ -16,7 +16,7 @@ Follow the main link for each one for an annotated view of the source code, or c
       <td><a href="{{plugin.url}}">{{info.name}}</a></td>
       <td>{{info.summary}}</td>
       <td><a href="/downloads/plugins/{{plugin.title}}.zip">download</a></td>
-      <td><a href="{{plugin.repo}}">github</a></td>
+      <td><a href="https://github.com/BohemianCoding/plugins.examples.{{plugin.name}}">github</a></td>
     <tr>
   {% endfor %}
   </tbody>

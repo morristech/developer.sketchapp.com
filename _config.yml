@@ -76,6 +76,11 @@ defaults:
       script: "/js/search.js"
   -
     scope:
+      type: "plugins"
+    values:
+      layout: "docco-page"
+  -
+    scope:
       type: "code-examples"
     values:
       layout: "sidebar-page"
