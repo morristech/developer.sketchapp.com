@@ -12,4 +12,4 @@
 	url = https://github.com/BohemianCoding/plugins.examples.selection-changed.git
 [submodule "_example-plugins/plugins/plugins.examples.resources"]
 	path = _example-plugins/plugins/plugins.examples.resources
-	url = git@github.com:BohemianCoding/plugins.examples.resources.git
+	url = https://github.com/BohemianCoding/plugins.examples.resources.git
