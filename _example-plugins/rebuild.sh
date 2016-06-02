@@ -5,9 +5,7 @@ scripts=`pwd`
 cd "$scripts/.."
 base=`pwd`
 
-git submodule foreach --quiet "$scripts/rebuild-example.sh \$name \"$scripts\""
-
-open "http://localhost:4000/examples/plugins"
+git submodule foreach --quiet "$scripts/build-example.sh \$name \"$scripts\""
 
 additionalFolders=`defaults read com.bohemiancoding.sketch3.xcode AdditionalPluginFolders`
 if ! [[ "$additionalFolders" == *"$scripts"* ]]
@@ -17,3 +15,5 @@ then
 fi
 
 git commit "$base/examples/plugins" -m "rebuilt plugin pages"
+
+open "http://localhost:3000/examples/plugins"
