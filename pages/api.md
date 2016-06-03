@@ -7,10 +7,10 @@ permalink: /reference/api/
 ## List of API classes
 <table>
   <tbody>
-  {% assign classes = site.api | sort: 'title' %}
+  {% assign classes = site.api | sort: 'name' %}
   {% for class in classes %}
     <tr>
-      <td><a href="{{class.url}}">{{class.title}}</a></td>
+      <td><a href="{{class.url}}">{{class.name}}</a></td>
       <td>{{class.summary}}</td>
     <tr>
   {% endfor %}

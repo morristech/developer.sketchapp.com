@@ -1,6 +1,6 @@
 ---
 layout: sidebar-page
-title: Reference
+title: Classes Reference
 permalink: /reference/class/
 script: /js/search.js
 ---

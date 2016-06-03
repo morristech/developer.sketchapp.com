@@ -1,6 +1,6 @@
 ---
 layout: sidebar-page
-title: Actions
+title: Actions Reference
 permalink: /reference/action/
 script: /js/search.js
 ---

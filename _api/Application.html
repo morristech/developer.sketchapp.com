@@ -1,6 +1,6 @@
 ---
-name: Application
-title: Application.js
+name: Sketch Javascript API.
+title: Sketch Javascript API.
 ---
   <div id="container">
     
@@ -82,10 +82,6 @@ title: Application.js
     
     <ul class="sections">
       
-      <li id="title">
-        <div class="annotation"><h1>Application.js</h1></div>
-      </li>
-      
       
       
       <li id="section-1">
@@ -94,10 +90,26 @@ title: Application.js
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-1">&#182;</a>
           </div>
-          
+          <h1 id="sketch-javascript-api-">Sketch Javascript API.</h1>
+<p>All code (C) 2016 Bohemian Coding.</p>
+
         </div>
         
-        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { WrappedObject } <span class="hljs-keyword">from</span> <span class="hljs-string">'./WrappedObject.js'</span>
+      </li>
+      
+      
+      <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <h2 id="imports">Imports</h2>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">import</span> { WrappedObject } <span class="hljs-keyword">from</span> <span class="hljs-string">'./WrappedObject.js'</span>
 <span class="hljs-keyword">import</span> { Document } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Document.js'</span>
 <span class="hljs-keyword">import</span> { Rectangle } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Rectangle.js'</span>
 <span class="hljs-keyword">import</span> { Group } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Group.js'</span>
@@ -110,11 +122,11 @@ title: Application.js
       </li>
       
       
-      <li id="section-2">
+      <li id="section-3">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-2">&#182;</a>
+            <a class="pilcrow" href="#section-3">&#182;</a>
           </div>
           <hr>
 <p>Application support.</p>
@@ -131,11 +143,11 @@ title: Application.js
       </li>
       
       
-      <li id="section-3">
+      <li id="section-4">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-3">&#182;</a>
+            <a class="pilcrow" href="#section-4">&#182;</a>
           </div>
           <p>this is a slightly clumsy way to pass related classes into Layer
 without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer…)
