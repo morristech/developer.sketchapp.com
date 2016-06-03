@@ -42,6 +42,9 @@ collections:
   actions:
     output: true
     permalink: /reference/action/:path/
+  api:
+    output: true
+    permalink: /reference/api/:path/
   code-examples:
     output: true
     permalink: /examples/code/:path/
@@ -68,6 +71,11 @@ defaults:
     values:
       layout: "sidebar-page"
       script: "/js/search.js"
+  -
+    scope:
+      type: "api"
+    values:
+      layout: "docco-page"
   -
     scope:
       type: "actions"
