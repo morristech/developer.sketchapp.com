@@ -132,6 +132,14 @@ we want to execute a javascript handler called <code>onRun</code> in the <code>r
 <p>We are passed a context variable when we’re run.
 This is a dictionary containing a reference to the document,
 the current selection, the plugin, curren URL and more.</p>
+<p>One of the things that the context contains is a sketch api function,
+which when called gives you back a javascript object that you can
+use to interact with Sketch.</p>
+<p>Note: <em>There are ways of interacting directly with the raw Sketch objects instead,
+but these tend to change when we update Sketch, which can make your plugin scripts
+break easily. By going through the javascript API, you gain an extra level of protection
+against changes to Sketch - since we fix the API when an underlying change to Sketch
+would have broken it - so it’s the recommended way to work if you can.</em></p>
 
         </div>
         
@@ -144,15 +152,7 @@ the current selection, the plugin, curren URL and more.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-7">&#182;</a>
           </div>
-          <p>One of the things that the context contains is a sketch api function,
-which when called gives you back a javascript object that you can
-use to interact with Sketch.</p>
-<p>Note: <em>There are ways of interacting directly with the raw Sketch objects instead,
-but these tend to change when we update Sketch, which can make your plugin scripts
-break easily. By going through the javascript API, you gain an extra level of protection
-against changes to Sketch - since we fix the API when an underlying change to Sketch
-would have broken it - so it’s the recommended way to work if you can.</em></p>
-<p>So first, let’s fetch the sketch object.</p>
+          <p>So first, let’s fetch the sketch object.</p>
 
         </div>
         
@@ -242,7 +242,7 @@ to the world on it…</p>
           <h2 id="job-done">Job Done</h2>
 <p>And that’s it.</p>
 <p>Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.</p>
-<p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x64;&#x65;&#x76;&#101;&#x6c;&#x6f;&#112;&#x65;&#x72;&#115;&#x40;&#115;&#x6b;&#101;&#116;&#99;&#104;&#x61;&#112;&#112;&#46;&#99;&#111;&#x6d;">&#x64;&#x65;&#x76;&#101;&#x6c;&#x6f;&#112;&#x65;&#x72;&#115;&#x40;&#115;&#x6b;&#101;&#116;&#99;&#104;&#x61;&#112;&#112;&#46;&#99;&#111;&#x6d;</a>!</p>
+<p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#x64;&#x65;&#x76;&#101;&#x6c;&#111;&#112;&#101;&#114;&#x73;&#64;&#x73;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#x70;&#x70;&#46;&#x63;&#111;&#x6d;">&#x64;&#x65;&#x76;&#101;&#x6c;&#111;&#112;&#101;&#114;&#x73;&#64;&#x73;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#x70;&#x70;&#46;&#x63;&#111;&#x6d;</a>!</p>
 
         </div>
         
