@@ -170,13 +170,8 @@ would have broken it - so it’s the recommended way to work if you can.</em></p
             <a class="pilcrow" href="#section-8">&#182;</a>
           </div>
           <h3 id="finding-our-embedded-resource">Finding Our Embedded Resource</h3>
-<p>We are going to make a new image layer using the PDF file we included in
-our Resources folder. To do this, we’ll need to fetch the full location
-of the resource.</p>
 
         </div>
-        
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> imageURL = sketch.resourceNamed(<span class="hljs-string">'World.pdf'</span>)</pre></div></div>
         
       </li>
       
@@ -187,13 +182,13 @@ of the resource.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-9">&#182;</a>
           </div>
-          <h3 id="making-some-new-layers">Making Some New Layers</h3>
-<p>Next we want to use the api to extract the selected page of the front-most document</p>
+          <p>We are going to make a new image layer using the PDF file we included in
+our Resources folder. To do this, we’ll need to fetch the full location
+of the resource.</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> <span class="hljs-built_in">document</span> = sketch.selectedDocument
-  <span class="hljs-keyword">var</span> page = <span class="hljs-built_in">document</span>.selectedPage</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> imageURL = sketch.resourceNamed(<span class="hljs-string">'World.pdf'</span>)</pre></div></div>
         
       </li>
       
@@ -204,13 +199,9 @@ of the resource.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-10">&#182;</a>
           </div>
-          <p>we want to make a new group on the page, then put a new image layer into it, and set
-that layer to use the resource image we located earlier</p>
+          <h3 id="making-some-new-layers">Making Some New Layers</h3>
 
         </div>
-        
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> group = page.newGroup({frame: sketch.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>)})
-  <span class="hljs-keyword">var</span> image = group.newImage({frame: sketch.rectangle(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>), imageURL:imageURL})</pre></div></div>
         
       </li>
       
@@ -221,7 +212,40 @@ that layer to use the resource image we located earlier</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-11">&#182;</a>
           </div>
-          <p>lets also make a text layer with a message
+          <p>Next we want to use the api to extract the selected page of the front-most document</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> <span class="hljs-built_in">document</span> = sketch.selectedDocument
+  <span class="hljs-keyword">var</span> page = <span class="hljs-built_in">document</span>.selectedPage</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-12">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-12">&#182;</a>
+          </div>
+          <p>Then we want to make a new group on the page, then put a new image layer into it, and set
+that layer to use the resource image we located earlier</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> group = page.newGroup({frame: sketch.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>)})
+  <span class="hljs-keyword">var</span> image = group.newImage({frame: sketch.rectangle(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>), imageURL:imageURL})</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-13">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-13">&#182;</a>
+          </div>
+          <p>Finally, lets also make a text layer with a message
 to the world on it…</p>
 
         </div>
@@ -233,16 +257,16 @@ to the world on it…</p>
       </li>
       
       
-      <li id="section-12">
+      <li id="section-14">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-12">&#182;</a>
+            <a class="pilcrow" href="#section-14">&#182;</a>
           </div>
           <h2 id="job-done">Job Done</h2>
 <p>And that’s it.</p>
 <p>Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.</p>
-<p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#x64;&#x65;&#x76;&#101;&#x6c;&#111;&#112;&#101;&#114;&#x73;&#64;&#x73;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#x70;&#x70;&#46;&#x63;&#111;&#x6d;">&#x64;&#x65;&#x76;&#101;&#x6c;&#111;&#112;&#101;&#114;&#x73;&#64;&#x73;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#x70;&#x70;&#46;&#x63;&#111;&#x6d;</a>!</p>
+<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#x64;&#x65;&#118;&#x65;&#108;&#111;&#112;&#x65;&#114;&#x73;&#x40;&#x73;&#x6b;&#x65;&#116;&#x63;&#104;&#97;&#112;&#112;&#46;&#x63;&#111;&#x6d;">&#x64;&#x65;&#118;&#x65;&#108;&#111;&#112;&#x65;&#114;&#x73;&#x40;&#x73;&#x6b;&#x65;&#116;&#x63;&#104;&#97;&#112;&#112;&#46;&#x63;&#111;&#x6d;</a>!</p>
 
         </div>
         
