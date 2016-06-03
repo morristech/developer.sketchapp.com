@@ -120,11 +120,13 @@ the current selection, the plugin, curren URL and more.</p>
             <a class="pilcrow" href="#section-5">&#182;</a>
           </div>
           <p>One of the things that the context contains is a sketch api function,
-which when called gives you back a javascript objects that you can
+which when called gives you back a javascript object that you can
 use to interact with Sketch.</p>
-<p>There are ways of interacting directly with the Sketch classes instead,
-but by going through the API, you gain an extra level of protection
-against changes to Sketch, so it’s the recommended way to work if you can.</p>
+<p>Note: <em>There are ways of interacting directly with the raw Sketch objects instead,
+but these tend to change when we update Sketch, which can make your plugin scripts
+break easily. By going through the javascript API, you gain an extra level of protection
+against changes to Sketch - since we fix the API when an underlying change to Sketch
+would have broken it - so it’s the recommended way to work if you can.</em></p>
 <p>So first, let’s fetch the sketch object.</p>
 
         </div>
@@ -148,8 +150,7 @@ of the resource.</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> imageURL = sketch.resourceNamed(<span class="hljs-string">'World.pdf'</span>)
-  sketch.log(imageURL)</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> imageURL = sketch.resourceNamed(<span class="hljs-string">'World.pdf'</span>)</pre></div></div>
         
       </li>
       
@@ -164,7 +165,7 @@ of the resource.</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> <span class="hljs-built_in">document</span> = sketch.frontDocument
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> <span class="hljs-built_in">document</span> = sketch.selectedDocument
   <span class="hljs-keyword">var</span> page = <span class="hljs-built_in">document</span>.selectedPage</pre></div></div>
         
       </li>
@@ -176,15 +177,13 @@ of the resource.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-8">&#182;</a>
           </div>
-          <p>we want to make a new group on the page,
-then put a new image layer into it, and set
-that layer to use our resource image</p>
+          <p>we want to make a new group on the page, then put a new image layer into it, and set
+that layer to use the resource image we located earlier</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> group = page.newGroup(<span class="hljs-string">"Group"</span>, sketch.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>))
-  <span class="hljs-keyword">var</span> image = group.newImage(<span class="hljs-string">"Image"</span>, sketch.rectangle(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>))
-  image.setImageFromURL(imageURL)</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> group = page.newGroup({frame: sketch.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">200</span>, <span class="hljs-number">200</span>)})
+  <span class="hljs-keyword">var</span> image = group.newImage({frame: sketch.rectangle(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>), imageURL:imageURL})</pre></div></div>
         
       </li>
       
@@ -200,13 +199,8 @@ to the world on it…</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> textFrame = sketch.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">160</span>, <span class="hljs-number">200</span>, <span class="hljs-number">30</span>)
-  <span class="hljs-keyword">var</span> text = group.newText(<span class="hljs-string">"Text"</span>, textFrame)
-  text.fixedWidth = <span class="hljs-literal">true</span>
-  text.useSystemFontOfSize(<span class="hljs-number">24</span>)
-  text.alignment = NSTextAlignmentCenter
-  text.text = <span class="hljs-string">"Hello World"</span>
-  text.frame = textFrame
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> text = group.newText({fixedWidth: <span class="hljs-literal">true</span>, alignment: NSTextAlignmentCenter, systemFontSize: <span class="hljs-number">24</span>, text:<span class="hljs-string">"Hello World"</span>})
+  text.frame = sketch.rectangle(<span class="hljs-number">0</span>, <span class="hljs-number">160</span>, <span class="hljs-number">200</span>, <span class="hljs-number">30</span>) <span class="hljs-comment">// adjust the frame last, after the font/size/alignment etc has been set up</span>
 };</pre></div></div>
         
       </li>
@@ -220,7 +214,7 @@ to the world on it…</p>
           </div>
           <p>And that’s it. Job done.</p>
 <p>Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.</p>
-<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#x64;&#101;&#118;&#101;&#x6c;&#x6f;&#x70;&#x65;&#114;&#x73;&#x40;&#115;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#112;&#112;&#x2e;&#x63;&#111;&#109;">&#x64;&#101;&#118;&#101;&#x6c;&#x6f;&#x70;&#x65;&#114;&#x73;&#x40;&#115;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#112;&#112;&#x2e;&#x63;&#111;&#109;</a>!</p>
+<p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#x64;&#x65;&#x76;&#x65;&#x6c;&#x6f;&#112;&#x65;&#114;&#115;&#x40;&#x73;&#107;&#101;&#116;&#x63;&#104;&#97;&#112;&#x70;&#46;&#99;&#x6f;&#x6d;">&#x64;&#x65;&#x76;&#x65;&#x6c;&#x6f;&#112;&#x65;&#114;&#115;&#x40;&#x73;&#107;&#101;&#116;&#x63;&#104;&#97;&#112;&#x70;&#46;&#99;&#x6f;&#x6d;</a>!</p>
 
         </div>
         
