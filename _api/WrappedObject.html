@@ -1,0 +1,118 @@
+---
+name: WrappedObject
+title: WrappedObject.js
+---
+  <div id="container">
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="API.html">
+                API.js
+              </a>
+            
+              
+              <a class="source" href="Application.html">
+                Application.js
+              </a>
+            
+              
+              <a class="source" href="Artboard.html">
+                Artboard.js
+              </a>
+            
+              
+              <a class="source" href="Document.html">
+                Document.js
+              </a>
+            
+              
+              <a class="source" href="Group.html">
+                Group.js
+              </a>
+            
+              
+              <a class="source" href="Image.html">
+                Image.js
+              </a>
+            
+              
+              <a class="source" href="Layer.html">
+                Layer.js
+              </a>
+            
+              
+              <a class="source" href="Page.html">
+                Page.js
+              </a>
+            
+              
+              <a class="source" href="Rectangle.html">
+                Rectangle.js
+              </a>
+            
+              
+              <a class="source" href="Selection.html">
+                Selection.js
+              </a>
+            
+              
+              <a class="source" href="Shape.html">
+                Shape.js
+              </a>
+            
+              
+              <a class="source" href="Text.html">
+                Text.js
+              </a>
+            
+              
+              <a class="source" href="WrappedObject.html">
+                WrappedObject.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+      
+      <li id="title">
+        <div class="annotation"><h1>WrappedObject.js</h1></div>
+      </li>
+      
+      
+      
+      <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          <hr>
+<p>Base class for all objects that
+wrap Sketch classes.</p>
+<hr>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WrappedObject</span> </span>{
+    <span class="hljs-keyword">constructor</span>(object) {
+      <span class="hljs-keyword">this</span>.object = object
+    }
+
+    get id() {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.object.objectID();
+    }
+}</pre></div></div>
+        
+      </li>
+      
+    </ul>
+  </div>

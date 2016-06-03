@@ -7,4 +7,6 @@ base=`pwd`
 fullname=$(basename "$dest")
 name="${fullname##*.}"
 
-docco --output "$base/_api" --template "$scripts/docco.jst" --css "$scripts/docco.css" "$base/../Sketch/Modules/SketchPluginManager/Javascript/src/"*.js
+rm -rf "$base/_api"
+docco --output "$base/_api" --template "$scripts/docco.jst" --css "$scripts/docco.css" "$base/../Sketch/Modules/SketchPluginManager/Javascript/Source/"*.js
+rm "$base/_api/docco.css"

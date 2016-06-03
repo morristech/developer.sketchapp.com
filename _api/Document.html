@@ -1,0 +1,174 @@
+---
+name: Document
+title: Document.js
+---
+  <div id="container">
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="API.html">
+                API.js
+              </a>
+            
+              
+              <a class="source" href="Application.html">
+                Application.js
+              </a>
+            
+              
+              <a class="source" href="Artboard.html">
+                Artboard.js
+              </a>
+            
+              
+              <a class="source" href="Document.html">
+                Document.js
+              </a>
+            
+              
+              <a class="source" href="Group.html">
+                Group.js
+              </a>
+            
+              
+              <a class="source" href="Image.html">
+                Image.js
+              </a>
+            
+              
+              <a class="source" href="Layer.html">
+                Layer.js
+              </a>
+            
+              
+              <a class="source" href="Page.html">
+                Page.js
+              </a>
+            
+              
+              <a class="source" href="Rectangle.html">
+                Rectangle.js
+              </a>
+            
+              
+              <a class="source" href="Selection.html">
+                Selection.js
+              </a>
+            
+              
+              <a class="source" href="Shape.html">
+                Shape.js
+              </a>
+            
+              
+              <a class="source" href="Text.html">
+                Text.js
+              </a>
+            
+              
+              <a class="source" href="WrappedObject.html">
+                WrappedObject.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+      
+      <li id="title">
+        <div class="annotation"><h1>Document.js</h1></div>
+      </li>
+      
+      
+      
+      <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          
+        </div>
+        
+        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { WrappedObject } <span class="hljs-keyword">from</span> <span class="hljs-string">'./WrappedObject.js'</span>
+<span class="hljs-keyword">import</span> { Layer } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Layer.js'</span>
+<span class="hljs-keyword">import</span> { Page } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Page.js'</span>
+<span class="hljs-keyword">import</span> { Selection } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Selection.js'</span></pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <hr>
+<p>Document support.</p>
+<hr>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Document</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WrappedObject</span> </span>{
+    <span class="hljs-keyword">constructor</span>(document, application) {
+      <span class="hljs-keyword">super</span>(<span class="hljs-built_in">document</span>)
+      <span class="hljs-keyword">this</span>.application = application
+    }
+
+    get selectedLayers() {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Selection(<span class="hljs-keyword">this</span>.object);
+    }
+
+    get selectedPage() {
+      print(<span class="hljs-keyword">this</span>.object)
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Page(<span class="hljs-keyword">this</span>.object.currentPage(), <span class="hljs-keyword">this</span>)
+    }
+
+    get pages() {
+      <span class="hljs-keyword">var</span> result = [];
+      <span class="hljs-keyword">var</span> loop = <span class="hljs-keyword">this</span>.object.pages().objectEnumerator()
+      <span class="hljs-keyword">var</span> item;
+      <span class="hljs-keyword">while</span> (item = loop.nextObject()) {
+        result.push(<span class="hljs-keyword">new</span> Page(item, <span class="hljs-keyword">this</span>));
+      }
+      <span class="hljs-keyword">return</span> result;
+    }
+
+    layerWithID(layer_id) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Layer(<span class="hljs-keyword">this</span>.object.documentData().layerWithID_(layer_id), <span class="hljs-keyword">this</span>);
+    }
+
+    layerNamed(layer_id) {</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>as it happens, layerWithID also matches names</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> layer = <span class="hljs-keyword">this</span>.object.documentData().layerWithID_(layer_id);
+      <span class="hljs-keyword">if</span> (layer)
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Layer(layer, <span class="hljs-keyword">this</span>);
+    }
+}</pre></div></div>
+        
+      </li>
+      
+    </ul>
+  </div>
