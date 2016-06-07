@@ -1,12 +1,12 @@
 ---
-name: Sketch Javascript API.
-title: Sketch Javascript API.
+name: Layer
+title: Layer.js
 ---
 <!DOCTYPE html>
 
 <html>
 <head>
-  <title>Sketch Javascript API.</title>
+  <title>Layer.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
   <link rel="stylesheet" media="all" href="linear.css" />
@@ -17,11 +17,7 @@ title: Sketch Javascript API.
 
       <div class="header">
         
-          
-          <h1 id="sketch-javascript-api-">Sketch Javascript API.</h1>
-<p>All code (C) 2016 Bohemian Coding.</p>
-
-          
+          <h1>Layer.js</h1>
         
 
         
@@ -127,22 +123,22 @@ title: Sketch Javascript API.
 
       
         
+        <hr>
+<h1 id="layer-js">Layer.js</h1>
+<h1 id="sketch-javascript-api-">Sketch Javascript API.</h1>
+<p>All code (C) 2016 Bohemian Coding.</p>
+<hr>
+
+        
+      
+        
         <h2 id="imports">Imports</h2>
 
         
           <div class='highlight'><pre>
 <span class="hljs-keyword">import</span> { WrappedObject } <span class="hljs-keyword">from</span> <span class="hljs-string">'./WrappedObject.js'</span>
-<span class="hljs-keyword">import</span> { Rectangle } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Rectangle.js'</span></pre></div>
-        
-      
-        
-        <hr>
-<p>Layer support.
-TODO: split this functionality up properly into wrappers for the main layer classes</p>
-<hr>
+<span class="hljs-keyword">import</span> { Rectangle } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Rectangle.js'</span>
 
-        
-          <div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Layer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WrappedObject</span> </span>{
     <span class="hljs-keyword">constructor</span>(layer, document) {
       <span class="hljs-keyword">super</span>(layer)

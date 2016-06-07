@@ -1,12 +1,12 @@
 ---
-name: Sketch Javascript API.
-title: Sketch Javascript API.
+name: Application
+title: Application.js
 ---
 <!DOCTYPE html>
 
 <html>
 <head>
-  <title>Sketch Javascript API.</title>
+  <title>Application.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
   <link rel="stylesheet" media="all" href="linear.css" />
@@ -17,11 +17,7 @@ title: Sketch Javascript API.
 
       <div class="header">
         
-          
-          <h1 id="sketch-javascript-api-">Sketch Javascript API.</h1>
-<p>All code (C) 2016 Bohemian Coding.</p>
-
-          
+          <h1>Application.js</h1>
         
 
         
@@ -127,6 +123,15 @@ title: Sketch Javascript API.
 
       
         
+        <hr>
+<h1 id="application-js">Application.js</h1>
+<h1 id="sketch-javascript-api-">Sketch Javascript API.</h1>
+<p>All code (C) 2016 Bohemian Coding.</p>
+<hr>
+
+        
+      
+        
         <h2 id="imports">Imports</h2>
 
         
@@ -143,9 +148,13 @@ title: Sketch Javascript API.
         
       
         
-        <hr>
-<p>Application support.</p>
-<hr>
+        <p>This class represents Sketch, and provides access to:</p>
+<ul>
+<li>the document model and the layer tree</li>
+<li>metadata abound sketch itself</li>
+<li>utilities for interacting with the user</li>
+<li>access to the running plugin, it’s resources and settings</li>
+</ul>
 
         
           <div class='highlight'><pre>
@@ -169,36 +178,97 @@ there has to be a better way to do this…</p>
         <span class="hljs-string">"Image"</span> : Image,
         <span class="hljs-string">"Text"</span> : Text
       }
-    }
+    }</pre></div>
+        
+      
+        
+        <p>Returns the version of this API.</p>
 
-    get api_version() {
+        
+          <div class='highlight'><pre>    get api_version() {
       <span class="hljs-keyword">return</span> <span class="hljs-string">"1.1"</span>
-    }
+    }</pre></div>
+        
+      
+        
+        <p>Returns the context that the API was created in.
+This is the traditional context argument that is
+passed to all plugin scripts when they are run.</p>
+<p>In general you should use the API to access Sketch
+rather than interacting with the context directly.</p>
 
-    get context() {
+        
+          <div class='highlight'><pre>    get context() {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.object
-    }
+    }</pre></div>
+        
+      
+        
+        <p>Returns the version of Sketch that is running, eg “3.6”.</p>
 
+        
+          <div class='highlight'><pre>
     get version() {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.metadata[<span class="hljs-string">'appVersion'</span>]
-    }
+    }</pre></div>
+        
+      
+        
+        <p>Returns the exact build of Sketch that is running, eg “15352”.</p>
 
+        
+          <div class='highlight'><pre>
     get build() {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.metadata[<span class="hljs-string">'build'</span>]
-    }
+    }</pre></div>
+        
+      
+        
+        <p>Returns the full version of Sketch that is running, eg “3.6 (15352)”.</p>
 
+        
+          <div class='highlight'><pre>
     get full_version() {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.version + <span class="hljs-string">" ("</span> + <span class="hljs-keyword">this</span>.build + <span class="hljs-string">")"</span>
-    }
+    }</pre></div>
+        
+      
+        
+        <p>Return the value of a global setting for a given key.
+@param key The setting to look up.</p>
+<p>This is equivalent to reading a setting for the currently
+running version of Sketch using the <code>defaults</code> command line tool,
+eg: defaults read com.bohemiancoding.sketch3 <key></p>
 
+        
+          <div class='highlight'><pre>
     settingForKey(key) {
       <span class="hljs-keyword">return</span> NSUserDefaults.standardUserDefaults().objectForKey_(key);
-    }
+    }</pre></div>
+        
+      
+        
+        <p>Set the value of a global setting for a given key.
+@param key The setting to set.
+@param value The value to set it to.</p>
+<p>This is equivalent to writing a setting for the currently
+running version of Sketch using the <code>defaults</code> command line tool,
+eg: defaults write com.bohemiancoding.sketch3 <key> <value></p>
 
+        
+          <div class='highlight'><pre>
     setSettingForKey(key, value) {
       NSUserDefaults.standardUserDefaults().setObject_forKey_(value, key)
-    }
+    }</pre></div>
+        
+      
+        
+        <p>Return a file URL pointing to a named resource in the plugin’s Resources/
+folder.
+@param name The resource file name, including any file extension.</p>
 
+        
+          <div class='highlight'><pre>
     resourceNamed(name) {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.object.plugin.urlForResourceNamed_(name)
     }
