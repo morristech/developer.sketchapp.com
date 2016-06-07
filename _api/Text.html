@@ -2,146 +2,152 @@
 name: Sketch Javascript API.
 title: Sketch Javascript API.
 ---
-  <div id="container">
-    
-      <ul id="jump_to">
-        <li>
-          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
-          <a class="small" href="javascript:void(0);">+</a>
-          <div id="jump_wrapper">
-          <div id="jump_page">
-            
-              
-              <a class="source" href="API.html">
-                API.js
-              </a>
-            
-              
-              <a class="source" href="Application.html">
-                Application.js
-              </a>
-            
-              
-              <a class="source" href="Artboard.html">
-                Artboard.js
-              </a>
-            
-              
-              <a class="source" href="Document.html">
-                Document.js
-              </a>
-            
-              
-              <a class="source" href="Group.html">
-                Group.js
-              </a>
-            
-              
-              <a class="source" href="Image.html">
-                Image.js
-              </a>
-            
-              
-              <a class="source" href="Layer.html">
-                Layer.js
-              </a>
-            
-              
-              <a class="source" href="Page.html">
-                Page.js
-              </a>
-            
-              
-              <a class="source" href="Rectangle.html">
-                Rectangle.js
-              </a>
-            
-              
-              <a class="source" href="Selection.html">
-                Selection.js
-              </a>
-            
-              
-              <a class="source" href="Shape.html">
-                Shape.js
-              </a>
-            
-              
-              <a class="source" href="Text.html">
-                Text.js
-              </a>
-            
-              
-              <a class="source" href="WrappedObject.html">
-                WrappedObject.js
-              </a>
-            
-          </div>
-        </li>
-      </ul>
-    
-    <ul class="sections">
-      
-      
-      
-      <li id="section-1">
-        <div class="annotation">
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Sketch Javascript API.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="linear.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
           
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-1">&#182;</a>
-          </div>
           <h1 id="sketch-javascript-api-">Sketch Javascript API.</h1>
 <p>All code (C) 2016 Bohemian Coding.</p>
 
-        </div>
-        
-      </li>
-      
-      
-      <li id="section-2">
-        <div class="annotation">
           
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-2">&#182;</a>
-          </div>
-          <h2 id="imports">Imports</h2>
+        
 
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
-<span class="hljs-keyword">import</span> { Layer } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Layer.js'</span></pre></div></div>
-        
-      </li>
-      
-      
-      <li id="section-3">
-        <div class="annotation">
-          
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-3">&#182;</a>
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="API.html">
+                    API.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Application.html">
+                    Application.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Artboard.html">
+                    Artboard.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Document.html">
+                    Document.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Group.html">
+                    Group.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Image.html">
+                    Image.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Layer.html">
+                    Layer.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Page.html">
+                    Page.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Rectangle.html">
+                    Rectangle.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Selection.html">
+                    Selection.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Shape.html">
+                    Shape.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Text.html">
+                    Text.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="WrappedObject.html">
+                    WrappedObject.js
+                  </a>
+                </li>
+              
+            </ol>
           </div>
-          <h2 id="constants">Constants</h2>
-
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
+      </div>
+
+      
+        
+        <h2 id="imports">Imports</h2>
+
+        
+          <div class='highlight'><pre>
+<span class="hljs-keyword">import</span> { Layer } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Layer.js'</span></pre></div>
+        
+      
+        
+        <h2 id="constants">Constants</h2>
+
+        
+          <div class='highlight'><pre>
 <span class="hljs-keyword">const</span> BCTextBehaviourFlexibleWidth = <span class="hljs-number">0</span>
-<span class="hljs-keyword">const</span> BCTextBehaviourFixedWidth = <span class="hljs-number">1</span></pre></div></div>
+<span class="hljs-keyword">const</span> BCTextBehaviourFixedWidth = <span class="hljs-number">1</span></pre></div>
         
-      </li>
       
-      
-      <li id="section-4">
-        <div class="annotation">
-          
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-4">&#182;</a>
-          </div>
-          <h2 id="text-layer-support">Text Layer Support</h2>
+        
+        <h2 id="text-layer-support">Text Layer Support</h2>
 
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
+          <div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Text</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Layer</span> </span>{
     <span class="hljs-keyword">constructor</span>(text, document) {
       <span class="hljs-keyword">super</span>(text, <span class="hljs-built_in">document</span>)
@@ -149,98 +155,58 @@ title: Sketch Javascript API.
 
     get isText() {
       <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
-    }</pre></div></div>
+    }</pre></div>
         
-      </li>
       
-      
-      <li id="section-5">
-        <div class="annotation">
-          
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-5">&#182;</a>
-          </div>
-          <p>Get/set the text of the layer.</p>
+        
+        <p>Get/set the text of the layer.</p>
 
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
+          <div class='highlight'><pre>
     get text() {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.object.stringValue
     }
 
     set text(value) {
       <span class="hljs-keyword">this</span>.object.stringValue = value
-    }</pre></div></div>
+    }</pre></div>
         
-      </li>
       
-      
-      <li id="section-6">
-        <div class="annotation">
-          
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-6">&#182;</a>
-          </div>
-          <p>Set the font of the layer to an NSFont object.</p>
+        
+        <p>Set the font of the layer to an NSFont object.</p>
 
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
+          <div class='highlight'><pre>
     set font(value) {
       <span class="hljs-keyword">this</span>.object.font = value
-    }</pre></div></div>
+    }</pre></div>
         
-      </li>
       
-      
-      <li id="section-7">
-        <div class="annotation">
-          
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-7">&#182;</a>
-          </div>
-          <p>Set the font of the layer to the system font at a given size.</p>
+        
+        <p>Set the font of the layer to the system font at a given size.</p>
 
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
+          <div class='highlight'><pre>
     set systemFontSize(size) {
       <span class="hljs-keyword">this</span>.object.font = NSFont.systemFontOfSize_(size)
-    }</pre></div></div>
+    }</pre></div>
         
-      </li>
       
-      
-      <li id="section-8">
-        <div class="annotation">
-          
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-8">&#182;</a>
-          </div>
-          <p>Set the alignment of the layer.</p>
+        
+        <p>Set the alignment of the layer.</p>
 
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
+          <div class='highlight'><pre>
     set alignment(mode) {
       <span class="hljs-keyword">this</span>.object.textAlignment = mode
-    }</pre></div></div>
+    }</pre></div>
         
-      </li>
       
-      
-      <li id="section-9">
-        <div class="annotation">
-          
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-9">&#182;</a>
-          </div>
-          <p>Set the layer to be fixed width or variable width.</p>
+        
+        <p>Set the layer to be fixed width or variable width.</p>
 
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
+          <div class='highlight'><pre>
     set fixedWidth(value) {
       <span class="hljs-keyword">if</span> (value) {
         <span class="hljs-keyword">this</span>.object.textBehaviour = BCTextBehaviourFixedWidth
@@ -248,9 +214,11 @@ title: Sketch Javascript API.
         <span class="hljs-keyword">this</span>.object.textBehaviour = BCTextBehaviourFlexibleWidth
       }
     }
-}</pre></div></div>
+}</pre></div>
         
-      </li>
       
-    </ul>
+      <div class="fleur">h</div>
+    </div>
   </div>
+</body>
+</html>

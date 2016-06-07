@@ -2,113 +2,135 @@
 name: Sketch Javascript API.
 title: Sketch Javascript API.
 ---
-  <div id="container">
-    
-      <ul id="jump_to">
-        <li>
-          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
-          <a class="small" href="javascript:void(0);">+</a>
-          <div id="jump_wrapper">
-          <div id="jump_page">
-            
-              
-              <a class="source" href="API.html">
-                API.js
-              </a>
-            
-              
-              <a class="source" href="Application.html">
-                Application.js
-              </a>
-            
-              
-              <a class="source" href="Artboard.html">
-                Artboard.js
-              </a>
-            
-              
-              <a class="source" href="Document.html">
-                Document.js
-              </a>
-            
-              
-              <a class="source" href="Group.html">
-                Group.js
-              </a>
-            
-              
-              <a class="source" href="Image.html">
-                Image.js
-              </a>
-            
-              
-              <a class="source" href="Layer.html">
-                Layer.js
-              </a>
-            
-              
-              <a class="source" href="Page.html">
-                Page.js
-              </a>
-            
-              
-              <a class="source" href="Rectangle.html">
-                Rectangle.js
-              </a>
-            
-              
-              <a class="source" href="Selection.html">
-                Selection.js
-              </a>
-            
-              
-              <a class="source" href="Shape.html">
-                Shape.js
-              </a>
-            
-              
-              <a class="source" href="Text.html">
-                Text.js
-              </a>
-            
-              
-              <a class="source" href="WrappedObject.html">
-                WrappedObject.js
-              </a>
-            
-          </div>
-        </li>
-      </ul>
-    
-    <ul class="sections">
-      
-      
-      
-      <li id="section-1">
-        <div class="annotation">
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Sketch Javascript API.</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="linear.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
           
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-1">&#182;</a>
-          </div>
           <h1 id="sketch-javascript-api-">Sketch Javascript API.</h1>
 <p>All code (C) 2016 Bohemian Coding.</p>
 
-        </div>
-        
-      </li>
-      
-      
-      <li id="section-2">
-        <div class="annotation">
           
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-2">&#182;</a>
-          </div>
-          <h2 id="imports">Imports</h2>
-
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="API.html">
+                    API.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Application.html">
+                    Application.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Artboard.html">
+                    Artboard.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Document.html">
+                    Document.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Group.html">
+                    Group.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Image.html">
+                    Image.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Layer.html">
+                    Layer.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Page.html">
+                    Page.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Rectangle.html">
+                    Rectangle.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Selection.html">
+                    Selection.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Shape.html">
+                    Shape.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Text.html">
+                    Text.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="WrappedObject.html">
+                    WrappedObject.js
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+        
+        <h2 id="imports">Imports</h2>
+
+        
+          <div class='highlight'><pre>
 <span class="hljs-keyword">import</span> { WrappedObject } <span class="hljs-keyword">from</span> <span class="hljs-string">'./WrappedObject.js'</span>
 <span class="hljs-keyword">import</span> { Document } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Document.js'</span>
 <span class="hljs-keyword">import</span> { Rectangle } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Rectangle.js'</span>
@@ -117,45 +139,29 @@ title: Sketch Javascript API.
 <span class="hljs-keyword">import</span> { Image } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Image.js'</span>
 <span class="hljs-keyword">import</span> { Shape } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Shape.js'</span>
 <span class="hljs-keyword">import</span> { Artboard } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Artboard.js'</span>
-<span class="hljs-keyword">import</span> { Page } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Page.js'</span></pre></div></div>
+<span class="hljs-keyword">import</span> { Page } <span class="hljs-keyword">from</span> <span class="hljs-string">'./Page.js'</span></pre></div>
         
-      </li>
       
-      
-      <li id="section-3">
-        <div class="annotation">
-          
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-3">&#182;</a>
-          </div>
-          <hr>
+        
+        <hr>
 <p>Application support.</p>
 <hr>
 
-        </div>
         
-        <div class="content"><div class='highlight'><pre>
+          <div class='highlight'><pre>
 <span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WrappedObject</span> </span>{
     <span class="hljs-keyword">constructor</span>(context) {
       <span class="hljs-keyword">super</span>(context)
-      <span class="hljs-keyword">this</span>.metadata = MSApplicationMetadata.metadata()</pre></div></div>
+      <span class="hljs-keyword">this</span>.metadata = MSApplicationMetadata.metadata()</pre></div>
         
-      </li>
       
-      
-      <li id="section-4">
-        <div class="annotation">
-          
-          <div class="pilwrap ">
-            <a class="pilcrow" href="#section-4">&#182;</a>
-          </div>
-          <p>this is a slightly clumsy way to pass related classes into Layer
+        
+        <p>this is a slightly clumsy way to pass related classes into Layer
 without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer…)
 there has to be a better way to do this…</p>
 
-        </div>
         
-        <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.factory = {
+          <div class='highlight'><pre>      <span class="hljs-keyword">this</span>.factory = {
         <span class="hljs-string">"Group"</span> : Group,
         <span class="hljs-string">"Page"</span> : Page,
         <span class="hljs-string">"Artboard"</span> : Artboard,
@@ -254,9 +260,11 @@ there has to be a better way to do this…</p>
     rectangle(x, y, w, h) {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Rectangle(x, y, w, h)
     }
-}</pre></div></div>
+}</pre></div>
         
-      </li>
       
-    </ul>
+      <div class="fleur">h</div>
+    </div>
   </div>
+</body>
+</html>

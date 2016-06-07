@@ -8,5 +8,5 @@ fullname=$(basename "$dest")
 name="${fullname##*.}"
 
 rm -rf "$base/_api"
-docco --output "$base/_api" --template "$scripts/docco.jst" --css "$scripts/docco.css" "$base/../Sketch/Modules/SketchPluginManager/Javascript/Source/"*.js
-rm "$base/_api/docco.css"
+docco --layout linear --output "$base/_api" --template "$scripts/linear.jst" --css "$scripts/linear.css" "$base/../Sketch/Modules/SketchPluginManager/Javascript/Source/"*.js
+rm "$base/_api/linear.css"
