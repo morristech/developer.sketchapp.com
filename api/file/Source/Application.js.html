@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">Source/Application.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Application.js~Application.html">Application</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Artboard.js~Artboard.html">Artboard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Document.js~Document.html">Document</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Group.js~Group.html">Group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Image.js~Image.html">Image</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">Source/Application.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
+// # Application.js
+// # Sketch Javascript API.
+//
+// All code (C) 2016 Bohemian Coding.
+// ********************************
+
+// ##&#xA0;Imports
+
+import { WrappedObject } from &apos;./WrappedObject.js&apos;
+import { Document } from &apos;./Document.js&apos;
+import { Rectangle } from &apos;./Rectangle.js&apos;
+import { Group } from &apos;./Group.js&apos;
+import { Text } from &apos;./Text.js&apos;
+import { Image } from &apos;./Image.js&apos;
+import { Shape } from &apos;./Shape.js&apos;
+import { Artboard } from &apos;./Artboard.js&apos;
+import { Page } from &apos;./Page.js&apos;
+
+/**
+    Gives you access to Sketch, and provides access to:
+    - the document model and the layer tree
+    - metadata abound sketch itself
+    - utilities for interacting with the user
+    - access to the running plugin, it&apos;s resources and settings
+*/
+
+export class Application extends WrappedObject {
+    constructor(context) {
+      super(context)
+      this.metadata = MSApplicationMetadata.metadata()
+
+      // this is a slightly clumsy way to pass related classes into Layer
+      // without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
+      // there has to be a better way to do this...
+      this.factory = {
+        &quot;Group&quot; : Group,
+        &quot;Page&quot; : Page,
+        &quot;Artboard&quot; : Artboard,
+        &quot;Shape&quot; : Shape,
+        &quot;Image&quot; : Image,
+        &quot;Text&quot; : Text
+      }
+    }
+
+    /**
+        The version of this API.
+
+        @return A version string.
+    */
+
+    get api_version() {
+      return &quot;1.1&quot;
+    }
+
+    /**
+        The context that the API was created in.
+        This is the traditional context argument that is
+        passed to all plugin scripts when they are run.
+
+        In general you should use the API to access Sketch
+        rather than interacting with the context directly.
+
+        @return A context dictionary.
+    */
+
+    get context() {
+      return this.object
+    }
+
+
+    /**
+        The version of Sketch that is running.
+
+        @return The version as a string, eg &quot;3.6&quot;.
+    */
+
+    get version() {
+      return this.metadata[&apos;appVersion&apos;]
+    }
+
+    /**
+        The exact build of Sketch that is running.
+
+        @return The build number as a string, eg &quot;15352&quot;.
+    */
+
+    get build() {
+      return this.metadata[&apos;build&apos;]
+    }
+
+    /**
+        Returns the full version of Sketch that is running
+
+        @return {String} Version and build number as a string, eg &quot;3.6 (15352)&quot;.
+
+    get full_version() {
+      return this.version + &quot; (&quot; + this.build + &quot;)&quot;
+    }
+
+    /**
+        Return the value of a global setting for a given key.
+        @param key The setting to look up.
+        @return The setting value.
+
+        This is equivalent to reading a setting for the currently
+        running version of Sketch using the `defaults` command line tool,
+        eg: defaults read com.bohemiancoding.sketch3 &lt;key&gt;
+    */
+
+    settingForKey(key) {
+      return NSUserDefaults.standardUserDefaults().objectForKey_(key);
+    }
+
+    /**
+        Set the value of a global setting for a given key.
+
+        @param key The setting to set.
+        @param value The value to set it to.
+
+        This is equivalent to writing a setting for the currently
+        running version of Sketch using the `defaults` command line tool,
+        eg: defaults write com.bohemiancoding.sketch3 &lt;key&gt; &lt;value&gt;
+    */
+
+    setSettingForKey(key, value) {
+      NSUserDefaults.standardUserDefaults().setObject_forKey_(value, key)
+    }
+
+    /**
+        Return a file URL pointing to a named resource in the plugin&apos;s Resources/
+        folder.
+
+        @param name The resource file name, including any file extension.
+        @return The resource location, in the form &quot;file://path/to/resource&quot;.
+    */
+
+    resourceNamed(name) {
+      return this.object.plugin.urlForResourceNamed_(name)
+    }
+
+    /**
+        Shows a simple input sheet which displays a message, and asks for a single string
+        input.
+        @param msg The prompt message to show.
+        @param initial The initial value of the input string.
+        @return The string that the user input.
+    */
+
+    getStringFromUser(msg, initial) {
+        var panel = MSModalInputSheet.alloc().init()
+        var result = panel.runPanelWithNibName_ofType_initialString_label_(&quot;MSModalInputSheet&quot;, 0, initial, msg)
+        return result
+    }
+
+    /**
+        Shows an input sheet which displays a popup with a series of options,
+        from which the user is asked to choose.
+
+        @param msg The prompt message to show.
+        @param items A list of option items.
+        @param selectedItemIndex The index of the item to select initially.
+        @return An array with two items: [responseCode, selection].
+
+        The result consists of a response code and a selection. The code will be
+        one of NSAlertFirstButtonReturn or NSAlertSecondButtonReturn.
+        The selection will be the integer index of the selected item.
+    */
+
+    getSelectionFromUser(msg, items, selectedItemIndex) {
+      selectedItemIndex = selectedItemIndex || 0
+
+      var accessory = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25))
+      accessory.addItemsWithObjectValues(items)
+      accessory.selectItemAtIndex(selectedItemIndex)
+
+      var alert = NSAlert.alloc().init()
+      alert.setMessageText(msg)
+      alert.addButtonWithTitle(&apos;OK&apos;)
+      alert.addButtonWithTitle(&apos;Cancel&apos;)
+      alert.setAccessoryView(accessory)
+
+      var responseCode = alert.runModal()
+      var sel = accessory.indexOfSelectedItem()
+
+      return [responseCode, sel]
+    }
+
+    /**
+        Output a message to the log console.
+
+        @param message The message to output.
+    */
+
+    log(message) {
+      print(message)
+    }
+
+    /**
+        Assert that a given condition is true.
+        If the condition is false, throws an exception.
+
+        @param condition An expression that is expected to evaluate to true if everything is ok.
+    */
+
+    assert(condition) {
+      if (!condition) {
+          throw &quot;Assert failed!&quot;
+      }
+    }
+
+    /**
+        The selected document.
+
+        If the user invoked the script explicitly (for example by selecting a menu item),
+        this will be the document that they were working in at the time - ie the frontmost one.
+        If the script was invoked as an action handler, this will be the document that the action
+        occurred in.
+
+        @return A Document object.
+    */
+
+    get selectedDocument() {
+      return new Document(this.object.document, this)
+    }
+
+
+    /**
+        Create a new document and bring it to the front.
+        @return The new document.
+    */
+
+    newDocument() {
+      var app = NSDocumentController.sharedDocumentController()
+      app.newDocument_(this)
+      return new Document(app.currentDocument(), this)
+
+    }
+
+    /**
+        Show a small, temporary, message to the user.
+        The message appears at the bottom of the selected document,
+        and is visible for a short period of time. It should consist of a single
+        line of text.
+
+        @param {String} message The message to show.
+    */
+
+    message(message) {
+      this.object.document.showMessage(message)
+    }
+
+    /**
+        Show an alert with a custom title and message.
+
+        @param {string} title The title of the alert.
+        @param {string} message The text of the message.
+
+        The alert is modal, so it will stay around until the user dismisses it
+        by pressing the OK button.
+    */
+
+    alert(title, message) {
+      var app = NSApplication.sharedApplication()
+      app.displayDialog_withTitle(title, message)
+    }
+
+    /**
+        Return a new Rectangle object for a given x,y, width and height.
+
+        @param x The x coordinate of the top-left corner of the rectangle.
+        @param y The y coordinate of the top-left corner of the rectangle.
+        @param width The width of the rectangle.
+        @param height The height of the rectangle.
+        @return The new Rectangle object..
+    */
+
+    rectangle(x, y, w, h) {
+      return new Rectangle(x, y, w, h)
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

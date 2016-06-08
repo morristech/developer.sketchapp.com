@@ -7,15 +7,23 @@ base=`pwd`
 fullname=$(basename "$dest")
 name="${fullname##*.}"
 
-rm -rf "$base/_api"
+rm -rf "$base/api"
 
-# Build using Docco
-#docco --layout linear --output "$base/_api" --template "$scripts/linear.jst" --css "$scripts/linear.css" "$base/../Sketch/Modules/SketchPluginManager/Javascript/Source/"*.js
-#rm "$base/_api/linear.css"
-
-# Build using jsdoc
+# Build using esdoc
 cd "$base/../Sketch/Modules/SketchPluginManager/Javascript"
-"node_modules/.bin/jsdoc" --configure "$scripts/jsdoc.json" --destination "$base/_api" --verbose Source/*.js
+"node_modules/.bin/esdoc" -c "$scripts/esdoc.json"
+
+# Add jekyll headers
+for page in "$base/api/"*.html
+do
+    echo "$page"
+    echo "---" > "$page.tmp"
+    echo "title: $(basename "$page")" >> "$page.tmp"
+    echo "---" >> "$page.tmp"
+    cat "$page" >> "$page.tmp"
+    rm "$page"
+    mv "$page.tmp" "$page"
+done
 
 # Build using headerdoc
 #"headerdoc2html" -o "$base/_api" "$base/../Sketch/Modules/SketchPluginManager/Javascript/Source/"*.js

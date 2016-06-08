@@ -1,0 +1,3232 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/API.js",
+    "memberof": null,
+    "longname": "Source/API.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "content": "// ********************************\n// ## Sketch API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Application } from './Application.js'\n\n\n// ## Entrypoint\n\n/// Return a function that captures the context.\n/// When called, this function will initialise the API\n/// and return an Application object that provides access\n/// to all API functions.\n///\n/// We do it like this to defer having to perform a lot\n/// of setup until context.api() is actually called -- thus\n/// scripts which don't call it at all suffer minimal overhead.\n\n/**\n Test\n */\n \nfunction SketchAPIWithCapturedContext(context) {\n    return (function() {\n\n      // The Application object effectively *is* the api -- all other\n      // functions and objects can be accessed via it.\n\n      return new Application(context)\n    });\n}\n\n// HACK: expose the SketchAPIWithCapturedContext function globally\n// I suspect that there's a better way to do this, but I've\n// not yet figured it out.\n\n__globals.SketchAPIWithCapturedContext = SketchAPIWithCapturedContext\n"
+  },
+  {
+    "__docId__": 1,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "SketchAPIWithCapturedContext",
+    "memberof": "Source/API.js",
+    "longname": "Source/API.js~SketchAPIWithCapturedContext",
+    "access": null,
+    "export": false,
+    "importPath": "sketch-api",
+    "importStyle": null,
+    "description": "Test",
+    "lineNumber": 27,
+    "params": [
+      {
+        "name": "context",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 2,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Application.js",
+    "memberof": null,
+    "longname": "Source/Application.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Application.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Document } from './Document.js'\nimport { Rectangle } from './Rectangle.js'\nimport { Group } from './Group.js'\nimport { Text } from './Text.js'\nimport { Image } from './Image.js'\nimport { Shape } from './Shape.js'\nimport { Artboard } from './Artboard.js'\nimport { Page } from './Page.js'\n\n/**\n    Gives you access to Sketch, and provides access to:\n    - the document model and the layer tree\n    - metadata abound sketch itself\n    - utilities for interacting with the user\n    - access to the running plugin, it's resources and settings\n*/\n\nexport class Application extends WrappedObject {\n    constructor(context) {\n      super(context)\n      this.metadata = MSApplicationMetadata.metadata()\n\n      // this is a slightly clumsy way to pass related classes into Layer\n      // without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)\n      // there has to be a better way to do this...\n      this.factory = {\n        \"Group\" : Group,\n        \"Page\" : Page,\n        \"Artboard\" : Artboard,\n        \"Shape\" : Shape,\n        \"Image\" : Image,\n        \"Text\" : Text\n      }\n    }\n\n    /**\n        The version of this API.\n\n        @return A version string.\n    */\n\n    get api_version() {\n      return \"1.1\"\n    }\n\n    /**\n        The context that the API was created in.\n        This is the traditional context argument that is\n        passed to all plugin scripts when they are run.\n\n        In general you should use the API to access Sketch\n        rather than interacting with the context directly.\n\n        @return A context dictionary.\n    */\n\n    get context() {\n      return this.object\n    }\n\n\n    /**\n        The version of Sketch that is running.\n\n        @return The version as a string, eg \"3.6\".\n    */\n\n    get version() {\n      return this.metadata['appVersion']\n    }\n\n    /**\n        The exact build of Sketch that is running.\n\n        @return The build number as a string, eg \"15352\".\n    */\n\n    get build() {\n      return this.metadata['build']\n    }\n\n    /**\n        Returns the full version of Sketch that is running\n\n        @return {String} Version and build number as a string, eg \"3.6 (15352)\".\n\n    get full_version() {\n      return this.version + \" (\" + this.build + \")\"\n    }\n\n    /**\n        Return the value of a global setting for a given key.\n        @param key The setting to look up.\n        @return The setting value.\n\n        This is equivalent to reading a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults read com.bohemiancoding.sketch3 <key>\n    */\n\n    settingForKey(key) {\n      return NSUserDefaults.standardUserDefaults().objectForKey_(key);\n    }\n\n    /**\n        Set the value of a global setting for a given key.\n\n        @param key The setting to set.\n        @param value The value to set it to.\n\n        This is equivalent to writing a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults write com.bohemiancoding.sketch3 <key> <value>\n    */\n\n    setSettingForKey(key, value) {\n      NSUserDefaults.standardUserDefaults().setObject_forKey_(value, key)\n    }\n\n    /**\n        Return a file URL pointing to a named resource in the plugin's Resources/\n        folder.\n\n        @param name The resource file name, including any file extension.\n        @return The resource location, in the form \"file://path/to/resource\".\n    */\n\n    resourceNamed(name) {\n      return this.object.plugin.urlForResourceNamed_(name)\n    }\n\n    /**\n        Shows a simple input sheet which displays a message, and asks for a single string\n        input.\n        @param msg The prompt message to show.\n        @param initial The initial value of the input string.\n        @return The string that the user input.\n    */\n\n    getStringFromUser(msg, initial) {\n        var panel = MSModalInputSheet.alloc().init()\n        var result = panel.runPanelWithNibName_ofType_initialString_label_(\"MSModalInputSheet\", 0, initial, msg)\n        return result\n    }\n\n    /**\n        Shows an input sheet which displays a popup with a series of options,\n        from which the user is asked to choose.\n\n        @param msg The prompt message to show.\n        @param items A list of option items.\n        @param selectedItemIndex The index of the item to select initially.\n        @return An array with two items: [responseCode, selection].\n\n        The result consists of a response code and a selection. The code will be\n        one of NSAlertFirstButtonReturn or NSAlertSecondButtonReturn.\n        The selection will be the integer index of the selected item.\n    */\n\n    getSelectionFromUser(msg, items, selectedItemIndex) {\n      selectedItemIndex = selectedItemIndex || 0\n\n      var accessory = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25))\n      accessory.addItemsWithObjectValues(items)\n      accessory.selectItemAtIndex(selectedItemIndex)\n\n      var alert = NSAlert.alloc().init()\n      alert.setMessageText(msg)\n      alert.addButtonWithTitle('OK')\n      alert.addButtonWithTitle('Cancel')\n      alert.setAccessoryView(accessory)\n\n      var responseCode = alert.runModal()\n      var sel = accessory.indexOfSelectedItem()\n\n      return [responseCode, sel]\n    }\n\n    /**\n        Output a message to the log console.\n\n        @param message The message to output.\n    */\n\n    log(message) {\n      print(message)\n    }\n\n    /**\n        Assert that a given condition is true.\n        If the condition is false, throws an exception.\n\n        @param condition An expression that is expected to evaluate to true if everything is ok.\n    */\n\n    assert(condition) {\n      if (!condition) {\n          throw \"Assert failed!\"\n      }\n    }\n\n    /**\n        The selected document.\n\n        If the user invoked the script explicitly (for example by selecting a menu item),\n        this will be the document that they were working in at the time - ie the frontmost one.\n        If the script was invoked as an action handler, this will be the document that the action\n        occurred in.\n\n        @return A Document object.\n    */\n\n    get selectedDocument() {\n      return new Document(this.object.document, this)\n    }\n\n\n    /**\n        Create a new document and bring it to the front.\n        @return The new document.\n    */\n\n    newDocument() {\n      var app = NSDocumentController.sharedDocumentController()\n      app.newDocument_(this)\n      return new Document(app.currentDocument(), this)\n\n    }\n\n    /**\n        Show a small, temporary, message to the user.\n        The message appears at the bottom of the selected document,\n        and is visible for a short period of time. It should consist of a single\n        line of text.\n\n        @param {String} message The message to show.\n    */\n\n    message(message) {\n      this.object.document.showMessage(message)\n    }\n\n    /**\n        Show an alert with a custom title and message.\n\n        @param {string} title The title of the alert.\n        @param {string} message The text of the message.\n\n        The alert is modal, so it will stay around until the user dismisses it\n        by pressing the OK button.\n    */\n\n    alert(title, message) {\n      var app = NSApplication.sharedApplication()\n      app.displayDialog_withTitle(title, message)\n    }\n\n    /**\n        Return a new Rectangle object for a given x,y, width and height.\n\n        @param x The x coordinate of the top-left corner of the rectangle.\n        @param y The y coordinate of the top-left corner of the rectangle.\n        @param width The width of the rectangle.\n        @param height The height of the rectangle.\n        @return The new Rectangle object..\n    */\n\n    rectangle(x, y, w, h) {\n      return new Rectangle(x, y, w, h)\n    }\n}\n"
+  },
+  {
+    "__docId__": 3,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Application",
+    "memberof": "Source/Application.js",
+    "longname": "Source/Application.js~Application",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Application.js",
+    "importStyle": "{Application}",
+    "description": "Gives you access to Sketch, and provides access to:\n- the document model and the layer tree\n- metadata abound sketch itself\n- utilities for interacting with the user\n- access to the running plugin, it's resources and settings",
+    "lineNumber": 28,
+    "interface": false,
+    "extends": [
+      "Source/WrappedObject.js~WrappedObject"
+    ]
+  },
+  {
+    "__docId__": 4,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "params": [
+      {
+        "name": "context",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 5,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "metadata",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#metadata",
+    "access": null,
+    "description": null,
+    "lineNumber": 31,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 6,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "factory",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#factory",
+    "access": null,
+    "description": null,
+    "lineNumber": 36,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 7,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "api_version",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#api_version",
+    "access": null,
+    "description": "The version of this API.",
+    "lineNumber": 52,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "A version string."
+    },
+    "type": {
+      "types": [
+        "string"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 8,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "context",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#context",
+    "access": null,
+    "description": "The context that the API was created in.\nThis is the traditional context argument that is\npassed to all plugin scripts when they are run.\n\nIn general you should use the API to access Sketch\nrather than interacting with the context directly.",
+    "lineNumber": 67,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "A context dictionary."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 9,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "version",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#version",
+    "access": null,
+    "description": "The version of Sketch that is running.",
+    "lineNumber": 78,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "The version as a string, eg \"3.6\"."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 10,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "build",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#build",
+    "access": null,
+    "description": "The exact build of Sketch that is running.",
+    "lineNumber": 88,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "The build number as a string, eg \"15352\"."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 11,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "settingForKey",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#settingForKey",
+    "access": null,
+    "description": "Returns the full version of Sketch that is running",
+    "lineNumber": 111,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": "The setting to look up."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "The setting value.\n\nThis is equivalent to reading a setting for the currently\nrunning version of Sketch using the `defaults` command line tool,\neg: defaults read com.bohemiancoding.sketch3 <key>"
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 12,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setSettingForKey",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#setSettingForKey",
+    "access": null,
+    "description": "Set the value of a global setting for a given key.",
+    "lineNumber": 126,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "key",
+        "description": "The setting to set."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to set it to.\n\nThis is equivalent to writing a setting for the currently\nrunning version of Sketch using the `defaults` command line tool,\neg: defaults write com.bohemiancoding.sketch3 <key> <value>"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 13,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "resourceNamed",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#resourceNamed",
+    "access": null,
+    "description": "Return a file URL pointing to a named resource in the plugin's Resources/\nfolder.",
+    "lineNumber": 138,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "The resource file name, including any file extension."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "The resource location, in the form \"file://path/to/resource\"."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 14,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getStringFromUser",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#getStringFromUser",
+    "access": null,
+    "description": "Shows a simple input sheet which displays a message, and asks for a single string\ninput.",
+    "lineNumber": 150,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "msg",
+        "description": "The prompt message to show."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "initial",
+        "description": "The initial value of the input string."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "The string that the user input."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 15,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getSelectionFromUser",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#getSelectionFromUser",
+    "access": null,
+    "description": "Shows an input sheet which displays a popup with a series of options,\nfrom which the user is asked to choose.",
+    "lineNumber": 170,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "msg",
+        "description": "The prompt message to show."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "items",
+        "description": "A list of option items."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "selectedItemIndex",
+        "description": "The index of the item to select initially."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "An array with two items: [responseCode, selection].\n\nThe result consists of a response code and a selection. The code will be\none of NSAlertFirstButtonReturn or NSAlertSecondButtonReturn.\nThe selection will be the integer index of the selected item."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 16,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "log",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#log",
+    "access": null,
+    "description": "Output a message to the log console.",
+    "lineNumber": 195,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": "The message to output."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 17,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "assert",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#assert",
+    "access": null,
+    "description": "Assert that a given condition is true.\nIf the condition is false, throws an exception.",
+    "lineNumber": 206,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "condition",
+        "description": "An expression that is expected to evaluate to true if everything is ok."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 18,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "selectedDocument",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#selectedDocument",
+    "access": null,
+    "description": "The selected document.\n\nIf the user invoked the script explicitly (for example by selecting a menu item),\nthis will be the document that they were working in at the time - ie the frontmost one.\nIf the script was invoked as an action handler, this will be the document that the action\noccurred in.",
+    "lineNumber": 223,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "A Document object."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 19,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "newDocument",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#newDocument",
+    "access": null,
+    "description": "Create a new document and bring it to the front.",
+    "lineNumber": 233,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "The new document."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 20,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "message",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#message",
+    "access": null,
+    "description": "Show a small, temporary, message to the user.\nThe message appears at the bottom of the selected document,\nand is visible for a short period of time. It should consist of a single\nline of text.",
+    "lineNumber": 249,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": "The message to show."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 21,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "alert",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#alert",
+    "access": null,
+    "description": "Show an alert with a custom title and message.",
+    "lineNumber": 263,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "title",
+        "description": "The title of the alert."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "message",
+        "description": "The text of the message.\n\nThe alert is modal, so it will stay around until the user dismisses it\nby pressing the OK button."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 22,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "rectangle",
+    "memberof": "Source/Application.js~Application",
+    "longname": "Source/Application.js~Application#rectangle",
+    "access": null,
+    "description": "Return a new Rectangle object for a given x,y, width and height.",
+    "lineNumber": 278,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "x",
+        "description": "The x coordinate of the top-left corner of the rectangle."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "y",
+        "description": "The y coordinate of the top-left corner of the rectangle."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "width",
+        "description": "The width of the rectangle."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "height",
+        "description": "The height of the rectangle."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "The new Rectangle object.."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 23,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Artboard.js",
+    "memberof": null,
+    "longname": "Source/Artboard.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Artboard.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\n/**\n    Represents a Sketch artboard.\n*/\n\nexport class Artboard extends Layer {\n\n    /**\n        Make a new artboard.\n\n        @param artboard The underlying MSArtboardGroup model object from Sketch.\n        @param document The document that the artboard belongs to.\n    */\n\n    constructor(artboard, document) {\n      super(artboard, document)\n    }\n\n    /**\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    */\n\n    get isArtboard() {\n      return true;\n    }\n\n}\n"
+  },
+  {
+    "__docId__": 24,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Artboard",
+    "memberof": "Source/Artboard.js",
+    "longname": "Source/Artboard.js~Artboard",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Artboard.js",
+    "importStyle": "{Artboard}",
+    "description": "Represents a Sketch artboard.",
+    "lineNumber": 16,
+    "interface": false,
+    "extends": [
+      "Source/Layer.js~Layer"
+    ]
+  },
+  {
+    "__docId__": 25,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Artboard.js~Artboard",
+    "longname": "Source/Artboard.js~Artboard#constructor",
+    "access": null,
+    "description": "Make a new artboard.",
+    "lineNumber": 25,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "artboard",
+        "description": "The underlying MSArtboardGroup model object from Sketch."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "document",
+        "description": "The document that the artboard belongs to."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 26,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isArtboard",
+    "memberof": "Source/Artboard.js~Artboard",
+    "longname": "Source/Artboard.js~Artboard#isArtboard",
+    "access": null,
+    "description": "Is this an artboard?\n\nAll Layer objects respond to this method, but only Artboard objects return true.",
+    "lineNumber": 37,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true for instances of Artboard, false for any other layer type."
+    },
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 27,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Document.js",
+    "memberof": null,
+    "longname": "Source/Document.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Document.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\nimport { Page } from './Page.js'\nimport { Selection } from './Selection.js'\n\nexport class Document extends WrappedObject {\n    constructor(document, application) {\n      super(document)\n      this.application = application\n    }\n\n    get selectedLayers() {\n      return new Selection(this.object);\n    }\n\n    get selectedPage() {\n      print(this.object)\n      return new Page(this.object.currentPage(), this)\n    }\n\n    get pages() {\n      var result = [];\n      var loop = this.object.pages().objectEnumerator()\n      var item;\n      while (item = loop.nextObject()) {\n        result.push(new Page(item, this));\n      }\n      return result;\n    }\n\n    layerWithID(layer_id) {\n      return new Layer(this.object.documentData().layerWithID_(layer_id), this);\n    }\n\n    layerNamed(layer_id) {\n      // as it happens, layerWithID also matches names\n      var layer = this.object.documentData().layerWithID_(layer_id);\n      if (layer)\n        return new Layer(layer, this);\n    }\n}\n"
+  },
+  {
+    "__docId__": 28,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Document",
+    "memberof": "Source/Document.js",
+    "longname": "Source/Document.js~Document",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Document.js",
+    "importStyle": "{Document}",
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Source/WrappedObject.js~WrappedObject"
+    ]
+  },
+  {
+    "__docId__": 29,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Document.js~Document",
+    "longname": "Source/Document.js~Document#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "params": [
+      {
+        "name": "document",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "application",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 30,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "application",
+    "memberof": "Source/Document.js~Document",
+    "longname": "Source/Document.js~Document#application",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 31,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "selectedLayers",
+    "memberof": "Source/Document.js~Document",
+    "longname": "Source/Document.js~Document#selectedLayers",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 32,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "selectedPage",
+    "memberof": "Source/Document.js~Document",
+    "longname": "Source/Document.js~Document#selectedPage",
+    "access": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 33,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "pages",
+    "memberof": "Source/Document.js~Document",
+    "longname": "Source/Document.js~Document#pages",
+    "access": null,
+    "description": null,
+    "lineNumber": 30,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 34,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "layerWithID",
+    "memberof": "Source/Document.js~Document",
+    "longname": "Source/Document.js~Document#layerWithID",
+    "access": null,
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "params": [
+      {
+        "name": "layer_id",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 35,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "layerNamed",
+    "memberof": "Source/Document.js~Document",
+    "longname": "Source/Document.js~Document#layerNamed",
+    "access": null,
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "params": [
+      {
+        "name": "layer_id",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 36,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Group.js",
+    "memberof": null,
+    "longname": "Source/Group.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Group.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\nexport class Group extends Layer {\n    constructor(group, document) {\n      super(group, document)\n    }\n\n    is_group() {\n      return true;\n    }\n\n}\n"
+  },
+  {
+    "__docId__": 37,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Group",
+    "memberof": "Source/Group.js",
+    "longname": "Source/Group.js~Group",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Group.js",
+    "importStyle": "{Group}",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Source/Layer.js~Layer"
+    ]
+  },
+  {
+    "__docId__": 38,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Group.js~Group",
+    "longname": "Source/Group.js~Group#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [
+      {
+        "name": "group",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "document",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 39,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "is_group",
+    "memberof": "Source/Group.js~Group",
+    "longname": "Source/Group.js~Group#is_group",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 40,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Image.js",
+    "memberof": null,
+    "longname": "Source/Image.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Image.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\nexport class Image extends Layer {\n  constructor(page, document) {\n    super(page, document)\n  }\n\n  get isImage() {\n    return true;\n  }\n\n  set imageURL(url) {\n    var image = NSImage.alloc().initWithContentsOfURL_(url)\n    var imageData = MSImageData.alloc().initWithImage_convertColorSpace_(image, true)\n    this.object.setImage_(imageData)\n  }\n}\n"
+  },
+  {
+    "__docId__": 41,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Image",
+    "memberof": "Source/Image.js",
+    "longname": "Source/Image.js~Image",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Image.js",
+    "importStyle": "{Image}",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Source/Layer.js~Layer"
+    ]
+  },
+  {
+    "__docId__": 42,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Image.js~Image",
+    "longname": "Source/Image.js~Image#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [
+      {
+        "name": "page",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "document",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 43,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isImage",
+    "memberof": "Source/Image.js~Image",
+    "longname": "Source/Image.js~Image#isImage",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 44,
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "imageURL",
+    "memberof": "Source/Image.js~Image",
+    "longname": "Source/Image.js~Image#imageURL",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 45,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Layer.js",
+    "memberof": null,
+    "longname": "Source/Layer.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Layer.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Rectangle } from './Rectangle.js'\n\nexport class Layer extends WrappedObject {\n    constructor(layer, document) {\n      super(layer)\n      this.document = document\n    }\n\n    get name() {\n      return this.object.name();\n    }\n\n    set name(value) {\n      this.object.setName_(value);\n    }\n\n    get frame() {\n      var f = this.object.frame();\n      return new Rectangle(f.x(), f.y(), f.width(), f.height());\n    }\n\n    set frame(value) {\n      var f = this.object.frame();\n      f.setRect_(NSMakeRect(value.x, value.y, value.width, value.height));\n    }\n\n    duplicate() {\n      return new Layer(this.object.duplicate(), this.document);\n    }\n\n    get isPage() { return false; }\n    get isArtboard() { return false; }\n    get isGroup() { return false; }\n    get isText() { return false; }\n    get isShape() { return false; }\n    get isImage() { return false; }\n\n    addWrappedLayerWithProperties(newLayer, properties, wrapper) {\n      if (newLayer) {\n        // add the Sketch object to this layer\n        var layer = this.object\n        layer.addLayers_(NSArray.arrayWithObject_(newLayer))\n\n        // make a Javascript wrapper object for the new layer\n        var wrapperToMake = this.document.application.factory[wrapper]\n        var wrapper = new wrapperToMake(newLayer, this.document)\n\n        // apply properties, via the wrapper\n        for (var p in properties) {\n          wrapper[p] = properties[p]\n        }\n\n        return wrapper\n      }\n    }\n\n    frameForLayerWithProperties(properties) {\n      var frame = properties.frame\n      if (frame) {\n        delete properties[\"frame\"]\n      } else {\n        frame = new Rectangle(0, 0, 100, 100)\n      }\n      return frame\n    }\n\n    newShape(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSShapeGroup.shapeWithBezierPath_(NSBezierPath.bezierPathWithRect_(frame.asCGRect()));\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Shape\");\n    }\n\n    newText(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSTextLayer.alloc().initWithFrame_(frame.asCGRect());\n      newLayer.adjustFrameToFit();\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Text\");\n    }\n\n    newGroup(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSLayerGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Group\");\n    }\n\n    newArtboard(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSArtboardGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Artboard\");\n    }\n\n    newImage(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSBitmapLayer.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Image\");\n    }\n\n    remove() {\n      var parent = this.object.parentGroup();\n      if (parent) {\n        parent.removeLayer_(this.object);\n      }\n    }\n\n    select() {\n      this.object.select_byExpandingSelection(true, false);\n    }\n\n    deselect() {\n      this.object.select_byExpandingSelection(false, true);\n    }\n\n    addToSelection() {\n      this.object.select_byExpandingSelection(true, true);\n    }\n\n    iterate(block) {\n      var loop = this.object().layers().objectEnumerator();\n      while (item = loop.nextObject()) {\n        block(new Layer(item, this.document));\n      }\n    }\n}\n"
+  },
+  {
+    "__docId__": 46,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Layer",
+    "memberof": "Source/Layer.js",
+    "longname": "Source/Layer.js~Layer",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Layer.js",
+    "importStyle": "{Layer}",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Source/WrappedObject.js~WrappedObject"
+    ]
+  },
+  {
+    "__docId__": 47,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "params": [
+      {
+        "name": "layer",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "document",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 48,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "document",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#document",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 49,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#name",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#name",
+    "access": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 51,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "frame",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#frame",
+    "access": null,
+    "description": null,
+    "lineNumber": 27,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 52,
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "frame",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#frame",
+    "access": null,
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 53,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "duplicate",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#duplicate",
+    "access": null,
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 54,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isPage",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#isPage",
+    "access": null,
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 55,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isArtboard",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#isArtboard",
+    "access": null,
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 56,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isGroup",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#isGroup",
+    "access": null,
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 57,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isText",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#isText",
+    "access": null,
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 58,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isShape",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#isShape",
+    "access": null,
+    "description": null,
+    "lineNumber": 45,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 59,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isImage",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#isImage",
+    "access": null,
+    "description": null,
+    "lineNumber": 46,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 60,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addWrappedLayerWithProperties",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#addWrappedLayerWithProperties",
+    "access": null,
+    "description": null,
+    "lineNumber": 48,
+    "undocument": true,
+    "params": [
+      {
+        "name": "newLayer",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "properties",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "wrapper",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 61,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "frameForLayerWithProperties",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#frameForLayerWithProperties",
+    "access": null,
+    "description": null,
+    "lineNumber": 67,
+    "undocument": true,
+    "params": [
+      {
+        "name": "properties",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 62,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "newShape",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#newShape",
+    "access": null,
+    "description": null,
+    "lineNumber": 77,
+    "undocument": true,
+    "params": [
+      {
+        "name": "properties",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 63,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "newText",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#newText",
+    "access": null,
+    "description": null,
+    "lineNumber": 83,
+    "undocument": true,
+    "params": [
+      {
+        "name": "properties",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 64,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "newGroup",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#newGroup",
+    "access": null,
+    "description": null,
+    "lineNumber": 90,
+    "undocument": true,
+    "params": [
+      {
+        "name": "properties",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 65,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "newArtboard",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#newArtboard",
+    "access": null,
+    "description": null,
+    "lineNumber": 96,
+    "undocument": true,
+    "params": [
+      {
+        "name": "properties",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 66,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "newImage",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#newImage",
+    "access": null,
+    "description": null,
+    "lineNumber": 102,
+    "undocument": true,
+    "params": [
+      {
+        "name": "properties",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 67,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "remove",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#remove",
+    "access": null,
+    "description": null,
+    "lineNumber": 108,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 68,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "select",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#select",
+    "access": null,
+    "description": null,
+    "lineNumber": 115,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 69,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "deselect",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#deselect",
+    "access": null,
+    "description": null,
+    "lineNumber": 119,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 70,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addToSelection",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#addToSelection",
+    "access": null,
+    "description": null,
+    "lineNumber": 123,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 71,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "iterate",
+    "memberof": "Source/Layer.js~Layer",
+    "longname": "Source/Layer.js~Layer#iterate",
+    "access": null,
+    "description": null,
+    "lineNumber": 127,
+    "undocument": true,
+    "params": [
+      {
+        "name": "block",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 72,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Page.js",
+    "memberof": null,
+    "longname": "Source/Page.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Page.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\nexport class Page extends Layer {\n  constructor(page, document) {\n    super(page)\n    this.document = document\n  }\n\n  get isPage() {\n    return true;\n  }\n}\n"
+  },
+  {
+    "__docId__": 73,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Page",
+    "memberof": "Source/Page.js",
+    "longname": "Source/Page.js~Page",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Page.js",
+    "importStyle": "{Page}",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Source/Layer.js~Layer"
+    ]
+  },
+  {
+    "__docId__": 74,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Page.js~Page",
+    "longname": "Source/Page.js~Page#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [
+      {
+        "name": "page",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "document",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 75,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "document",
+    "memberof": "Source/Page.js~Page",
+    "longname": "Source/Page.js~Page#document",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 76,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isPage",
+    "memberof": "Source/Page.js~Page",
+    "longname": "Source/Page.js~Page#isPage",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 77,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Rectangle.js",
+    "memberof": null,
+    "longname": "Source/Rectangle.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Rectangle.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nexport class Rectangle {\n  constructor(x, y, w, h) {\n    this.x = x\n    this.y = y\n    this.width = w\n    this.height = h\n  }\n\n  asCGRect() {\n    return CGRectMake(this.x, this.y, this.width, this.height)\n  }\n}\n"
+  },
+  {
+    "__docId__": 78,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Rectangle",
+    "memberof": "Source/Rectangle.js",
+    "longname": "Source/Rectangle.js~Rectangle",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Rectangle.js",
+    "importStyle": "{Rectangle}",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 79,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Rectangle.js~Rectangle",
+    "longname": "Source/Rectangle.js~Rectangle#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "params": [
+      {
+        "name": "x",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "y",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "w",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "h",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 80,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "x",
+    "memberof": "Source/Rectangle.js~Rectangle",
+    "longname": "Source/Rectangle.js~Rectangle#x",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 81,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "y",
+    "memberof": "Source/Rectangle.js~Rectangle",
+    "longname": "Source/Rectangle.js~Rectangle#y",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 82,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "width",
+    "memberof": "Source/Rectangle.js~Rectangle",
+    "longname": "Source/Rectangle.js~Rectangle#width",
+    "access": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "height",
+    "memberof": "Source/Rectangle.js~Rectangle",
+    "longname": "Source/Rectangle.js~Rectangle#height",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 84,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "asCGRect",
+    "memberof": "Source/Rectangle.js~Rectangle",
+    "longname": "Source/Rectangle.js~Rectangle#asCGRect",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 85,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Selection.js",
+    "memberof": null,
+    "longname": "Source/Selection.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Selection.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\n\n\n// ********************************\n// Selection support.\n// ********************************\n\nexport class Selection extends WrappedObject {\n    constructor(document) {\n      super(document)\n    }\n\n    get isEmpty() {\n        return (this.object.selectedLayers().count() == 0);\n    }\n\n    iterateAndClear(block) {\n      var layers = this.object.selectedLayers();\n      this.clear();\n      this.iterateWithLayers(layers, block);\n    }\n\n    iterate(block) {\n      var layers = this.object.selectedLayers();\n      this.iterateWithLayers(layers, block);\n    }\n\n    iterateWithLayers(layers, block) {\n      var loop = layers.objectEnumerator();\n      var item;\n      while (item = loop.nextObject()) {\n        block(new Layer(item));\n      }\n    }\n\n    clear() {\n      this.object.currentPage().deselectAllLayers();\n    }\n}\n"
+  },
+  {
+    "__docId__": 86,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Selection",
+    "memberof": "Source/Selection.js",
+    "longname": "Source/Selection.js~Selection",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Selection.js",
+    "importStyle": "{Selection}",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Source/WrappedObject.js~WrappedObject"
+    ]
+  },
+  {
+    "__docId__": 87,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Selection.js~Selection",
+    "longname": "Source/Selection.js~Selection#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "params": [
+      {
+        "name": "document",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 88,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isEmpty",
+    "memberof": "Source/Selection.js~Selection",
+    "longname": "Source/Selection.js~Selection#isEmpty",
+    "access": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 89,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "iterateAndClear",
+    "memberof": "Source/Selection.js~Selection",
+    "longname": "Source/Selection.js~Selection#iterateAndClear",
+    "access": null,
+    "description": null,
+    "lineNumber": 27,
+    "undocument": true,
+    "params": [
+      {
+        "name": "block",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 90,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "iterate",
+    "memberof": "Source/Selection.js~Selection",
+    "longname": "Source/Selection.js~Selection#iterate",
+    "access": null,
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "params": [
+      {
+        "name": "block",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 91,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "iterateWithLayers",
+    "memberof": "Source/Selection.js~Selection",
+    "longname": "Source/Selection.js~Selection#iterateWithLayers",
+    "access": null,
+    "description": null,
+    "lineNumber": 38,
+    "undocument": true,
+    "params": [
+      {
+        "name": "layers",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "block",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 92,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clear",
+    "memberof": "Source/Selection.js~Selection",
+    "longname": "Source/Selection.js~Selection#clear",
+    "access": null,
+    "description": null,
+    "lineNumber": 46,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 93,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Shape.js",
+    "memberof": null,
+    "longname": "Source/Shape.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Shape.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\nexport class Shape extends Layer {\n    constructor(shape, document) {\n      super(shape, document)\n    }\n\n    get isShape() {\n      return true;\n    }\n\n}\n"
+  },
+  {
+    "__docId__": 94,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Shape",
+    "memberof": "Source/Shape.js",
+    "longname": "Source/Shape.js~Shape",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Shape.js",
+    "importStyle": "{Shape}",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Source/Layer.js~Layer"
+    ]
+  },
+  {
+    "__docId__": 95,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Shape.js~Shape",
+    "longname": "Source/Shape.js~Shape#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [
+      {
+        "name": "shape",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "document",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 96,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isShape",
+    "memberof": "Source/Shape.js~Shape",
+    "longname": "Source/Shape.js~Shape#isShape",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 97,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/Text.js",
+    "memberof": null,
+    "longname": "Source/Text.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "content": "// ********************************\n// # Text.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\n// ## Constants\n\nconst BCTextBehaviourFlexibleWidth = 0\nconst BCTextBehaviourFixedWidth = 1\n\nexport class Text extends Layer {\n    constructor(text, document) {\n      super(text, document)\n    }\n\n    get isText() {\n      return true\n    }\n\n    // Get/set the text of the layer.\n\n    get text() {\n      return this.object.stringValue\n    }\n\n    set text(value) {\n      this.object.stringValue = value\n    }\n\n\n    // Set the font of the layer to an NSFont object.\n\n    set font(value) {\n      this.object.font = value\n    }\n\n    // Set the font of the layer to the system font at a given size.\n\n    set systemFontSize(size) {\n      this.object.font = NSFont.systemFontOfSize_(size)\n    }\n\n    // Set the alignment of the layer.\n\n    set alignment(mode) {\n      this.object.textAlignment = mode\n    }\n\n    // Set the layer to be fixed width or variable width.\n\n    set fixedWidth(value) {\n      if (value) {\n        this.object.textBehaviour = BCTextBehaviourFixedWidth\n      } else {\n        this.object.textBehaviour = BCTextBehaviourFlexibleWidth\n      }\n    }\n}\n"
+  },
+  {
+    "__docId__": 98,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "BCTextBehaviourFlexibleWidth",
+    "memberof": "Source/Text.js",
+    "longname": "Source/Text.js~BCTextBehaviourFlexibleWidth",
+    "access": null,
+    "export": false,
+    "importPath": "sketch-api/Source/Text.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 99,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "BCTextBehaviourFixedWidth",
+    "memberof": "Source/Text.js",
+    "longname": "Source/Text.js~BCTextBehaviourFixedWidth",
+    "access": null,
+    "export": false,
+    "importPath": "sketch-api/Source/Text.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 100,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Text",
+    "memberof": "Source/Text.js",
+    "longname": "Source/Text.js~Text",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/Text.js",
+    "importStyle": "{Text}",
+    "description": null,
+    "lineNumber": 17,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Source/Layer.js~Layer"
+    ]
+  },
+  {
+    "__docId__": 101,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/Text.js~Text",
+    "longname": "Source/Text.js~Text#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "params": [
+      {
+        "name": "text",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "document",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 102,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isText",
+    "memberof": "Source/Text.js~Text",
+    "longname": "Source/Text.js~Text#isText",
+    "access": null,
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true,
+    "type": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 103,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "text",
+    "memberof": "Source/Text.js~Text",
+    "longname": "Source/Text.js~Text#text",
+    "access": null,
+    "description": null,
+    "lineNumber": 28,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 104,
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "text",
+    "memberof": "Source/Text.js~Text",
+    "longname": "Source/Text.js~Text#text",
+    "access": null,
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 105,
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "font",
+    "memberof": "Source/Text.js~Text",
+    "longname": "Source/Text.js~Text#font",
+    "access": null,
+    "description": null,
+    "lineNumber": 39,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 106,
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "systemFontSize",
+    "memberof": "Source/Text.js~Text",
+    "longname": "Source/Text.js~Text#systemFontSize",
+    "access": null,
+    "description": null,
+    "lineNumber": 45,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 107,
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "alignment",
+    "memberof": "Source/Text.js~Text",
+    "longname": "Source/Text.js~Text#alignment",
+    "access": null,
+    "description": null,
+    "lineNumber": 51,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 108,
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "fixedWidth",
+    "memberof": "Source/Text.js~Text",
+    "longname": "Source/Text.js~Text#fixedWidth",
+    "access": null,
+    "description": null,
+    "lineNumber": 57,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 109,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "Source/WrappedObject.js",
+    "memberof": null,
+    "longname": "Source/WrappedObject.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "content": "// ********************************\n// # WrappedObject.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// Base class for all objects that\n// wrap Sketch classes.\n\nexport class WrappedObject {\n    constructor(object) {\n      this.object = object\n    }\n\n    get id() {\n      return this.object.objectID();\n    }\n}\n"
+  },
+  {
+    "__docId__": 110,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "WrappedObject",
+    "memberof": "Source/WrappedObject.js",
+    "longname": "Source/WrappedObject.js~WrappedObject",
+    "access": null,
+    "export": true,
+    "importPath": "sketch-api/Source/WrappedObject.js",
+    "importStyle": "{WrappedObject}",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 111,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "Source/WrappedObject.js~WrappedObject",
+    "longname": "Source/WrappedObject.js~WrappedObject#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "params": [
+      {
+        "name": "object",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 112,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "object",
+    "memberof": "Source/WrappedObject.js~WrappedObject",
+    "longname": "Source/WrappedObject.js~WrappedObject#object",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 113,
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "id",
+    "memberof": "Source/WrappedObject.js~WrappedObject",
+    "longname": "Source/WrappedObject.js~WrappedObject#id",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 115,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 116,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 117,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 118,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 119,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 120,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 121,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 122,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 123,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 124,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 125,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 126,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 127,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 128,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 129,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 130,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 131,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 132,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 133,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 134,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 135,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 136,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 137,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 138,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 139,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 140,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 141,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 142,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 143,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 144,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 145,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 146,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 147,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 148,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 149,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 150,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 151,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 152,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 153,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 154,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 155,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 156,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 157,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 158,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 159,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 160,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 161,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 163,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 164,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 165,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 166,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 167,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 168,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 169,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 170,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  }
+]

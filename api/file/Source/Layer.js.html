@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">Source/Layer.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Application.js~Application.html">Application</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Artboard.js~Artboard.html">Artboard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Document.js~Document.html">Document</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Group.js~Group.html">Group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Image.js~Image.html">Image</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">Source/Layer.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
+// # Layer.js
+// # Sketch Javascript API.
+//
+// All code (C) 2016 Bohemian Coding.
+// ********************************
+
+// ##&#xA0;Imports
+
+import { WrappedObject } from &apos;./WrappedObject.js&apos;
+import { Rectangle } from &apos;./Rectangle.js&apos;
+
+export class Layer extends WrappedObject {
+    constructor(layer, document) {
+      super(layer)
+      this.document = document
+    }
+
+    get name() {
+      return this.object.name();
+    }
+
+    set name(value) {
+      this.object.setName_(value);
+    }
+
+    get frame() {
+      var f = this.object.frame();
+      return new Rectangle(f.x(), f.y(), f.width(), f.height());
+    }
+
+    set frame(value) {
+      var f = this.object.frame();
+      f.setRect_(NSMakeRect(value.x, value.y, value.width, value.height));
+    }
+
+    duplicate() {
+      return new Layer(this.object.duplicate(), this.document);
+    }
+
+    get isPage() { return false; }
+    get isArtboard() { return false; }
+    get isGroup() { return false; }
+    get isText() { return false; }
+    get isShape() { return false; }
+    get isImage() { return false; }
+
+    addWrappedLayerWithProperties(newLayer, properties, wrapper) {
+      if (newLayer) {
+        // add the Sketch object to this layer
+        var layer = this.object
+        layer.addLayers_(NSArray.arrayWithObject_(newLayer))
+
+        // make a Javascript wrapper object for the new layer
+        var wrapperToMake = this.document.application.factory[wrapper]
+        var wrapper = new wrapperToMake(newLayer, this.document)
+
+        // apply properties, via the wrapper
+        for (var p in properties) {
+          wrapper[p] = properties[p]
+        }
+
+        return wrapper
+      }
+    }
+
+    frameForLayerWithProperties(properties) {
+      var frame = properties.frame
+      if (frame) {
+        delete properties[&quot;frame&quot;]
+      } else {
+        frame = new Rectangle(0, 0, 100, 100)
+      }
+      return frame
+    }
+
+    newShape(properties) {
+      var frame = this.frameForLayerWithProperties(properties)
+      var newLayer = MSShapeGroup.shapeWithBezierPath_(NSBezierPath.bezierPathWithRect_(frame.asCGRect()));
+      return this.addWrappedLayerWithProperties(newLayer, properties, &quot;Shape&quot;);
+    }
+
+    newText(properties) {
+      var frame = this.frameForLayerWithProperties(properties)
+      var newLayer = MSTextLayer.alloc().initWithFrame_(frame.asCGRect());
+      newLayer.adjustFrameToFit();
+      return this.addWrappedLayerWithProperties(newLayer, properties, &quot;Text&quot;);
+    }
+
+    newGroup(properties) {
+      var frame = this.frameForLayerWithProperties(properties)
+      var newLayer = MSLayerGroup.alloc().initWithFrame_(frame.asCGRect());
+      return this.addWrappedLayerWithProperties(newLayer, properties, &quot;Group&quot;);
+    }
+
+    newArtboard(properties) {
+      var frame = this.frameForLayerWithProperties(properties)
+      var newLayer = MSArtboardGroup.alloc().initWithFrame_(frame.asCGRect());
+      return this.addWrappedLayerWithProperties(newLayer, properties, &quot;Artboard&quot;);
+    }
+
+    newImage(properties) {
+      var frame = this.frameForLayerWithProperties(properties)
+      var newLayer = MSBitmapLayer.alloc().initWithFrame_(frame.asCGRect());
+      return this.addWrappedLayerWithProperties(newLayer, properties, &quot;Image&quot;);
+    }
+
+    remove() {
+      var parent = this.object.parentGroup();
+      if (parent) {
+        parent.removeLayer_(this.object);
+      }
+    }
+
+    select() {
+      this.object.select_byExpandingSelection(true, false);
+    }
+
+    deselect() {
+      this.object.select_byExpandingSelection(false, true);
+    }
+
+    addToSelection() {
+      this.object.select_byExpandingSelection(true, true);
+    }
+
+    iterate(block) {
+      var loop = this.object().layers().objectEnumerator();
+      while (item = loop.nextObject()) {
+        block(new Layer(item, this.document));
+      }
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
