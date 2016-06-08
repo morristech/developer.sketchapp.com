@@ -52,7 +52,7 @@
     "access": null,
     "description": null,
     "lineNumber": 10,
-    "content": "// ********************************\n// # Application.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Document } from './Document.js'\nimport { Rectangle } from './Rectangle.js'\nimport { Group } from './Group.js'\nimport { Text } from './Text.js'\nimport { Image } from './Image.js'\nimport { Shape } from './Shape.js'\nimport { Artboard } from './Artboard.js'\nimport { Page } from './Page.js'\n\n/**\n    Gives you access to Sketch, and provides access to:\n    - the document model and the layer tree\n    - metadata abound sketch itself\n    - utilities for interacting with the user\n    - access to the running plugin, it's resources and settings\n*/\n\nexport class Application extends WrappedObject {\n    constructor(context) {\n      super(context)\n      this.metadata = MSApplicationMetadata.metadata()\n\n      // this is a slightly clumsy way to pass related classes into Layer\n      // without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)\n      // there has to be a better way to do this...\n      this.factory = {\n        \"Group\" : Group,\n        \"Page\" : Page,\n        \"Artboard\" : Artboard,\n        \"Shape\" : Shape,\n        \"Image\" : Image,\n        \"Text\" : Text\n      }\n    }\n\n    /**\n        The version of this API.\n\n        @return A version string.\n    */\n\n    get api_version() {\n      return \"1.1\"\n    }\n\n    /**\n        The context that the API was created in.\n        This is the traditional context argument that is\n        passed to all plugin scripts when they are run.\n\n        In general you should use the API to access Sketch\n        rather than interacting with the context directly.\n\n        @return A context dictionary.\n    */\n\n    get context() {\n      return this.object\n    }\n\n\n    /**\n        The version of Sketch that is running.\n\n        @return The version as a string, eg \"3.6\".\n    */\n\n    get version() {\n      return this.metadata['appVersion']\n    }\n\n    /**\n        The exact build of Sketch that is running.\n\n        @return The build number as a string, eg \"15352\".\n    */\n\n    get build() {\n      return this.metadata['build']\n    }\n\n    /**\n        Returns the full version of Sketch that is running\n\n        @return {string} Version and build number as a string, eg \"3.6 (15352)\".\n\n    get full_version() {\n      return this.version + \" (\" + this.build + \")\"\n    }\n\n    /**\n        Return the value of a global setting for a given key.\n        @param key The setting to look up.\n        @return The setting value.\n\n        This is equivalent to reading a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults read com.bohemiancoding.sketch3 <key>\n    */\n\n    settingForKey(key) {\n      return NSUserDefaults.standardUserDefaults().objectForKey_(key);\n    }\n\n    /**\n        Set the value of a global setting for a given key.\n\n        @param key The setting to set.\n        @param value The value to set it to.\n\n        This is equivalent to writing a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults write com.bohemiancoding.sketch3 <key> <value>\n    */\n\n    setSettingForKey(key, value) {\n      NSUserDefaults.standardUserDefaults().setObject_forKey_(value, key)\n    }\n\n    /**\n        Return a file URL pointing to a named resource in the plugin's Resources/\n        folder.\n\n        @param name The resource file name, including any file extension.\n        @return The resource location, in the form \"file://path/to/resource\".\n    */\n\n    resourceNamed(name) {\n      return this.object.plugin.urlForResourceNamed_(name)\n    }\n\n    /**\n        Shows a simple input sheet which displays a message, and asks for a single string\n        input.\n        @param msg The prompt message to show.\n        @param initial The initial value of the input string.\n        @return The string that the user input.\n    */\n\n    getStringFromUser(msg, initial) {\n        var panel = MSModalInputSheet.alloc().init()\n        var result = panel.runPanelWithNibName_ofType_initialString_label_(\"MSModalInputSheet\", 0, initial, msg)\n        return result\n    }\n\n    /**\n        Shows an input sheet which displays a popup with a series of options,\n        from which the user is asked to choose.\n\n        @param msg The prompt message to show.\n        @param items A list of option items.\n        @param selectedItemIndex The index of the item to select initially.\n        @return An array with two items: [responseCode, selection].\n\n        The result consists of a response code and a selection. The code will be\n        one of NSAlertFirstButtonReturn or NSAlertSecondButtonReturn.\n        The selection will be the integer index of the selected item.\n    */\n\n    getSelectionFromUser(msg, items, selectedItemIndex) {\n      selectedItemIndex = selectedItemIndex || 0\n\n      var accessory = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25))\n      accessory.addItemsWithObjectValues(items)\n      accessory.selectItemAtIndex(selectedItemIndex)\n\n      var alert = NSAlert.alloc().init()\n      alert.setMessageText(msg)\n      alert.addButtonWithTitle('OK')\n      alert.addButtonWithTitle('Cancel')\n      alert.setAccessoryView(accessory)\n\n      var responseCode = alert.runModal()\n      var sel = accessory.indexOfSelectedItem()\n\n      return [responseCode, sel]\n    }\n\n    /**\n        Output a message to the log console.\n\n        @param {string} message The message to output.\n    */\n\n    log(message) {\n      print(message)\n    }\n\n    /**\n        Assert that a given condition is true.\n        If the condition is false, throws an exception.\n\n        @param condition An expression that is expected to evaluate to true if everything is ok.\n    */\n\n    assert(condition) {\n      if (!condition) {\n          throw \"Assert failed!\"\n      }\n    }\n\n    /**\n        The selected document.\n\n        If the user invoked the script explicitly (for example by selecting a menu item),\n        this will be the document that they were working in at the time - ie the frontmost one.\n        If the script was invoked as an action handler, this will be the document that the action\n        occurred in.\n\n        @return A Document object.\n    */\n\n    get selectedDocument() {\n      return new Document(this.object.document, this)\n    }\n\n\n    /**\n        Create a new document and bring it to the front.\n        @return The new document.\n    */\n\n    newDocument() {\n      var app = NSDocumentController.sharedDocumentController()\n      app.newDocument_(this)\n      return new Document(app.currentDocument(), this)\n\n    }\n\n    /**\n        Show a small, temporary, message to the user.\n        The message appears at the bottom of the selected document,\n        and is visible for a short period of time. It should consist of a single\n        line of text.\n\n        @param {string} message The message to show.\n    */\n\n    message(message) {\n      this.object.document.showMessage(message)\n    }\n\n    /**\n        Show an alert with a custom title and message.\n\n        @param {string} title The title of the alert.\n        @param {string} message The text of the message.\n\n        The alert is modal, so it will stay around until the user dismisses it\n        by pressing the OK button.\n    */\n\n    alert(title, message) {\n      var app = NSApplication.sharedApplication()\n      app.displayDialog_withTitle(title, message)\n    }\n\n    /**\n        Return a new Rectangle object for a given x,y, width and height.\n\n        @param {number} x The x coordinate of the top-left corner of the rectangle.\n        @param {number} y The y coordinate of the top-left corner of the rectangle.\n        @param {number} width The width of the rectangle.\n        @param {number} height The height of the rectangle.\n        @return The new Rectangle object.\n    */\n\n    rectangle(x, y, w, h) {\n      return new Rectangle(x, y, w, h)\n    }\n}\n"
+    "content": "// ********************************\n// # Application.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Document } from './Document.js'\nimport { Rectangle } from './Rectangle.js'\nimport { Group } from './Group.js'\nimport { Text } from './Text.js'\nimport { Image } from './Image.js'\nimport { Shape } from './Shape.js'\nimport { Artboard } from './Artboard.js'\nimport { Page } from './Page.js'\n\n/**\n    Gives you access to Sketch, and provides access to:\n    - the document model and the layer tree\n    - metadata abound sketch itself\n    - utilities for interacting with the user\n    - access to the running plugin, it's resources and settings\n*/\n\nexport class Application extends WrappedObject {\n\n    /**\n        Construct a new Application object.\n        An instance of this class will be passed back to you when you\n        initialise the API, so you generally shouldn't need to make new ones.\n\n        @param context The context dictionary passed to the script when it was invoked.\n        @return A new Application object.\n    */\n    \n    constructor(context) {\n      super(context)\n      this.metadata = MSApplicationMetadata.metadata()\n\n      // this is a slightly clumsy way to pass related classes into Layer\n      // without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)\n      // there has to be a better way to do this...\n      this.factory = {\n        \"Group\" : Group,\n        \"Page\" : Page,\n        \"Artboard\" : Artboard,\n        \"Shape\" : Shape,\n        \"Image\" : Image,\n        \"Text\" : Text\n      }\n    }\n\n    /**\n        The version of this API.\n\n        @return A version string.\n    */\n\n    get api_version() {\n      return \"1.1\"\n    }\n\n    /**\n        The context that the API was created in.\n        This is the traditional context argument that is\n        passed to all plugin scripts when they are run.\n\n        In general you should use the API to access Sketch\n        rather than interacting with the context directly.\n\n        @return A context dictionary.\n    */\n\n    get context() {\n      return this.object\n    }\n\n\n    /**\n        The version of Sketch that is running.\n\n        @return The version as a string, eg \"3.6\".\n    */\n\n    get version() {\n      return this.metadata['appVersion']\n    }\n\n    /**\n        The exact build of Sketch that is running.\n\n        @return The build number as a string, eg \"15352\".\n    */\n\n    get build() {\n      return this.metadata['build']\n    }\n\n    /**\n        Returns the full version of Sketch that is running\n\n        @return {string} Version and build number as a string, eg \"3.6 (15352)\".\n\n    get full_version() {\n      return this.version + \" (\" + this.build + \")\"\n    }\n\n    /**\n        Return the value of a global setting for a given key.\n        @param key The setting to look up.\n        @return The setting value.\n\n        This is equivalent to reading a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults read com.bohemiancoding.sketch3 <key>\n    */\n\n    settingForKey(key) {\n      return NSUserDefaults.standardUserDefaults().objectForKey_(key);\n    }\n\n    /**\n        Set the value of a global setting for a given key.\n\n        @param key The setting to set.\n        @param value The value to set it to.\n\n        This is equivalent to writing a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults write com.bohemiancoding.sketch3 <key> <value>\n    */\n\n    setSettingForKey(key, value) {\n      NSUserDefaults.standardUserDefaults().setObject_forKey_(value, key)\n    }\n\n    /**\n        Return a file URL pointing to a named resource in the plugin's Resources/\n        folder.\n\n        @param name The resource file name, including any file extension.\n        @return The resource location, in the form \"file://path/to/resource\".\n    */\n\n    resourceNamed(name) {\n      return this.object.plugin.urlForResourceNamed_(name)\n    }\n\n    /**\n        Shows a simple input sheet which displays a message, and asks for a single string\n        input.\n        @param msg The prompt message to show.\n        @param initial The initial value of the input string.\n        @return The string that the user input.\n    */\n\n    getStringFromUser(msg, initial) {\n        var panel = MSModalInputSheet.alloc().init()\n        var result = panel.runPanelWithNibName_ofType_initialString_label_(\"MSModalInputSheet\", 0, initial, msg)\n        return result\n    }\n\n    /**\n        Shows an input sheet which displays a popup with a series of options,\n        from which the user is asked to choose.\n\n        @param msg The prompt message to show.\n        @param items A list of option items.\n        @param selectedItemIndex The index of the item to select initially.\n        @return An array with two items: [responseCode, selection].\n\n        The result consists of a response code and a selection. The code will be\n        one of NSAlertFirstButtonReturn or NSAlertSecondButtonReturn.\n        The selection will be the integer index of the selected item.\n    */\n\n    getSelectionFromUser(msg, items, selectedItemIndex) {\n      selectedItemIndex = selectedItemIndex || 0\n\n      var accessory = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25))\n      accessory.addItemsWithObjectValues(items)\n      accessory.selectItemAtIndex(selectedItemIndex)\n\n      var alert = NSAlert.alloc().init()\n      alert.setMessageText(msg)\n      alert.addButtonWithTitle('OK')\n      alert.addButtonWithTitle('Cancel')\n      alert.setAccessoryView(accessory)\n\n      var responseCode = alert.runModal()\n      var sel = accessory.indexOfSelectedItem()\n\n      return [responseCode, sel]\n    }\n\n    /**\n        Output a message to the log console.\n\n        @param {string} message The message to output.\n    */\n\n    log(message) {\n      print(message)\n    }\n\n    /**\n        Assert that a given condition is true.\n        If the condition is false, throws an exception.\n\n        @param condition An expression that is expected to evaluate to true if everything is ok.\n    */\n\n    assert(condition) {\n      if (!condition) {\n          throw \"Assert failed!\"\n      }\n    }\n\n    /**\n        The selected document.\n\n        If the user invoked the script explicitly (for example by selecting a menu item),\n        this will be the document that they were working in at the time - ie the frontmost one.\n        If the script was invoked as an action handler, this will be the document that the action\n        occurred in.\n\n        @return A Document object.\n    */\n\n    get selectedDocument() {\n      return new Document(this.object.document, this)\n    }\n\n\n    /**\n        Create a new document and bring it to the front.\n        @return The new document.\n    */\n\n    newDocument() {\n      var app = NSDocumentController.sharedDocumentController()\n      app.newDocument_(this)\n      return new Document(app.currentDocument(), this)\n\n    }\n\n    /**\n        Show a small, temporary, message to the user.\n        The message appears at the bottom of the selected document,\n        and is visible for a short period of time. It should consist of a single\n        line of text.\n\n        @param {string} message The message to show.\n    */\n\n    message(message) {\n      this.object.document.showMessage(message)\n    }\n\n    /**\n        Show an alert with a custom title and message.\n\n        @param {string} title The title of the alert.\n        @param {string} message The text of the message.\n\n        The alert is modal, so it will stay around until the user dismisses it\n        by pressing the OK button.\n    */\n\n    alert(title, message) {\n      var app = NSApplication.sharedApplication()\n      app.displayDialog_withTitle(title, message)\n    }\n\n    /**\n        Return a new Rectangle object for a given x,y, width and height.\n\n        @param {number} x The x coordinate of the top-left corner of the rectangle.\n        @param {number} y The y coordinate of the top-left corner of the rectangle.\n        @param {number} width The width of the rectangle.\n        @param {number} height The height of the rectangle.\n        @return The new Rectangle object.\n    */\n\n    rectangle(x, y, w, h) {\n      return new Rectangle(x, y, w, h)\n    }\n}\n"
   },
   {
     "__docId__": 3,
@@ -82,17 +82,28 @@
     "memberof": "Source/Application.js~Application",
     "longname": "Source/Application.js~Application#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 29,
-    "undocument": true,
+    "description": "Construct a new Application object.\nAn instance of this class will be passed back to you when you\ninitialise the API, so you generally shouldn't need to make new ones.",
+    "lineNumber": 39,
     "params": [
       {
-        "name": "context",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "context",
+        "description": "The context dictionary passed to the script when it was invoked."
       }
     ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "A new Application object."
+    },
     "generator": false
   },
   {
@@ -105,7 +116,7 @@
     "longname": "Source/Application.js~Application#metadata",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 41,
     "undocument": true,
     "type": {
       "types": [
@@ -123,7 +134,7 @@
     "longname": "Source/Application.js~Application#factory",
     "access": null,
     "description": null,
-    "lineNumber": 36,
+    "lineNumber": 46,
     "undocument": true,
     "type": {
       "types": [
@@ -141,7 +152,7 @@
     "longname": "Source/Application.js~Application#api_version",
     "access": null,
     "description": "The version of this API.",
-    "lineNumber": 52,
+    "lineNumber": 62,
     "return": {
       "nullable": null,
       "types": [
@@ -167,7 +178,7 @@
     "longname": "Source/Application.js~Application#context",
     "access": null,
     "description": "The context that the API was created in.\nThis is the traditional context argument that is\npassed to all plugin scripts when they are run.\n\nIn general you should use the API to access Sketch\nrather than interacting with the context directly.",
-    "lineNumber": 67,
+    "lineNumber": 77,
     "return": {
       "nullable": null,
       "types": [
@@ -193,7 +204,7 @@
     "longname": "Source/Application.js~Application#version",
     "access": null,
     "description": "The version of Sketch that is running.",
-    "lineNumber": 78,
+    "lineNumber": 88,
     "return": {
       "nullable": null,
       "types": [
@@ -219,7 +230,7 @@
     "longname": "Source/Application.js~Application#build",
     "access": null,
     "description": "The exact build of Sketch that is running.",
-    "lineNumber": 88,
+    "lineNumber": 98,
     "return": {
       "nullable": null,
       "types": [
@@ -245,7 +256,7 @@
     "longname": "Source/Application.js~Application#settingForKey",
     "access": null,
     "description": "Returns the full version of Sketch that is running",
-    "lineNumber": 111,
+    "lineNumber": 121,
     "params": [
       {
         "nullable": null,
@@ -278,7 +289,7 @@
     "longname": "Source/Application.js~Application#setSettingForKey",
     "access": null,
     "description": "Set the value of a global setting for a given key.",
-    "lineNumber": 126,
+    "lineNumber": 136,
     "params": [
       {
         "nullable": null,
@@ -313,7 +324,7 @@
     "longname": "Source/Application.js~Application#resourceNamed",
     "access": null,
     "description": "Return a file URL pointing to a named resource in the plugin's Resources/\nfolder.",
-    "lineNumber": 138,
+    "lineNumber": 148,
     "params": [
       {
         "nullable": null,
@@ -346,7 +357,7 @@
     "longname": "Source/Application.js~Application#getStringFromUser",
     "access": null,
     "description": "Shows a simple input sheet which displays a message, and asks for a single string\ninput.",
-    "lineNumber": 150,
+    "lineNumber": 160,
     "params": [
       {
         "nullable": null,
@@ -389,7 +400,7 @@
     "longname": "Source/Application.js~Application#getSelectionFromUser",
     "access": null,
     "description": "Shows an input sheet which displays a popup with a series of options,\nfrom which the user is asked to choose.",
-    "lineNumber": 170,
+    "lineNumber": 180,
     "params": [
       {
         "nullable": null,
@@ -442,7 +453,7 @@
     "longname": "Source/Application.js~Application#log",
     "access": null,
     "description": "Output a message to the log console.",
-    "lineNumber": 195,
+    "lineNumber": 205,
     "params": [
       {
         "nullable": null,
@@ -467,7 +478,7 @@
     "longname": "Source/Application.js~Application#assert",
     "access": null,
     "description": "Assert that a given condition is true.\nIf the condition is false, throws an exception.",
-    "lineNumber": 206,
+    "lineNumber": 216,
     "params": [
       {
         "nullable": null,
@@ -492,7 +503,7 @@
     "longname": "Source/Application.js~Application#selectedDocument",
     "access": null,
     "description": "The selected document.\n\nIf the user invoked the script explicitly (for example by selecting a menu item),\nthis will be the document that they were working in at the time - ie the frontmost one.\nIf the script was invoked as an action handler, this will be the document that the action\noccurred in.",
-    "lineNumber": 223,
+    "lineNumber": 233,
     "return": {
       "nullable": null,
       "types": [
@@ -518,7 +529,7 @@
     "longname": "Source/Application.js~Application#newDocument",
     "access": null,
     "description": "Create a new document and bring it to the front.",
-    "lineNumber": 233,
+    "lineNumber": 243,
     "params": [],
     "return": {
       "nullable": null,
@@ -540,7 +551,7 @@
     "longname": "Source/Application.js~Application#message",
     "access": null,
     "description": "Show a small, temporary, message to the user.\nThe message appears at the bottom of the selected document,\nand is visible for a short period of time. It should consist of a single\nline of text.",
-    "lineNumber": 249,
+    "lineNumber": 259,
     "params": [
       {
         "nullable": null,
@@ -565,7 +576,7 @@
     "longname": "Source/Application.js~Application#alert",
     "access": null,
     "description": "Show an alert with a custom title and message.",
-    "lineNumber": 263,
+    "lineNumber": 273,
     "params": [
       {
         "nullable": null,
@@ -600,7 +611,7 @@
     "longname": "Source/Application.js~Application#rectangle",
     "access": null,
     "description": "Return a new Rectangle object for a given x,y, width and height.",
-    "lineNumber": 278,
+    "lineNumber": 288,
     "params": [
       {
         "nullable": null,
@@ -664,7 +675,7 @@
     "access": null,
     "description": null,
     "lineNumber": 10,
-    "content": "// ********************************\n// # Artboard.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\n/**\n    Represents a Sketch artboard.\n*/\n\nexport class Artboard extends Layer {\n\n    /**\n        Make a new artboard.\n\n        @param artboard The underlying MSArtboardGroup model object from Sketch.\n        @param document The document that the artboard belongs to.\n    */\n\n    constructor(artboard, document) {\n      super(artboard, document)\n    }\n\n    /**\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    */\n\n    get isArtboard() {\n      return true;\n    }\n\n}\n"
+    "content": "// ********************************\n// # Artboard.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\n/**\n    A Sketch artboard.\n*/\n\nexport class Artboard extends Layer {\n\n    /**\n        Make a new artboard.\n\n        @param artboard The underlying MSArtboardGroup model object from Sketch.\n        @param document The document that the artboard belongs to.\n    */\n\n    constructor(artboard, document) {\n      super(artboard, document)\n    }\n\n    /**\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    */\n\n    get isArtboard() {\n      return true;\n    }\n\n}\n"
   },
   {
     "__docId__": 24,
@@ -678,7 +689,7 @@
     "export": true,
     "importPath": "sketch-api/Source/Artboard.js",
     "importStyle": "{Artboard}",
-    "description": "Represents a Sketch artboard.",
+    "description": "A Sketch artboard.",
     "lineNumber": 16,
     "interface": false,
     "extends": [
@@ -756,8 +767,8 @@
     "longname": "Source/Document.js",
     "access": null,
     "description": null,
-    "lineNumber": 10,
-    "content": "// ********************************\n// # Document.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\nimport { Page } from './Page.js'\nimport { Selection } from './Selection.js'\n\nexport class Document extends WrappedObject {\n    constructor(document, application) {\n      super(document)\n      this.application = application\n    }\n\n    get selectedLayers() {\n      return new Selection(this.object);\n    }\n\n    get selectedPage() {\n      print(this.object)\n      return new Page(this.object.currentPage(), this)\n    }\n\n    get pages() {\n      var result = [];\n      var loop = this.object.pages().objectEnumerator()\n      var item;\n      while (item = loop.nextObject()) {\n        result.push(new Page(item, this));\n      }\n      return result;\n    }\n\n    layerWithID(layer_id) {\n      return new Layer(this.object.documentData().layerWithID_(layer_id), this);\n    }\n\n    layerNamed(layer_id) {\n      // as it happens, layerWithID also matches names\n      var layer = this.object.documentData().layerWithID_(layer_id);\n      if (layer)\n        return new Layer(layer, this);\n    }\n}\n"
+    "lineNumber": 8,
+    "content": "// ********************************\n// # Document.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\nimport { Page } from './Page.js'\nimport { Selection } from './Selection.js'\n\n/**\n    A Sketch document.\n*/\n\nexport class Document extends WrappedObject {\n    /**\n        Make a new document object.\n\n        @param {MSDocument} document The underlying MSDocument object.\n        @param {Application} application The application object.\n\n        Note that constructing one of these doesn't actually create\n        a Sketch document. Instead you pass in the underlying MSDocument\n        that this object represents.\n\n        If you do want to create a new document, you can do so with Application#newDocument.\n    */\n\n    constructor(document, application) {\n      super(document)\n      this.application = application\n    }\n\n    /**\n        The layers that the user has selected.\n\n        @return {Selection} A selection object representing the layers that the user has selected.\n    */\n\n    get selectedLayers() {\n      return new Selection(this.object);\n    }\n\n    get selectedPage() {\n      print(this.object)\n      return new Page(this.object.currentPage(), this)\n    }\n\n    get pages() {\n      var result = [];\n      var loop = this.object.pages().objectEnumerator()\n      var item;\n      while (item = loop.nextObject()) {\n        result.push(new Page(item, this));\n      }\n      return result;\n    }\n\n    layerWithID(layer_id) {\n      return new Layer(this.object.documentData().layerWithID_(layer_id), this);\n    }\n\n    layerNamed(layer_id) {\n      // as it happens, layerWithID also matches names\n      var layer = this.object.documentData().layerWithID_(layer_id);\n      if (layer)\n        return new Layer(layer, this);\n    }\n}\n"
   },
   {
     "__docId__": 28,
@@ -771,9 +782,8 @@
     "export": true,
     "importPath": "sketch-api/Source/Document.js",
     "importStyle": "{Document}",
-    "description": null,
-    "lineNumber": 15,
-    "undocument": true,
+    "description": "A Sketch document.",
+    "lineNumber": 17,
     "interface": false,
     "extends": [
       "Source/WrappedObject.js~WrappedObject"
@@ -788,21 +798,28 @@
     "memberof": "Source/Document.js~Document",
     "longname": "Source/Document.js~Document#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
+    "description": "Make a new document object.",
+    "lineNumber": 31,
     "params": [
       {
-        "name": "document",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "MSDocument"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "document",
+        "description": "The underlying MSDocument object."
       },
       {
-        "name": "application",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Application"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "application",
+        "description": "The application object.\n\nNote that constructing one of these doesn't actually create\na Sketch document. Instead you pass in the underlying MSDocument\nthat this object represents.\n\nIf you do want to create a new document, you can do so with Application#newDocument."
       }
     ],
     "generator": false
@@ -817,7 +834,7 @@
     "longname": "Source/Document.js~Document#application",
     "access": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 33,
     "undocument": true,
     "type": {
       "types": [
@@ -834,9 +851,16 @@
     "memberof": "Source/Document.js~Document",
     "longname": "Source/Document.js~Document#selectedLayers",
     "access": null,
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
+    "description": "The layers that the user has selected.",
+    "lineNumber": 42,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Selection"
+      ],
+      "spread": false,
+      "description": "A selection object representing the layers that the user has selected."
+    },
     "type": {
       "types": [
         "*"
@@ -854,7 +878,7 @@
     "longname": "Source/Document.js~Document#selectedPage",
     "access": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 46,
     "undocument": true,
     "type": {
       "types": [
@@ -873,7 +897,7 @@
     "longname": "Source/Document.js~Document#pages",
     "access": null,
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 51,
     "undocument": true,
     "type": {
       "types": [
@@ -892,7 +916,7 @@
     "longname": "Source/Document.js~Document#layerWithID",
     "access": null,
     "description": null,
-    "lineNumber": 40,
+    "lineNumber": 61,
     "undocument": true,
     "params": [
       {
@@ -919,7 +943,7 @@
     "longname": "Source/Document.js~Document#layerNamed",
     "access": null,
     "description": null,
-    "lineNumber": 44,
+    "lineNumber": 65,
     "undocument": true,
     "params": [
       {
@@ -1953,167 +1977,6 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "Source/Selection.js",
-    "memberof": null,
-    "longname": "Source/Selection.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 10,
-    "content": "// ********************************\n// # Selection.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\n\n\n// ********************************\n// Selection support.\n// ********************************\n\nexport class Selection extends WrappedObject {\n    constructor(document) {\n      super(document)\n    }\n\n    get isEmpty() {\n        return (this.object.selectedLayers().count() == 0);\n    }\n\n    iterateAndClear(block) {\n      var layers = this.object.selectedLayers();\n      this.clear();\n      this.iterateWithLayers(layers, block);\n    }\n\n    iterate(block) {\n      var layers = this.object.selectedLayers();\n      this.iterateWithLayers(layers, block);\n    }\n\n    iterateWithLayers(layers, block) {\n      var loop = layers.objectEnumerator();\n      var item;\n      while (item = loop.nextObject()) {\n        block(new Layer(item));\n      }\n    }\n\n    clear() {\n      this.object.currentPage().deselectAllLayers();\n    }\n}\n"
-  },
-  {
-    "__docId__": 86,
-    "kind": "class",
-    "static": true,
-    "variation": null,
-    "name": "Selection",
-    "memberof": "Source/Selection.js",
-    "longname": "Source/Selection.js~Selection",
-    "access": null,
-    "export": true,
-    "importPath": "sketch-api/Source/Selection.js",
-    "importStyle": "{Selection}",
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
-    "interface": false,
-    "extends": [
-      "Source/WrappedObject.js~WrappedObject"
-    ]
-  },
-  {
-    "__docId__": 87,
-    "kind": "constructor",
-    "static": false,
-    "variation": null,
-    "name": "constructor",
-    "memberof": "Source/Selection.js~Selection",
-    "longname": "Source/Selection.js~Selection#constructor",
-    "access": null,
-    "description": null,
-    "lineNumber": 19,
-    "undocument": true,
-    "params": [
-      {
-        "name": "document",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 88,
-    "kind": "get",
-    "static": false,
-    "variation": null,
-    "name": "isEmpty",
-    "memberof": "Source/Selection.js~Selection",
-    "longname": "Source/Selection.js~Selection#isEmpty",
-    "access": null,
-    "description": null,
-    "lineNumber": 23,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 89,
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "iterateAndClear",
-    "memberof": "Source/Selection.js~Selection",
-    "longname": "Source/Selection.js~Selection#iterateAndClear",
-    "access": null,
-    "description": null,
-    "lineNumber": 27,
-    "undocument": true,
-    "params": [
-      {
-        "name": "block",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 90,
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "iterate",
-    "memberof": "Source/Selection.js~Selection",
-    "longname": "Source/Selection.js~Selection#iterate",
-    "access": null,
-    "description": null,
-    "lineNumber": 33,
-    "undocument": true,
-    "params": [
-      {
-        "name": "block",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 91,
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "iterateWithLayers",
-    "memberof": "Source/Selection.js~Selection",
-    "longname": "Source/Selection.js~Selection#iterateWithLayers",
-    "access": null,
-    "description": null,
-    "lineNumber": 38,
-    "undocument": true,
-    "params": [
-      {
-        "name": "layers",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "block",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "__docId__": 92,
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "clear",
-    "memberof": "Source/Selection.js~Selection",
-    "longname": "Source/Selection.js~Selection#clear",
-    "access": null,
-    "description": null,
-    "lineNumber": 46,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 93,
-    "kind": "file",
-    "static": true,
-    "variation": null,
     "name": "Source/Shape.js",
     "memberof": null,
     "longname": "Source/Shape.js",
@@ -2123,7 +1986,7 @@
     "content": "// ********************************\n// # Shape.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\nexport class Shape extends Layer {\n    constructor(shape, document) {\n      super(shape, document)\n    }\n\n    get isShape() {\n      return true;\n    }\n\n}\n"
   },
   {
-    "__docId__": 94,
+    "__docId__": 86,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -2143,7 +2006,7 @@
     ]
   },
   {
-    "__docId__": 95,
+    "__docId__": 87,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -2171,7 +2034,7 @@
     "generator": false
   },
   {
-    "__docId__": 96,
+    "__docId__": 88,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2190,7 +2053,7 @@
     "generator": false
   },
   {
-    "__docId__": 97,
+    "__docId__": 89,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2203,7 +2066,7 @@
     "content": "// ********************************\n// # Text.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// ## Imports\n\nimport { Layer } from './Layer.js'\n\n// ## Constants\n\nconst BCTextBehaviourFlexibleWidth = 0\nconst BCTextBehaviourFixedWidth = 1\n\nexport class Text extends Layer {\n    constructor(text, document) {\n      super(text, document)\n    }\n\n    get isText() {\n      return true\n    }\n\n    // Get/set the text of the layer.\n\n    get text() {\n      return this.object.stringValue\n    }\n\n    set text(value) {\n      this.object.stringValue = value\n    }\n\n\n    // Set the font of the layer to an NSFont object.\n\n    set font(value) {\n      this.object.font = value\n    }\n\n    // Set the font of the layer to the system font at a given size.\n\n    set systemFontSize(size) {\n      this.object.font = NSFont.systemFontOfSize_(size)\n    }\n\n    // Set the alignment of the layer.\n\n    set alignment(mode) {\n      this.object.textAlignment = mode\n    }\n\n    // Set the layer to be fixed width or variable width.\n\n    set fixedWidth(value) {\n      if (value) {\n        this.object.textBehaviour = BCTextBehaviourFixedWidth\n      } else {\n        this.object.textBehaviour = BCTextBehaviourFlexibleWidth\n      }\n    }\n}\n"
   },
   {
-    "__docId__": 98,
+    "__docId__": 90,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2224,7 +2087,7 @@
     }
   },
   {
-    "__docId__": 99,
+    "__docId__": 91,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2245,7 +2108,7 @@
     }
   },
   {
-    "__docId__": 100,
+    "__docId__": 92,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -2265,7 +2128,7 @@
     ]
   },
   {
-    "__docId__": 101,
+    "__docId__": 93,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -2293,7 +2156,7 @@
     "generator": false
   },
   {
-    "__docId__": 102,
+    "__docId__": 94,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2312,7 +2175,7 @@
     "generator": false
   },
   {
-    "__docId__": 103,
+    "__docId__": 95,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2331,7 +2194,7 @@
     "generator": false
   },
   {
-    "__docId__": 104,
+    "__docId__": 96,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2350,7 +2213,7 @@
     "generator": false
   },
   {
-    "__docId__": 105,
+    "__docId__": 97,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2369,7 +2232,7 @@
     "generator": false
   },
   {
-    "__docId__": 106,
+    "__docId__": 98,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2388,7 +2251,7 @@
     "generator": false
   },
   {
-    "__docId__": 107,
+    "__docId__": 99,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2407,7 +2270,7 @@
     "generator": false
   },
   {
-    "__docId__": 108,
+    "__docId__": 100,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2426,7 +2289,7 @@
     "generator": false
   },
   {
-    "__docId__": 109,
+    "__docId__": 101,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2439,7 +2302,7 @@
     "content": "// ********************************\n// # WrappedObject.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n// Base class for all objects that\n// wrap Sketch classes.\n\nexport class WrappedObject {\n    constructor(object) {\n      this.object = object\n    }\n\n    get id() {\n      return this.object.objectID();\n    }\n}\n"
   },
   {
-    "__docId__": 110,
+    "__docId__": 102,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -2456,7 +2319,7 @@
     "interface": false
   },
   {
-    "__docId__": 111,
+    "__docId__": 103,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -2478,7 +2341,7 @@
     "generator": false
   },
   {
-    "__docId__": 112,
+    "__docId__": 104,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -2496,7 +2359,7 @@
     }
   },
   {
-    "__docId__": 113,
+    "__docId__": 105,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2515,7 +2378,7 @@
     "generator": false
   },
   {
-    "__docId__": 115,
+    "__docId__": 107,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2528,7 +2391,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 108,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2541,7 +2404,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 109,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2554,7 +2417,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 110,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2567,7 +2430,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 111,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2580,7 +2443,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 112,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2593,7 +2456,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 121,
+    "__docId__": 113,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2606,7 +2469,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 114,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2619,7 +2482,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 115,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2632,7 +2495,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 116,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2645,7 +2508,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 125,
+    "__docId__": 117,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2658,7 +2521,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 126,
+    "__docId__": 118,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2671,7 +2534,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 127,
+    "__docId__": 119,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2684,7 +2547,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 120,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2697,7 +2560,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 121,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2710,7 +2573,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 122,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2723,7 +2586,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 123,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2736,7 +2599,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 124,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2749,7 +2612,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 125,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2762,7 +2625,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 134,
+    "__docId__": 126,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2775,7 +2638,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 135,
+    "__docId__": 127,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2788,7 +2651,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 136,
+    "__docId__": 128,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2801,7 +2664,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 137,
+    "__docId__": 129,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2814,7 +2677,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 138,
+    "__docId__": 130,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2827,7 +2690,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 131,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2840,7 +2703,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 140,
+    "__docId__": 132,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2853,7 +2716,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 133,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2866,7 +2729,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 142,
+    "__docId__": 134,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2879,7 +2742,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 143,
+    "__docId__": 135,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2892,7 +2755,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 144,
+    "__docId__": 136,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2905,7 +2768,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 145,
+    "__docId__": 137,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2918,7 +2781,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 146,
+    "__docId__": 138,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2931,7 +2794,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 147,
+    "__docId__": 139,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2944,7 +2807,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 148,
+    "__docId__": 140,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2957,7 +2820,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 149,
+    "__docId__": 141,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2970,7 +2833,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 150,
+    "__docId__": 142,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2983,7 +2846,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 151,
+    "__docId__": 143,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2996,7 +2859,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 152,
+    "__docId__": 144,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3009,7 +2872,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 153,
+    "__docId__": 145,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3022,7 +2885,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 154,
+    "__docId__": 146,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3035,7 +2898,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 155,
+    "__docId__": 147,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3048,7 +2911,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 156,
+    "__docId__": 148,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3061,7 +2924,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 157,
+    "__docId__": 149,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3074,7 +2937,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 158,
+    "__docId__": 150,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3087,7 +2950,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 159,
+    "__docId__": 151,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3100,7 +2963,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 160,
+    "__docId__": 152,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3113,7 +2976,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 161,
+    "__docId__": 153,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3126,7 +2989,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 163,
+    "__docId__": 155,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3139,7 +3002,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 164,
+    "__docId__": 156,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3152,7 +3015,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 165,
+    "__docId__": 157,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3165,7 +3028,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 166,
+    "__docId__": 158,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3178,7 +3041,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 167,
+    "__docId__": 159,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3191,7 +3054,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 168,
+    "__docId__": 160,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3204,7 +3067,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 169,
+    "__docId__": 161,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3217,7 +3080,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 170,
+    "__docId__": 162,
     "kind": "external",
     "static": true,
     "variation": null,

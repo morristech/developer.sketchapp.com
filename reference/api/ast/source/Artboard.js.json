@@ -79,10 +79,10 @@
         "trailingComments": [
           {
             "type": "Block",
-            "value": "*\n    Represents a Sketch artboard.\n",
+            "value": "*\n    A Sketch artboard.\n",
             "range": [
               210,
-              250
+              239
             ],
             "loc": {
               "start": {
@@ -99,7 +99,7 @@
       },
       "range": [
         174,
-        252
+        241
       ],
       "loc": {
         "start": {
@@ -248,8 +248,8 @@
           "type": "Identifier",
           "name": "Artboard",
           "range": [
-            265,
-            273
+            254,
+            262
           ],
           "loc": {
             "start": {
@@ -266,8 +266,8 @@
           "type": "Identifier",
           "name": "Layer",
           "range": [
-            282,
-            287
+            271,
+            276
           ],
           "loc": {
             "start": {
@@ -289,8 +289,8 @@
                 "type": "Identifier",
                 "name": "constructor",
                 "range": [
-                  489,
-                  500
+                  478,
+                  489
                 ],
                 "loc": {
                   "start": {
@@ -311,8 +311,8 @@
                     "type": "Identifier",
                     "name": "artboard",
                     "range": [
-                      501,
-                      509
+                      490,
+                      498
                     ],
                     "loc": {
                       "start": {
@@ -329,8 +329,8 @@
                     "type": "Identifier",
                     "name": "document",
                     "range": [
-                      511,
-                      519
+                      500,
+                      508
                     ],
                     "loc": {
                       "start": {
@@ -354,8 +354,8 @@
                         "callee": {
                           "type": "Super",
                           "range": [
-                            529,
-                            534
+                            518,
+                            523
                           ],
                           "loc": {
                             "start": {
@@ -373,8 +373,8 @@
                             "type": "Identifier",
                             "name": "artboard",
                             "range": [
-                              535,
-                              543
+                              524,
+                              532
                             ],
                             "loc": {
                               "start": {
@@ -391,8 +391,8 @@
                             "type": "Identifier",
                             "name": "document",
                             "range": [
-                              545,
-                              553
+                              534,
+                              542
                             ],
                             "loc": {
                               "start": {
@@ -407,8 +407,8 @@
                           }
                         ],
                         "range": [
-                          529,
-                          554
+                          518,
+                          543
                         ],
                         "loc": {
                           "start": {
@@ -422,8 +422,8 @@
                         }
                       },
                       "range": [
-                        529,
-                        559
+                        518,
+                        548
                       ],
                       "loc": {
                         "start": {
@@ -438,8 +438,8 @@
                     }
                   ],
                   "range": [
-                    521,
-                    560
+                    510,
+                    549
                   ],
                   "loc": {
                     "start": {
@@ -455,8 +455,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  500,
-                  560
+                  489,
+                  549
                 ],
                 "loc": {
                   "start": {
@@ -472,8 +472,8 @@
               "kind": "constructor",
               "computed": false,
               "range": [
-                489,
-                560
+                478,
+                549
               ],
               "loc": {
                 "start": {
@@ -490,8 +490,8 @@
                   "type": "Block",
                   "value": "*\n        Make a new artboard.\n\n        @param artboard The underlying MSArtboardGroup model object from Sketch.\n        @param document The document that the artboard belongs to.\n    ",
                   "range": [
-                    295,
-                    483
+                    284,
+                    472
                   ],
                   "loc": {
                     "start": {
@@ -510,8 +510,8 @@
                   "type": "Block",
                   "value": "*\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    ",
                   "range": [
-                    566,
-                    776
+                    555,
+                    765
                   ],
                   "loc": {
                     "start": {
@@ -533,8 +533,8 @@
                 "type": "Identifier",
                 "name": "isArtboard",
                 "range": [
-                  786,
-                  796
+                  775,
+                  785
                 ],
                 "loc": {
                   "start": {
@@ -561,8 +561,8 @@
                         "value": true,
                         "raw": "true",
                         "range": [
-                          814,
-                          818
+                          803,
+                          807
                         ],
                         "loc": {
                           "start": {
@@ -576,8 +576,8 @@
                         }
                       },
                       "range": [
-                        807,
-                        819
+                        796,
+                        808
                       ],
                       "loc": {
                         "start": {
@@ -592,8 +592,8 @@
                     }
                   ],
                   "range": [
-                    799,
-                    825
+                    788,
+                    814
                   ],
                   "loc": {
                     "start": {
@@ -609,8 +609,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  796,
-                  825
+                  785,
+                  814
                 ],
                 "loc": {
                   "start": {
@@ -626,8 +626,8 @@
               "kind": "get",
               "computed": false,
               "range": [
-                782,
-                825
+                771,
+                814
               ],
               "loc": {
                 "start": {
@@ -644,8 +644,8 @@
                   "type": "Block",
                   "value": "*\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    ",
                   "range": [
-                    566,
-                    776
+                    555,
+                    765
                   ],
                   "loc": {
                     "start": {
@@ -663,8 +663,8 @@
             }
           ],
           "range": [
-            288,
-            828
+            277,
+            817
           ],
           "loc": {
             "start": {
@@ -678,8 +678,8 @@
           }
         },
         "range": [
-          259,
-          828
+          248,
+          817
         ],
         "loc": {
           "start": {
@@ -694,10 +694,10 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n    Represents a Sketch artboard.\n",
+            "value": "*\n    A Sketch artboard.\n",
             "range": [
               210,
-              250
+              239
             ],
             "loc": {
               "start": {
@@ -716,8 +716,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        252,
-        828
+        241,
+        817
       ],
       "loc": {
         "start": {
@@ -732,10 +732,10 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n    Represents a Sketch artboard.\n",
+          "value": "*\n    A Sketch artboard.\n",
           "range": [
             210,
-            250
+            239
           ],
           "loc": {
             "start": {
@@ -754,7 +754,7 @@
   "sourceType": "module",
   "range": [
     174,
-    828
+    817
   ],
   "loc": {
     "start": {
@@ -895,10 +895,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n    Represents a Sketch artboard.\n",
+      "value": "*\n    A Sketch artboard.\n",
       "range": [
         210,
-        250
+        239
       ],
       "loc": {
         "start": {
@@ -915,8 +915,8 @@
       "type": "Block",
       "value": "*\n        Make a new artboard.\n\n        @param artboard The underlying MSArtboardGroup model object from Sketch.\n        @param document The document that the artboard belongs to.\n    ",
       "range": [
-        295,
-        483
+        284,
+        472
       ],
       "loc": {
         "start": {
@@ -933,8 +933,8 @@
       "type": "Block",
       "value": "*\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    ",
       "range": [
-        566,
-        776
+        555,
+        765
       ],
       "loc": {
         "start": {

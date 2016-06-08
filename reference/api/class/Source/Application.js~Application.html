@@ -40,7 +40,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -110,13 +109,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Application.js~Application.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(context: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/Source/Application.js~Application.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(context: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Construct a new Application object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -680,18 +680,21 @@ folder.</p>
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(context: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(context: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber29">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Construct a new Application object.
+An instance of this class will be passed back to you when you
+initialise the API, so you generally shouldn&apos;t need to make new ones.</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-constructor-constructor">WrappedObject#constructor</a></span></div>
 
@@ -707,14 +710,26 @@ folder.</p>
       <td data-ice="name" data-depth="0">context</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The context dictionary passed to the script when it was invoked.</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>A new Application object.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -743,7 +758,7 @@ folder.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber52">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber62">source</a></span></span>
     </span>
   </h3>
 
@@ -795,7 +810,7 @@ folder.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber88">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber98">source</a></span></span>
     </span>
   </h3>
 
@@ -847,7 +862,7 @@ folder.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber67">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber77">source</a></span></span>
     </span>
   </h3>
 
@@ -903,7 +918,7 @@ rather than interacting with the context directly.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber36">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
@@ -943,7 +958,7 @@ rather than interacting with the context directly.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber31">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber41">source</a></span></span>
     </span>
   </h3>
 
@@ -983,7 +998,7 @@ rather than interacting with the context directly.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber223">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber233">source</a></span></span>
     </span>
   </h3>
 
@@ -1039,7 +1054,7 @@ occurred in.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber78">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber88">source</a></span></span>
     </span>
   </h3>
 
@@ -1094,7 +1109,7 @@ occurred in.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber263">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber273">source</a></span></span>
     </span>
   </h3>
 
@@ -1161,7 +1176,7 @@ by pressing the OK button.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber206">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber216">source</a></span></span>
     </span>
   </h3>
 
@@ -1220,7 +1235,7 @@ If the condition is false, throws an exception.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber170">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber180">source</a></span></span>
     </span>
   </h3>
 
@@ -1307,7 +1322,7 @@ The selection will be the integer index of the selected item.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber150">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber160">source</a></span></span>
     </span>
   </h3>
 
@@ -1384,7 +1399,7 @@ input.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber195">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber205">source</a></span></span>
     </span>
   </h3>
 
@@ -1442,7 +1457,7 @@ input.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber249">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber259">source</a></span></span>
     </span>
   </h3>
 
@@ -1503,7 +1518,7 @@ line of text.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber233">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber243">source</a></span></span>
     </span>
   </h3>
 
@@ -1555,7 +1570,7 @@ line of text.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber278">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber288">source</a></span></span>
     </span>
   </h3>
 
@@ -1645,7 +1660,7 @@ line of text.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber138">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber148">source</a></span></span>
     </span>
   </h3>
 
@@ -1715,7 +1730,7 @@ folder.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber126">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber136">source</a></span></span>
     </span>
   </h3>
 
@@ -1783,7 +1798,7 @@ eg: defaults write com.bohemiancoding.sketch3 &lt;key&gt; &lt;value&gt;</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber111">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber121">source</a></span></span>
     </span>
   </h3>
 

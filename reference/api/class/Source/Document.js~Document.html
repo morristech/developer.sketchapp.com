@@ -40,7 +40,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -49,13 +48,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Document} from &apos;<span><a href="file/Source/Document.js.html#lineNumber15">sketch-api/Source/Document.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Document} from &apos;<span><a href="file/Source/Document.js.html#lineNumber17">sketch-api/Source/Document.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/Source/Document.js.html#lineNumber15">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/Source/Document.js.html#lineNumber17">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -75,7 +74,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>A Sketch document.</p>
+</div>
 
   
 
@@ -103,13 +103,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(document: <span>*</span>, application: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(document: <span>MSDocument</span>, application: <span><a href="class/Source/Application.js~Application.html">Application</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Make a new document object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -185,13 +186,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-get-selectedLayers">selectedLayers</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-get-selectedLayers">selectedLayers</a></span></span><span data-ice="signature">: <span>Selection</span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>The layers that the user has selected.</p>
+</div>
       </div>
     </td>
     <td>
@@ -354,18 +356,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(document: <span>*</span>, application: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(document: <span>MSDocument</span>, application: <span><a href="class/Source/Application.js~Application.html">Application</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber31">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Make a new document object.</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-constructor-constructor">WrappedObject#constructor</a></span></div>
 
@@ -379,15 +382,21 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">document</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span>MSDocument</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The underlying MSDocument object.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">application</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/Source/Application.js~Application.html">Application</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The application object.</p>
+<p>Note that constructing one of these doesn&apos;t actually create
+a Sketch document. Instead you pass in the underlying MSDocument
+that this object represents.</p>
+<p>If you do want to create a new document, you can do so with Application#newDocument.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -423,7 +432,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber18">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
@@ -463,7 +472,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber30">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber51">source</a></span></span>
     </span>
   </h3>
 
@@ -499,25 +508,37 @@
     <span class="kind" data-ice="kind">get</span>
     
     
-    <span data-ice="name">selectedLayers</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">selectedLayers</span><span data-ice="signature">: <span>Selection</span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber42">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>The layers that the user has selected.</p>
+</div>
 
   
 
   <div data-ice="properties">
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>Selection</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>A selection object representing the layers that the user has selected.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -543,7 +564,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
@@ -586,7 +607,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber44">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
@@ -652,7 +673,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber40">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber61">source</a></span></span>
     </span>
   </h3>
 

@@ -40,7 +40,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -56,18 +55,39 @@
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-// ##&#xA0;Imports
-
 import { WrappedObject } from &apos;./WrappedObject.js&apos;
 import { Layer } from &apos;./Layer.js&apos;
 import { Page } from &apos;./Page.js&apos;
 import { Selection } from &apos;./Selection.js&apos;
 
+/**
+    A Sketch document.
+*/
+
 export class Document extends WrappedObject {
+    /**
+        Make a new document object.
+
+        @param {MSDocument} document The underlying MSDocument object.
+        @param {Application} application The application object.
+
+        Note that constructing one of these doesn&apos;t actually create
+        a Sketch document. Instead you pass in the underlying MSDocument
+        that this object represents.
+
+        If you do want to create a new document, you can do so with Application#newDocument.
+    */
+
     constructor(document, application) {
       super(document)
       this.application = application
     }
+
+    /**
+        The layers that the user has selected.
+
+        @return {Selection} A selection object representing the layers that the user has selected.
+    */
 
     get selectedLayers() {
       return new Selection(this.object);
