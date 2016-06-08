@@ -14,16 +14,13 @@ cd "$base/../Sketch/Modules/SketchPluginManager/Javascript"
 "node_modules/.bin/esdoc" -c "$scripts/esdoc.json"
 
 # Add jekyll headers
-for page in "$base/api/"*.html
-do
-    echo "$page"
-    echo "---" > "$page.tmp"
-    echo "title: $(basename "$page")" >> "$page.tmp"
-    echo "---" >> "$page.tmp"
-    cat "$page" >> "$page.tmp"
-    rm "$page"
-    mv "$page.tmp" "$page"
-done
-
-# Build using headerdoc
-#"headerdoc2html" -o "$base/_api" "$base/../Sketch/Modules/SketchPluginManager/Javascript/Source/"*.js
+# for page in "$base/api/"*.html
+# do
+#     echo "$page"
+#     echo "---" > "$page.tmp"
+#     echo "title: $(basename "$page")" >> "$page.tmp"
+#     echo "---" >> "$page.tmp"
+#     cat "$page" >> "$page.tmp"
+#     rm "$page"
+#     mv "$page.tmp" "$page"
+# done

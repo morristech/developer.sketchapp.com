@@ -10,16 +10,16 @@
             "type": "Identifier",
             "name": "Application",
             "range": [
-              156,
-              167
+              141,
+              152
             ],
             "loc": {
               "start": {
-                "line": 9,
+                "line": 7,
                 "column": 9
               },
               "end": {
-                "line": 9,
+                "line": 7,
                 "column": 20
               }
             }
@@ -28,31 +28,31 @@
             "type": "Identifier",
             "name": "Application",
             "range": [
-              156,
-              167
+              141,
+              152
             ],
             "loc": {
               "start": {
-                "line": 9,
+                "line": 7,
                 "column": 9
               },
               "end": {
-                "line": 9,
+                "line": 7,
                 "column": 20
               }
             }
           },
           "range": [
-            156,
-            167
+            141,
+            152
           ],
           "loc": {
             "start": {
-              "line": 9,
+              "line": 7,
               "column": 9
             },
             "end": {
-              "line": 9,
+              "line": 7,
               "column": 20
             }
           }
@@ -63,196 +63,34 @@
         "value": "./Application.js",
         "raw": "'./Application.js'",
         "range": [
-          175,
-          193
+          160,
+          178
         ],
         "loc": {
           "start": {
-            "line": 9,
+            "line": 7,
             "column": 28
           },
           "end": {
-            "line": 9,
+            "line": 7,
             "column": 46
           }
         },
         "trailingComments": [
           {
-            "type": "Line",
-            "value": " ## Entrypoint",
-            "range": [
-              196,
-              212
-            ],
-            "loc": {
-              "start": {
-                "line": 12,
-                "column": 0
-              },
-              "end": {
-                "line": 12,
-                "column": 16
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "/ Return a function that captures the context.",
-            "range": [
-              214,
-              262
-            ],
-            "loc": {
-              "start": {
-                "line": 14,
-                "column": 0
-              },
-              "end": {
-                "line": 14,
-                "column": 48
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "/ When called, this function will initialise the API",
-            "range": [
-              263,
-              317
-            ],
-            "loc": {
-              "start": {
-                "line": 15,
-                "column": 0
-              },
-              "end": {
-                "line": 15,
-                "column": 54
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "/ and return an Application object that provides access",
-            "range": [
-              318,
-              375
-            ],
-            "loc": {
-              "start": {
-                "line": 16,
-                "column": 0
-              },
-              "end": {
-                "line": 16,
-                "column": 57
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "/ to all API functions.",
-            "range": [
-              376,
-              401
-            ],
-            "loc": {
-              "start": {
-                "line": 17,
-                "column": 0
-              },
-              "end": {
-                "line": 17,
-                "column": 25
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "/",
-            "range": [
-              402,
-              405
-            ],
-            "loc": {
-              "start": {
-                "line": 18,
-                "column": 0
-              },
-              "end": {
-                "line": 18,
-                "column": 3
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "/ We do it like this to defer having to perform a lot",
-            "range": [
-              406,
-              461
-            ],
-            "loc": {
-              "start": {
-                "line": 19,
-                "column": 0
-              },
-              "end": {
-                "line": 19,
-                "column": 55
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "/ of setup until context.api() is actually called -- thus",
-            "range": [
-              462,
-              521
-            ],
-            "loc": {
-              "start": {
-                "line": 20,
-                "column": 0
-              },
-              "end": {
-                "line": 20,
-                "column": 59
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "/ scripts which don't call it at all suffer minimal overhead.",
-            "range": [
-              522,
-              585
-            ],
-            "loc": {
-              "start": {
-                "line": 21,
-                "column": 0
-              },
-              "end": {
-                "line": 21,
-                "column": 63
-              }
-            }
-          },
-          {
             "type": "Block",
-            "value": "*\n Test\n ",
+            "value": "*\n    Return a function that captures the context.\n    When called, this function will initialise the API\n    and return an Application object that provides access\n    to all API functions.\n\n    We do it like this to defer having to perform a lot\n    of setup until context.api() is actually called -- thus\n    scripts which don't call it at all suffer minimal overhead.\n ",
             "range": [
-              587,
-              600
+              181,
+              557
             ],
             "loc": {
               "start": {
-                "line": 23,
+                "line": 10,
                 "column": 0
               },
               "end": {
-                "line": 25,
+                "line": 19,
                 "column": 3
               }
             }
@@ -260,16 +98,16 @@
         ]
       },
       "range": [
-        147,
-        603
+        132,
+        559
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 27,
+          "line": 21,
           "column": 0
         }
       },
@@ -363,24 +201,6 @@
               "column": 35
             }
           }
-        },
-        {
-          "type": "Line",
-          "value": " ## Imports",
-          "range": [
-            132,
-            145
-          ],
-          "loc": {
-            "start": {
-              "line": 7,
-              "column": 0
-            },
-            "end": {
-              "line": 7,
-              "column": 13
-            }
-          }
         }
       ]
     },
@@ -390,16 +210,16 @@
         "type": "Identifier",
         "name": "SketchAPIWithCapturedContext",
         "range": [
-          612,
-          640
+          568,
+          596
         ],
         "loc": {
           "start": {
-            "line": 27,
+            "line": 21,
             "column": 9
           },
           "end": {
-            "line": 27,
+            "line": 21,
             "column": 37
           }
         }
@@ -409,16 +229,16 @@
           "type": "Identifier",
           "name": "context",
           "range": [
-            641,
-            648
+            597,
+            604
           ],
           "loc": {
             "start": {
-              "line": 27,
+              "line": 21,
               "column": 38
             },
             "end": {
-              "line": 27,
+              "line": 21,
               "column": 45
             }
           }
@@ -444,16 +264,16 @@
                         "type": "Identifier",
                         "name": "Application",
                         "range": [
-                          821,
-                          832
+                          777,
+                          788
                         ],
                         "loc": {
                           "start": {
-                            "line": 33,
+                            "line": 27,
                             "column": 17
                           },
                           "end": {
-                            "line": 33,
+                            "line": 27,
                             "column": 28
                           }
                         }
@@ -463,47 +283,47 @@
                           "type": "Identifier",
                           "name": "context",
                           "range": [
-                            833,
-                            840
+                            789,
+                            796
                           ],
                           "loc": {
                             "start": {
-                              "line": 33,
+                              "line": 27,
                               "column": 29
                             },
                             "end": {
-                              "line": 33,
+                              "line": 27,
                               "column": 36
                             }
                           }
                         }
                       ],
                       "range": [
-                        817,
-                        841
+                        773,
+                        797
                       ],
                       "loc": {
                         "start": {
-                          "line": 33,
+                          "line": 27,
                           "column": 13
                         },
                         "end": {
-                          "line": 33,
+                          "line": 27,
                           "column": 37
                         }
                       }
                     },
                     "range": [
-                      810,
-                      846
+                      766,
+                      802
                     ],
                     "loc": {
                       "start": {
-                        "line": 33,
+                        "line": 27,
                         "column": 6
                       },
                       "end": {
-                        "line": 34,
+                        "line": 28,
                         "column": 4
                       }
                     },
@@ -512,16 +332,16 @@
                         "type": "Line",
                         "value": " The Application object effectively *is* the api -- all other",
                         "range": [
-                          684,
-                          747
+                          640,
+                          703
                         ],
                         "loc": {
                           "start": {
-                            "line": 30,
+                            "line": 24,
                             "column": 6
                           },
                           "end": {
-                            "line": 30,
+                            "line": 24,
                             "column": 69
                           }
                         }
@@ -530,16 +350,16 @@
                         "type": "Line",
                         "value": " functions and objects can be accessed via it.",
                         "range": [
-                          754,
-                          802
+                          710,
+                          758
                         ],
                         "loc": {
                           "start": {
-                            "line": 31,
+                            "line": 25,
                             "column": 6
                           },
                           "end": {
-                            "line": 31,
+                            "line": 25,
                             "column": 54
                           }
                         }
@@ -548,16 +368,16 @@
                   }
                 ],
                 "range": [
-                  675,
-                  847
+                  631,
+                  803
                 ],
                 "loc": {
                   "start": {
-                    "line": 28,
+                    "line": 22,
                     "column": 23
                   },
                   "end": {
-                    "line": 34,
+                    "line": 28,
                     "column": 5
                   }
                 }
@@ -565,47 +385,47 @@
               "generator": false,
               "expression": false,
               "range": [
-                664,
-                847
+                620,
+                803
               ],
               "loc": {
                 "start": {
-                  "line": 28,
+                  "line": 22,
                   "column": 12
                 },
                 "end": {
-                  "line": 34,
+                  "line": 28,
                   "column": 5
                 }
               }
             },
             "range": [
-              656,
-              849
+              612,
+              805
             ],
             "loc": {
               "start": {
-                "line": 28,
+                "line": 22,
                 "column": 4
               },
               "end": {
-                "line": 34,
+                "line": 28,
                 "column": 7
               }
             }
           }
         ],
         "range": [
-          650,
-          851
+          606,
+          807
         ],
         "loc": {
           "start": {
-            "line": 27,
+            "line": 21,
             "column": 47
           },
           "end": {
-            "line": 35,
+            "line": 29,
             "column": 1
           }
         }
@@ -613,196 +433,34 @@
       "generator": false,
       "expression": false,
       "range": [
-        603,
-        851
+        559,
+        807
       ],
       "loc": {
         "start": {
-          "line": 27,
+          "line": 21,
           "column": 0
         },
         "end": {
-          "line": 35,
+          "line": 29,
           "column": 1
         }
       },
       "leadingComments": [
         {
-          "type": "Line",
-          "value": " ## Entrypoint",
-          "range": [
-            196,
-            212
-          ],
-          "loc": {
-            "start": {
-              "line": 12,
-              "column": 0
-            },
-            "end": {
-              "line": 12,
-              "column": 16
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "/ Return a function that captures the context.",
-          "range": [
-            214,
-            262
-          ],
-          "loc": {
-            "start": {
-              "line": 14,
-              "column": 0
-            },
-            "end": {
-              "line": 14,
-              "column": 48
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "/ When called, this function will initialise the API",
-          "range": [
-            263,
-            317
-          ],
-          "loc": {
-            "start": {
-              "line": 15,
-              "column": 0
-            },
-            "end": {
-              "line": 15,
-              "column": 54
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "/ and return an Application object that provides access",
-          "range": [
-            318,
-            375
-          ],
-          "loc": {
-            "start": {
-              "line": 16,
-              "column": 0
-            },
-            "end": {
-              "line": 16,
-              "column": 57
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "/ to all API functions.",
-          "range": [
-            376,
-            401
-          ],
-          "loc": {
-            "start": {
-              "line": 17,
-              "column": 0
-            },
-            "end": {
-              "line": 17,
-              "column": 25
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "/",
-          "range": [
-            402,
-            405
-          ],
-          "loc": {
-            "start": {
-              "line": 18,
-              "column": 0
-            },
-            "end": {
-              "line": 18,
-              "column": 3
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "/ We do it like this to defer having to perform a lot",
-          "range": [
-            406,
-            461
-          ],
-          "loc": {
-            "start": {
-              "line": 19,
-              "column": 0
-            },
-            "end": {
-              "line": 19,
-              "column": 55
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "/ of setup until context.api() is actually called -- thus",
-          "range": [
-            462,
-            521
-          ],
-          "loc": {
-            "start": {
-              "line": 20,
-              "column": 0
-            },
-            "end": {
-              "line": 20,
-              "column": 59
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "/ scripts which don't call it at all suffer minimal overhead.",
-          "range": [
-            522,
-            585
-          ],
-          "loc": {
-            "start": {
-              "line": 21,
-              "column": 0
-            },
-            "end": {
-              "line": 21,
-              "column": 63
-            }
-          }
-        },
-        {
           "type": "Block",
-          "value": "*\n Test\n ",
+          "value": "*\n    Return a function that captures the context.\n    When called, this function will initialise the API\n    and return an Application object that provides access\n    to all API functions.\n\n    We do it like this to defer having to perform a lot\n    of setup until context.api() is actually called -- thus\n    scripts which don't call it at all suffer minimal overhead.\n ",
           "range": [
-            587,
-            600
+            181,
+            557
           ],
           "loc": {
             "start": {
-              "line": 23,
+              "line": 10,
               "column": 0
             },
             "end": {
-              "line": 25,
+              "line": 19,
               "column": 3
             }
           }
@@ -813,16 +471,16 @@
           "type": "Line",
           "value": " HACK: expose the SketchAPIWithCapturedContext function globally",
           "range": [
-            853,
-            919
+            809,
+            875
           ],
           "loc": {
             "start": {
-              "line": 37,
+              "line": 31,
               "column": 0
             },
             "end": {
-              "line": 37,
+              "line": 31,
               "column": 66
             }
           }
@@ -831,16 +489,16 @@
           "type": "Line",
           "value": " I suspect that there's a better way to do this, but I've",
           "range": [
-            920,
-            979
+            876,
+            935
           ],
           "loc": {
             "start": {
-              "line": 38,
+              "line": 32,
               "column": 0
             },
             "end": {
-              "line": 38,
+              "line": 32,
               "column": 59
             }
           }
@@ -849,16 +507,16 @@
           "type": "Line",
           "value": " not yet figured it out.",
           "range": [
-            980,
-            1006
+            936,
+            962
           ],
           "loc": {
             "start": {
-              "line": 39,
+              "line": 33,
               "column": 0
             },
             "end": {
-              "line": 39,
+              "line": 33,
               "column": 26
             }
           }
@@ -877,16 +535,16 @@
             "type": "Identifier",
             "name": "__globals",
             "range": [
-              1008,
-              1017
+              964,
+              973
             ],
             "loc": {
               "start": {
-                "line": 41,
+                "line": 35,
                 "column": 0
               },
               "end": {
-                "line": 41,
+                "line": 35,
                 "column": 9
               }
             }
@@ -895,31 +553,31 @@
             "type": "Identifier",
             "name": "SketchAPIWithCapturedContext",
             "range": [
-              1018,
-              1046
+              974,
+              1002
             ],
             "loc": {
               "start": {
-                "line": 41,
+                "line": 35,
                 "column": 10
               },
               "end": {
-                "line": 41,
+                "line": 35,
                 "column": 38
               }
             }
           },
           "range": [
-            1008,
-            1046
+            964,
+            1002
           ],
           "loc": {
             "start": {
-              "line": 41,
+              "line": 35,
               "column": 0
             },
             "end": {
-              "line": 41,
+              "line": 35,
               "column": 38
             }
           }
@@ -928,46 +586,46 @@
           "type": "Identifier",
           "name": "SketchAPIWithCapturedContext",
           "range": [
-            1049,
-            1077
+            1005,
+            1033
           ],
           "loc": {
             "start": {
-              "line": 41,
+              "line": 35,
               "column": 41
             },
             "end": {
-              "line": 41,
+              "line": 35,
               "column": 69
             }
           }
         },
         "range": [
-          1008,
-          1077
+          964,
+          1033
         ],
         "loc": {
           "start": {
-            "line": 41,
+            "line": 35,
             "column": 0
           },
           "end": {
-            "line": 41,
+            "line": 35,
             "column": 69
           }
         }
       },
       "range": [
-        1008,
-        1078
+        964,
+        1034
       ],
       "loc": {
         "start": {
-          "line": 41,
+          "line": 35,
           "column": 0
         },
         "end": {
-          "line": 42,
+          "line": 36,
           "column": 0
         }
       },
@@ -976,16 +634,16 @@
           "type": "Line",
           "value": " HACK: expose the SketchAPIWithCapturedContext function globally",
           "range": [
-            853,
-            919
+            809,
+            875
           ],
           "loc": {
             "start": {
-              "line": 37,
+              "line": 31,
               "column": 0
             },
             "end": {
-              "line": 37,
+              "line": 31,
               "column": 66
             }
           }
@@ -994,16 +652,16 @@
           "type": "Line",
           "value": " I suspect that there's a better way to do this, but I've",
           "range": [
-            920,
-            979
+            876,
+            935
           ],
           "loc": {
             "start": {
-              "line": 38,
+              "line": 32,
               "column": 0
             },
             "end": {
-              "line": 38,
+              "line": 32,
               "column": 59
             }
           }
@@ -1012,16 +670,16 @@
           "type": "Line",
           "value": " not yet figured it out.",
           "range": [
-            980,
-            1006
+            936,
+            962
           ],
           "loc": {
             "start": {
-              "line": 39,
+              "line": 33,
               "column": 0
             },
             "end": {
-              "line": 39,
+              "line": 33,
               "column": 26
             }
           }
@@ -1031,16 +689,16 @@
   ],
   "sourceType": "module",
   "range": [
-    147,
-    1078
+    132,
+    1034
   ],
   "loc": {
     "start": {
-      "line": 9,
+      "line": 7,
       "column": 0
     },
     "end": {
-      "line": 42,
+      "line": 36,
       "column": 0
     }
   },
@@ -1136,199 +794,19 @@
       }
     },
     {
-      "type": "Line",
-      "value": " ## Imports",
-      "range": [
-        132,
-        145
-      ],
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 0
-        },
-        "end": {
-          "line": 7,
-          "column": 13
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": " ## Entrypoint",
-      "range": [
-        196,
-        212
-      ],
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 0
-        },
-        "end": {
-          "line": 12,
-          "column": 16
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "/ Return a function that captures the context.",
-      "range": [
-        214,
-        262
-      ],
-      "loc": {
-        "start": {
-          "line": 14,
-          "column": 0
-        },
-        "end": {
-          "line": 14,
-          "column": 48
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "/ When called, this function will initialise the API",
-      "range": [
-        263,
-        317
-      ],
-      "loc": {
-        "start": {
-          "line": 15,
-          "column": 0
-        },
-        "end": {
-          "line": 15,
-          "column": 54
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "/ and return an Application object that provides access",
-      "range": [
-        318,
-        375
-      ],
-      "loc": {
-        "start": {
-          "line": 16,
-          "column": 0
-        },
-        "end": {
-          "line": 16,
-          "column": 57
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "/ to all API functions.",
-      "range": [
-        376,
-        401
-      ],
-      "loc": {
-        "start": {
-          "line": 17,
-          "column": 0
-        },
-        "end": {
-          "line": 17,
-          "column": 25
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "/",
-      "range": [
-        402,
-        405
-      ],
-      "loc": {
-        "start": {
-          "line": 18,
-          "column": 0
-        },
-        "end": {
-          "line": 18,
-          "column": 3
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "/ We do it like this to defer having to perform a lot",
-      "range": [
-        406,
-        461
-      ],
-      "loc": {
-        "start": {
-          "line": 19,
-          "column": 0
-        },
-        "end": {
-          "line": 19,
-          "column": 55
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "/ of setup until context.api() is actually called -- thus",
-      "range": [
-        462,
-        521
-      ],
-      "loc": {
-        "start": {
-          "line": 20,
-          "column": 0
-        },
-        "end": {
-          "line": 20,
-          "column": 59
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "/ scripts which don't call it at all suffer minimal overhead.",
-      "range": [
-        522,
-        585
-      ],
-      "loc": {
-        "start": {
-          "line": 21,
-          "column": 0
-        },
-        "end": {
-          "line": 21,
-          "column": 63
-        }
-      }
-    },
-    {
       "type": "Block",
-      "value": "*\n Test\n ",
+      "value": "*\n    Return a function that captures the context.\n    When called, this function will initialise the API\n    and return an Application object that provides access\n    to all API functions.\n\n    We do it like this to defer having to perform a lot\n    of setup until context.api() is actually called -- thus\n    scripts which don't call it at all suffer minimal overhead.\n ",
       "range": [
-        587,
-        600
+        181,
+        557
       ],
       "loc": {
         "start": {
-          "line": 23,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 25,
+          "line": 19,
           "column": 3
         }
       }
@@ -1337,16 +815,16 @@
       "type": "Line",
       "value": " The Application object effectively *is* the api -- all other",
       "range": [
-        684,
-        747
+        640,
+        703
       ],
       "loc": {
         "start": {
-          "line": 30,
+          "line": 24,
           "column": 6
         },
         "end": {
-          "line": 30,
+          "line": 24,
           "column": 69
         }
       }
@@ -1355,16 +833,16 @@
       "type": "Line",
       "value": " functions and objects can be accessed via it.",
       "range": [
-        754,
-        802
+        710,
+        758
       ],
       "loc": {
         "start": {
-          "line": 31,
+          "line": 25,
           "column": 6
         },
         "end": {
-          "line": 31,
+          "line": 25,
           "column": 54
         }
       }
@@ -1373,16 +851,16 @@
       "type": "Line",
       "value": " HACK: expose the SketchAPIWithCapturedContext function globally",
       "range": [
-        853,
-        919
+        809,
+        875
       ],
       "loc": {
         "start": {
-          "line": 37,
+          "line": 31,
           "column": 0
         },
         "end": {
-          "line": 37,
+          "line": 31,
           "column": 66
         }
       }
@@ -1391,16 +869,16 @@
       "type": "Line",
       "value": " I suspect that there's a better way to do this, but I've",
       "range": [
-        920,
-        979
+        876,
+        935
       ],
       "loc": {
         "start": {
-          "line": 38,
+          "line": 32,
           "column": 0
         },
         "end": {
-          "line": 38,
+          "line": 32,
           "column": 59
         }
       }
@@ -1409,16 +887,16 @@
       "type": "Line",
       "value": " not yet figured it out.",
       "range": [
-        980,
-        1006
+        936,
+        962
       ],
       "loc": {
         "start": {
-          "line": 39,
+          "line": 33,
           "column": 0
         },
         "end": {
-          "line": 39,
+          "line": 33,
           "column": 26
         }
       }
