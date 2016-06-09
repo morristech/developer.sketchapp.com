@@ -5,7 +5,7 @@
 	path = _example-plugins/plugins/plugins.examples.selected-layers
 	url = https://github.com/BohemianCoding/plugins.examples.selected-layers.git
 [submodule "_example-plugins/plugins/plugins.examples.hello-world"]
-	path = _example-plugins/plugins/plugins.examples.hello-world
+	path = _external/plugins/plugins.examples.hello-world
 	url = https://github.com/BohemianCoding/plugins.examples.hello-world.git
 [submodule "_example-plugins/plugins/plugins.examples.selection-changed"]
 	path = _example-plugins/plugins/plugins.examples.selection-changed
