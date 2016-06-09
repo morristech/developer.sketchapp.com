@@ -10,7 +10,8 @@ name="${fullname##*.}"
 rm -rf "$base/api"
 
 # Build using esdoc
-cd "$base/../Sketch/Modules/SketchPluginManager/Javascript"
+cd "$scripts/api"
+pwd
 "node_modules/.bin/esdoc" -c "$scripts/esdoc.json"
 
 # Add jekyll headers
