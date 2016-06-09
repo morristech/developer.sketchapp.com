@@ -134,6 +134,10 @@ Reverse-domain syntax is strongly encouraged, for example `com.example.sketch.sh
 
 Sketch uses this string internally to track the Plugin, store settings for it, etc.
 
+#### Update URL
+
+Specifies an update URL for the Plugin (currently unused, but documented for future-proofness).
+
 #### Compatible Version
 
 A string specifying the [version][Semantic Versioning] of Sketch in which the author has tested the Plugin, for example `3`, `3.1`, `3.2.2`.
