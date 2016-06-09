@@ -8,7 +8,7 @@
 	path = _external/plugins/plugins.examples.hello-world
 	url = https://github.com/BohemianCoding/plugins.examples.hello-world.git
 [submodule "_example-plugins/plugins/plugins.examples.selection-changed"]
-	path = _example-plugins/plugins/plugins.examples.selection-changed
+	path = _external/plugins/plugins.examples.selection-changed
 	url = https://github.com/BohemianCoding/plugins.examples.selection-changed.git
 [submodule "_example-plugins/plugins/plugins.examples.resources"]
 	path = _external/plugins/plugins.examples.resources
