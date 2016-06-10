@@ -13,3 +13,6 @@
 [submodule "_example-plugins/plugins/plugins.examples.resources"]
 	path = _external/plugins/plugins.examples.resources
 	url = https://github.com/BohemianCoding/plugins.examples.resources.git
+[submodule "_external/api"]
+	path = _external/api
+	url = git@github.com:BohemianCoding/SketchAPI.git
