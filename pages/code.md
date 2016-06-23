@@ -17,7 +17,7 @@ So here are some snippets of code which demonstrate basic techniques you'll prob
     <tr>
       <td><a href="{{example.url}}">{{example.title}}</a></td>
       <td>{{example.summary}}</td>
-    <tr>
+    </tr>
   {% endfor %}
   </tbody>
 </table>
