@@ -487,6 +487,26 @@
                   }
                 }
               ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    ",
+                  "range": [
+                    556,
+                    799
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 6
+                    }
+                  }
+                }
+              ],
               "static": false
             },
             {
@@ -495,16 +515,16 @@
                 "type": "Identifier",
                 "name": "isShape",
                 "range": [
-                  560,
-                  567
+                  809,
+                  816
                 ],
                 "loc": {
                   "start": {
-                    "line": 27,
+                    "line": 35,
                     "column": 8
                   },
                   "end": {
-                    "line": 27,
+                    "line": 35,
                     "column": 15
                   }
                 }
@@ -523,47 +543,47 @@
                         "value": true,
                         "raw": "true",
                         "range": [
-                          585,
-                          589
+                          834,
+                          838
                         ],
                         "loc": {
                           "start": {
-                            "line": 28,
+                            "line": 36,
                             "column": 13
                           },
                           "end": {
-                            "line": 28,
+                            "line": 36,
                             "column": 17
                           }
                         }
                       },
                       "range": [
-                        578,
-                        590
+                        827,
+                        839
                       ],
                       "loc": {
                         "start": {
-                          "line": 28,
+                          "line": 36,
                           "column": 6
                         },
                         "end": {
-                          "line": 28,
+                          "line": 36,
                           "column": 18
                         }
                       }
                     }
                   ],
                   "range": [
-                    570,
-                    596
+                    819,
+                    845
                   ],
                   "loc": {
                     "start": {
-                      "line": 27,
+                      "line": 35,
                       "column": 18
                     },
                     "end": {
-                      "line": 29,
+                      "line": 37,
                       "column": 5
                     }
                   }
@@ -571,16 +591,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  567,
-                  596
+                  816,
+                  845
                 ],
                 "loc": {
                   "start": {
-                    "line": 27,
+                    "line": 35,
                     "column": 15
                   },
                   "end": {
-                    "line": 29,
+                    "line": 37,
                     "column": 5
                   }
                 }
@@ -588,25 +608,45 @@
               "kind": "get",
               "computed": false,
               "range": [
-                556,
-                596
+                805,
+                845
               ],
               "loc": {
                 "start": {
-                  "line": 27,
+                  "line": 35,
                   "column": 4
                 },
                 "end": {
-                  "line": 29,
+                  "line": 37,
                   "column": 5
                 }
               },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    ",
+                  "range": [
+                    556,
+                    799
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 6
+                    }
+                  }
+                }
+              ],
               "static": false
             }
           ],
           "range": [
             293,
-            599
+            848
           ],
           "loc": {
             "start": {
@@ -614,14 +654,14 @@
               "column": 33
             },
             "end": {
-              "line": 31,
+              "line": 39,
               "column": 1
             }
           }
         },
         "range": [
           267,
-          599
+          848
         ],
         "loc": {
           "start": {
@@ -629,7 +669,7 @@
             "column": 7
           },
           "end": {
-            "line": 31,
+            "line": 39,
             "column": 1
           }
         },
@@ -659,7 +699,7 @@
       "source": null,
       "range": [
         260,
-        599
+        848
       ],
       "loc": {
         "start": {
@@ -667,7 +707,7 @@
           "column": 0
         },
         "end": {
-          "line": 31,
+          "line": 39,
           "column": 1
         }
       },
@@ -696,7 +736,7 @@
   "sourceType": "module",
   "range": [
     156,
-    599
+    848
   ],
   "loc": {
     "start": {
@@ -704,7 +744,7 @@
       "column": 0
     },
     "end": {
-      "line": 31,
+      "line": 39,
       "column": 1
     }
   },
@@ -849,6 +889,24 @@
         },
         "end": {
           "line": 21,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    ",
+      "range": [
+        556,
+        799
+      ],
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
           "column": 6
         }
       }

@@ -1104,7 +1104,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Image.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents an image layer.\n */\n\nexport class Image extends Layer {\n\n  /**\n    Make a new image layer object.\n\n    @param layer {MSBitmapLayer} The underlying model object from Sketch.\n    @param document The document that the bitmap layer belongs to.\n  */\n\n  constructor(layer, document) {\n    super(layer, document)\n  }\n\n  get isImage() {\n    return true;\n  }\n\n  set imageURL(url) {\n    var image = NSImage.alloc().initWithContentsOfURL_(url)\n    var imageData = MSImageData.alloc().initWithImage_convertColorSpace_(image, true)\n    this.object.setImage_(imageData)\n  }\n}\n"
+    "content": "// ********************************\n// # Image.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents an image layer.\n */\n\nexport class Image extends Layer {\n\n  /**\n    Make a new image layer object.\n\n    @param layer {MSBitmapLayer} The underlying model object from Sketch.\n    @param document The document that the bitmap layer belongs to.\n  */\n\n  constructor(layer, document) {\n    super(layer, document)\n  }\n\n  /**\n      Is this an image layer?\n\n      All Layer objects respond to this method, but only image layers return true.\n\n      @return true {bool} for instances of Group, false for any other layer type.\n  */\n\n  get isImage() {\n    return true;\n  }\n\n  set imageURL(url) {\n    var image = NSImage.alloc().initWithContentsOfURL_(url)\n    var imageData = MSImageData.alloc().initWithImage_convertColorSpace_(image, true)\n    this.object.setImage_(imageData)\n  }\n}\n"
   },
   {
     "__docId__": 42,
@@ -1169,9 +1169,16 @@
     "memberof": "Source/Image.js~Image",
     "longname": "Source/Image.js~Image#isImage",
     "access": null,
-    "description": null,
-    "lineNumber": 27,
-    "undocument": true,
+    "description": "Is this an image layer?\n\nAll Layer objects respond to this method, but only image layers return true.",
+    "lineNumber": 35,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true {bool} for instances of Group, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -1189,7 +1196,7 @@
     "longname": "Source/Image.js~Image#imageURL",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 39,
     "undocument": true,
     "type": {
       "types": [
@@ -1209,7 +1216,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Layer.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Rectangle } from './Rectangle.js'\n\n/**\n  Represents a Sketch layer.\n */\n \nexport class Layer extends WrappedObject {\n\n    /**\n      Make a new layer object.\n\n      @param layer {MSLayer} The underlying model object from Sketch.\n      @param document The document that the layer belongs to.\n    */\n\n    constructor(layer, document) {\n      super(layer)\n      this.document = document\n    }\n\n    get name() {\n      return this.object.name();\n    }\n\n    set name(value) {\n      this.object.setName_(value);\n    }\n\n    get frame() {\n      var f = this.object.frame();\n      return new Rectangle(f.x(), f.y(), f.width(), f.height());\n    }\n\n    set frame(value) {\n      var f = this.object.frame();\n      f.setRect_(NSMakeRect(value.x, value.y, value.width, value.height));\n    }\n\n    duplicate() {\n      return new Layer(this.object.duplicate(), this.document);\n    }\n\n    get isPage() { return false; }\n    get isArtboard() { return false; }\n    get isGroup() { return false; }\n    get isText() { return false; }\n    get isShape() { return false; }\n    get isImage() { return false; }\n\n    addWrappedLayerWithProperties(newLayer, properties, wrapper) {\n      if (newLayer) {\n        // add the Sketch object to this layer\n        var layer = this.object\n        layer.addLayers_(NSArray.arrayWithObject_(newLayer))\n\n        // make a Javascript wrapper object for the new layer\n        var wrapperToMake = this.document.application.factory[wrapper]\n        var wrapper = new wrapperToMake(newLayer, this.document)\n\n        // apply properties, via the wrapper\n        for (var p in properties) {\n          wrapper[p] = properties[p]\n        }\n\n        return wrapper\n      }\n    }\n\n    frameForLayerWithProperties(properties) {\n      var frame = properties.frame\n      if (frame) {\n        delete properties[\"frame\"]\n      } else {\n        frame = new Rectangle(0, 0, 100, 100)\n      }\n      return frame\n    }\n\n    newShape(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSShapeGroup.shapeWithBezierPath_(NSBezierPath.bezierPathWithRect_(frame.asCGRect()));\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Shape\");\n    }\n\n    newText(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSTextLayer.alloc().initWithFrame_(frame.asCGRect());\n      newLayer.adjustFrameToFit();\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Text\");\n    }\n\n    newGroup(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSLayerGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Group\");\n    }\n\n    newArtboard(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSArtboardGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Artboard\");\n    }\n\n    newImage(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSBitmapLayer.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Image\");\n    }\n\n    remove() {\n      var parent = this.object.parentGroup();\n      if (parent) {\n        parent.removeLayer_(this.object);\n      }\n    }\n\n    select() {\n      this.object.select_byExpandingSelection(true, false);\n    }\n\n    deselect() {\n      this.object.select_byExpandingSelection(false, true);\n    }\n\n    addToSelection() {\n      this.object.select_byExpandingSelection(true, true);\n    }\n\n    iterate(block) {\n      var loop = this.object().layers().objectEnumerator();\n      while (item = loop.nextObject()) {\n        block(new Layer(item, this.document));\n      }\n    }\n}\n"
+    "content": "// ********************************\n// # Layer.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Rectangle } from './Rectangle.js'\n\n/**\n  Represents a Sketch layer.\n */\n\nexport class Layer extends WrappedObject {\n\n    /**\n      Make a new layer object.\n\n      @param layer {MSLayer} The underlying model object from Sketch.\n      @param document The document that the layer belongs to.\n    */\n\n    constructor(layer, document) {\n      super(layer)\n      this.document = document\n    }\n\n    get name() {\n      return this.object.name();\n    }\n\n    set name(value) {\n      this.object.setName_(value);\n    }\n\n    get frame() {\n      var f = this.object.frame();\n      return new Rectangle(f.x(), f.y(), f.width(), f.height());\n    }\n\n    set frame(value) {\n      var f = this.object.frame();\n      f.setRect_(NSMakeRect(value.x, value.y, value.width, value.height));\n    }\n\n    duplicate() {\n      return new Layer(this.object.duplicate(), this.document);\n    }\n\n    /**\n        Is this a page?\n\n        All Layer objects respond to this method, but only pages return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isPage() { return false; }\n\n    /**\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    */\n\n    get isArtboard() { return false; }\n\n    /**\n        Is this an group?\n\n        All Layer objects respond to this method, but only Groups or things that inherit from groups return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isGroup() { return false; }\n\n    /**\n        Is this a text layer?\n\n        All Layer objects respond to this method, but only text layers return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isText() { return false; }\n\n    /**\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isShape() { return false; }\n\n    /**\n        Is this an image layer?\n\n        All Layer objects respond to this method, but only image layers return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isImage() { return false; }\n\n    addWrappedLayerWithProperties(newLayer, properties, wrapper) {\n      if (newLayer) {\n        // add the Sketch object to this layer\n        var layer = this.object\n        layer.addLayers_(NSArray.arrayWithObject_(newLayer))\n\n        // make a Javascript wrapper object for the new layer\n        var wrapperToMake = this.document.application.factory[wrapper]\n        var wrapper = new wrapperToMake(newLayer, this.document)\n\n        // apply properties, via the wrapper\n        for (var p in properties) {\n          wrapper[p] = properties[p]\n        }\n\n        return wrapper\n      }\n    }\n\n    frameForLayerWithProperties(properties) {\n      var frame = properties.frame\n      if (frame) {\n        delete properties[\"frame\"]\n      } else {\n        frame = new Rectangle(0, 0, 100, 100)\n      }\n      return frame\n    }\n\n    newShape(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSShapeGroup.shapeWithBezierPath_(NSBezierPath.bezierPathWithRect_(frame.asCGRect()));\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Shape\");\n    }\n\n    newText(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSTextLayer.alloc().initWithFrame_(frame.asCGRect());\n      newLayer.adjustFrameToFit();\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Text\");\n    }\n\n    newGroup(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSLayerGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Group\");\n    }\n\n    newArtboard(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSArtboardGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Artboard\");\n    }\n\n    newImage(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSBitmapLayer.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Image\");\n    }\n\n    remove() {\n      var parent = this.object.parentGroup();\n      if (parent) {\n        parent.removeLayer_(this.object);\n      }\n    }\n\n    select() {\n      this.object.select_byExpandingSelection(true, false);\n    }\n\n    deselect() {\n      this.object.select_byExpandingSelection(false, true);\n    }\n\n    addToSelection() {\n      this.object.select_byExpandingSelection(true, true);\n    }\n\n    iterate(block) {\n      var loop = this.object().layers().objectEnumerator();\n      while (item = loop.nextObject()) {\n        block(new Layer(item, this.document));\n      }\n    }\n}\n"
   },
   {
     "__docId__": 47,
@@ -1388,9 +1395,16 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#isPage",
     "access": null,
-    "description": null,
-    "lineNumber": 51,
-    "undocument": true,
+    "description": "Is this a page?\n\nAll Layer objects respond to this method, but only pages return true.",
+    "lineNumber": 59,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true {bool} for instances of Group, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -1407,9 +1421,16 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#isArtboard",
     "access": null,
-    "description": null,
-    "lineNumber": 52,
-    "undocument": true,
+    "description": "Is this an artboard?\n\nAll Layer objects respond to this method, but only Artboard objects return true.",
+    "lineNumber": 69,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true for instances of Artboard, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -1426,9 +1447,16 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#isGroup",
     "access": null,
-    "description": null,
-    "lineNumber": 53,
-    "undocument": true,
+    "description": "Is this an group?\n\nAll Layer objects respond to this method, but only Groups or things that inherit from groups return true.",
+    "lineNumber": 79,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true {bool} for instances of Group, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -1445,9 +1473,16 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#isText",
     "access": null,
-    "description": null,
-    "lineNumber": 54,
-    "undocument": true,
+    "description": "Is this a text layer?\n\nAll Layer objects respond to this method, but only text layers return true.",
+    "lineNumber": 89,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true {bool} for instances of Group, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -1464,9 +1499,16 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#isShape",
     "access": null,
-    "description": null,
-    "lineNumber": 55,
-    "undocument": true,
+    "description": "Is this a shape layer?\n\nAll Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.",
+    "lineNumber": 99,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true {bool} for instances of Group, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -1483,9 +1525,16 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#isImage",
     "access": null,
-    "description": null,
-    "lineNumber": 56,
-    "undocument": true,
+    "description": "Is this an image layer?\n\nAll Layer objects respond to this method, but only image layers return true.",
+    "lineNumber": 109,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true {bool} for instances of Group, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -1503,7 +1552,7 @@
     "longname": "Source/Layer.js~Layer#addWrappedLayerWithProperties",
     "access": null,
     "description": null,
-    "lineNumber": 58,
+    "lineNumber": 111,
     "undocument": true,
     "params": [
       {
@@ -1542,7 +1591,7 @@
     "longname": "Source/Layer.js~Layer#frameForLayerWithProperties",
     "access": null,
     "description": null,
-    "lineNumber": 77,
+    "lineNumber": 130,
     "undocument": true,
     "params": [
       {
@@ -1569,7 +1618,7 @@
     "longname": "Source/Layer.js~Layer#newShape",
     "access": null,
     "description": null,
-    "lineNumber": 87,
+    "lineNumber": 140,
     "undocument": true,
     "params": [
       {
@@ -1596,7 +1645,7 @@
     "longname": "Source/Layer.js~Layer#newText",
     "access": null,
     "description": null,
-    "lineNumber": 93,
+    "lineNumber": 146,
     "undocument": true,
     "params": [
       {
@@ -1623,7 +1672,7 @@
     "longname": "Source/Layer.js~Layer#newGroup",
     "access": null,
     "description": null,
-    "lineNumber": 100,
+    "lineNumber": 153,
     "undocument": true,
     "params": [
       {
@@ -1650,7 +1699,7 @@
     "longname": "Source/Layer.js~Layer#newArtboard",
     "access": null,
     "description": null,
-    "lineNumber": 106,
+    "lineNumber": 159,
     "undocument": true,
     "params": [
       {
@@ -1677,7 +1726,7 @@
     "longname": "Source/Layer.js~Layer#newImage",
     "access": null,
     "description": null,
-    "lineNumber": 112,
+    "lineNumber": 165,
     "undocument": true,
     "params": [
       {
@@ -1704,7 +1753,7 @@
     "longname": "Source/Layer.js~Layer#remove",
     "access": null,
     "description": null,
-    "lineNumber": 118,
+    "lineNumber": 171,
     "undocument": true,
     "params": [],
     "generator": false
@@ -1719,7 +1768,7 @@
     "longname": "Source/Layer.js~Layer#select",
     "access": null,
     "description": null,
-    "lineNumber": 125,
+    "lineNumber": 178,
     "undocument": true,
     "params": [],
     "generator": false
@@ -1734,7 +1783,7 @@
     "longname": "Source/Layer.js~Layer#deselect",
     "access": null,
     "description": null,
-    "lineNumber": 129,
+    "lineNumber": 182,
     "undocument": true,
     "params": [],
     "generator": false
@@ -1749,7 +1798,7 @@
     "longname": "Source/Layer.js~Layer#addToSelection",
     "access": null,
     "description": null,
-    "lineNumber": 133,
+    "lineNumber": 186,
     "undocument": true,
     "params": [],
     "generator": false
@@ -1764,7 +1813,7 @@
     "longname": "Source/Layer.js~Layer#iterate",
     "access": null,
     "description": null,
-    "lineNumber": 137,
+    "lineNumber": 190,
     "undocument": true,
     "params": [
       {
@@ -1787,7 +1836,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Page.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a Page in a Sketch document.\n */\n \nexport class Page extends Layer {\n\n  /**\n    Make a new page object.\n\n    @param page {MSPage} The underlying model object from Sketch.\n    @param document The document that the page belongs to.\n  */\n\n\n  constructor(page, document) {\n    super(page)\n    this.document = document\n  }\n\n  get isPage() {\n    return true;\n  }\n}\n"
+    "content": "// ********************************\n// # Page.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a Page in a Sketch document.\n */\n\nexport class Page extends Layer {\n\n  /**\n    Make a new page object.\n\n    @param page {MSPage} The underlying model object from Sketch.\n    @param document The document that the page belongs to.\n  */\n\n\n  constructor(page, document) {\n    super(page)\n    this.document = document\n  }\n\n  /**\n      Is this a page?\n\n      All Layer objects respond to this method, but only pages return true.\n\n      @return true {bool} for instances of Group, false for any other layer type.\n  */\n\n  get isPage() {\n    return true;\n  }\n}\n"
   },
   {
     "__docId__": 74,
@@ -1870,9 +1919,16 @@
     "memberof": "Source/Page.js~Page",
     "longname": "Source/Page.js~Page#isPage",
     "access": null,
-    "description": null,
-    "lineNumber": 29,
-    "undocument": true,
+    "description": "Is this a page?\n\nAll Layer objects respond to this method, but only pages return true.",
+    "lineNumber": 37,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true {bool} for instances of Group, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -2240,7 +2296,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Shape.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a shape layer (a rectangle, oval, path, etc).\n */\n\nexport class Shape extends Layer {\n\n    /**\n      Make a new shape object.\n\n      @param shape {MSShapeGroup} The underlying model object from Sketch.\n      @param document The document that the shape belongs to.\n    */\n\n    constructor(shape, document) {\n      super(shape, document)\n    }\n\n    get isShape() {\n      return true;\n    }\n\n}\n"
+    "content": "// ********************************\n// # Shape.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a shape layer (a rectangle, oval, path, etc).\n */\n\nexport class Shape extends Layer {\n\n    /**\n      Make a new shape object.\n\n      @param shape {MSShapeGroup} The underlying model object from Sketch.\n      @param document The document that the shape belongs to.\n    */\n\n    constructor(shape, document) {\n      super(shape, document)\n    }\n\n    /**\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isShape() {\n      return true;\n    }\n\n}\n"
   },
   {
     "__docId__": 95,
@@ -2305,9 +2361,16 @@
     "memberof": "Source/Shape.js~Shape",
     "longname": "Source/Shape.js~Shape#isShape",
     "access": null,
-    "description": null,
-    "lineNumber": 27,
-    "undocument": true,
+    "description": "Is this a shape layer?\n\nAll Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.",
+    "lineNumber": 35,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true {bool} for instances of Group, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -2326,7 +2389,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Text.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n// ## Constants\n\nconst BCTextBehaviourFlexibleWidth = 0\nconst BCTextBehaviourFixedWidth = 1\n\n/**\n  Represents a text layer.\n */\n\nexport class Text extends Layer {\n\n    /**\n      Make a new text object.\n\n      @param text {MSTextLayer} The underlying model object from Sketch.\n      @param document The document that the text layer belongs to.\n    */\n\n    constructor(text, document) {\n      super(text, document)\n    }\n\n    /**\n      Is this a text layer?\n    */\n\n    get isText() {\n      return true\n    }\n\n    /**\n      The text of the layer.\n    */\n\n    get text() {\n      return this.object.stringValue\n    }\n\n    /**\n      Set the text of the layer.\n\n      @param value {string} The text to use.\n    */\n\n    set text(value) {\n      this.object.stringValue = value\n    }\n\n\n    /**\n      Set the font of the layer to an NSFont object.\n\n      @param value {NSFont} The font to use.\n    */\n\n    set font(value) {\n      this.object.font = value\n    }\n\n    /**\n       Set the font of the layer to the system font at a given size.\n\n       @param size {number} The system font size to use.\n    */\n\n    set systemFontSize(size) {\n      this.object.font = NSFont.systemFontOfSize_(size)\n    }\n\n    /**\n       Set the alignment of the layer.\n\n       @param mode {number} The alignment mode to use.\n    */\n\n    set alignment(mode) {\n      this.object.textAlignment = mode\n    }\n\n    /**\n     Set the layer to be fixed width or variable width.\n\n     @param value {bool} Whether the layer should be fixed width (true) or variable width (false).\n    */\n\n    set fixedWidth(value) {\n      if (value) {\n        this.object.textBehaviour = BCTextBehaviourFixedWidth\n      } else {\n        this.object.textBehaviour = BCTextBehaviourFlexibleWidth\n      }\n    }\n}\n"
+    "content": "// ********************************\n// # Text.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n// ## Constants\n\nconst BCTextBehaviourFlexibleWidth = 0\nconst BCTextBehaviourFixedWidth = 1\n\n/**\n  Represents a text layer.\n */\n\nexport class Text extends Layer {\n\n    /**\n      Make a new text object.\n\n      @param text {MSTextLayer} The underlying model object from Sketch.\n      @param document The document that the text layer belongs to.\n    */\n\n    constructor(text, document) {\n      super(text, document)\n    }\n\n    /**\n        Is this a text layer?\n\n        All Layer objects respond to this method, but only text layers return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isText() {\n      return true\n    }\n\n    /**\n      The text of the layer.\n    */\n\n    get text() {\n      return this.object.stringValue\n    }\n\n    /**\n      Set the text of the layer.\n\n      @param value {string} The text to use.\n    */\n\n    set text(value) {\n      this.object.stringValue = value\n    }\n\n\n    /**\n      Set the font of the layer to an NSFont object.\n\n      @param value {NSFont} The font to use.\n    */\n\n    set font(value) {\n      this.object.font = value\n    }\n\n    /**\n       Set the font of the layer to the system font at a given size.\n\n       @param size {number} The system font size to use.\n    */\n\n    set systemFontSize(size) {\n      this.object.font = NSFont.systemFontOfSize_(size)\n    }\n\n    /**\n       Set the alignment of the layer.\n\n       @param mode {number} The alignment mode to use.\n    */\n\n    set alignment(mode) {\n      this.object.textAlignment = mode\n    }\n\n    /**\n     Set the layer to be fixed width or variable width.\n\n     @param value {bool} Whether the layer should be fixed width (true) or variable width (false).\n    */\n\n    set fixedWidth(value) {\n      if (value) {\n        this.object.textBehaviour = BCTextBehaviourFixedWidth\n      } else {\n        this.object.textBehaviour = BCTextBehaviourFlexibleWidth\n      }\n    }\n}\n"
   },
   {
     "__docId__": 99,
@@ -2433,8 +2496,16 @@
     "memberof": "Source/Text.js~Text",
     "longname": "Source/Text.js~Text#isText",
     "access": null,
-    "description": "Is this a text layer?",
-    "lineNumber": 36,
+    "description": "Is this a text layer?\n\nAll Layer objects respond to this method, but only text layers return true.",
+    "lineNumber": 40,
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "true {bool} for instances of Group, false for any other layer type."
+    },
     "type": {
       "types": [
         "boolean"
@@ -2452,7 +2523,7 @@
     "longname": "Source/Text.js~Text#text",
     "access": null,
     "description": "The text of the layer.",
-    "lineNumber": 44,
+    "lineNumber": 48,
     "type": {
       "types": [
         "*"
@@ -2470,7 +2541,7 @@
     "longname": "Source/Text.js~Text#text",
     "access": null,
     "description": "Set the text of the layer.",
-    "lineNumber": 54,
+    "lineNumber": 58,
     "params": [
       {
         "nullable": null,
@@ -2500,7 +2571,7 @@
     "longname": "Source/Text.js~Text#font",
     "access": null,
     "description": "Set the font of the layer to an NSFont object.",
-    "lineNumber": 65,
+    "lineNumber": 69,
     "params": [
       {
         "nullable": null,
@@ -2530,7 +2601,7 @@
     "longname": "Source/Text.js~Text#systemFontSize",
     "access": null,
     "description": "Set the font of the layer to the system font at a given size.",
-    "lineNumber": 75,
+    "lineNumber": 79,
     "params": [
       {
         "nullable": null,
@@ -2560,7 +2631,7 @@
     "longname": "Source/Text.js~Text#alignment",
     "access": null,
     "description": "Set the alignment of the layer.",
-    "lineNumber": 85,
+    "lineNumber": 89,
     "params": [
       {
         "nullable": null,
@@ -2590,7 +2661,7 @@
     "longname": "Source/Text.js~Text#fixedWidth",
     "access": null,
     "description": "Set the layer to be fixed width or variable width.",
-    "lineNumber": 95,
+    "lineNumber": 99,
     "params": [
       {
         "nullable": null,
