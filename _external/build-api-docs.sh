@@ -12,7 +12,10 @@ rm -rf "$base/api"
 # Build using esdoc
 cd "$scripts/api"
 pwd
-"$base/node_modules/.bin/esdoc" -c "$scripts/esdoc.json"
+
+configpath=/tmp/esdoc.json
+echo "{\"source\": \"$scripts/api/Source/\", \"destination\": \"$base/reference/api\" }" > "$configpath"
+"$base/node_modules/.bin/esdoc" -c "$configpath"
 
 # Add jekyll headers
 # for page in "$base/api/"*.html
