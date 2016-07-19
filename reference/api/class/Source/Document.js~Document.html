@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -161,13 +162,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-get-pages">pages</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-get-pages">pages</a></span></span><span data-ice="signature">: <span>list</span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns a list of the pages in this document.</p>
+</div>
       </div>
     </td>
     <td>
@@ -186,7 +188,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-get-selectedLayers">selectedLayers</a></span></span><span data-ice="signature">: <span>Selection</span>: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-get-selectedLayers">selectedLayers</a></span></span><span data-ice="signature">: <span><a href="class/Source/Selection.js~Selection.html">Selection</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -212,13 +214,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-get-selectedPage">selectedPage</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-get-selectedPage">selectedPage</a></span></span><span data-ice="signature">: <span><a href="class/Source/Page.js~Page.html">Page</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>The current page that the user has selected.</p>
+</div>
       </div>
     </td>
     <td>
@@ -244,13 +247,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-method-layerNamed">layerNamed</a></span></span><span data-ice="signature">(layer_id: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-method-layerNamed">layerNamed</a></span></span><span data-ice="signature">(layer_name: <span>*</span>): <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Find the first layer in this document which has the given name.</p>
+</div>
       </div>
     </td>
     <td>
@@ -269,13 +273,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-method-layerWithID">layerWithID</a></span></span><span data-ice="signature">(layer_id: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Document.js~Document.html#instance-method-layerWithID">layerWithID</a></span></span><span data-ice="signature">(layer_id: <span>*</span>): <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Find the first layer in this document which has the given id.</p>
+</div>
       </div>
     </td>
     <td>
@@ -302,13 +307,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-get-id">id</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-get-id">id</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns the object ID of the wrapped Sketch model object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -468,25 +474,37 @@ that this object represents.</p>
     <span class="kind" data-ice="kind">get</span>
     
     
-    <span data-ice="name">pages</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">pages</span><span data-ice="signature">: <span>list</span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber51">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber63">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns a list of the pages in this document.</p>
+</div>
 
   
 
   <div data-ice="properties">
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>list</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The pages.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -508,7 +526,7 @@ that this object represents.</p>
     <span class="kind" data-ice="kind">get</span>
     
     
-    <span data-ice="name">selectedLayers</span><span data-ice="signature">: <span>Selection</span>: <span>*</span></span>
+    <span data-ice="name">selectedLayers</span><span data-ice="signature">: <span><a href="class/Source/Selection.js~Selection.html">Selection</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
@@ -531,7 +549,7 @@ that this object represents.</p>
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>Selection</span></td>
+        <td class="return-type" data-ice="returnType"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></td>
         <td class="return-desc" data-ice="returnDescription"><p>A selection object representing the layers that the user has selected.</p>
 </td>
       </tr>
@@ -560,25 +578,37 @@ that this object represents.</p>
     <span class="kind" data-ice="kind">get</span>
     
     
-    <span data-ice="name">selectedPage</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">selectedPage</span><span data-ice="signature">: <span><a href="class/Source/Page.js~Page.html">Page</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber46">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber52">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>The current page that the user has selected.</p>
+</div>
 
   
 
   <div data-ice="properties">
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/Source/Page.js~Page.html">Page</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>A page object representing the page that the user is currently viewing.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -603,18 +633,19 @@ that this object represents.</p>
     
     
     
-    <span data-ice="name">layerNamed</span><span data-ice="signature">(layer_id: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">layerNamed</span><span data-ice="signature">(layer_name: <span>*</span>): <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber65">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Find the first layer in this document which has the given name.</p>
+</div>
 
   
 
@@ -627,7 +658,7 @@ that this object represents.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">layer_id</td>
+      <td data-ice="name" data-depth="0">layer_name</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
@@ -641,8 +672,9 @@ that this object represents.</p>
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>A layer object, if one was found.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -669,18 +701,19 @@ that this object represents.</p>
     
     
     
-    <span data-ice="name">layerWithID</span><span data-ice="signature">(layer_id: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">layerWithID</span><span data-ice="signature">(layer_id: <span>*</span>): <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber61">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Document.js.html#lineNumber79">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Find the first layer in this document which has the given id.</p>
+</div>
 
   
 
@@ -707,8 +740,9 @@ that this object represents.</p>
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>A layer object, if one was found.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">

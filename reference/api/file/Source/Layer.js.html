@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -55,12 +56,22 @@
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-// ##&#xA0;Imports
-
 import { WrappedObject } from &apos;./WrappedObject.js&apos;
 import { Rectangle } from &apos;./Rectangle.js&apos;
 
+/**
+  Represents a Sketch layer.
+ */
+ 
 export class Layer extends WrappedObject {
+
+    /**
+      Make a new layer object.
+
+      @param layer {MSLayer} The underlying model object from Sketch.
+      @param document The document that the layer belongs to.
+    */
+
     constructor(layer, document) {
       super(layer)
       this.document = document

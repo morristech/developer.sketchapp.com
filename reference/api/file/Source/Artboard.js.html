@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -55,8 +56,6 @@
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-// ##&#xA0;Imports
-
 import { Layer } from &apos;./Layer.js&apos;
 
 /**
@@ -68,7 +67,7 @@ export class Artboard extends Layer {
     /**
         Make a new artboard.
 
-        @param artboard The underlying MSArtboardGroup model object from Sketch.
+        @param artboard {MSArtboardGroup} The underlying MSArtboardGroup model object from Sketch.
         @param document The document that the artboard belongs to.
     */
 

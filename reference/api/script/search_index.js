@@ -48,6 +48,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "sketch-api/source/selection.js~selection",
+    "class/Source/Selection.js~Selection.html",
+    "<span>Selection</span> <span class=\"search-result-import-path\">sketch-api/Source/Selection.js</span>",
+    "class"
+  ],
+  [
     "sketch-api/source/shape.js~shape",
     "class/Source/Shape.js~Shape.html",
     "<span>Shape</span> <span class=\"search-result-import-path\">sketch-api/Source/Shape.js</span>",
@@ -450,6 +456,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/application.js~application#full_version",
+    "class/Source/Application.js~Application.html#instance-get-full_version",
+    "Source/Application.js~Application#full_version",
+    "member"
+  ],
+  [
     "source/application.js~application#getselectionfromuser",
     "class/Source/Application.js~Application.html#instance-method-getSelectionFromUser",
     "Source/Application.js~Application#getSelectionFromUser",
@@ -673,13 +685,13 @@ window.esdocSearchIndex = [
   ],
   [
     "source/layer.js~layer#frame",
-    "class/Source/Layer.js~Layer.html#instance-set-frame",
+    "class/Source/Layer.js~Layer.html#instance-get-frame",
     "Source/Layer.js~Layer#frame",
     "member"
   ],
   [
     "source/layer.js~layer#frame",
-    "class/Source/Layer.js~Layer.html#instance-get-frame",
+    "class/Source/Layer.js~Layer.html#instance-set-frame",
     "Source/Layer.js~Layer#frame",
     "member"
   ],
@@ -852,6 +864,42 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/selection.js",
+    "file/Source/Selection.js.html",
+    "Source/Selection.js",
+    "file"
+  ],
+  [
+    "source/selection.js~selection#clear",
+    "class/Source/Selection.js~Selection.html#instance-method-clear",
+    "Source/Selection.js~Selection#clear",
+    "method"
+  ],
+  [
+    "source/selection.js~selection#constructor",
+    "class/Source/Selection.js~Selection.html#instance-constructor-constructor",
+    "Source/Selection.js~Selection#constructor",
+    "method"
+  ],
+  [
+    "source/selection.js~selection#isempty",
+    "class/Source/Selection.js~Selection.html#instance-get-isEmpty",
+    "Source/Selection.js~Selection#isEmpty",
+    "member"
+  ],
+  [
+    "source/selection.js~selection#iterate",
+    "class/Source/Selection.js~Selection.html#instance-method-iterate",
+    "Source/Selection.js~Selection#iterate",
+    "method"
+  ],
+  [
+    "source/selection.js~selection#iterateandclear",
+    "class/Source/Selection.js~Selection.html#instance-method-iterateAndClear",
+    "Source/Selection.js~Selection#iterateAndClear",
+    "method"
+  ],
+  [
     "source/shape.js",
     "file/Source/Shape.js.html",
     "Source/Shape.js",
@@ -913,13 +961,13 @@ window.esdocSearchIndex = [
   ],
   [
     "source/text.js~text#text",
-    "class/Source/Text.js~Text.html#instance-set-text",
+    "class/Source/Text.js~Text.html#instance-get-text",
     "Source/Text.js~Text#text",
     "member"
   ],
   [
     "source/text.js~text#text",
-    "class/Source/Text.js~Text.html#instance-get-text",
+    "class/Source/Text.js~Text.html#instance-set-text",
     "Source/Text.js~Text#text",
     "member"
   ],

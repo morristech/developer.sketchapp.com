@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -54,8 +55,6 @@
 //
 // All code (C) 2016 Bohemian Coding.
 // ********************************
-
-// ##&#xA0;Imports
 
 import { WrappedObject } from &apos;./WrappedObject.js&apos;
 import { Document } from &apos;./Document.js&apos;
@@ -85,7 +84,7 @@ export class Application extends WrappedObject {
         @param context The context dictionary passed to the script when it was invoked.
         @return A new Application object.
     */
-    
+
     constructor(context) {
       super(context)
       this.metadata = MSApplicationMetadata.metadata()
@@ -153,6 +152,7 @@ export class Application extends WrappedObject {
         Returns the full version of Sketch that is running
 
         @return {string} Version and build number as a string, eg &quot;3.6 (15352)&quot;.
+    */
 
     get full_version() {
       return this.version + &quot; (&quot; + this.build + &quot;)&quot;
@@ -335,8 +335,8 @@ export class Application extends WrappedObject {
         @return The new Rectangle object.
     */
 
-    rectangle(x, y, w, h) {
-      return new Rectangle(x, y, w, h)
+    rectangle(x, y, width, height) {
+      return new Rectangle(x, y, width, height)
     }
 }
 </code></pre>

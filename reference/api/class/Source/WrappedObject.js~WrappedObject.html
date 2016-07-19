@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -48,13 +49,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {WrappedObject} from &apos;<span><a href="file/Source/WrappedObject.js.html#lineNumber11">sketch-api/Source/WrappedObject.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {WrappedObject} from &apos;<span><a href="file/Source/WrappedObject.js.html#lineNumber14">sketch-api/Source/WrappedObject.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/Source/WrappedObject.js.html#lineNumber11">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/Source/WrappedObject.js.html#lineNumber14">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -65,7 +66,7 @@
   
   
   
-  <div class="flat-list" data-ice="directSubclass"><h4>Direct Subclass:</h4><div><span><a href="class/Source/Application.js~Application.html">Application</a></span>, <span><a href="class/Source/Document.js~Document.html">Document</a></span>, <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></div></div>
+  <div class="flat-list" data-ice="directSubclass"><h4>Direct Subclass:</h4><div><span><a href="class/Source/Application.js~Application.html">Application</a></span>, <span><a href="class/Source/Document.js~Document.html">Document</a></span>, <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span>, <span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></div></div>
   <div class="flat-list" data-ice="indirectSubclass"><h4>Indirect Subclass:</h4><div><span><a href="class/Source/Artboard.js~Artboard.html">Artboard</a></span>, <span><a href="class/Source/Group.js~Group.html">Group</a></span>, <span><a href="class/Source/Image.js~Image.html">Image</a></span>, <span><a href="class/Source/Page.js~Page.html">Page</a></span>, <span><a href="class/Source/Shape.js~Shape.html">Shape</a></span>, <span><a href="class/Source/Text.js~Text.html">Text</a></span></div></div>
   
   
@@ -74,7 +75,9 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Base class for all objects that
+wrap Sketch classes.</p>
+</div>
 
   
 
@@ -102,13 +105,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(object: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(object: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Return a new wrapped object for a given Sketch model object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -134,13 +138,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-get-id">id</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-get-id">id</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns the object ID of the wrapped Sketch model object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -191,18 +196,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(object: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(object: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/WrappedObject.js.html#lineNumber12">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/WrappedObject.js.html#lineNumber23">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Return a new wrapped object for a given Sketch model object.</p>
+</div>
 
   
 
@@ -218,14 +224,26 @@
       <td data-ice="name" data-depth="0">object</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The Sketch model object to wrap.</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The new wrapped object.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -250,25 +268,37 @@
     <span class="kind" data-ice="kind">get</span>
     
     
-    <span data-ice="name">id</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">id</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/WrappedObject.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/WrappedObject.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns the object ID of the wrapped Sketch model object.</p>
+</div>
 
   
 
   <div data-ice="properties">
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The id.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -294,7 +324,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/WrappedObject.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/WrappedObject.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
