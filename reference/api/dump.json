@@ -52,7 +52,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Application.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Document } from './Document.js'\nimport { Rectangle } from './Rectangle.js'\nimport { Group } from './Group.js'\nimport { Text } from './Text.js'\nimport { Image } from './Image.js'\nimport { Shape } from './Shape.js'\nimport { Artboard } from './Artboard.js'\nimport { Page } from './Page.js'\n\n/**\n    Gives you access to Sketch, and provides access to:\n    - the document model and the layer tree\n    - metadata abound sketch itself\n    - utilities for interacting with the user\n    - access to the running plugin, it's resources and settings\n*/\n\nexport class Application extends WrappedObject {\n\n    /**\n        Construct a new Application object.\n        An instance of this class will be passed back to you when you\n        initialise the API, so you generally shouldn't need to make new ones.\n\n        @param context The context dictionary passed to the script when it was invoked.\n        @return A new Application object.\n    */\n\n    constructor(context) {\n      super(context)\n      this.metadata = MSApplicationMetadata.metadata()\n\n      // this is a slightly clumsy way to pass related classes into Layer\n      // without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)\n      // there has to be a better way to do this...\n      this.factory = {\n        \"Group\" : Group,\n        \"Page\" : Page,\n        \"Artboard\" : Artboard,\n        \"Shape\" : Shape,\n        \"Image\" : Image,\n        \"Text\" : Text\n      }\n    }\n\n    /**\n        The version of this API.\n\n        @return A version string.\n    */\n\n    get api_version() {\n      return \"1.1\"\n    }\n\n    /**\n        The context that the API was created in.\n        This is the traditional context argument that is\n        passed to all plugin scripts when they are run.\n\n        In general you should use the API to access Sketch\n        rather than interacting with the context directly.\n\n        @return A context dictionary.\n    */\n\n    get context() {\n      return this.object\n    }\n\n\n    /**\n        The version of Sketch that is running.\n\n        @return The version as a string, eg \"3.6\".\n    */\n\n    get version() {\n      return this.metadata['appVersion']\n    }\n\n    /**\n        The exact build of Sketch that is running.\n\n        @return The build number as a string, eg \"15352\".\n    */\n\n    get build() {\n      return this.metadata['build']\n    }\n\n    /**\n        Returns the full version of Sketch that is running\n\n        @return {string} Version and build number as a string, eg \"3.6 (15352)\".\n    */\n\n    get full_version() {\n      return this.version + \" (\" + this.build + \")\"\n    }\n\n    /**\n        Return the value of a global setting for a given key.\n        @param key The setting to look up.\n        @return The setting value.\n\n        This is equivalent to reading a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults read com.bohemiancoding.sketch3 <key>\n    */\n\n    settingForKey(key) {\n      return NSUserDefaults.standardUserDefaults().objectForKey_(key);\n    }\n\n    /**\n        Set the value of a global setting for a given key.\n\n        @param key The setting to set.\n        @param value The value to set it to.\n\n        This is equivalent to writing a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults write com.bohemiancoding.sketch3 <key> <value>\n    */\n\n    setSettingForKey(key, value) {\n      NSUserDefaults.standardUserDefaults().setObject_forKey_(value, key)\n    }\n\n    /**\n        Return a file URL pointing to a named resource in the plugin's Resources/\n        folder.\n\n        @param name The resource file name, including any file extension.\n        @return The resource location, in the form \"file://path/to/resource\".\n    */\n\n    resourceNamed(name) {\n      return this.object.plugin.urlForResourceNamed_(name)\n    }\n\n    /**\n        Shows a simple input sheet which displays a message, and asks for a single string\n        input.\n        @param msg The prompt message to show.\n        @param initial The initial value of the input string.\n        @return The string that the user input.\n    */\n\n    getStringFromUser(msg, initial) {\n        var panel = MSModalInputSheet.alloc().init()\n        var result = panel.runPanelWithNibName_ofType_initialString_label_(\"MSModalInputSheet\", 0, initial, msg)\n        return result\n    }\n\n    /**\n        Shows an input sheet which displays a popup with a series of options,\n        from which the user is asked to choose.\n\n        @param msg The prompt message to show.\n        @param items A list of option items.\n        @param selectedItemIndex The index of the item to select initially.\n        @return An array with two items: [responseCode, selection].\n\n        The result consists of a response code and a selection. The code will be\n        one of NSAlertFirstButtonReturn or NSAlertSecondButtonReturn.\n        The selection will be the integer index of the selected item.\n    */\n\n    getSelectionFromUser(msg, items, selectedItemIndex) {\n      selectedItemIndex = selectedItemIndex || 0\n\n      var accessory = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25))\n      accessory.addItemsWithObjectValues(items)\n      accessory.selectItemAtIndex(selectedItemIndex)\n\n      var alert = NSAlert.alloc().init()\n      alert.setMessageText(msg)\n      alert.addButtonWithTitle('OK')\n      alert.addButtonWithTitle('Cancel')\n      alert.setAccessoryView(accessory)\n\n      var responseCode = alert.runModal()\n      var sel = accessory.indexOfSelectedItem()\n\n      return [responseCode, sel]\n    }\n\n    /**\n        Output a message to the log console.\n\n        @param {string} message The message to output.\n    */\n\n    log(message) {\n      print(message)\n    }\n\n    /**\n        Assert that a given condition is true.\n        If the condition is false, throws an exception.\n\n        @param condition An expression that is expected to evaluate to true if everything is ok.\n    */\n\n    assert(condition) {\n      if (!condition) {\n          throw \"Assert failed!\"\n      }\n    }\n\n    /**\n        The selected document.\n\n        If the user invoked the script explicitly (for example by selecting a menu item),\n        this will be the document that they were working in at the time - ie the frontmost one.\n        If the script was invoked as an action handler, this will be the document that the action\n        occurred in.\n\n        @return A Document object.\n    */\n\n    get selectedDocument() {\n      return new Document(this.object.document, this)\n    }\n\n\n    /**\n        Create a new document and bring it to the front.\n        @return The new document.\n    */\n\n    newDocument() {\n      var app = NSDocumentController.sharedDocumentController()\n      app.newDocument_(this)\n      return new Document(app.currentDocument(), this)\n\n    }\n\n    /**\n        Show a small, temporary, message to the user.\n        The message appears at the bottom of the selected document,\n        and is visible for a short period of time. It should consist of a single\n        line of text.\n\n        @param {string} message The message to show.\n    */\n\n    message(message) {\n      this.object.document.showMessage(message)\n    }\n\n    /**\n        Show an alert with a custom title and message.\n\n        @param {string} title The title of the alert.\n        @param {string} message The text of the message.\n\n        The alert is modal, so it will stay around until the user dismisses it\n        by pressing the OK button.\n    */\n\n    alert(title, message) {\n      var app = NSApplication.sharedApplication()\n      app.displayDialog_withTitle(title, message)\n    }\n\n    /**\n        Return a new Rectangle object for a given x,y, width and height.\n\n        @param {number} x The x coordinate of the top-left corner of the rectangle.\n        @param {number} y The y coordinate of the top-left corner of the rectangle.\n        @param {number} width The width of the rectangle.\n        @param {number} height The height of the rectangle.\n        @return The new Rectangle object.\n    */\n\n    rectangle(x, y, width, height) {\n      return new Rectangle(x, y, width, height)\n    }\n}\n"
+    "content": "// ********************************\n// # Application.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Document } from './Document.js'\nimport { Rectangle } from './Rectangle.js'\nimport { Group } from './Group.js'\nimport { Text } from './Text.js'\nimport { Image } from './Image.js'\nimport { Shape } from './Shape.js'\nimport { Artboard } from './Artboard.js'\nimport { Page } from './Page.js'\n\n/**\n    Gives you access to Sketch, and provides access to:\n    - the document model and the layer tree\n    - metadata abound sketch itself\n    - utilities for interacting with the user\n    - access to the running plugin, it's resources and settings\n*/\n\nexport class Application extends WrappedObject {\n\n    /**\n        Construct a new Application object.\n        An instance of this class will be passed back to you when you\n        initialise the API, so you generally shouldn't need to make new ones.\n\n        @param context The context dictionary passed to the script when it was invoked.\n        @return A new Application object.\n    */\n\n    constructor(context) {\n      super(context)\n\n      /**\n        Metadata about this version of Sketch.\n        @type {dictionary}\n      */\n      this._metadata = MSApplicationMetadata._metadata()\n\n\n      /**\n        This is a slightly clumsy way to pass related classes into Layer\n        without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)\n        there has to be a better way to do this...\n\n        @type {dictionary}\n      */\n\n      this.factory = {\n        \"Group\" : Group,\n        \"Page\" : Page,\n        \"Artboard\" : Artboard,\n        \"Shape\" : Shape,\n        \"Image\" : Image,\n        \"Text\" : Text\n      }\n    }\n\n    /**\n        The version of this API.\n\n        @return A version string.\n    */\n\n    get api_version() {\n      return \"1.1\"\n    }\n\n    /**\n        The context that the API was created in.\n        This is the traditional context argument that is\n        passed to all plugin scripts when they are run.\n\n        In general you should use the API to access Sketch\n        rather than interacting with the context directly.\n\n        @return A context dictionary.\n    */\n\n    get context() {\n      return this._object\n    }\n\n\n    /**\n        The version of Sketch that is running.\n\n        @return The version as a string, eg \"3.6\".\n    */\n\n    get version() {\n      return this._metadata['appVersion']\n    }\n\n    /**\n        The exact build of Sketch that is running.\n\n        @return The build number as a string, eg \"15352\".\n    */\n\n    get build() {\n      return this._metadata['build']\n    }\n\n    /**\n        Returns the full version of Sketch that is running\n\n        @return {string} Version and build number as a string, eg \"3.6 (15352)\".\n    */\n\n    get full_version() {\n      return this.version + \" (\" + this.build + \")\"\n    }\n\n    /**\n        Return the value of a global setting for a given key.\n        @param key The setting to look up.\n        @return The setting value.\n\n        This is equivalent to reading a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults read com.bohemiancoding.sketch3 <key>\n    */\n\n    settingForKey(key) {\n      return NSUserDefaults.standardUserDefaults()._objectForKey_(key);\n    }\n\n    /**\n        Set the value of a global setting for a given key.\n\n        @param key The setting to set.\n        @param value The value to set it to.\n\n        This is equivalent to writing a setting for the currently\n        running version of Sketch using the `defaults` command line tool,\n        eg: defaults write com.bohemiancoding.sketch3 <key> <value>\n    */\n\n    setSettingForKey(key, value) {\n      NSUserDefaults.standardUserDefaults().setObject_forKey_(value, key)\n    }\n\n    /**\n        Return a file URL pointing to a named resource in the plugin's Resources/\n        folder.\n\n        @param name The resource file name, including any file extension.\n        @return The resource location, in the form \"file://path/to/resource\".\n    */\n\n    resourceNamed(name) {\n      return this._object.plugin.urlForResourceNamed_(name)\n    }\n\n    /**\n        Shows a simple input sheet which displays a message, and asks for a single string\n        input.\n        @param msg The prompt message to show.\n        @param initial The initial value of the input string.\n        @return The string that the user input.\n    */\n\n    getStringFromUser(msg, initial) {\n        var panel = MSModalInputSheet.alloc().init()\n        var result = panel.runPanelWithNibName_ofType_initialString_label_(\"MSModalInputSheet\", 0, initial, msg)\n        return result\n    }\n\n    /**\n        Shows an input sheet which displays a popup with a series of options,\n        from which the user is asked to choose.\n\n        @param msg The prompt message to show.\n        @param items A list of option items.\n        @param selectedItemIndex The index of the item to select initially.\n        @return An array with two items: [responseCode, selection].\n\n        The result consists of a response code and a selection. The code will be\n        one of NSAlertFirstButtonReturn or NSAlertSecondButtonReturn.\n        The selection will be the integer index of the selected item.\n    */\n\n    getSelectionFromUser(msg, items, selectedItemIndex) {\n      selectedItemIndex = selectedItemIndex || 0\n\n      var accessory = NSComboBox.alloc().initWithFrame(NSMakeRect(0,0,200,25))\n      accessory.addItemsWithObjectValues(items)\n      accessory.selectItemAtIndex(selectedItemIndex)\n\n      var alert = NSAlert.alloc().init()\n      alert.setMessageText(msg)\n      alert.addButtonWithTitle('OK')\n      alert.addButtonWithTitle('Cancel')\n      alert.setAccessoryView(accessory)\n\n      var responseCode = alert.runModal()\n      var sel = accessory.indexOfSelectedItem()\n\n      return [responseCode, sel]\n    }\n\n    /**\n        Output a message to the log console.\n\n        @param {string} message The message to output.\n    */\n\n    log(message) {\n      print(message)\n    }\n\n    /**\n        Assert that a given condition is true.\n        If the condition is false, throws an exception.\n\n        @param condition An expression that is expected to evaluate to true if everything is ok.\n    */\n\n    assert(condition) {\n      if (!condition) {\n          throw \"Assert failed!\"\n      }\n    }\n\n    /**\n        The selected document.\n\n        If the user invoked the script explicitly (for example by selecting a menu item),\n        this will be the document that they were working in at the time - ie the frontmost one.\n        If the script was invoked as an action handler, this will be the document that the action\n        occurred in.\n\n        @return A Document object.\n    */\n\n    get selectedDocument() {\n      return new Document(this._object._document, this)\n    }\n\n\n    /**\n        Create a new document and bring it to the front.\n        @return The new document.\n    */\n\n    newDocument() {\n      var app = NSDocumentController.sharedDocumentController()\n      app.newDocument_(this)\n      return new Document(app.currentDocument(), this)\n\n    }\n\n    /**\n        Show a small, temporary, message to the user.\n        The message appears at the bottom of the selected document,\n        and is visible for a short period of time. It should consist of a single\n        line of text.\n\n        @param {string} message The message to show.\n    */\n\n    message(message) {\n      this._object._document.showMessage(message)\n    }\n\n    /**\n        Show an alert with a custom title and message.\n\n        @param {string} title The title of the alert.\n        @param {string} message The text of the message.\n\n        The alert is modal, so it will stay around until the user dismisses it\n        by pressing the OK button.\n    */\n\n    alert(title, message) {\n      var app = NSApplication.sharedApplication()\n      app.displayDialog_withTitle(title, message)\n    }\n\n    /**\n        Return a new Rectangle object for a given x,y, width and height.\n\n        @param {number} x The x coordinate of the top-left corner of the rectangle.\n        @param {number} y The y coordinate of the top-left corner of the rectangle.\n        @param {number} width The width of the rectangle.\n        @param {number} height The height of the rectangle.\n        @return The new Rectangle object.\n    */\n\n    rectangle(x, y, width, height) {\n      return new Rectangle(x, y, width, height)\n    }\n}\n"
   },
   {
     "__docId__": 3,
@@ -111,17 +111,19 @@
     "kind": "member",
     "static": false,
     "variation": null,
-    "name": "metadata",
+    "name": "_metadata",
     "memberof": "Source/Application.js~Application",
-    "longname": "Source/Application.js~Application#metadata",
+    "longname": "Source/Application.js~Application#_metadata",
     "access": null,
-    "description": null,
-    "lineNumber": 39,
-    "undocument": true,
+    "description": "Metadata about this version of Sketch.",
+    "lineNumber": 44,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "dictionary"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -133,13 +135,15 @@
     "memberof": "Source/Application.js~Application",
     "longname": "Source/Application.js~Application#factory",
     "access": null,
-    "description": null,
-    "lineNumber": 44,
-    "undocument": true,
+    "description": "This is a slightly clumsy way to pass related classes into Layer\nwithout setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)\nthere has to be a better way to do this...",
+    "lineNumber": 55,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "dictionary"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -152,7 +156,7 @@
     "longname": "Source/Application.js~Application#api_version",
     "access": null,
     "description": "The version of this API.",
-    "lineNumber": 60,
+    "lineNumber": 71,
     "return": {
       "nullable": null,
       "types": [
@@ -178,7 +182,7 @@
     "longname": "Source/Application.js~Application#context",
     "access": null,
     "description": "The context that the API was created in.\nThis is the traditional context argument that is\npassed to all plugin scripts when they are run.\n\nIn general you should use the API to access Sketch\nrather than interacting with the context directly.",
-    "lineNumber": 75,
+    "lineNumber": 86,
     "return": {
       "nullable": null,
       "types": [
@@ -204,7 +208,7 @@
     "longname": "Source/Application.js~Application#version",
     "access": null,
     "description": "The version of Sketch that is running.",
-    "lineNumber": 86,
+    "lineNumber": 97,
     "return": {
       "nullable": null,
       "types": [
@@ -230,7 +234,7 @@
     "longname": "Source/Application.js~Application#build",
     "access": null,
     "description": "The exact build of Sketch that is running.",
-    "lineNumber": 96,
+    "lineNumber": 107,
     "return": {
       "nullable": null,
       "types": [
@@ -256,7 +260,7 @@
     "longname": "Source/Application.js~Application#full_version",
     "access": null,
     "description": "Returns the full version of Sketch that is running",
-    "lineNumber": 106,
+    "lineNumber": 117,
     "return": {
       "nullable": null,
       "types": [
@@ -282,7 +286,7 @@
     "longname": "Source/Application.js~Application#settingForKey",
     "access": null,
     "description": "Return the value of a global setting for a given key.",
-    "lineNumber": 120,
+    "lineNumber": 131,
     "params": [
       {
         "nullable": null,
@@ -315,7 +319,7 @@
     "longname": "Source/Application.js~Application#setSettingForKey",
     "access": null,
     "description": "Set the value of a global setting for a given key.",
-    "lineNumber": 135,
+    "lineNumber": 146,
     "params": [
       {
         "nullable": null,
@@ -350,7 +354,7 @@
     "longname": "Source/Application.js~Application#resourceNamed",
     "access": null,
     "description": "Return a file URL pointing to a named resource in the plugin's Resources/\nfolder.",
-    "lineNumber": 147,
+    "lineNumber": 158,
     "params": [
       {
         "nullable": null,
@@ -383,7 +387,7 @@
     "longname": "Source/Application.js~Application#getStringFromUser",
     "access": null,
     "description": "Shows a simple input sheet which displays a message, and asks for a single string\ninput.",
-    "lineNumber": 159,
+    "lineNumber": 170,
     "params": [
       {
         "nullable": null,
@@ -426,7 +430,7 @@
     "longname": "Source/Application.js~Application#getSelectionFromUser",
     "access": null,
     "description": "Shows an input sheet which displays a popup with a series of options,\nfrom which the user is asked to choose.",
-    "lineNumber": 179,
+    "lineNumber": 190,
     "params": [
       {
         "nullable": null,
@@ -479,7 +483,7 @@
     "longname": "Source/Application.js~Application#log",
     "access": null,
     "description": "Output a message to the log console.",
-    "lineNumber": 204,
+    "lineNumber": 215,
     "params": [
       {
         "nullable": null,
@@ -504,7 +508,7 @@
     "longname": "Source/Application.js~Application#assert",
     "access": null,
     "description": "Assert that a given condition is true.\nIf the condition is false, throws an exception.",
-    "lineNumber": 215,
+    "lineNumber": 226,
     "params": [
       {
         "nullable": null,
@@ -529,7 +533,7 @@
     "longname": "Source/Application.js~Application#selectedDocument",
     "access": null,
     "description": "The selected document.\n\nIf the user invoked the script explicitly (for example by selecting a menu item),\nthis will be the document that they were working in at the time - ie the frontmost one.\nIf the script was invoked as an action handler, this will be the document that the action\noccurred in.",
-    "lineNumber": 232,
+    "lineNumber": 243,
     "return": {
       "nullable": null,
       "types": [
@@ -555,7 +559,7 @@
     "longname": "Source/Application.js~Application#newDocument",
     "access": null,
     "description": "Create a new document and bring it to the front.",
-    "lineNumber": 242,
+    "lineNumber": 253,
     "params": [],
     "return": {
       "nullable": null,
@@ -577,7 +581,7 @@
     "longname": "Source/Application.js~Application#message",
     "access": null,
     "description": "Show a small, temporary, message to the user.\nThe message appears at the bottom of the selected document,\nand is visible for a short period of time. It should consist of a single\nline of text.",
-    "lineNumber": 258,
+    "lineNumber": 269,
     "params": [
       {
         "nullable": null,
@@ -602,7 +606,7 @@
     "longname": "Source/Application.js~Application#alert",
     "access": null,
     "description": "Show an alert with a custom title and message.",
-    "lineNumber": 272,
+    "lineNumber": 283,
     "params": [
       {
         "nullable": null,
@@ -637,7 +641,7 @@
     "longname": "Source/Application.js~Application#rectangle",
     "access": null,
     "description": "Return a new Rectangle object for a given x,y, width and height.",
-    "lineNumber": 287,
+    "lineNumber": 298,
     "params": [
       {
         "nullable": null,
@@ -794,7 +798,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Document.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\nimport { Page } from './Page.js'\nimport { Selection } from './Selection.js'\n\n/**\n    A Sketch document.\n*/\n\nexport class Document extends WrappedObject {\n    /**\n        Make a new document object.\n\n        @param {MSDocument} document The underlying MSDocument object.\n        @param {Application} application The application object.\n\n        Note that constructing one of these doesn't actually create\n        a Sketch document. Instead you pass in the underlying MSDocument\n        that this object represents.\n\n        If you do want to create a new document, you can do so with Application#newDocument.\n    */\n\n    constructor(document, application) {\n      super(document)\n      this.application = application\n    }\n\n    /**\n        The layers that the user has selected.\n\n        @return {Selection} A selection object representing the layers that the user has selected.\n    */\n\n    get selectedLayers() {\n      return new Selection(this.object);\n    }\n\n    /**\n      The current page that the user has selected.\n\n      @return {Page} A page object representing the page that the user is currently viewing.\n    */\n\n    get selectedPage() {\n      print(this.object)\n      return new Page(this.object.currentPage(), this)\n    }\n\n    /**\n      Returns a list of the pages in this document.\n\n      @return {list} The pages.\n    */\n\n    get pages() {\n      var result = [];\n      var loop = this.object.pages().objectEnumerator()\n      var item;\n      while (item = loop.nextObject()) {\n        result.push(new Page(item, this));\n      }\n      return result;\n    }\n\n    /**\n      Find the first layer in this document which has the given id.\n\n      @return {Layer} A layer object, if one was found.\n    */\n\n    layerWithID(layer_id) {\n      var layer = this.object.documentData().layerWithID_(layer_id);\n      if (layer)\n        return new Layer(layer, this);\n    }\n\n    /**\n      Find the first layer in this document which has the given name.\n\n      @return {Layer} A layer object, if one was found.\n    */\n\n    layerNamed(layer_name) {\n      // As it happens, layerWithID also matches names, so we can implement\n      // this method in the same way as layerWithID.\n      // That might not always be true though, which is why the JS API splits\n      // them into separate functions.\n\n      var layer = this.object.documentData().layerWithID_(layer_name);\n      if (layer)\n        return new Layer(layer, this);\n    }\n}\n"
+    "content": "// ********************************\n// # Document.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\nimport { Page } from './Page.js'\nimport { Selection } from './Selection.js'\n\n/**\n    A Sketch document.\n*/\n\nexport class Document extends WrappedObject {\n    /**\n        Make a new document object.\n\n        @param {MSDocument} document The underlying MSDocument object.\n        @param {Application} application The application object.\n\n        Note that constructing one of these doesn't actually create\n        a Sketch document. Instead you pass in the underlying MSDocument\n        that this object represents.\n\n        If you do want to create a new document, you can do so with Application#newDocument.\n    */\n\n    constructor(document, application) {\n      super(document)\n\n      /**\n        The application that this document belongs to.\n\n        @type {Application}\n      */\n\n      this._application = application\n    }\n\n    /**\n        The layers that the user has selected.\n\n        @return {Selection} A selection object representing the layers that the user has selected.\n    */\n\n    get selectedLayers() {\n      return new Selection(this._object);\n    }\n\n    /**\n      The current page that the user has selected.\n\n      @return {Page} A page object representing the page that the user is currently viewing.\n    */\n\n    get selectedPage() {\n      print(this._object)\n      return new Page(this._object.currentPage(), this)\n    }\n\n    /**\n      Returns a list of the pages in this document.\n\n      @return {list} The pages.\n    */\n\n    get pages() {\n      var result = [];\n      var loop = this._object.pages()._objectEnumerator()\n      var item;\n      while (item = loop.nextObject()) {\n        result.push(new Page(item, this));\n      }\n      return result;\n    }\n\n    /**\n      Find the first layer in this document which has the given id.\n\n      @return {Layer} A layer object, if one was found.\n    */\n\n    layerWithID(layer_id) {\n      var layer = this._object._documentData().layerWithID_(layer_id);\n      if (layer)\n        return new Layer(layer, this);\n    }\n\n    /**\n      Find the first layer in this document which has the given name.\n\n      @return {Layer} A layer object, if one was found.\n    */\n\n    layerNamed(layer_name) {\n      // As it happens, layerWithID also matches names, so we can implement\n      // this method in the same way as layerWithID.\n      // That might not always be true though, which is why the JS API splits\n      // them into separate functions.\n\n      var layer = this._object._documentData().layerWithID_(layer_name);\n      if (layer)\n        return new Layer(layer, this);\n    }\n}\n"
   },
   {
     "__docId__": 29,
@@ -855,17 +859,19 @@
     "kind": "member",
     "static": false,
     "variation": null,
-    "name": "application",
+    "name": "_application",
     "memberof": "Source/Document.js~Document",
-    "longname": "Source/Document.js~Document#application",
+    "longname": "Source/Document.js~Document#_application",
     "access": null,
-    "description": null,
-    "lineNumber": 33,
-    "undocument": true,
+    "description": "The application that this document belongs to.",
+    "lineNumber": 40,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Application"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -878,7 +884,7 @@
     "longname": "Source/Document.js~Document#selectedLayers",
     "access": null,
     "description": "The layers that the user has selected.",
-    "lineNumber": 42,
+    "lineNumber": 49,
     "return": {
       "nullable": null,
       "types": [
@@ -904,7 +910,7 @@
     "longname": "Source/Document.js~Document#selectedPage",
     "access": null,
     "description": "The current page that the user has selected.",
-    "lineNumber": 52,
+    "lineNumber": 59,
     "return": {
       "nullable": null,
       "types": [
@@ -930,7 +936,7 @@
     "longname": "Source/Document.js~Document#pages",
     "access": null,
     "description": "Returns a list of the pages in this document.",
-    "lineNumber": 63,
+    "lineNumber": 70,
     "return": {
       "nullable": null,
       "types": [
@@ -956,7 +962,7 @@
     "longname": "Source/Document.js~Document#layerWithID",
     "access": null,
     "description": "Find the first layer in this document which has the given id.",
-    "lineNumber": 79,
+    "lineNumber": 86,
     "params": [
       {
         "name": "layer_id",
@@ -985,7 +991,7 @@
     "longname": "Source/Document.js~Document#layerNamed",
     "access": null,
     "description": "Find the first layer in this document which has the given name.",
-    "lineNumber": 91,
+    "lineNumber": 98,
     "params": [
       {
         "name": "layer_name",
@@ -1015,7 +1021,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Group.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a group of layers.\n */\n\nexport class Group extends Layer {\n\n    /**\n      Make a new group object.\n\n      @param group {MSLayerGroup} The underlying model object from Sketch.\n      @param document The document that the group belongs to.\n    */\n\n    constructor(group, document) {\n      super(group, document)\n    }\n\n    /**\n        Is this an group?\n\n        All Layer objects respond to this method, but only Groups or things that inherit from groups return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    is_group() {\n      return true;\n    }\n\n}\n"
+    "content": "// ********************************\n// # Group.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a group of layers.\n */\n\nexport class Group extends Layer {\n\n    /**\n      Make a new group object.\n\n      @param group {MSLayerGroup} The underlying model object from Sketch.\n      @param document The document that the group belongs to.\n    */\n\n    constructor(group, document) {\n      super(group, document)\n    }\n\n    /**\n        Is this an group?\n\n        All Layer objects respond to this method, but only Groups or things that inherit from groups return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    is_group() {\n      return true;\n    }\n\n}\n"
   },
   {
     "__docId__": 38,
@@ -1086,10 +1092,10 @@
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Group, false for any other layer type."
     },
     "generator": false
   },
@@ -1104,7 +1110,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Image.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents an image layer.\n */\n\nexport class Image extends Layer {\n\n  /**\n    Make a new image layer object.\n\n    @param layer {MSBitmapLayer} The underlying model object from Sketch.\n    @param document The document that the bitmap layer belongs to.\n  */\n\n  constructor(layer, document) {\n    super(layer, document)\n  }\n\n  /**\n      Is this an image layer?\n\n      All Layer objects respond to this method, but only image layers return true.\n\n      @return true {bool} for instances of Group, false for any other layer type.\n  */\n\n  get isImage() {\n    return true;\n  }\n\n  set imageURL(url) {\n    var image = NSImage.alloc().initWithContentsOfURL_(url)\n    var imageData = MSImageData.alloc().initWithImage_convertColorSpace_(image, true)\n    this.object.setImage_(imageData)\n  }\n}\n"
+    "content": "// ********************************\n// # Image.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents an image layer.\n */\n\nexport class Image extends Layer {\n\n  /**\n    Make a new image layer object.\n\n    @param {MSBitmapLayer} layer The underlying model object from Sketch.\n    @param {Document} document The document that the bitmap layer belongs to.\n  */\n\n  constructor(layer, document) {\n    super(layer, document)\n  }\n\n  /**\n      Is this an image layer?\n\n      All Layer objects respond to this method, but only image layers return true.\n\n      @return {bool} true for instances of Image, false for any other layer type.\n  */\n\n  get isImage() {\n    return true;\n  }\n\n  /**\n    Set the layer's image to the contents of the image file at a given URL.\n\n    @param {NSURL} url The location of the image to use.\n  */\n\n  set imageURL(url) {\n    var image = NSImage.alloc().initWithContentsOfURL_(url)\n    var imageData = MSImageData.alloc().initWithImage_convertColorSpace_(image, true)\n    this._object.setImage_(imageData)\n  }\n}\n"
   },
   {
     "__docId__": 42,
@@ -1140,17 +1146,17 @@
       {
         "nullable": null,
         "types": [
-          "*"
+          "MSBitmapLayer"
         ],
         "spread": false,
         "optional": false,
         "name": "layer",
-        "description": "{MSBitmapLayer} The underlying model object from Sketch."
+        "description": "The underlying model object from Sketch."
       },
       {
         "nullable": null,
         "types": [
-          "*"
+          "Document"
         ],
         "spread": false,
         "optional": false,
@@ -1174,10 +1180,10 @@
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Image, false for any other layer type."
     },
     "type": {
       "types": [
@@ -1195,9 +1201,20 @@
     "memberof": "Source/Image.js~Image",
     "longname": "Source/Image.js~Image#imageURL",
     "access": null,
-    "description": null,
-    "lineNumber": 39,
-    "undocument": true,
+    "description": "Set the layer's image to the contents of the image file at a given URL.",
+    "lineNumber": 45,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "NSURL"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": "The location of the image to use."
+      }
+    ],
     "type": {
       "types": [
         "*"
@@ -1216,7 +1233,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Layer.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Rectangle } from './Rectangle.js'\n\n/**\n  Represents a Sketch layer.\n */\n\nexport class Layer extends WrappedObject {\n\n    /**\n      Make a new layer object.\n\n      @param layer {MSLayer} The underlying model object from Sketch.\n      @param document The document that the layer belongs to.\n    */\n\n    constructor(layer, document) {\n      super(layer)\n      this.document = document\n    }\n\n    get name() {\n      return this.object.name();\n    }\n\n    set name(value) {\n      this.object.setName_(value);\n    }\n\n    get frame() {\n      var f = this.object.frame();\n      return new Rectangle(f.x(), f.y(), f.width(), f.height());\n    }\n\n    set frame(value) {\n      var f = this.object.frame();\n      f.setRect_(NSMakeRect(value.x, value.y, value.width, value.height));\n    }\n\n    duplicate() {\n      return new Layer(this.object.duplicate(), this.document);\n    }\n\n    /**\n        Is this a page?\n\n        All Layer objects respond to this method, but only pages return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isPage() { return false; }\n\n    /**\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    */\n\n    get isArtboard() { return false; }\n\n    /**\n        Is this an group?\n\n        All Layer objects respond to this method, but only Groups or things that inherit from groups return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isGroup() { return false; }\n\n    /**\n        Is this a text layer?\n\n        All Layer objects respond to this method, but only text layers return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isText() { return false; }\n\n    /**\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isShape() { return false; }\n\n    /**\n        Is this an image layer?\n\n        All Layer objects respond to this method, but only image layers return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isImage() { return false; }\n\n    addWrappedLayerWithProperties(newLayer, properties, wrapper) {\n      if (newLayer) {\n        // add the Sketch object to this layer\n        var layer = this.object\n        layer.addLayers_(NSArray.arrayWithObject_(newLayer))\n\n        // make a Javascript wrapper object for the new layer\n        var wrapperToMake = this.document.application.factory[wrapper]\n        var wrapper = new wrapperToMake(newLayer, this.document)\n\n        // apply properties, via the wrapper\n        for (var p in properties) {\n          wrapper[p] = properties[p]\n        }\n\n        return wrapper\n      }\n    }\n\n    frameForLayerWithProperties(properties) {\n      var frame = properties.frame\n      if (frame) {\n        delete properties[\"frame\"]\n      } else {\n        frame = new Rectangle(0, 0, 100, 100)\n      }\n      return frame\n    }\n\n    newShape(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSShapeGroup.shapeWithBezierPath_(NSBezierPath.bezierPathWithRect_(frame.asCGRect()));\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Shape\");\n    }\n\n    newText(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSTextLayer.alloc().initWithFrame_(frame.asCGRect());\n      newLayer.adjustFrameToFit();\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Text\");\n    }\n\n    newGroup(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSLayerGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Group\");\n    }\n\n    newArtboard(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSArtboardGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Artboard\");\n    }\n\n    newImage(properties) {\n      var frame = this.frameForLayerWithProperties(properties)\n      var newLayer = MSBitmapLayer.alloc().initWithFrame_(frame.asCGRect());\n      return this.addWrappedLayerWithProperties(newLayer, properties, \"Image\");\n    }\n\n    remove() {\n      var parent = this.object.parentGroup();\n      if (parent) {\n        parent.removeLayer_(this.object);\n      }\n    }\n\n    select() {\n      this.object.select_byExpandingSelection(true, false);\n    }\n\n    deselect() {\n      this.object.select_byExpandingSelection(false, true);\n    }\n\n    addToSelection() {\n      this.object.select_byExpandingSelection(true, true);\n    }\n\n    iterate(block) {\n      var loop = this.object().layers().objectEnumerator();\n      while (item = loop.nextObject()) {\n        block(new Layer(item, this.document));\n      }\n    }\n}\n"
+    "content": "// ********************************\n// # Layer.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Rectangle } from './Rectangle.js'\n\n/**\n  Represents a Sketch layer.\n */\n\nexport class Layer extends WrappedObject {\n\n    /**\n      Make a new layer object.\n\n      @param {MSLayer} layer The underlying model object from Sketch.\n      @param {Document} document The document that the layer belongs to.\n    */\n\n    constructor(layer, document) {\n      super(layer)\n\n      /** @type {Document} The document that this layer belongs to. */\n      this._document = document\n    }\n\n    /**\n      The name of the layer.\n\n      @return {string} The layer's name.\n    */\n\n    get name() {\n      return this._object.name();\n    }\n\n    /**\n      Set the name of the layer.\n\n      @param {string} name The new name.\n    */\n\n    set name(value) {\n      this._object.setName_(value);\n    }\n\n    /**\n      The frame of the layer.\n      This is given in coordinates that are local to the parent of the layer.\n\n      @return {Rectangle} The layer's frame.\n    */\n\n    get frame() {\n      var f = this._object.frame();\n      return new Rectangle(f.x(), f.y(), f.width(), f.height());\n    }\n\n    /**\n      Set the frame of the layer.\n      This will move and/or resize the layer as appropriate.\n      The new frame should be given in coordinates that are local to the parent of the layer.\n\n      @param {Rectangle} frame - The new frame of the layer.\n    */\n\n    set frame(value) {\n      var f = this._object.frame();\n      f.setRect_(NSMakeRect(value.x, value.y, value.width, value.height));\n    }\n\n    /**\n      Duplicate this layer.\n      A new identical layer will be inserted into the parent of this layer.\n\n      @return {Layer} A new layer identical to this one.\n    */\n\n    duplicate() {\n      return new Layer(this._object.duplicate(), this._document);\n    }\n\n    /**\n        Is this a page?\n\n        All Layer objects respond to this method, but only pages return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isPage() { return false; }\n\n    /**\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    */\n\n    get isArtboard() { return false; }\n\n    /**\n        Is this an group?\n\n        All Layer objects respond to this method, but only Groups or things that inherit from groups return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isGroup() { return false; }\n\n    /**\n        Is this a text layer?\n\n        All Layer objects respond to this method, but only text layers return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isText() { return false; }\n\n    /**\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isShape() { return false; }\n\n    /**\n        Is this an image layer?\n\n        All Layer objects respond to this method, but only image layers return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isImage() { return false; }\n\n    /**\n      Add a new wrapped layer object to represent a Sketch layer.\n      Apply any supplied properties to the wrapper (which will apply\n      them in turn to the wrapped layer).\n\n      @param {MSLayer} newLayer The underlying Sketch layer object.\n      @param {dictionary} properties The properties to apply.\n      @param {string} wrapper The name of wrapper class to use.\n      @return {Layer} The wrapped layer object.\n    */\n\n    _addWrappedLayerWithProperties(newLayer, properties, wrapper) {\n      if (newLayer) {\n        // add the Sketch object to this layer\n        var layer = this._object\n        layer.addLayers_(NSArray.arrayWithObject_(newLayer))\n\n        // make a Javascript wrapper object for the new layer\n        var wrapperToMake = this._document._application.factory[wrapper]\n        var wrapper = new wrapperToMake(newLayer, this._document)\n\n        // apply properties, via the wrapper\n        for (var p in properties) {\n          wrapper[p] = properties[p]\n        }\n\n        return wrapper\n      }\n    }\n\n    /**\n      Extract the frame to use for a layer from some properties.\n      If the frame wasn't supplied in the properties, we return a default value instead.\n\n      @param {dictionary} properties The properties to use when looking for a frame value.\n      @return {Rectangle} The frame rectangle to use.\n    */\n\n    _frameForLayerWithProperties(properties) {\n      var frame = properties.frame\n      if (frame) {\n        delete properties[\"frame\"]\n      } else {\n        frame = new Rectangle(0, 0, 100, 100)\n      }\n      return frame\n    }\n\n    /**\n        Returns a newly created shape, which has been added to this layer,\n        and sets it up using the supplied properties.\n\n        @param properties {dictionary} Properties to apply to the shape.\n        @return {Shape} the new shape.\n    */\n\n    newShape(properties) {\n      var frame = this._frameForLayerWithProperties(properties)\n      var newLayer = MSShapeGroup.shapeWithBezierPath_(NSBezierPath.bezierPathWithRect_(frame.asCGRect()));\n      return this._addWrappedLayerWithProperties(newLayer, properties, \"Shape\");\n    }\n\n    /**\n        Returns a newly created text layer, which has been added to this layer,\n        and sets it up using the supplied properties.\n\n        @param {dictionary} properties Properties to apply to the text layer.\n        @return {Text} the new text layer.\n    */\n\n    newText(properties) {\n      var frame = this._frameForLayerWithProperties(properties)\n      var newLayer = MSTextLayer.alloc().initWithFrame_(frame.asCGRect());\n      newLayer.adjustFrameToFit();\n      return this._addWrappedLayerWithProperties(newLayer, properties, \"Text\");\n    }\n\n    /**\n        Returns a newly created group, which has been added to this layer,\n        and sets it up using the supplied properties.\n\n        @param {dictionary} properties Properties to apply to the group.\n        @return {Group} the new group.\n    */\n\n    newGroup(properties) {\n      var frame = this._frameForLayerWithProperties(properties)\n      var newLayer = MSLayerGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this._addWrappedLayerWithProperties(newLayer, properties, \"Group\");\n    }\n\n\n    /**\n        Returns a newly created image layer, which has been added to this layer,\n        and sets it up using the supplied properties.\n\n        @param {dictionary} properties Properties to apply to the layer.\n        @return {Image} the new image layer.\n    */\n\n    newImage(properties) {\n      var frame = this._frameForLayerWithProperties(properties)\n      var newLayer = MSBitmapLayer.alloc().initWithFrame_(frame.asCGRect());\n      return this._addWrappedLayerWithProperties(newLayer, properties, \"Image\");\n    }\n\n    /**\n        Remove this layer from its parent.\n    */\n\n    remove() {\n      var parent = this._object.parentGroup();\n      if (parent) {\n        parent.removeLayer_(this._object);\n      }\n    }\n\n    /**\n        Select the layer.\n        This will clear the previous selection. Use addToSelection() if you wish\n        to preserve the existing selection.\n    */\n\n    select() {\n      this._object.select_byExpandingSelection(true, false);\n    }\n\n    /**\n        Deselect this layer.\n        Any other layers that were previously selected will remain selected.\n    */\n\n    deselect() {\n      this._object.select_byExpandingSelection(false, true);\n    }\n\n    /**\n        Add this layer to the selected layers.\n        Any other layers that were previously selected will remain selected.\n    */\n\n    addToSelection() {\n      this._object.select_byExpandingSelection(true, true);\n    }\n\n    /**\n        Perform a function for every sub-layer inside this one.\n        The function will be passed a single argument each time it is\n        invoked - which will be an object representing the sub-layer.\n\n        @param block {function} The function to execute for each layer.\n    */\n\n    iterate(block) {\n      var loop = this._object().layers()._objectEnumerator();\n      while (item = loop.nextObject()) {\n        block(new Layer(item, this._document));\n      }\n    }\n}\n"
   },
   {
     "__docId__": 47,
@@ -1252,17 +1269,17 @@
       {
         "nullable": null,
         "types": [
-          "*"
+          "MSLayer"
         ],
         "spread": false,
         "optional": false,
         "name": "layer",
-        "description": "{MSLayer} The underlying model object from Sketch."
+        "description": "The underlying model object from Sketch."
       },
       {
         "nullable": null,
         "types": [
-          "*"
+          "Document"
         ],
         "spread": false,
         "optional": false,
@@ -1277,17 +1294,19 @@
     "kind": "member",
     "static": false,
     "variation": null,
-    "name": "document",
+    "name": "_document",
     "memberof": "Source/Layer.js~Layer",
-    "longname": "Source/Layer.js~Layer#document",
+    "longname": "Source/Layer.js~Layer#_document",
     "access": null,
     "description": null,
-    "lineNumber": 26,
-    "undocument": true,
+    "lineNumber": 28,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Document"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -1299,9 +1318,16 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#name",
     "access": null,
-    "description": null,
-    "lineNumber": 29,
-    "undocument": true,
+    "description": "The name of the layer.",
+    "lineNumber": 37,
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": "The layer's name."
+    },
     "type": {
       "types": [
         "*"
@@ -1318,9 +1344,20 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#name",
     "access": null,
-    "description": null,
-    "lineNumber": 33,
-    "undocument": true,
+    "description": "Set the name of the layer.",
+    "lineNumber": 47,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "The new name."
+      }
+    ],
     "type": {
       "types": [
         "*"
@@ -1337,9 +1374,16 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#frame",
     "access": null,
-    "description": null,
-    "lineNumber": 37,
-    "undocument": true,
+    "description": "The frame of the layer.\nThis is given in coordinates that are local to the parent of the layer.",
+    "lineNumber": 58,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Rectangle"
+      ],
+      "spread": false,
+      "description": "The layer's frame."
+    },
     "type": {
       "types": [
         "*"
@@ -1356,9 +1400,20 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#frame",
     "access": null,
-    "description": null,
-    "lineNumber": 42,
-    "undocument": true,
+    "description": "Set the frame of the layer.\nThis will move and/or resize the layer as appropriate.\nThe new frame should be given in coordinates that are local to the parent of the layer.",
+    "lineNumber": 71,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Rectangle"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "frame",
+        "description": "The new frame of the layer."
+      }
+    ],
     "type": {
       "types": [
         "*"
@@ -1375,14 +1430,16 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#duplicate",
     "access": null,
-    "description": null,
-    "lineNumber": 47,
-    "undocument": true,
+    "description": "Duplicate this layer.\nA new identical layer will be inserted into the parent of this layer.",
+    "lineNumber": 83,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Layer"
+      ],
+      "spread": false,
+      "description": "A new layer identical to this one."
     },
     "generator": false
   },
@@ -1396,14 +1453,14 @@
     "longname": "Source/Layer.js~Layer#isPage",
     "access": null,
     "description": "Is this a page?\n\nAll Layer objects respond to this method, but only pages return true.",
-    "lineNumber": 59,
+    "lineNumber": 95,
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Group, false for any other layer type."
     },
     "type": {
       "types": [
@@ -1422,7 +1479,7 @@
     "longname": "Source/Layer.js~Layer#isArtboard",
     "access": null,
     "description": "Is this an artboard?\n\nAll Layer objects respond to this method, but only Artboard objects return true.",
-    "lineNumber": 69,
+    "lineNumber": 105,
     "return": {
       "nullable": null,
       "types": [
@@ -1448,14 +1505,14 @@
     "longname": "Source/Layer.js~Layer#isGroup",
     "access": null,
     "description": "Is this an group?\n\nAll Layer objects respond to this method, but only Groups or things that inherit from groups return true.",
-    "lineNumber": 79,
+    "lineNumber": 115,
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Group, false for any other layer type."
     },
     "type": {
       "types": [
@@ -1474,14 +1531,14 @@
     "longname": "Source/Layer.js~Layer#isText",
     "access": null,
     "description": "Is this a text layer?\n\nAll Layer objects respond to this method, but only text layers return true.",
-    "lineNumber": 89,
+    "lineNumber": 125,
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Group, false for any other layer type."
     },
     "type": {
       "types": [
@@ -1500,14 +1557,14 @@
     "longname": "Source/Layer.js~Layer#isShape",
     "access": null,
     "description": "Is this a shape layer?\n\nAll Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.",
-    "lineNumber": 99,
+    "lineNumber": 135,
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Group, false for any other layer type."
     },
     "type": {
       "types": [
@@ -1526,14 +1583,14 @@
     "longname": "Source/Layer.js~Layer#isImage",
     "access": null,
     "description": "Is this an image layer?\n\nAll Layer objects respond to this method, but only image layers return true.",
-    "lineNumber": 109,
+    "lineNumber": 145,
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Group, false for any other layer type."
     },
     "type": {
       "types": [
@@ -1547,37 +1604,51 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "addWrappedLayerWithProperties",
+    "name": "_addWrappedLayerWithProperties",
     "memberof": "Source/Layer.js~Layer",
-    "longname": "Source/Layer.js~Layer#addWrappedLayerWithProperties",
+    "longname": "Source/Layer.js~Layer#_addWrappedLayerWithProperties",
     "access": null,
-    "description": null,
-    "lineNumber": 111,
-    "undocument": true,
+    "description": "Add a new wrapped layer object to represent a Sketch layer.\nApply any supplied properties to the wrapper (which will apply\nthem in turn to the wrapped layer).",
+    "lineNumber": 158,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "MSLayer"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "newLayer",
-        "types": [
-          "*"
-        ]
+        "description": "The underlying Sketch layer object."
       },
       {
+        "nullable": null,
+        "types": [
+          "dictionary"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "properties",
-        "types": [
-          "*"
-        ]
+        "description": "The properties to apply."
       },
       {
-        "name": "wrapper",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "wrapper",
+        "description": "The name of wrapper class to use."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Layer"
+      ],
+      "spread": false,
+      "description": "The wrapped layer object."
     },
     "generator": false
   },
@@ -1586,25 +1657,31 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "frameForLayerWithProperties",
+    "name": "_frameForLayerWithProperties",
     "memberof": "Source/Layer.js~Layer",
-    "longname": "Source/Layer.js~Layer#frameForLayerWithProperties",
+    "longname": "Source/Layer.js~Layer#_frameForLayerWithProperties",
     "access": null,
-    "description": null,
-    "lineNumber": 130,
-    "undocument": true,
+    "description": "Extract the frame to use for a layer from some properties.\nIf the frame wasn't supplied in the properties, we return a default value instead.",
+    "lineNumber": 185,
     "params": [
       {
-        "name": "properties",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "dictionary"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "properties",
+        "description": "The properties to use when looking for a frame value."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Rectangle"
+      ],
+      "spread": false,
+      "description": "The frame rectangle to use."
     },
     "generator": false
   },
@@ -1617,21 +1694,27 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#newShape",
     "access": null,
-    "description": null,
-    "lineNumber": 140,
-    "undocument": true,
+    "description": "Returns a newly created shape, which has been added to this layer,\nand sets it up using the supplied properties.",
+    "lineNumber": 203,
     "params": [
       {
-        "name": "properties",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "properties",
+        "description": "{dictionary} Properties to apply to the shape."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Shape"
+      ],
+      "spread": false,
+      "description": "the new shape."
     },
     "generator": false
   },
@@ -1644,21 +1727,27 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#newText",
     "access": null,
-    "description": null,
-    "lineNumber": 146,
-    "undocument": true,
+    "description": "Returns a newly created text layer, which has been added to this layer,\nand sets it up using the supplied properties.",
+    "lineNumber": 217,
     "params": [
       {
-        "name": "properties",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "dictionary"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "properties",
+        "description": "Properties to apply to the text layer."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Text"
+      ],
+      "spread": false,
+      "description": "the new text layer."
     },
     "generator": false
   },
@@ -1671,21 +1760,27 @@
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#newGroup",
     "access": null,
-    "description": null,
-    "lineNumber": 153,
-    "undocument": true,
+    "description": "Returns a newly created group, which has been added to this layer,\nand sets it up using the supplied properties.",
+    "lineNumber": 232,
     "params": [
       {
-        "name": "properties",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "dictionary"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "properties",
+        "description": "Properties to apply to the group."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Group"
+      ],
+      "spread": false,
+      "description": "the new group."
     },
     "generator": false
   },
@@ -1694,25 +1789,31 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "newArtboard",
+    "name": "newImage",
     "memberof": "Source/Layer.js~Layer",
-    "longname": "Source/Layer.js~Layer#newArtboard",
+    "longname": "Source/Layer.js~Layer#newImage",
     "access": null,
-    "description": null,
-    "lineNumber": 159,
-    "undocument": true,
+    "description": "Returns a newly created image layer, which has been added to this layer,\nand sets it up using the supplied properties.",
+    "lineNumber": 247,
     "params": [
       {
-        "name": "properties",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "dictionary"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "properties",
+        "description": "Properties to apply to the layer."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Image"
+      ],
+      "spread": false,
+      "description": "the new image layer."
     },
     "generator": false
   },
@@ -1721,26 +1822,13 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "newImage",
+    "name": "remove",
     "memberof": "Source/Layer.js~Layer",
-    "longname": "Source/Layer.js~Layer#newImage",
+    "longname": "Source/Layer.js~Layer#remove",
     "access": null,
-    "description": null,
-    "lineNumber": 165,
-    "undocument": true,
-    "params": [
-      {
-        "name": "properties",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
+    "description": "Remove this layer from its parent.",
+    "lineNumber": 257,
+    "params": [],
     "generator": false
   },
   {
@@ -1748,13 +1836,12 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "remove",
+    "name": "select",
     "memberof": "Source/Layer.js~Layer",
-    "longname": "Source/Layer.js~Layer#remove",
+    "longname": "Source/Layer.js~Layer#select",
     "access": null,
-    "description": null,
-    "lineNumber": 171,
-    "undocument": true,
+    "description": "Select the layer.\nThis will clear the previous selection. Use addToSelection() if you wish\nto preserve the existing selection.",
+    "lineNumber": 270,
     "params": [],
     "generator": false
   },
@@ -1763,13 +1850,12 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "select",
+    "name": "deselect",
     "memberof": "Source/Layer.js~Layer",
-    "longname": "Source/Layer.js~Layer#select",
+    "longname": "Source/Layer.js~Layer#deselect",
     "access": null,
-    "description": null,
-    "lineNumber": 178,
-    "undocument": true,
+    "description": "Deselect this layer.\nAny other layers that were previously selected will remain selected.",
+    "lineNumber": 279,
     "params": [],
     "generator": false
   },
@@ -1778,13 +1864,12 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "deselect",
+    "name": "addToSelection",
     "memberof": "Source/Layer.js~Layer",
-    "longname": "Source/Layer.js~Layer#deselect",
+    "longname": "Source/Layer.js~Layer#addToSelection",
     "access": null,
-    "description": null,
-    "lineNumber": 182,
-    "undocument": true,
+    "description": "Add this layer to the selected layers.\nAny other layers that were previously selected will remain selected.",
+    "lineNumber": 288,
     "params": [],
     "generator": false
   },
@@ -1793,40 +1878,28 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "addToSelection",
-    "memberof": "Source/Layer.js~Layer",
-    "longname": "Source/Layer.js~Layer#addToSelection",
-    "access": null,
-    "description": null,
-    "lineNumber": 186,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "__docId__": 72,
-    "kind": "method",
-    "static": false,
-    "variation": null,
     "name": "iterate",
     "memberof": "Source/Layer.js~Layer",
     "longname": "Source/Layer.js~Layer#iterate",
     "access": null,
-    "description": null,
-    "lineNumber": 190,
-    "undocument": true,
+    "description": "Perform a function for every sub-layer inside this one.\nThe function will be passed a single argument each time it is\ninvoked - which will be an object representing the sub-layer.",
+    "lineNumber": 300,
     "params": [
       {
-        "name": "block",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "block",
+        "description": "{function} The function to execute for each layer."
       }
     ],
     "generator": false
   },
   {
-    "__docId__": 73,
+    "__docId__": 72,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1836,10 +1909,10 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Page.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a Page in a Sketch document.\n */\n\nexport class Page extends Layer {\n\n  /**\n    Make a new page object.\n\n    @param page {MSPage} The underlying model object from Sketch.\n    @param document The document that the page belongs to.\n  */\n\n\n  constructor(page, document) {\n    super(page)\n    this.document = document\n  }\n\n  /**\n      Is this a page?\n\n      All Layer objects respond to this method, but only pages return true.\n\n      @return true {bool} for instances of Group, false for any other layer type.\n  */\n\n  get isPage() {\n    return true;\n  }\n}\n"
+    "content": "// ********************************\n// # Page.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a Page in a Sketch document.\n */\n\nexport class Page extends Layer {\n\n  /**\n    Make a new page object.\n\n    @param {MSPage} page The underlying model object from Sketch.\n    @param document The document that the page belongs to.\n  */\n\n  constructor(page, document) {\n    super(page)\n    this._document = document\n  }\n\n  /**\n      Is this a page?\n\n      All Layer objects respond to this method, but only pages return true.\n\n      @return {bool} true for instances of Group, false for any other layer type.\n  */\n\n  get isPage() {\n    return true;\n  }\n\n  /**\n      Returns a newly created artboard, which has been added to this page,\n      and sets it up using the supplied properties.\n\n      @param properties {dictionary} Properties to apply to the artboard.\n      @return {Artboard} the new artboard.\n  */\n\n  newArtboard(properties) {\n    var frame = this._frameForLayerWithProperties(properties)\n    var newLayer = MSArtboardGroup.alloc().initWithFrame_(frame.asCGRect());\n    return this._addWrappedLayerWithProperties(newLayer, properties, \"Artboard\");\n  }\n\n}\n"
   },
   {
-    "__docId__": 74,
+    "__docId__": 73,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1858,7 +1931,7 @@
     ]
   },
   {
-    "__docId__": 75,
+    "__docId__": 74,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -1867,17 +1940,17 @@
     "longname": "Source/Page.js~Page#constructor",
     "access": null,
     "description": "Make a new page object.",
-    "lineNumber": 24,
+    "lineNumber": 23,
     "params": [
       {
         "nullable": null,
         "types": [
-          "*"
+          "MSPage"
         ],
         "spread": false,
         "optional": false,
         "name": "page",
-        "description": "{MSPage} The underlying model object from Sketch."
+        "description": "The underlying model object from Sketch."
       },
       {
         "nullable": null,
@@ -1893,16 +1966,16 @@
     "generator": false
   },
   {
-    "__docId__": 76,
+    "__docId__": 75,
     "kind": "member",
     "static": false,
     "variation": null,
-    "name": "document",
+    "name": "_document",
     "memberof": "Source/Page.js~Page",
-    "longname": "Source/Page.js~Page#document",
+    "longname": "Source/Page.js~Page#_document",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 25,
     "undocument": true,
     "type": {
       "types": [
@@ -1911,7 +1984,7 @@
     }
   },
   {
-    "__docId__": 77,
+    "__docId__": 76,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1920,19 +1993,52 @@
     "longname": "Source/Page.js~Page#isPage",
     "access": null,
     "description": "Is this a page?\n\nAll Layer objects respond to this method, but only pages return true.",
-    "lineNumber": 37,
+    "lineNumber": 36,
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Group, false for any other layer type."
     },
     "type": {
       "types": [
         "boolean"
       ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 77,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "newArtboard",
+    "memberof": "Source/Page.js~Page",
+    "longname": "Source/Page.js~Page#newArtboard",
+    "access": null,
+    "description": "Returns a newly created artboard, which has been added to this page,\nand sets it up using the supplied properties.",
+    "lineNumber": 48,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "properties",
+        "description": "{dictionary} Properties to apply to the artboard."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Artboard"
+      ],
+      "spread": false,
+      "description": "the new artboard."
     },
     "generator": false
   },
@@ -1947,7 +2053,7 @@
     "access": null,
     "description": null,
     "lineNumber": 12,
-    "content": "// ********************************\n// # Rectangle.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n/**\n  Represents a rectangle.\n */\n \nexport class Rectangle {\n\n  /**\n    Return a new Rectangle object for a given x,y, width and height.\n\n    @param {number} x The x coordinate of the top-left corner of the rectangle.\n    @param {number} y The y coordinate of the top-left corner of the rectangle.\n    @param {number} width The width of the rectangle.\n    @param {number} height The height of the rectangle.\n    @return The new Rectangle object.\n  */\n\n  constructor(x, y, width, height) {\n    this.x = x\n    this.y = y\n    this.width = width\n    this.height = height\n  }\n\n  /**\n    Return the Rectangle as a CGRect.\n\n    @return {CGRect} The rectangle.\n  */\n\n  asCGRect() {\n    return CGRectMake(this.x, this.y, this.width, this.height)\n  }\n}\n"
+    "content": "// ********************************\n// # Rectangle.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n/**\n  Represents a rectangle.\n */\n\nexport class Rectangle {\n\n  /**\n    Return a new Rectangle object for a given x,y, width and height.\n\n    @param {number} x The x coordinate of the top-left corner of the rectangle.\n    @param {number} y The y coordinate of the top-left corner of the rectangle.\n    @param {number} width The width of the rectangle.\n    @param {number} height The height of the rectangle.\n    @return The new Rectangle object.\n  */\n\n  constructor(x, y, width, height) {\n\n    /**\n      The x coordinate of the top-left corner of the rectangle.\n      @type {number}\n    */\n\n    this.x = x\n\n    /**\n      The y coordinate of the top-left corner of the rectangle.\n      @type {number}\n    */\n\n    this.y = y\n\n    /**\n      The width of the rectangle.\n      @type {number}\n    */\n\n    this.width = width\n\n    /**\n      The height of the rectangle.\n      @type {number}\n    */\n\n    this.height = height\n  }\n\n  /**\n    Return the Rectangle as a CGRect.\n\n    @return {CGRect} The rectangle.\n  */\n\n  asCGRect() {\n    return CGRectMake(this.x, this.y, this.width, this.height)\n  }\n}\n"
   },
   {
     "__docId__": 79,
@@ -2037,13 +2143,15 @@
     "memberof": "Source/Rectangle.js~Rectangle",
     "longname": "Source/Rectangle.js~Rectangle#x",
     "access": null,
-    "description": null,
-    "lineNumber": 25,
-    "undocument": true,
+    "description": "The x coordinate of the top-left corner of the rectangle.",
+    "lineNumber": 31,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -2055,13 +2163,15 @@
     "memberof": "Source/Rectangle.js~Rectangle",
     "longname": "Source/Rectangle.js~Rectangle#y",
     "access": null,
-    "description": null,
-    "lineNumber": 26,
-    "undocument": true,
+    "description": "The y coordinate of the top-left corner of the rectangle.",
+    "lineNumber": 38,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -2073,13 +2183,15 @@
     "memberof": "Source/Rectangle.js~Rectangle",
     "longname": "Source/Rectangle.js~Rectangle#width",
     "access": null,
-    "description": null,
-    "lineNumber": 27,
-    "undocument": true,
+    "description": "The width of the rectangle.",
+    "lineNumber": 45,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -2091,13 +2203,15 @@
     "memberof": "Source/Rectangle.js~Rectangle",
     "longname": "Source/Rectangle.js~Rectangle#height",
     "access": null,
-    "description": null,
-    "lineNumber": 28,
-    "undocument": true,
+    "description": "The height of the rectangle.",
+    "lineNumber": 52,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -2110,7 +2224,7 @@
     "longname": "Source/Rectangle.js~Rectangle#asCGRect",
     "access": null,
     "description": "Return the Rectangle as a CGRect.",
-    "lineNumber": 37,
+    "lineNumber": 61,
     "params": [],
     "return": {
       "nullable": null,
@@ -2133,7 +2247,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Selection.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\n\n\n/**\n    Represents the layers that the user has selected.\n*/\n\nexport class Selection extends WrappedObject {\n    constructor(document) {\n      super(document)\n    }\n\n    /**\n        Does the selection contain any layers?\n\n        @return {boolean} true if the selection is empty.\n    */\n\n    get isEmpty() {\n        return (this.object.selectedLayers().count() == 0);\n    }\n\n    /**\n        Perform an action once for each layer in the selection, then clear it.\n    */\n\n    iterateAndClear(block) {\n      var layers = this.object.selectedLayers();\n      this.clear();\n      this._iterateWithLayers(layers, block);\n    }\n\n    /**\n        Perform an action once for each layer in the selection.\n    */\n\n    iterate(block) {\n      var layers = this.object.selectedLayers();\n      this._iterateWithLayers(layers, block);\n    }\n\n    /**\n        Clear the selection.\n    */\n\n    clear() {\n      this.object.currentPage().deselectAllLayers();\n    }\n\n\n    /**\n        Iterate through a bunch of layers, executing a block.\n    */\n\n    _iterateWithLayers(layers, block) {\n      var loop = layers.objectEnumerator();\n      var item;\n      while (item = loop.nextObject()) {\n        block(new Layer(item));\n      }\n    }\n\n}\n"
+    "content": "// ********************************\n// # Selection.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\n\n\n/**\n    Represents the layers that the user has selected.\n*/\n\nexport class Selection extends WrappedObject {\n\n    /**\n      Make a new Selection object.\n\n      @param {Document} document The document that the selection relates to.\n    */\n\n    constructor(document) {\n      super(document)\n    }\n\n    /**\n        Does the selection contain any layers?\n\n        @return {boolean} true if the selection is empty.\n    */\n\n    get isEmpty() {\n        return (this._object.selectedLayers().count() == 0);\n    }\n\n    /**\n        Perform an action once for each layer in the selection, then clear it.\n\n        @param {function(layer: Layer)} block The function to execute for each layer.\n    */\n\n    iterateAndClear(block) {\n      var layers = this._object.selectedLayers();\n      this.clear();\n      this._iterateWithLayers(layers, block);\n    }\n\n    /**\n        Perform an action once for each layer in the selection.\n\n        @param {function(layer: Layer)} block The function to execute for each layer.\n    */\n\n    iterate(block) {\n      var layers = this._object.selectedLayers();\n      this._iterateWithLayers(layers, block);\n    }\n\n    /**\n        Clear the selection.\n    */\n\n    clear() {\n      this._object.currentPage().deselectAllLayers();\n    }\n\n\n    /**\n        Iterate through a bunch of layers, executing a block.\n\n        @param {array} layers The layers to iterate over.\n        @param {function(layer: Layer)} block The function to execute for each layer.\n    */\n\n    _iterateWithLayers(layers, block) {\n      var loop = layers._objectEnumerator();\n      var item;\n      while (item = loop.nextObject()) {\n        block(new Layer(item));\n      }\n    }\n\n}\n"
   },
   {
     "__docId__": 87,
@@ -2163,15 +2277,18 @@
     "memberof": "Source/Selection.js~Selection",
     "longname": "Source/Selection.js~Selection#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 17,
-    "undocument": true,
+    "description": "Make a new Selection object.",
+    "lineNumber": 24,
     "params": [
       {
-        "name": "document",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "Document"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "document",
+        "description": "The document that the selection relates to."
       }
     ],
     "generator": false
@@ -2186,7 +2303,7 @@
     "longname": "Source/Selection.js~Selection#isEmpty",
     "access": null,
     "description": "Does the selection contain any layers?",
-    "lineNumber": 27,
+    "lineNumber": 34,
     "return": {
       "nullable": null,
       "types": [
@@ -2212,13 +2329,17 @@
     "longname": "Source/Selection.js~Selection#iterateAndClear",
     "access": null,
     "description": "Perform an action once for each layer in the selection, then clear it.",
-    "lineNumber": 35,
+    "lineNumber": 44,
     "params": [
       {
-        "name": "block",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "function(layer: Layer)"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "block",
+        "description": "The function to execute for each layer."
       }
     ],
     "generator": false
@@ -2233,13 +2354,17 @@
     "longname": "Source/Selection.js~Selection#iterate",
     "access": null,
     "description": "Perform an action once for each layer in the selection.",
-    "lineNumber": 45,
+    "lineNumber": 56,
     "params": [
       {
-        "name": "block",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "function(layer: Layer)"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "block",
+        "description": "The function to execute for each layer."
       }
     ],
     "generator": false
@@ -2254,7 +2379,7 @@
     "longname": "Source/Selection.js~Selection#clear",
     "access": null,
     "description": "Clear the selection.",
-    "lineNumber": 54,
+    "lineNumber": 65,
     "params": [],
     "generator": false
   },
@@ -2268,19 +2393,27 @@
     "longname": "Source/Selection.js~Selection#_iterateWithLayers",
     "access": null,
     "description": "Iterate through a bunch of layers, executing a block.",
-    "lineNumber": 63,
+    "lineNumber": 77,
     "params": [
       {
-        "name": "layers",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "layers",
+        "description": "The layers to iterate over."
       },
       {
-        "name": "block",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "function(layer: Layer)"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "block",
+        "description": "The function to execute for each layer."
       }
     ],
     "generator": false
@@ -2296,7 +2429,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Shape.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a shape layer (a rectangle, oval, path, etc).\n */\n\nexport class Shape extends Layer {\n\n    /**\n      Make a new shape object.\n\n      @param shape {MSShapeGroup} The underlying model object from Sketch.\n      @param document The document that the shape belongs to.\n    */\n\n    constructor(shape, document) {\n      super(shape, document)\n    }\n\n    /**\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isShape() {\n      return true;\n    }\n\n}\n"
+    "content": "// ********************************\n// # Shape.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a shape layer (a rectangle, oval, path, etc).\n */\n\nexport class Shape extends Layer {\n\n    /**\n      Make a new shape object.\n\n      @param shape {MSShapeGroup} The underlying model object from Sketch.\n      @param document The document that the shape belongs to.\n    */\n\n    constructor(shape, document) {\n      super(shape, document)\n    }\n\n    /**\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isShape() {\n      return true;\n    }\n\n}\n"
   },
   {
     "__docId__": 95,
@@ -2366,10 +2499,10 @@
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Group, false for any other layer type."
     },
     "type": {
       "types": [
@@ -2389,7 +2522,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Text.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n// ## Constants\n\nconst BCTextBehaviourFlexibleWidth = 0\nconst BCTextBehaviourFixedWidth = 1\n\n/**\n  Represents a text layer.\n */\n\nexport class Text extends Layer {\n\n    /**\n      Make a new text object.\n\n      @param text {MSTextLayer} The underlying model object from Sketch.\n      @param document The document that the text layer belongs to.\n    */\n\n    constructor(text, document) {\n      super(text, document)\n    }\n\n    /**\n        Is this a text layer?\n\n        All Layer objects respond to this method, but only text layers return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    */\n\n    get isText() {\n      return true\n    }\n\n    /**\n      The text of the layer.\n    */\n\n    get text() {\n      return this.object.stringValue\n    }\n\n    /**\n      Set the text of the layer.\n\n      @param value {string} The text to use.\n    */\n\n    set text(value) {\n      this.object.stringValue = value\n    }\n\n\n    /**\n      Set the font of the layer to an NSFont object.\n\n      @param value {NSFont} The font to use.\n    */\n\n    set font(value) {\n      this.object.font = value\n    }\n\n    /**\n       Set the font of the layer to the system font at a given size.\n\n       @param size {number} The system font size to use.\n    */\n\n    set systemFontSize(size) {\n      this.object.font = NSFont.systemFontOfSize_(size)\n    }\n\n    /**\n       Set the alignment of the layer.\n\n       @param mode {number} The alignment mode to use.\n    */\n\n    set alignment(mode) {\n      this.object.textAlignment = mode\n    }\n\n    /**\n     Set the layer to be fixed width or variable width.\n\n     @param value {bool} Whether the layer should be fixed width (true) or variable width (false).\n    */\n\n    set fixedWidth(value) {\n      if (value) {\n        this.object.textBehaviour = BCTextBehaviourFixedWidth\n      } else {\n        this.object.textBehaviour = BCTextBehaviourFlexibleWidth\n      }\n    }\n}\n"
+    "content": "// ********************************\n// # Text.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n// ## Constants\n\nconst BCTextBehaviourFlexibleWidth = 0\nconst BCTextBehaviourFixedWidth = 1\n\n/**\n  Represents a text layer.\n */\n\nexport class Text extends Layer {\n\n    /**\n      Make a new text object.\n\n      @param {MSTextLayer} text The underlying model object from Sketch.\n      @param {Document} document The document that the text layer belongs to.\n    */\n\n    constructor(text, document) {\n      super(text, document)\n    }\n\n    /**\n        Is this a text layer?\n\n        All Layer objects respond to this method, but only text layers return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isText() {\n      return true\n    }\n\n    /**\n      The text of the layer.\n    */\n\n    get text() {\n      return this._object.stringValue\n    }\n\n    /**\n      Set the text of the layer.\n\n      @param {string} value The text to use.\n    */\n\n    set text(value) {\n      this._object.stringValue = value\n    }\n\n\n    /**\n      Set the font of the layer to an NSFont object.\n\n      @param {NSFont} value The font to use.\n    */\n\n    set font(value) {\n      this._object.font = value\n    }\n\n    /**\n       Set the font of the layer to the system font at a given size.\n\n       @param {number} size The system font size to use.\n    */\n\n    set systemFontSize(size) {\n      this._object.font = NSFont.systemFontOfSize_(size)\n    }\n\n    /**\n       Set the alignment of the layer.\n\n       @param {number} mode The alignment mode to use.\n    */\n\n    set alignment(mode) {\n      this._object.textAlignment = mode\n    }\n\n    /**\n     Set the layer to be fixed width or variable width.\n\n     @param {bool} value Whether the layer should be fixed width (true) or variable width (false).\n    */\n\n    set fixedWidth(value) {\n      if (value) {\n        this._object.textBehaviour = BCTextBehaviourFixedWidth\n      } else {\n        this._object.textBehaviour = BCTextBehaviourFlexibleWidth\n      }\n    }\n}\n"
   },
   {
     "__docId__": 99,
@@ -2467,17 +2600,17 @@
       {
         "nullable": null,
         "types": [
-          "*"
+          "MSTextLayer"
         ],
         "spread": false,
         "optional": false,
         "name": "text",
-        "description": "{MSTextLayer} The underlying model object from Sketch."
+        "description": "The underlying model object from Sketch."
       },
       {
         "nullable": null,
         "types": [
-          "*"
+          "Document"
         ],
         "spread": false,
         "optional": false,
@@ -2501,10 +2634,10 @@
     "return": {
       "nullable": null,
       "types": [
-        "*"
+        "bool"
       ],
       "spread": false,
-      "description": "true {bool} for instances of Group, false for any other layer type."
+      "description": "true for instances of Group, false for any other layer type."
     },
     "type": {
       "types": [
@@ -2546,12 +2679,12 @@
       {
         "nullable": null,
         "types": [
-          "*"
+          "string"
         ],
         "spread": false,
         "optional": false,
         "name": "value",
-        "description": "{string} The text to use."
+        "description": "The text to use."
       }
     ],
     "type": {
@@ -2576,12 +2709,12 @@
       {
         "nullable": null,
         "types": [
-          "*"
+          "NSFont"
         ],
         "spread": false,
         "optional": false,
         "name": "value",
-        "description": "{NSFont} The font to use."
+        "description": "The font to use."
       }
     ],
     "type": {
@@ -2606,12 +2739,12 @@
       {
         "nullable": null,
         "types": [
-          "*"
+          "number"
         ],
         "spread": false,
         "optional": false,
         "name": "size",
-        "description": "{number} The system font size to use."
+        "description": "The system font size to use."
       }
     ],
     "type": {
@@ -2636,12 +2769,12 @@
       {
         "nullable": null,
         "types": [
-          "*"
+          "number"
         ],
         "spread": false,
         "optional": false,
         "name": "mode",
-        "description": "{number} The alignment mode to use."
+        "description": "The alignment mode to use."
       }
     ],
     "type": {
@@ -2666,12 +2799,12 @@
       {
         "nullable": null,
         "types": [
-          "*"
+          "bool"
         ],
         "spread": false,
         "optional": false,
         "name": "value",
-        "description": "{bool} Whether the layer should be fixed width (true) or variable width (false)."
+        "description": "Whether the layer should be fixed width (true) or variable width (false)."
       }
     ],
     "type": {
@@ -2692,7 +2825,7 @@
     "access": null,
     "description": null,
     "lineNumber": 14,
-    "content": "// ********************************\n// # WrappedObject.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n/**\n  Base class for all objects that\n  wrap Sketch classes.\n\n*/\n\nexport class WrappedObject {\n\n    /**\n      Return a new wrapped object for a given Sketch model object.\n\n      @param object The Sketch model object to wrap.\n      @return The new wrapped object.\n    */\n\n    constructor(object) {\n      this.object = object\n    }\n\n    /**\n      Returns the object ID of the wrapped Sketch model object.\n\n      @return {string} The id.\n    */\n\n    get id() {\n      return this.object.objectID();\n    }\n}\n"
+    "content": "// ********************************\n// # WrappedObject.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n/**\n  Base class for all objects that\n  wrap Sketch classes.\n\n*/\n\nexport class WrappedObject {\n\n    /**\n      Return a new wrapped object for a given Sketch model object.\n\n      @param {Object} object - The Sketch model object to wrap.\n    */\n\n    constructor(object) {\n      /** @type {Object} The underlying Sketch model object that we are wrapping. */\n      this._object = object\n    }\n\n    /**\n      Returns the object ID of the wrapped Sketch model object.\n\n      @return {string} The id.\n    */\n\n    get id() {\n      return this._object._objectID();\n    }\n}\n"
   },
   {
     "__docId__": 111,
@@ -2720,12 +2853,12 @@
     "longname": "Source/WrappedObject.js~WrappedObject#constructor",
     "access": null,
     "description": "Return a new wrapped object for a given Sketch model object.",
-    "lineNumber": 23,
+    "lineNumber": 22,
     "params": [
       {
         "nullable": null,
         "types": [
-          "*"
+          "Object"
         ],
         "spread": false,
         "optional": false,
@@ -2733,14 +2866,6 @@
         "description": "The Sketch model object to wrap."
       }
     ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "*"
-      ],
-      "spread": false,
-      "description": "The new wrapped object."
-    },
     "generator": false
   },
   {
@@ -2748,17 +2873,19 @@
     "kind": "member",
     "static": false,
     "variation": null,
-    "name": "object",
+    "name": "_object",
     "memberof": "Source/WrappedObject.js~WrappedObject",
-    "longname": "Source/WrappedObject.js~WrappedObject#object",
+    "longname": "Source/WrappedObject.js~WrappedObject#_object",
     "access": null,
     "description": null,
     "lineNumber": 24,
-    "undocument": true,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Object"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {

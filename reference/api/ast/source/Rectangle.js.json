@@ -9,8 +9,8 @@
           "type": "Identifier",
           "name": "Rectangle",
           "range": [
-            209,
-            218
+            208,
+            217
           ],
           "loc": {
             "start": {
@@ -33,8 +33,8 @@
                 "type": "Identifier",
                 "name": "constructor",
                 "range": [
-                  614,
-                  625
+                  613,
+                  624
                 ],
                 "loc": {
                   "start": {
@@ -55,8 +55,8 @@
                     "type": "Identifier",
                     "name": "x",
                     "range": [
-                      626,
-                      627
+                      625,
+                      626
                     ],
                     "loc": {
                       "start": {
@@ -73,8 +73,8 @@
                     "type": "Identifier",
                     "name": "y",
                     "range": [
-                      629,
-                      630
+                      628,
+                      629
                     ],
                     "loc": {
                       "start": {
@@ -91,8 +91,8 @@
                     "type": "Identifier",
                     "name": "width",
                     "range": [
-                      632,
-                      637
+                      631,
+                      636
                     ],
                     "loc": {
                       "start": {
@@ -109,8 +109,8 @@
                     "type": "Identifier",
                     "name": "height",
                     "range": [
-                      639,
-                      645
+                      638,
+                      644
                     ],
                     "loc": {
                       "start": {
@@ -138,16 +138,16 @@
                           "object": {
                             "type": "ThisExpression",
                             "range": [
-                              653,
-                              657
+                              754,
+                              758
                             ],
                             "loc": {
                               "start": {
-                                "line": 25,
+                                "line": 31,
                                 "column": 4
                               },
                               "end": {
-                                "line": 25,
+                                "line": 31,
                                 "column": 8
                               }
                             }
@@ -156,31 +156,31 @@
                             "type": "Identifier",
                             "name": "x",
                             "range": [
-                              658,
-                              659
+                              759,
+                              760
                             ],
                             "loc": {
                               "start": {
-                                "line": 25,
+                                "line": 31,
                                 "column": 9
                               },
                               "end": {
-                                "line": 25,
+                                "line": 31,
                                 "column": 10
                               }
                             }
                           },
                           "range": [
-                            653,
-                            659
+                            754,
+                            760
                           ],
                           "loc": {
                             "start": {
-                              "line": 25,
+                              "line": 31,
                               "column": 4
                             },
                             "end": {
-                              "line": 25,
+                              "line": 31,
                               "column": 10
                             }
                           }
@@ -189,49 +189,89 @@
                           "type": "Identifier",
                           "name": "x",
                           "range": [
-                            662,
-                            663
+                            763,
+                            764
                           ],
                           "loc": {
                             "start": {
-                              "line": 25,
+                              "line": 31,
                               "column": 13
                             },
                             "end": {
-                              "line": 25,
+                              "line": 31,
                               "column": 14
                             }
                           }
                         },
                         "range": [
-                          653,
-                          663
+                          754,
+                          764
                         ],
                         "loc": {
                           "start": {
-                            "line": 25,
+                            "line": 31,
                             "column": 4
                           },
                           "end": {
-                            "line": 25,
+                            "line": 31,
                             "column": 14
                           }
-                        }
+                        },
+                        "trailingComments": [
+                          {
+                            "type": "Block",
+                            "value": "*\n      The y coordinate of the top-left corner of the rectangle.\n      @type {number}\n    ",
+                            "range": [
+                              770,
+                              865
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 33,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 36,
+                                "column": 6
+                              }
+                            }
+                          }
+                        ]
                       },
                       "range": [
-                        653,
-                        668
+                        754,
+                        871
                       ],
                       "loc": {
                         "start": {
-                          "line": 25,
+                          "line": 31,
                           "column": 4
                         },
                         "end": {
-                          "line": 26,
+                          "line": 38,
                           "column": 4
                         }
-                      }
+                      },
+                      "leadingComments": [
+                        {
+                          "type": "Block",
+                          "value": "*\n      The x coordinate of the top-left corner of the rectangle.\n      @type {number}\n    ",
+                          "range": [
+                            653,
+                            748
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 26,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 29,
+                              "column": 6
+                            }
+                          }
+                        }
+                      ]
                     },
                     {
                       "type": "ExpressionStatement",
@@ -244,16 +284,16 @@
                           "object": {
                             "type": "ThisExpression",
                             "range": [
-                              668,
-                              672
+                              871,
+                              875
                             ],
                             "loc": {
                               "start": {
-                                "line": 26,
+                                "line": 38,
                                 "column": 4
                               },
                               "end": {
-                                "line": 26,
+                                "line": 38,
                                 "column": 8
                               }
                             }
@@ -262,31 +302,31 @@
                             "type": "Identifier",
                             "name": "y",
                             "range": [
-                              673,
-                              674
+                              876,
+                              877
                             ],
                             "loc": {
                               "start": {
-                                "line": 26,
+                                "line": 38,
                                 "column": 9
                               },
                               "end": {
-                                "line": 26,
+                                "line": 38,
                                 "column": 10
                               }
                             }
                           },
                           "range": [
-                            668,
-                            674
+                            871,
+                            877
                           ],
                           "loc": {
                             "start": {
-                              "line": 26,
+                              "line": 38,
                               "column": 4
                             },
                             "end": {
-                              "line": 26,
+                              "line": 38,
                               "column": 10
                             }
                           }
@@ -295,49 +335,89 @@
                           "type": "Identifier",
                           "name": "y",
                           "range": [
-                            677,
-                            678
+                            880,
+                            881
                           ],
                           "loc": {
                             "start": {
-                              "line": 26,
+                              "line": 38,
                               "column": 13
                             },
                             "end": {
-                              "line": 26,
+                              "line": 38,
                               "column": 14
                             }
                           }
                         },
                         "range": [
-                          668,
-                          678
+                          871,
+                          881
                         ],
                         "loc": {
                           "start": {
-                            "line": 26,
+                            "line": 38,
                             "column": 4
                           },
                           "end": {
-                            "line": 26,
+                            "line": 38,
                             "column": 14
                           }
-                        }
+                        },
+                        "trailingComments": [
+                          {
+                            "type": "Block",
+                            "value": "*\n      The width of the rectangle.\n      @type {number}\n    ",
+                            "range": [
+                              887,
+                              952
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 40,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 43,
+                                "column": 6
+                              }
+                            }
+                          }
+                        ]
                       },
                       "range": [
-                        668,
-                        683
+                        871,
+                        958
                       ],
                       "loc": {
                         "start": {
-                          "line": 26,
+                          "line": 38,
                           "column": 4
                         },
                         "end": {
-                          "line": 27,
+                          "line": 45,
                           "column": 4
                         }
-                      }
+                      },
+                      "leadingComments": [
+                        {
+                          "type": "Block",
+                          "value": "*\n      The y coordinate of the top-left corner of the rectangle.\n      @type {number}\n    ",
+                          "range": [
+                            770,
+                            865
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 33,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 36,
+                              "column": 6
+                            }
+                          }
+                        }
+                      ]
                     },
                     {
                       "type": "ExpressionStatement",
@@ -350,16 +430,16 @@
                           "object": {
                             "type": "ThisExpression",
                             "range": [
-                              683,
-                              687
+                              958,
+                              962
                             ],
                             "loc": {
                               "start": {
-                                "line": 27,
+                                "line": 45,
                                 "column": 4
                               },
                               "end": {
-                                "line": 27,
+                                "line": 45,
                                 "column": 8
                               }
                             }
@@ -368,31 +448,31 @@
                             "type": "Identifier",
                             "name": "width",
                             "range": [
-                              688,
-                              693
+                              963,
+                              968
                             ],
                             "loc": {
                               "start": {
-                                "line": 27,
+                                "line": 45,
                                 "column": 9
                               },
                               "end": {
-                                "line": 27,
+                                "line": 45,
                                 "column": 14
                               }
                             }
                           },
                           "range": [
-                            683,
-                            693
+                            958,
+                            968
                           ],
                           "loc": {
                             "start": {
-                              "line": 27,
+                              "line": 45,
                               "column": 4
                             },
                             "end": {
-                              "line": 27,
+                              "line": 45,
                               "column": 14
                             }
                           }
@@ -401,49 +481,89 @@
                           "type": "Identifier",
                           "name": "width",
                           "range": [
-                            696,
-                            701
+                            971,
+                            976
                           ],
                           "loc": {
                             "start": {
-                              "line": 27,
+                              "line": 45,
                               "column": 17
                             },
                             "end": {
-                              "line": 27,
+                              "line": 45,
                               "column": 22
                             }
                           }
                         },
                         "range": [
-                          683,
-                          701
+                          958,
+                          976
                         ],
                         "loc": {
                           "start": {
-                            "line": 27,
+                            "line": 45,
                             "column": 4
                           },
                           "end": {
-                            "line": 27,
+                            "line": 45,
                             "column": 22
                           }
-                        }
+                        },
+                        "trailingComments": [
+                          {
+                            "type": "Block",
+                            "value": "*\n      The height of the rectangle.\n      @type {number}\n    ",
+                            "range": [
+                              982,
+                              1048
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 47,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 50,
+                                "column": 6
+                              }
+                            }
+                          }
+                        ]
                       },
                       "range": [
-                        683,
-                        706
+                        958,
+                        1054
                       ],
                       "loc": {
                         "start": {
-                          "line": 27,
+                          "line": 45,
                           "column": 4
                         },
                         "end": {
-                          "line": 28,
+                          "line": 52,
                           "column": 4
                         }
-                      }
+                      },
+                      "leadingComments": [
+                        {
+                          "type": "Block",
+                          "value": "*\n      The width of the rectangle.\n      @type {number}\n    ",
+                          "range": [
+                            887,
+                            952
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 40,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 43,
+                              "column": 6
+                            }
+                          }
+                        }
+                      ]
                     },
                     {
                       "type": "ExpressionStatement",
@@ -456,16 +576,16 @@
                           "object": {
                             "type": "ThisExpression",
                             "range": [
-                              706,
-                              710
+                              1054,
+                              1058
                             ],
                             "loc": {
                               "start": {
-                                "line": 28,
+                                "line": 52,
                                 "column": 4
                               },
                               "end": {
-                                "line": 28,
+                                "line": 52,
                                 "column": 8
                               }
                             }
@@ -474,31 +594,31 @@
                             "type": "Identifier",
                             "name": "height",
                             "range": [
-                              711,
-                              717
+                              1059,
+                              1065
                             ],
                             "loc": {
                               "start": {
-                                "line": 28,
+                                "line": 52,
                                 "column": 9
                               },
                               "end": {
-                                "line": 28,
+                                "line": 52,
                                 "column": 15
                               }
                             }
                           },
                           "range": [
-                            706,
-                            717
+                            1054,
+                            1065
                           ],
                           "loc": {
                             "start": {
-                              "line": 28,
+                              "line": 52,
                               "column": 4
                             },
                             "end": {
-                              "line": 28,
+                              "line": 52,
                               "column": 15
                             }
                           }
@@ -507,54 +627,74 @@
                           "type": "Identifier",
                           "name": "height",
                           "range": [
-                            720,
-                            726
+                            1068,
+                            1074
                           ],
                           "loc": {
                             "start": {
-                              "line": 28,
+                              "line": 52,
                               "column": 18
                             },
                             "end": {
-                              "line": 28,
+                              "line": 52,
                               "column": 24
                             }
                           }
                         },
                         "range": [
-                          706,
-                          726
+                          1054,
+                          1074
                         ],
                         "loc": {
                           "start": {
-                            "line": 28,
+                            "line": 52,
                             "column": 4
                           },
                           "end": {
-                            "line": 28,
+                            "line": 52,
                             "column": 24
                           }
                         }
                       },
                       "range": [
-                        706,
-                        729
+                        1054,
+                        1077
                       ],
                       "loc": {
                         "start": {
-                          "line": 28,
+                          "line": 52,
                           "column": 4
                         },
                         "end": {
-                          "line": 29,
+                          "line": 53,
                           "column": 2
                         }
-                      }
+                      },
+                      "leadingComments": [
+                        {
+                          "type": "Block",
+                          "value": "*\n      The height of the rectangle.\n      @type {number}\n    ",
+                          "range": [
+                            982,
+                            1048
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 47,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 50,
+                              "column": 6
+                            }
+                          }
+                        }
+                      ]
                     }
                   ],
                   "range": [
-                    647,
-                    730
+                    646,
+                    1078
                   ],
                   "loc": {
                     "start": {
@@ -562,7 +702,7 @@
                       "column": 35
                     },
                     "end": {
-                      "line": 29,
+                      "line": 53,
                       "column": 3
                     }
                   }
@@ -570,8 +710,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  625,
-                  730
+                  624,
+                  1078
                 ],
                 "loc": {
                   "start": {
@@ -579,7 +719,7 @@
                     "column": 13
                   },
                   "end": {
-                    "line": 29,
+                    "line": 53,
                     "column": 3
                   }
                 }
@@ -587,8 +727,8 @@
               "kind": "constructor",
               "computed": false,
               "range": [
-                614,
-                730
+                613,
+                1078
               ],
               "loc": {
                 "start": {
@@ -596,7 +736,7 @@
                   "column": 2
                 },
                 "end": {
-                  "line": 29,
+                  "line": 53,
                   "column": 3
                 }
               },
@@ -605,8 +745,8 @@
                   "type": "Block",
                   "value": "*\n    Return a new Rectangle object for a given x,y, width and height.\n\n    @param {number} x The x coordinate of the top-left corner of the rectangle.\n    @param {number} y The y coordinate of the top-left corner of the rectangle.\n    @param {number} width The width of the rectangle.\n    @param {number} height The height of the rectangle.\n    @return The new Rectangle object.\n  ",
                   "range": [
-                    224,
-                    610
+                    223,
+                    609
                   ],
                   "loc": {
                     "start": {
@@ -625,16 +765,16 @@
                   "type": "Block",
                   "value": "*\n    Return the Rectangle as a CGRect.\n\n    @return {CGRect} The rectangle.\n  ",
                   "range": [
-                    734,
-                    817
+                    1082,
+                    1165
                   ],
                   "loc": {
                     "start": {
-                      "line": 31,
+                      "line": 55,
                       "column": 2
                     },
                     "end": {
-                      "line": 35,
+                      "line": 59,
                       "column": 4
                     }
                   }
@@ -648,16 +788,16 @@
                 "type": "Identifier",
                 "name": "asCGRect",
                 "range": [
-                  821,
-                  829
+                  1169,
+                  1177
                 ],
                 "loc": {
                   "start": {
-                    "line": 37,
+                    "line": 61,
                     "column": 2
                   },
                   "end": {
-                    "line": 37,
+                    "line": 61,
                     "column": 10
                   }
                 }
@@ -677,16 +817,16 @@
                           "type": "Identifier",
                           "name": "CGRectMake",
                           "range": [
-                            845,
-                            855
+                            1193,
+                            1203
                           ],
                           "loc": {
                             "start": {
-                              "line": 38,
+                              "line": 62,
                               "column": 11
                             },
                             "end": {
-                              "line": 38,
+                              "line": 62,
                               "column": 21
                             }
                           }
@@ -698,16 +838,16 @@
                             "object": {
                               "type": "ThisExpression",
                               "range": [
-                                856,
-                                860
+                                1204,
+                                1208
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 22
                                 },
                                 "end": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 26
                                 }
                               }
@@ -716,31 +856,31 @@
                               "type": "Identifier",
                               "name": "x",
                               "range": [
-                                861,
-                                862
+                                1209,
+                                1210
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 27
                                 },
                                 "end": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 28
                                 }
                               }
                             },
                             "range": [
-                              856,
-                              862
+                              1204,
+                              1210
                             ],
                             "loc": {
                               "start": {
-                                "line": 38,
+                                "line": 62,
                                 "column": 22
                               },
                               "end": {
-                                "line": 38,
+                                "line": 62,
                                 "column": 28
                               }
                             }
@@ -751,16 +891,16 @@
                             "object": {
                               "type": "ThisExpression",
                               "range": [
-                                864,
-                                868
+                                1212,
+                                1216
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 30
                                 },
                                 "end": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 34
                                 }
                               }
@@ -769,31 +909,31 @@
                               "type": "Identifier",
                               "name": "y",
                               "range": [
-                                869,
-                                870
+                                1217,
+                                1218
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 35
                                 },
                                 "end": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 36
                                 }
                               }
                             },
                             "range": [
-                              864,
-                              870
+                              1212,
+                              1218
                             ],
                             "loc": {
                               "start": {
-                                "line": 38,
+                                "line": 62,
                                 "column": 30
                               },
                               "end": {
-                                "line": 38,
+                                "line": 62,
                                 "column": 36
                               }
                             }
@@ -804,16 +944,16 @@
                             "object": {
                               "type": "ThisExpression",
                               "range": [
-                                872,
-                                876
+                                1220,
+                                1224
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 38
                                 },
                                 "end": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 42
                                 }
                               }
@@ -822,31 +962,31 @@
                               "type": "Identifier",
                               "name": "width",
                               "range": [
-                                877,
-                                882
+                                1225,
+                                1230
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 43
                                 },
                                 "end": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 48
                                 }
                               }
                             },
                             "range": [
-                              872,
-                              882
+                              1220,
+                              1230
                             ],
                             "loc": {
                               "start": {
-                                "line": 38,
+                                "line": 62,
                                 "column": 38
                               },
                               "end": {
-                                "line": 38,
+                                "line": 62,
                                 "column": 48
                               }
                             }
@@ -857,16 +997,16 @@
                             "object": {
                               "type": "ThisExpression",
                               "range": [
-                                884,
-                                888
+                                1232,
+                                1236
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 50
                                 },
                                 "end": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 54
                                 }
                               }
@@ -875,78 +1015,78 @@
                               "type": "Identifier",
                               "name": "height",
                               "range": [
-                                889,
-                                895
+                                1237,
+                                1243
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 55
                                 },
                                 "end": {
-                                  "line": 38,
+                                  "line": 62,
                                   "column": 61
                                 }
                               }
                             },
                             "range": [
-                              884,
-                              895
+                              1232,
+                              1243
                             ],
                             "loc": {
                               "start": {
-                                "line": 38,
+                                "line": 62,
                                 "column": 50
                               },
                               "end": {
-                                "line": 38,
+                                "line": 62,
                                 "column": 61
                               }
                             }
                           }
                         ],
                         "range": [
-                          845,
-                          896
+                          1193,
+                          1244
                         ],
                         "loc": {
                           "start": {
-                            "line": 38,
+                            "line": 62,
                             "column": 11
                           },
                           "end": {
-                            "line": 38,
+                            "line": 62,
                             "column": 62
                           }
                         }
                       },
                       "range": [
-                        838,
-                        899
+                        1186,
+                        1247
                       ],
                       "loc": {
                         "start": {
-                          "line": 38,
+                          "line": 62,
                           "column": 4
                         },
                         "end": {
-                          "line": 39,
+                          "line": 63,
                           "column": 2
                         }
                       }
                     }
                   ],
                   "range": [
-                    832,
-                    900
+                    1180,
+                    1248
                   ],
                   "loc": {
                     "start": {
-                      "line": 37,
+                      "line": 61,
                       "column": 13
                     },
                     "end": {
-                      "line": 39,
+                      "line": 63,
                       "column": 3
                     }
                   }
@@ -954,16 +1094,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  829,
-                  900
+                  1177,
+                  1248
                 ],
                 "loc": {
                   "start": {
-                    "line": 37,
+                    "line": 61,
                     "column": 10
                   },
                   "end": {
-                    "line": 39,
+                    "line": 63,
                     "column": 3
                   }
                 }
@@ -971,16 +1111,16 @@
               "kind": "method",
               "computed": false,
               "range": [
-                821,
-                900
+                1169,
+                1248
               ],
               "loc": {
                 "start": {
-                  "line": 37,
+                  "line": 61,
                   "column": 2
                 },
                 "end": {
-                  "line": 39,
+                  "line": 63,
                   "column": 3
                 }
               },
@@ -989,16 +1129,16 @@
                   "type": "Block",
                   "value": "*\n    Return the Rectangle as a CGRect.\n\n    @return {CGRect} The rectangle.\n  ",
                   "range": [
-                    734,
-                    817
+                    1082,
+                    1165
                   ],
                   "loc": {
                     "start": {
-                      "line": 31,
+                      "line": 55,
                       "column": 2
                     },
                     "end": {
-                      "line": 35,
+                      "line": 59,
                       "column": 4
                     }
                   }
@@ -1008,8 +1148,8 @@
             }
           ],
           "range": [
-            219,
-            902
+            218,
+            1250
           ],
           "loc": {
             "start": {
@@ -1017,14 +1157,14 @@
               "column": 23
             },
             "end": {
-              "line": 40,
+              "line": 64,
               "column": 1
             }
           }
         },
         "range": [
-          203,
-          902
+          202,
+          1250
         ],
         "loc": {
           "start": {
@@ -1032,7 +1172,7 @@
             "column": 7
           },
           "end": {
-            "line": 40,
+            "line": 64,
             "column": 1
           }
         },
@@ -1169,8 +1309,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        196,
-        902
+        195,
+        1250
       ],
       "loc": {
         "start": {
@@ -1178,7 +1318,7 @@
           "column": 0
         },
         "end": {
-          "line": 40,
+          "line": 64,
           "column": 1
         }
       },
@@ -1314,8 +1454,8 @@
   ],
   "sourceType": "module",
   "range": [
-    196,
-    902
+    195,
+    1250
   ],
   "loc": {
     "start": {
@@ -1323,7 +1463,7 @@
       "column": 0
     },
     "end": {
-      "line": 40,
+      "line": 64,
       "column": 1
     }
   },
@@ -1458,8 +1598,8 @@
       "type": "Block",
       "value": "*\n    Return a new Rectangle object for a given x,y, width and height.\n\n    @param {number} x The x coordinate of the top-left corner of the rectangle.\n    @param {number} y The y coordinate of the top-left corner of the rectangle.\n    @param {number} width The width of the rectangle.\n    @param {number} height The height of the rectangle.\n    @return The new Rectangle object.\n  ",
       "range": [
-        224,
-        610
+        223,
+        609
       ],
       "loc": {
         "start": {
@@ -1474,18 +1614,90 @@
     },
     {
       "type": "Block",
-      "value": "*\n    Return the Rectangle as a CGRect.\n\n    @return {CGRect} The rectangle.\n  ",
+      "value": "*\n      The x coordinate of the top-left corner of the rectangle.\n      @type {number}\n    ",
       "range": [
-        734,
-        817
+        653,
+        748
       ],
       "loc": {
         "start": {
-          "line": 31,
+          "line": 26,
+          "column": 4
+        },
+        "end": {
+          "line": 29,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      The y coordinate of the top-left corner of the rectangle.\n      @type {number}\n    ",
+      "range": [
+        770,
+        865
+      ],
+      "loc": {
+        "start": {
+          "line": 33,
+          "column": 4
+        },
+        "end": {
+          "line": 36,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      The width of the rectangle.\n      @type {number}\n    ",
+      "range": [
+        887,
+        952
+      ],
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 4
+        },
+        "end": {
+          "line": 43,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      The height of the rectangle.\n      @type {number}\n    ",
+      "range": [
+        982,
+        1048
+      ],
+      "loc": {
+        "start": {
+          "line": 47,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n    Return the Rectangle as a CGRect.\n\n    @return {CGRect} The rectangle.\n  ",
+      "range": [
+        1082,
+        1165
+      ],
+      "loc": {
+        "start": {
+          "line": 55,
           "column": 2
         },
         "end": {
-          "line": 35,
+          "line": 59,
           "column": 4
         }
       }

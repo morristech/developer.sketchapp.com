@@ -490,7 +490,7 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    ",
+                  "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    ",
                   "range": [
                     556,
                     799
@@ -624,7 +624,7 @@
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    ",
+                  "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    ",
                   "range": [
                     556,
                     799
@@ -895,7 +895,7 @@
     },
     {
       "type": "Block",
-      "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return true {bool} for instances of Group, false for any other layer type.\n    ",
+      "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    ",
       "range": [
         556,
         799

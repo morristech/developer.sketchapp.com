@@ -221,13 +221,16 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Application.js~Application.html#instance-member-factory">factory</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Application.js~Application.html#instance-member-factory">factory</a></span></span><span data-ice="signature">: <span>dictionary</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>This is a slightly clumsy way to pass related classes into Layer
+without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
+there has to be a better way to do this...</p>
+</div>
       </div>
     </td>
     <td>
@@ -254,31 +257,6 @@
         
         <div data-ice="description"><p>Returns the full version of Sketch that is running</p>
 </div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/Source/Application.js~Application.html#instance-member-metadata">metadata</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
       </div>
     </td>
     <td>
@@ -668,31 +646,6 @@ folder.</p>
       
     </td>
   </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-member-object">object</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
 </tbody>
 </table>
 </div>
@@ -786,7 +739,7 @@ initialise the API, so you generally shouldn&apos;t need to make new ones.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber60">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber71">source</a></span></span>
     </span>
   </h3>
 
@@ -838,7 +791,7 @@ initialise the API, so you generally shouldn&apos;t need to make new ones.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber96">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber107">source</a></span></span>
     </span>
   </h3>
 
@@ -890,7 +843,7 @@ initialise the API, so you generally shouldn&apos;t need to make new ones.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber75">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber86">source</a></span></span>
     </span>
   </h3>
 
@@ -942,18 +895,21 @@ rather than interacting with the context directly.</p>
     
     
     
-    <span data-ice="name">factory</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">factory</span><span data-ice="signature">: <span>dictionary</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber44">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber55">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>This is a slightly clumsy way to pass related classes into Layer
+without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
+there has to be a better way to do this...</p>
+</div>
 
   
 
@@ -986,7 +942,7 @@ rather than interacting with the context directly.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber106">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber117">source</a></span></span>
     </span>
   </h3>
 
@@ -1028,46 +984,6 @@ rather than interacting with the context directly.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-metadata">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">metadata</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber39">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-get-selectedDocument">
     <span class="access" data-ice="access">public</span>
     
@@ -1078,7 +994,7 @@ rather than interacting with the context directly.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber232">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber243">source</a></span></span>
     </span>
   </h3>
 
@@ -1134,7 +1050,7 @@ occurred in.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber86">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber97">source</a></span></span>
     </span>
   </h3>
 
@@ -1189,7 +1105,7 @@ occurred in.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber272">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber283">source</a></span></span>
     </span>
   </h3>
 
@@ -1256,7 +1172,7 @@ by pressing the OK button.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber215">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber226">source</a></span></span>
     </span>
   </h3>
 
@@ -1315,7 +1231,7 @@ If the condition is false, throws an exception.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber179">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber190">source</a></span></span>
     </span>
   </h3>
 
@@ -1402,7 +1318,7 @@ The selection will be the integer index of the selected item.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber159">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber170">source</a></span></span>
     </span>
   </h3>
 
@@ -1479,7 +1395,7 @@ input.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber204">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber215">source</a></span></span>
     </span>
   </h3>
 
@@ -1537,7 +1453,7 @@ input.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber258">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber269">source</a></span></span>
     </span>
   </h3>
 
@@ -1598,7 +1514,7 @@ line of text.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber242">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber253">source</a></span></span>
     </span>
   </h3>
 
@@ -1650,7 +1566,7 @@ line of text.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber287">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber298">source</a></span></span>
     </span>
   </h3>
 
@@ -1740,7 +1656,7 @@ line of text.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber147">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber158">source</a></span></span>
     </span>
   </h3>
 
@@ -1810,7 +1726,7 @@ folder.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber135">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber146">source</a></span></span>
     </span>
   </h3>
 
@@ -1878,7 +1794,7 @@ eg: defaults write com.bohemiancoding.sketch3 &lt;key&gt; &lt;value&gt;</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber120">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber131">source</a></span></span>
     </span>
   </h3>
 

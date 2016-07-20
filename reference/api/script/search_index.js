@@ -486,12 +486,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "source/application.js~application#metadata",
-    "class/Source/Application.js~Application.html#instance-member-metadata",
-    "Source/Application.js~Application#metadata",
-    "member"
-  ],
-  [
     "source/application.js~application#newdocument",
     "class/Source/Application.js~Application.html#instance-method-newDocument",
     "Source/Application.js~Application#newDocument",
@@ -556,12 +550,6 @@ window.esdocSearchIndex = [
     "file/Source/Document.js.html",
     "Source/Document.js",
     "file"
-  ],
-  [
-    "source/document.js~document#application",
-    "class/Source/Document.js~Document.html#instance-member-application",
-    "Source/Document.js~Document#application",
-    "member"
   ],
   [
     "source/document.js~document#constructor",
@@ -654,12 +642,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "source/layer.js~layer#addwrappedlayerwithproperties",
-    "class/Source/Layer.js~Layer.html#instance-method-addWrappedLayerWithProperties",
-    "Source/Layer.js~Layer#addWrappedLayerWithProperties",
-    "method"
-  ],
-  [
     "source/layer.js~layer#constructor",
     "class/Source/Layer.js~Layer.html#instance-constructor-constructor",
     "Source/Layer.js~Layer#constructor",
@@ -670,12 +652,6 @@ window.esdocSearchIndex = [
     "class/Source/Layer.js~Layer.html#instance-method-deselect",
     "Source/Layer.js~Layer#deselect",
     "method"
-  ],
-  [
-    "source/layer.js~layer#document",
-    "class/Source/Layer.js~Layer.html#instance-member-document",
-    "Source/Layer.js~Layer#document",
-    "member"
   ],
   [
     "source/layer.js~layer#duplicate",
@@ -694,12 +670,6 @@ window.esdocSearchIndex = [
     "class/Source/Layer.js~Layer.html#instance-set-frame",
     "Source/Layer.js~Layer#frame",
     "member"
-  ],
-  [
-    "source/layer.js~layer#frameforlayerwithproperties",
-    "class/Source/Layer.js~Layer.html#instance-method-frameForLayerWithProperties",
-    "Source/Layer.js~Layer#frameForLayerWithProperties",
-    "method"
   ],
   [
     "source/layer.js~layer#isartboard",
@@ -745,21 +715,15 @@ window.esdocSearchIndex = [
   ],
   [
     "source/layer.js~layer#name",
-    "class/Source/Layer.js~Layer.html#instance-get-name",
-    "Source/Layer.js~Layer#name",
-    "member"
-  ],
-  [
-    "source/layer.js~layer#name",
     "class/Source/Layer.js~Layer.html#instance-set-name",
     "Source/Layer.js~Layer#name",
     "member"
   ],
   [
-    "source/layer.js~layer#newartboard",
-    "class/Source/Layer.js~Layer.html#instance-method-newArtboard",
-    "Source/Layer.js~Layer#newArtboard",
-    "method"
+    "source/layer.js~layer#name",
+    "class/Source/Layer.js~Layer.html#instance-get-name",
+    "Source/Layer.js~Layer#name",
+    "member"
   ],
   [
     "source/layer.js~layer#newgroup",
@@ -810,16 +774,16 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "source/page.js~page#document",
-    "class/Source/Page.js~Page.html#instance-member-document",
-    "Source/Page.js~Page#document",
-    "member"
-  ],
-  [
     "source/page.js~page#ispage",
     "class/Source/Page.js~Page.html#instance-get-isPage",
     "Source/Page.js~Page#isPage",
     "member"
+  ],
+  [
+    "source/page.js~page#newartboard",
+    "class/Source/Page.js~Page.html#instance-method-newArtboard",
+    "Source/Page.js~Page#newArtboard",
+    "method"
   ],
   [
     "source/rectangle.js",
@@ -987,12 +951,6 @@ window.esdocSearchIndex = [
     "source/wrappedobject.js~wrappedobject#id",
     "class/Source/WrappedObject.js~WrappedObject.html#instance-get-id",
     "Source/WrappedObject.js~WrappedObject#id",
-    "member"
-  ],
-  [
-    "source/wrappedobject.js~wrappedobject#object",
-    "class/Source/WrappedObject.js~WrappedObject.html#instance-member-object",
-    "Source/WrappedObject.js~WrappedObject#object",
     "member"
   ]
 ]

@@ -104,7 +104,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Page.js~Page.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(page: <span>*</span>, document: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/Source/Page.js~Page.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(page: <span>MSPage</span>, document: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -130,31 +130,6 @@
     <td>
       <span class="access" data-ice="access">public</span>
       
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/Source/Page.js~Page.html#instance-member-document">document</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
       <span class="kind" data-ice="kind">get</span>
       
       <span class="override" data-ice="override"></span>
@@ -162,7 +137,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Page.js~Page.html#instance-get-isPage">isPage</a></span></span><span data-ice="signature">: <span>*</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/Source/Page.js~Page.html#instance-get-isPage">isPage</a></span></span><span data-ice="signature">: <span>bool</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -180,7 +155,40 @@
 </tbody>
 </table>
 </div>
-
+<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/Source/Page.js~Page.html#instance-method-newArtboard">newArtboard</a></span></span><span data-ice="signature">(properties: <span>*</span>): <span><a href="class/Source/Artboard.js~Artboard.html">Artboard</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a newly created artboard, which has been added to this page,
+and sets it up using the supplied properties.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
 
 <div class="inherited-summary" data-ice="inheritedSummary"><h2>Inherited Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3"><span class="toggle closed"></span> From class <span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></td></tr></thead>
@@ -212,31 +220,6 @@
       
     </td>
   </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-member-object">object</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
 </tbody>
 </table>
 
@@ -255,13 +238,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-frame">frame</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-frame">frame</a></span></span><span data-ice="signature">: <span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>The frame of the layer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -280,13 +264,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-set-frame">frame</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-set-frame">frame</a></span></span><span data-ice="signature">(frame: <span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Set the frame of the layer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -331,7 +316,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isGroup">isGroup</a></span></span><span data-ice="signature">: <span>*</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isGroup">isGroup</a></span></span><span data-ice="signature">: <span>bool</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -357,7 +342,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isImage">isImage</a></span></span><span data-ice="signature">: <span>*</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isImage">isImage</a></span></span><span data-ice="signature">: <span>bool</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -383,7 +368,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isPage">isPage</a></span></span><span data-ice="signature">: <span>*</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isPage">isPage</a></span></span><span data-ice="signature">: <span>bool</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -409,7 +394,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isShape">isShape</a></span></span><span data-ice="signature">: <span>*</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isShape">isShape</a></span></span><span data-ice="signature">: <span>bool</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -435,7 +420,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isText">isText</a></span></span><span data-ice="signature">: <span>*</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-isText">isText</a></span></span><span data-ice="signature">: <span>bool</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -461,13 +446,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-name">name</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-get-name">name</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>The name of the layer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -486,38 +472,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-set-name">name</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-set-name">name</a></span></span><span data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-member-document">document</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Set the name of the layer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -542,32 +504,8 @@
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-addWrappedLayerWithProperties">addWrappedLayerWithProperties</a></span></span><span data-ice="signature">(newLayer: <span>*</span>, properties: <span>*</span>, wrapper: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Add this layer to the selected layers.</p>
+</div>
       </div>
     </td>
     <td>
@@ -592,7 +530,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Deselect this layer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -611,38 +550,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-duplicate">duplicate</a></span></span><span data-ice="signature">(): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-duplicate">duplicate</a></span></span><span data-ice="signature">(): <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-frameForLayerWithProperties">frameForLayerWithProperties</a></span></span><span data-ice="signature">(properties: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Duplicate this layer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -667,7 +582,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Perform a function for every sub-layer inside this one.</p>
+</div>
       </div>
     </td>
     <td>
@@ -686,13 +602,15 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-newArtboard">newArtboard</a></span></span><span data-ice="signature">(properties: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-newGroup">newGroup</a></span></span><span data-ice="signature">(properties: <span>dictionary</span>): <span><a href="class/Source/Group.js~Group.html">Group</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns a newly created group, which has been added to this layer,
+and sets it up using the supplied properties.</p>
+</div>
       </div>
     </td>
     <td>
@@ -711,13 +629,15 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-newGroup">newGroup</a></span></span><span data-ice="signature">(properties: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-newImage">newImage</a></span></span><span data-ice="signature">(properties: <span>dictionary</span>): <span><a href="class/Source/Image.js~Image.html">Image</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns a newly created image layer, which has been added to this layer,
+and sets it up using the supplied properties.</p>
+</div>
       </div>
     </td>
     <td>
@@ -736,13 +656,15 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-newImage">newImage</a></span></span><span data-ice="signature">(properties: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-newShape">newShape</a></span></span><span data-ice="signature">(properties: <span>*</span>): <span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns a newly created shape, which has been added to this layer,
+and sets it up using the supplied properties.</p>
+</div>
       </div>
     </td>
     <td>
@@ -761,38 +683,15 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-newShape">newShape</a></span></span><span data-ice="signature">(properties: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-newText">newText</a></span></span><span data-ice="signature">(properties: <span>dictionary</span>): <span><a href="class/Source/Text.js~Text.html">Text</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html#instance-method-newText">newText</a></span></span><span data-ice="signature">(properties: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Returns a newly created text layer, which has been added to this layer,
+and sets it up using the supplied properties.</p>
+</div>
       </div>
     </td>
     <td>
@@ -817,7 +716,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Remove this layer from its parent.</p>
+</div>
       </div>
     </td>
     <td>
@@ -842,7 +742,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Select the layer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -865,11 +766,11 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(page: <span>*</span>, document: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(page: <span>MSPage</span>, document: <span>*</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Page.js.html#lineNumber24">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Page.js.html#lineNumber23">source</a></span></span>
     </span>
   </h3>
 
@@ -891,9 +792,9 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">page</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span>MSPage</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>{MSPage} The underlying model object from Sketch.</p>
+      <td data-ice="description"><p>The underlying model object from Sketch.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
@@ -927,57 +828,17 @@
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-document">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">document</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/Source/Page.js.html#lineNumber26">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  <div data-ice="override"><h4>Override:</h4><span><a href="class/Source/Layer.js~Layer.html#instance-member-document">Layer#document</a></span></div>
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-get-isPage">
     <span class="access" data-ice="access">public</span>
     
     <span class="kind" data-ice="kind">get</span>
     
     
-    <span data-ice="name">isPage</span><span data-ice="signature">: <span>*</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span data-ice="name">isPage</span><span data-ice="signature">: <span>bool</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Page.js.html#lineNumber37">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Page.js.html#lineNumber36">source</a></span></span>
     </span>
   </h3>
 
@@ -997,8 +858,8 @@
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true {bool} for instances of Group, false for any other layer type.</p>
+        <td class="return-type" data-ice="returnType"><span>bool</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>true for instances of Group, false for any other layer type.</p>
 </td>
       </tr>
     </table>
@@ -1020,7 +881,79 @@
   
 </div>
 </div>
+<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-newArtboard">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">newArtboard</span><span data-ice="signature">(properties: <span>*</span>): <span><a href="class/Source/Artboard.js~Artboard.html">Artboard</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/Source/Page.js.html#lineNumber48">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a newly created artboard, which has been added to this page,
+and sets it up using the supplied properties.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">properties</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>{dictionary} Properties to apply to the artboard.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/Source/Artboard.js~Artboard.html">Artboard</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the new artboard.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
 </div>
 
 <footer class="footer">
