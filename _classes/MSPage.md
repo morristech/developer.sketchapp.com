@@ -61,7 +61,6 @@ var doc = context.document
 var page = doc.currentPage()
 var newPage = page.copy()
 
-newPage.pageDelegate = page.pageDelegate();
 newPage.setName(page.name() + " Copy") // Or anything you like
 
 doc.documentData().addPage(newPage)
