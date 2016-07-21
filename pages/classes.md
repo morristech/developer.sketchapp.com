@@ -15,7 +15,7 @@ Work in progress
     <tr>
       <td><a href="{{class.url}}">{{class.title}}</a></td>
       <td>{{class.summary}}</td>
-    <tr>
+    </tr>
   {% endfor %}
   </tbody>
 </table>
