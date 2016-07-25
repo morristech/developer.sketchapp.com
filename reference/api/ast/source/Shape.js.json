@@ -10,16 +10,16 @@
             "type": "Identifier",
             "name": "Layer",
             "range": [
-              165,
-              170
+              180,
+              185
             ],
             "loc": {
               "start": {
-                "line": 8,
+                "line": 10,
                 "column": 9
               },
               "end": {
-                "line": 8,
+                "line": 10,
                 "column": 14
               }
             }
@@ -28,31 +28,31 @@
             "type": "Identifier",
             "name": "Layer",
             "range": [
-              165,
-              170
+              180,
+              185
             ],
             "loc": {
               "start": {
-                "line": 8,
+                "line": 10,
                 "column": 9
               },
               "end": {
-                "line": 8,
+                "line": 10,
                 "column": 14
               }
             }
           },
           "range": [
-            165,
-            170
+            180,
+            185
           ],
           "loc": {
             "start": {
-              "line": 8,
+              "line": 10,
               "column": 9
             },
             "end": {
-              "line": 8,
+              "line": 10,
               "column": 14
             }
           }
@@ -63,51 +63,31 @@
         "value": "./Layer.js",
         "raw": "'./Layer.js'",
         "range": [
-          178,
-          190
+          193,
+          205
         ],
         "loc": {
           "start": {
-            "line": 8,
+            "line": 10,
             "column": 22
           },
           "end": {
-            "line": 8,
+            "line": 10,
             "column": 34
           }
-        },
-        "trailingComments": [
-          {
-            "type": "Block",
-            "value": "*\n  Represents a shape layer (a rectangle, oval, path, etc).\n ",
-            "range": [
-              192,
-              258
-            ],
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 0
-              },
-              "end": {
-                "line": 12,
-                "column": 3
-              }
-            }
-          }
-        ]
+        }
       },
       "range": [
-        156,
-        260
+        171,
+        207
       ],
       "loc": {
         "start": {
-          "line": 8,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 14,
+          "line": 12,
           "column": 0
         }
       },
@@ -219,6 +199,24 @@
               "column": 35
             }
           }
+        },
+        {
+          "type": "Line",
+          "value": " ## Imports",
+          "range": [
+            156,
+            169
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 13
+            }
+          }
         }
       ]
     },
@@ -230,16 +228,16 @@
           "type": "Identifier",
           "name": "Shape",
           "range": [
-            273,
-            278
+            220,
+            225
           ],
           "loc": {
             "start": {
-              "line": 14,
+              "line": 12,
               "column": 13
             },
             "end": {
-              "line": 14,
+              "line": 12,
               "column": 18
             }
           }
@@ -248,16 +246,16 @@
           "type": "Identifier",
           "name": "Layer",
           "range": [
-            287,
-            292
+            234,
+            239
           ],
           "loc": {
             "start": {
-              "line": 14,
+              "line": 12,
               "column": 27
             },
             "end": {
-              "line": 14,
+              "line": 12,
               "column": 32
             }
           }
@@ -271,16 +269,16 @@
                 "type": "Identifier",
                 "name": "constructor",
                 "range": [
-                  485,
-                  496
+                  246,
+                  257
                 ],
                 "loc": {
                   "start": {
-                    "line": 23,
+                    "line": 13,
                     "column": 4
                   },
                   "end": {
-                    "line": 23,
+                    "line": 13,
                     "column": 15
                   }
                 }
@@ -293,16 +291,16 @@
                     "type": "Identifier",
                     "name": "shape",
                     "range": [
-                      497,
-                      502
+                      258,
+                      263
                     ],
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 13,
                         "column": 16
                       },
                       "end": {
-                        "line": 23,
+                        "line": 13,
                         "column": 21
                       }
                     }
@@ -311,16 +309,16 @@
                     "type": "Identifier",
                     "name": "document",
                     "range": [
-                      504,
-                      512
+                      265,
+                      273
                     ],
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 13,
                         "column": 23
                       },
                       "end": {
-                        "line": 23,
+                        "line": 13,
                         "column": 31
                       }
                     }
@@ -336,16 +334,16 @@
                         "callee": {
                           "type": "Super",
                           "range": [
-                            522,
-                            527
+                            283,
+                            288
                           ],
                           "loc": {
                             "start": {
-                              "line": 24,
+                              "line": 14,
                               "column": 6
                             },
                             "end": {
-                              "line": 24,
+                              "line": 14,
                               "column": 11
                             }
                           }
@@ -355,16 +353,16 @@
                             "type": "Identifier",
                             "name": "shape",
                             "range": [
-                              528,
-                              533
+                              289,
+                              294
                             ],
                             "loc": {
                               "start": {
-                                "line": 24,
+                                "line": 14,
                                 "column": 12
                               },
                               "end": {
-                                "line": 24,
+                                "line": 14,
                                 "column": 17
                               }
                             }
@@ -373,63 +371,63 @@
                             "type": "Identifier",
                             "name": "document",
                             "range": [
-                              535,
-                              543
+                              296,
+                              304
                             ],
                             "loc": {
                               "start": {
-                                "line": 24,
+                                "line": 14,
                                 "column": 19
                               },
                               "end": {
-                                "line": 24,
+                                "line": 14,
                                 "column": 27
                               }
                             }
                           }
                         ],
                         "range": [
-                          522,
-                          544
+                          283,
+                          305
                         ],
                         "loc": {
                           "start": {
-                            "line": 24,
+                            "line": 14,
                             "column": 6
                           },
                           "end": {
-                            "line": 24,
+                            "line": 14,
                             "column": 28
                           }
                         }
                       },
                       "range": [
-                        522,
-                        549
+                        283,
+                        310
                       ],
                       "loc": {
                         "start": {
-                          "line": 24,
+                          "line": 14,
                           "column": 6
                         },
                         "end": {
-                          "line": 25,
+                          "line": 15,
                           "column": 4
                         }
                       }
                     }
                   ],
                   "range": [
-                    514,
-                    550
+                    275,
+                    311
                   ],
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 13,
                       "column": 33
                     },
                     "end": {
-                      "line": 25,
+                      "line": 15,
                       "column": 5
                     }
                   }
@@ -437,16 +435,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  496,
-                  550
+                  257,
+                  311
                 ],
                 "loc": {
                   "start": {
-                    "line": 23,
+                    "line": 13,
                     "column": 15
                   },
                   "end": {
-                    "line": 25,
+                    "line": 15,
                     "column": 5
                   }
                 }
@@ -454,59 +452,19 @@
               "kind": "constructor",
               "computed": false,
               "range": [
-                485,
-                550
+                246,
+                311
               ],
               "loc": {
                 "start": {
-                  "line": 23,
+                  "line": 13,
                   "column": 4
                 },
                 "end": {
-                  "line": 25,
+                  "line": 15,
                   "column": 5
                 }
               },
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n      Make a new shape object.\n\n      @param shape {MSShapeGroup} The underlying model object from Sketch.\n      @param document The document that the shape belongs to.\n    ",
-                  "range": [
-                    300,
-                    479
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 16,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 21,
-                      "column": 6
-                    }
-                  }
-                }
-              ],
-              "trailingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    ",
-                  "range": [
-                    556,
-                    799
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 27,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 33,
-                      "column": 6
-                    }
-                  }
-                }
-              ],
               "static": false
             },
             {
@@ -515,16 +473,16 @@
                 "type": "Identifier",
                 "name": "isShape",
                 "range": [
-                  809,
-                  816
+                  321,
+                  328
                 ],
                 "loc": {
                   "start": {
-                    "line": 35,
+                    "line": 17,
                     "column": 8
                   },
                   "end": {
-                    "line": 35,
+                    "line": 17,
                     "column": 15
                   }
                 }
@@ -543,47 +501,47 @@
                         "value": true,
                         "raw": "true",
                         "range": [
-                          834,
-                          838
+                          346,
+                          350
                         ],
                         "loc": {
                           "start": {
-                            "line": 36,
+                            "line": 18,
                             "column": 13
                           },
                           "end": {
-                            "line": 36,
+                            "line": 18,
                             "column": 17
                           }
                         }
                       },
                       "range": [
-                        827,
-                        839
+                        339,
+                        351
                       ],
                       "loc": {
                         "start": {
-                          "line": 36,
+                          "line": 18,
                           "column": 6
                         },
                         "end": {
-                          "line": 36,
+                          "line": 18,
                           "column": 18
                         }
                       }
                     }
                   ],
                   "range": [
-                    819,
-                    845
+                    331,
+                    357
                   ],
                   "loc": {
                     "start": {
-                      "line": 35,
+                      "line": 17,
                       "column": 18
                     },
                     "end": {
-                      "line": 37,
+                      "line": 19,
                       "column": 5
                     }
                   }
@@ -591,16 +549,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  816,
-                  845
+                  328,
+                  357
                 ],
                 "loc": {
                   "start": {
-                    "line": 35,
+                    "line": 17,
                     "column": 15
                   },
                   "end": {
-                    "line": 37,
+                    "line": 19,
                     "column": 5
                   }
                 }
@@ -608,143 +566,84 @@
               "kind": "get",
               "computed": false,
               "range": [
-                805,
-                845
+                317,
+                357
               ],
               "loc": {
                 "start": {
-                  "line": 35,
+                  "line": 17,
                   "column": 4
                 },
                 "end": {
-                  "line": 37,
+                  "line": 19,
                   "column": 5
                 }
               },
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    ",
-                  "range": [
-                    556,
-                    799
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 27,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 33,
-                      "column": 6
-                    }
-                  }
-                }
-              ],
               "static": false
             }
           ],
           "range": [
-            293,
-            848
+            240,
+            360
           ],
           "loc": {
             "start": {
-              "line": 14,
+              "line": 12,
               "column": 33
             },
             "end": {
-              "line": 39,
+              "line": 21,
               "column": 1
             }
           }
         },
         "range": [
-          267,
-          848
+          214,
+          360
         ],
         "loc": {
           "start": {
-            "line": 14,
+            "line": 12,
             "column": 7
           },
           "end": {
-            "line": 39,
+            "line": 21,
             "column": 1
           }
         },
-        "leadingComments": [
-          {
-            "type": "Block",
-            "value": "*\n  Represents a shape layer (a rectangle, oval, path, etc).\n ",
-            "range": [
-              192,
-              258
-            ],
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 0
-              },
-              "end": {
-                "line": 12,
-                "column": 3
-              }
-            }
-          }
-        ],
+        "leadingComments": [],
         "trailingComments": []
       },
       "specifiers": [],
       "source": null,
       "range": [
-        260,
-        848
+        207,
+        360
       ],
       "loc": {
         "start": {
-          "line": 14,
+          "line": 12,
           "column": 0
         },
         "end": {
-          "line": 39,
+          "line": 21,
           "column": 1
         }
-      },
-      "leadingComments": [
-        {
-          "type": "Block",
-          "value": "*\n  Represents a shape layer (a rectangle, oval, path, etc).\n ",
-          "range": [
-            192,
-            258
-          ],
-          "loc": {
-            "start": {
-              "line": 10,
-              "column": 0
-            },
-            "end": {
-              "line": 12,
-              "column": 3
-            }
-          }
-        }
-      ]
+      }
     }
   ],
   "sourceType": "module",
   "range": [
-    156,
-    848
+    171,
+    360
   ],
   "loc": {
     "start": {
-      "line": 8,
+      "line": 10,
       "column": 0
     },
     "end": {
-      "line": 39,
+      "line": 21,
       "column": 1
     }
   },
@@ -858,56 +757,20 @@
       }
     },
     {
-      "type": "Block",
-      "value": "*\n  Represents a shape layer (a rectangle, oval, path, etc).\n ",
+      "type": "Line",
+      "value": " ## Imports",
       "range": [
-        192,
-        258
+        156,
+        169
       ],
       "loc": {
         "start": {
-          "line": 10,
+          "line": 8,
           "column": 0
         },
         "end": {
-          "line": 12,
-          "column": 3
-        }
-      }
-    },
-    {
-      "type": "Block",
-      "value": "*\n      Make a new shape object.\n\n      @param shape {MSShapeGroup} The underlying model object from Sketch.\n      @param document The document that the shape belongs to.\n    ",
-      "range": [
-        300,
-        479
-      ],
-      "loc": {
-        "start": {
-          "line": 16,
-          "column": 4
-        },
-        "end": {
-          "line": 21,
-          "column": 6
-        }
-      }
-    },
-    {
-      "type": "Block",
-      "value": "*\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    ",
-      "range": [
-        556,
-        799
-      ],
-      "loc": {
-        "start": {
-          "line": 27,
-          "column": 4
-        },
-        "end": {
-          "line": 33,
-          "column": 6
+          "line": 8,
+          "column": 13
         }
       }
     }

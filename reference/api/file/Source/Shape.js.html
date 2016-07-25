@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://github.com/BohemianCoding/developer.sketchapp.com" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -56,32 +56,14 @@
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
+// ##&#xA0;Imports
+
 import { Layer } from &apos;./Layer.js&apos;
 
-/**
-  Represents a shape layer (a rectangle, oval, path, etc).
- */
-
 export class Shape extends Layer {
-
-    /**
-      Make a new shape object.
-
-      @param shape {MSShapeGroup} The underlying model object from Sketch.
-      @param document The document that the shape belongs to.
-    */
-
     constructor(shape, document) {
       super(shape, document)
     }
-
-    /**
-        Is this a shape layer?
-
-        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.
-
-        @return {bool} true for instances of Group, false for any other layer type.
-    */
 
     get isShape() {
       return true;

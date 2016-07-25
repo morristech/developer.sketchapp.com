@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://github.com/BohemianCoding/developer.sketchapp.com" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -56,58 +56,15 @@
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-/**
-  Represents a rectangle.
- */
+// ##&#xA0;Imports
 
 export class Rectangle {
-
-  /**
-    Return a new Rectangle object for a given x,y, width and height.
-
-    @param {number} x The x coordinate of the top-left corner of the rectangle.
-    @param {number} y The y coordinate of the top-left corner of the rectangle.
-    @param {number} width The width of the rectangle.
-    @param {number} height The height of the rectangle.
-    @return The new Rectangle object.
-  */
-
-  constructor(x, y, width, height) {
-
-    /**
-      The x coordinate of the top-left corner of the rectangle.
-      @type {number}
-    */
-
+  constructor(x, y, w, h) {
     this.x = x
-
-    /**
-      The y coordinate of the top-left corner of the rectangle.
-      @type {number}
-    */
-
     this.y = y
-
-    /**
-      The width of the rectangle.
-      @type {number}
-    */
-
-    this.width = width
-
-    /**
-      The height of the rectangle.
-      @type {number}
-    */
-
-    this.height = height
+    this.width = w
+    this.height = h
   }
-
-  /**
-    Return the Rectangle as a CGRect.
-
-    @return {CGRect} The rectangle.
-  */
 
   asCGRect() {
     return CGRectMake(this.x, this.y, this.width, this.height)

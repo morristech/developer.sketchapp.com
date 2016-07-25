@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://github.com/BohemianCoding/developer.sketchapp.com" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -48,56 +48,19 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="sketch-api">Sketch API</h1>
-<p>This is a prototype Javascript API for Sketch.</p>
-<p>The intention is to make something which is:</p>
-<ul>
-<li>native Javascript</li>
-<li>an easily understandable subset of the full internals of Sketch</li>
-<li>fully supported by Bohemian between releases (ie we try not to change it, unlike our internal API which we can and do change whenever we need to)</li>
-<li>still allows you to drop down to our internal API when absolutely necessary.</li>
-</ul>
-<p>Comments and suggestions for this API are welcome - send them to developers@sketchapp.com.</p>
-<h2 id="install">Install</h2>
-<p>The API comes bundled inside Sketch, so no installation is required.</p>
-<h2 id="usage">Usage</h2>
-<p>Example script:</p>
-<pre><code><code class="source-code prettyprint">var sketch = context.api()
-
-log(sketch.api_version)
-log(sketch.version)
-log(sketch.build)
-log(sketch.full_version)
-
-
-var document = sketch.selectedDocument;
-var selection = document.selectedLayers;
-var page = document.selectedPage;
-
-var group = page.newGroup({frame:sketch.rectangle(0, 0, 100, 100), name:&quot;Test&quot;});
-var rect = group.newShape({frame:sketch.rectangle(10, 10, 80, 80)});
-
-log(selection.isEmpty);
-selection.iterate(function(item) { log(item.name); } );
-
-selection.clear();
-log(selection.isEmpty);
-
-group.select();
-rect.addToSelection();
-
-sketch.getStringFromUser(&quot;Test&quot;, &quot;default&quot;);
-sketch.getSelectionFromUser(&quot;Test&quot;, [&quot;One&quot;, &quot;Two&quot;], 1);
-sketch.message(&quot;Hello mum!&quot;);
-sketch.alert(&quot;Title&quot;, &quot;message&quot;);</code>
-</code></pre><h2 id="acknowledgements">Acknowledgements</h2>
-<p>We would like to thank:</p>
-<ul>
-<li><a href="https://github.com/turbobabr">Andrey Shakhmin</a>, for his inspiration during the <a href="http://designtoolshackday.com">Hamburg Hackathon</a>, where he showed us how to use node modules inside Sketch.</li>
-<li>The Sketch plugin community everywhere, for such awesome work.</li>
-</ul>
-<h2 id="development">Development</h2>
-<p>(tbc)</p>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="developer-sketchapp-com">developer.sketchapp.com</h1>
+<p>This repository powers the development site for <a href="http://sketchapp.com">Sketch</a>, that lives at <a href="http://developer.sketchapp.com">developer.sketchapp.com</a>.</p>
+<h2 id="contribute-">Contribute!</h2>
+<p>We&apos;ve made this repository public so you can contribute to it. If you find a typo, or an error, or want to improve the content, feel free to send us a pull request. Also, if there&apos;s anything you&apos;d like to see covered or documented, file an issue and we&apos;ll do it for you.</p>
+<p>We use <a href="http://jekyllrb.com">Jekyll</a> as our content backend, so make sure to read their docs if you need help understanding how the system works.</p>
+<h2 id="setup">Setup</h2>
+<p>If you want to get the site working locally, you&apos;ll need to have <a href="https://nodejs.org/en/">node</a> and <a href="http://bundler.io">bundler</a> installed. Once you have them, run this:</p>
+<pre><code><code class="source-code prettyprint">npm install --global gulp
+bundle install --path _vendor
+npm install</code>
+</code></pre><p>and then run</p>
+<pre><code><code class="source-code prettyprint">gulp</code>
+</code></pre><p>to start the server and open a browser automatically.</p>
 </div>
 </div>
 

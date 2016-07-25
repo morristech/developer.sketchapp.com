@@ -1,74 +1,74 @@
 window.esdocSearchIndex = [
   [
-    "sketch-api/source/application.js~application",
+    "developer.sketchapp.com/source/application.js~application",
     "class/Source/Application.js~Application.html",
-    "<span>Application</span> <span class=\"search-result-import-path\">sketch-api/Source/Application.js</span>",
+    "<span>Application</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Application.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/artboard.js~artboard",
+    "developer.sketchapp.com/source/artboard.js~artboard",
     "class/Source/Artboard.js~Artboard.html",
-    "<span>Artboard</span> <span class=\"search-result-import-path\">sketch-api/Source/Artboard.js</span>",
+    "<span>Artboard</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Artboard.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/document.js~document",
+    "developer.sketchapp.com/source/document.js~document",
     "class/Source/Document.js~Document.html",
-    "<span>Document</span> <span class=\"search-result-import-path\">sketch-api/Source/Document.js</span>",
+    "<span>Document</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Document.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/group.js~group",
+    "developer.sketchapp.com/source/group.js~group",
     "class/Source/Group.js~Group.html",
-    "<span>Group</span> <span class=\"search-result-import-path\">sketch-api/Source/Group.js</span>",
+    "<span>Group</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Group.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/image.js~image",
+    "developer.sketchapp.com/source/image.js~image",
     "class/Source/Image.js~Image.html",
-    "<span>Image</span> <span class=\"search-result-import-path\">sketch-api/Source/Image.js</span>",
+    "<span>Image</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Image.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/layer.js~layer",
+    "developer.sketchapp.com/source/layer.js~layer",
     "class/Source/Layer.js~Layer.html",
-    "<span>Layer</span> <span class=\"search-result-import-path\">sketch-api/Source/Layer.js</span>",
+    "<span>Layer</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Layer.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/page.js~page",
+    "developer.sketchapp.com/source/page.js~page",
     "class/Source/Page.js~Page.html",
-    "<span>Page</span> <span class=\"search-result-import-path\">sketch-api/Source/Page.js</span>",
+    "<span>Page</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Page.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/rectangle.js~rectangle",
+    "developer.sketchapp.com/source/rectangle.js~rectangle",
     "class/Source/Rectangle.js~Rectangle.html",
-    "<span>Rectangle</span> <span class=\"search-result-import-path\">sketch-api/Source/Rectangle.js</span>",
+    "<span>Rectangle</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Rectangle.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/selection.js~selection",
+    "developer.sketchapp.com/source/selection.js~selection",
     "class/Source/Selection.js~Selection.html",
-    "<span>Selection</span> <span class=\"search-result-import-path\">sketch-api/Source/Selection.js</span>",
+    "<span>Selection</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Selection.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/shape.js~shape",
+    "developer.sketchapp.com/source/shape.js~shape",
     "class/Source/Shape.js~Shape.html",
-    "<span>Shape</span> <span class=\"search-result-import-path\">sketch-api/Source/Shape.js</span>",
+    "<span>Shape</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Shape.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/text.js~text",
+    "developer.sketchapp.com/source/text.js~text",
     "class/Source/Text.js~Text.html",
-    "<span>Text</span> <span class=\"search-result-import-path\">sketch-api/Source/Text.js</span>",
+    "<span>Text</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Text.js</span>",
     "class"
   ],
   [
-    "sketch-api/source/wrappedobject.js~wrappedobject",
+    "developer.sketchapp.com/source/wrappedobject.js~wrappedobject",
     "class/Source/WrappedObject.js~WrappedObject.html",
-    "<span>WrappedObject</span> <span class=\"search-result-import-path\">sketch-api/Source/WrappedObject.js</span>",
+    "<span>WrappedObject</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/WrappedObject.js</span>",
     "class"
   ],
   [
@@ -486,6 +486,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "source/application.js~application#metadata",
+    "class/Source/Application.js~Application.html#instance-member-metadata",
+    "Source/Application.js~Application#metadata",
+    "member"
+  ],
+  [
     "source/application.js~application#newdocument",
     "class/Source/Application.js~Application.html#instance-method-newDocument",
     "Source/Application.js~Application#newDocument",
@@ -552,10 +558,10 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "source/document.js~document#centeronlayer",
-    "class/Source/Document.js~Document.html#instance-method-centerOnLayer",
-    "Source/Document.js~Document#centerOnLayer",
-    "method"
+    "source/document.js~document#application",
+    "class/Source/Document.js~Document.html#instance-member-application",
+    "Source/Document.js~Document#application",
+    "member"
   ],
   [
     "source/document.js~document#constructor",
@@ -648,6 +654,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "source/layer.js~layer#addwrappedlayerwithproperties",
+    "class/Source/Layer.js~Layer.html#instance-method-addWrappedLayerWithProperties",
+    "Source/Layer.js~Layer#addWrappedLayerWithProperties",
+    "method"
+  ],
+  [
     "source/layer.js~layer#constructor",
     "class/Source/Layer.js~Layer.html#instance-constructor-constructor",
     "Source/Layer.js~Layer#constructor",
@@ -658,6 +670,12 @@ window.esdocSearchIndex = [
     "class/Source/Layer.js~Layer.html#instance-method-deselect",
     "Source/Layer.js~Layer#deselect",
     "method"
+  ],
+  [
+    "source/layer.js~layer#document",
+    "class/Source/Layer.js~Layer.html#instance-member-document",
+    "Source/Layer.js~Layer#document",
+    "member"
   ],
   [
     "source/layer.js~layer#duplicate",
@@ -676,6 +694,12 @@ window.esdocSearchIndex = [
     "class/Source/Layer.js~Layer.html#instance-set-frame",
     "Source/Layer.js~Layer#frame",
     "member"
+  ],
+  [
+    "source/layer.js~layer#frameforlayerwithproperties",
+    "class/Source/Layer.js~Layer.html#instance-method-frameForLayerWithProperties",
+    "Source/Layer.js~Layer#frameForLayerWithProperties",
+    "method"
   ],
   [
     "source/layer.js~layer#isartboard",
@@ -732,6 +756,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/layer.js~layer#newartboard",
+    "class/Source/Layer.js~Layer.html#instance-method-newArtboard",
+    "Source/Layer.js~Layer#newArtboard",
+    "method"
+  ],
+  [
     "source/layer.js~layer#newgroup",
     "class/Source/Layer.js~Layer.html#instance-method-newGroup",
     "Source/Layer.js~Layer#newGroup",
@@ -780,16 +810,16 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "source/page.js~page#document",
+    "class/Source/Page.js~Page.html#instance-member-document",
+    "Source/Page.js~Page#document",
+    "member"
+  ],
+  [
     "source/page.js~page#ispage",
     "class/Source/Page.js~Page.html#instance-get-isPage",
     "Source/Page.js~Page#isPage",
     "member"
-  ],
-  [
-    "source/page.js~page#newartboard",
-    "class/Source/Page.js~Page.html#instance-method-newArtboard",
-    "Source/Page.js~Page#newArtboard",
-    "method"
   ],
   [
     "source/rectangle.js",
@@ -924,12 +954,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "source/text.js~text#resizetofitcontents",
-    "class/Source/Text.js~Text.html#instance-method-resizeToFitContents",
-    "Source/Text.js~Text#resizeToFitContents",
-    "method"
-  ],
-  [
     "source/text.js~text#systemfontsize",
     "class/Source/Text.js~Text.html#instance-set-systemFontSize",
     "Source/Text.js~Text#systemFontSize",
@@ -963,6 +987,12 @@ window.esdocSearchIndex = [
     "source/wrappedobject.js~wrappedobject#id",
     "class/Source/WrappedObject.js~WrappedObject.html#instance-get-id",
     "Source/WrappedObject.js~WrappedObject#id",
+    "member"
+  ],
+  [
+    "source/wrappedobject.js~wrappedobject#object",
+    "class/Source/WrappedObject.js~WrappedObject.html#instance-member-object",
+    "Source/WrappedObject.js~WrappedObject#object",
     "member"
   ]
 ]
