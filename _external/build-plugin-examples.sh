@@ -5,7 +5,7 @@ scripts=`pwd`
 cd "$scripts/.."
 base=`pwd`
 
-git submodule foreach --quiet "$scripts/build-example.sh \$name \"$scripts\""
+git submodule foreach --quiet "$scripts/foreach-example.sh \$name \"$scripts\""
 
 additionalFolders=`defaults read com.bohemiancoding.sketch3.xcode AdditionalPluginFolders`
 if ! [[ "$additionalFolders" == *"$scripts"* ]]
