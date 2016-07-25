@@ -2736,12 +2736,254 @@
                   }
                 }
               ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      Adjust the frame of the layer to fit its contents.\n    ",
+                  "range": [
+                    2133,
+                    2200
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 107,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 109,
+                      "column": 6
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "resizeToFitContents",
+                "range": [
+                  2206,
+                  2225
+                ],
+                "loc": {
+                  "start": {
+                    "line": 111,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 111,
+                    "column": 23
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                              "range": [
+                                2236,
+                                2240
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 112,
+                                  "column": 6
+                                },
+                                "end": {
+                                  "line": 112,
+                                  "column": 10
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "_object",
+                              "range": [
+                                2241,
+                                2248
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 112,
+                                  "column": 11
+                                },
+                                "end": {
+                                  "line": 112,
+                                  "column": 18
+                                }
+                              }
+                            },
+                            "range": [
+                              2236,
+                              2248
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 112,
+                                "column": 6
+                              },
+                              "end": {
+                                "line": 112,
+                                "column": 18
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "adjustFrameToFit",
+                            "range": [
+                              2249,
+                              2265
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 112,
+                                "column": 19
+                              },
+                              "end": {
+                                "line": 112,
+                                "column": 35
+                              }
+                            }
+                          },
+                          "range": [
+                            2236,
+                            2265
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 112,
+                              "column": 6
+                            },
+                            "end": {
+                              "line": 112,
+                              "column": 35
+                            }
+                          }
+                        },
+                        "arguments": [],
+                        "range": [
+                          2236,
+                          2267
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 112,
+                            "column": 6
+                          },
+                          "end": {
+                            "line": 112,
+                            "column": 37
+                          }
+                        }
+                      },
+                      "range": [
+                        2236,
+                        2272
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 112,
+                          "column": 6
+                        },
+                        "end": {
+                          "line": 113,
+                          "column": 4
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    2228,
+                    2273
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 111,
+                      "column": 26
+                    },
+                    "end": {
+                      "line": 113,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  2225,
+                  2273
+                ],
+                "loc": {
+                  "start": {
+                    "line": 111,
+                    "column": 23
+                  },
+                  "end": {
+                    "line": 113,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                2206,
+                2273
+              ],
+              "loc": {
+                "start": {
+                  "line": 111,
+                  "column": 4
+                },
+                "end": {
+                  "line": 113,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      Adjust the frame of the layer to fit its contents.\n    ",
+                  "range": [
+                    2133,
+                    2200
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 107,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 109,
+                      "column": 6
+                    }
+                  }
+                }
+              ],
               "static": false
             }
           ],
           "range": [
             352,
-            2129
+            2277
           ],
           "loc": {
             "start": {
@@ -2749,14 +2991,14 @@
               "column": 32
             },
             "end": {
-              "line": 106,
+              "line": 116,
               "column": 1
             }
           }
         },
         "range": [
           327,
-          2129
+          2277
         ],
         "loc": {
           "start": {
@@ -2764,7 +3006,7 @@
             "column": 7
           },
           "end": {
-            "line": 106,
+            "line": 116,
             "column": 1
           }
         },
@@ -2794,7 +3036,7 @@
       "source": null,
       "range": [
         320,
-        2129
+        2277
       ],
       "loc": {
         "start": {
@@ -2802,7 +3044,7 @@
           "column": 0
         },
         "end": {
-          "line": 106,
+          "line": 116,
           "column": 1
         }
       },
@@ -2831,7 +3073,7 @@
   "sourceType": "module",
   "range": [
     155,
-    2129
+    2277
   ],
   "loc": {
     "start": {
@@ -2839,7 +3081,7 @@
       "column": 0
     },
     "end": {
-      "line": 106,
+      "line": 116,
       "column": 1
     }
   },
@@ -3128,6 +3370,24 @@
         },
         "end": {
           "line": 97,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      Adjust the frame of the layer to fit its contents.\n    ",
+      "range": [
+        2133,
+        2200
+      ],
+      "loc": {
+        "start": {
+          "line": 107,
+          "column": 4
+        },
+        "end": {
+          "line": 109,
           "column": 6
         }
       }

@@ -552,6 +552,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "source/document.js~document#centeronlayer",
+    "class/Source/Document.js~Document.html#instance-method-centerOnLayer",
+    "Source/Document.js~Document#centerOnLayer",
+    "method"
+  ],
+  [
     "source/document.js~document#constructor",
     "class/Source/Document.js~Document.html#instance-constructor-constructor",
     "Source/Document.js~Document#constructor",
@@ -715,13 +721,13 @@ window.esdocSearchIndex = [
   ],
   [
     "source/layer.js~layer#name",
-    "class/Source/Layer.js~Layer.html#instance-set-name",
+    "class/Source/Layer.js~Layer.html#instance-get-name",
     "Source/Layer.js~Layer#name",
     "member"
   ],
   [
     "source/layer.js~layer#name",
-    "class/Source/Layer.js~Layer.html#instance-get-name",
+    "class/Source/Layer.js~Layer.html#instance-set-name",
     "Source/Layer.js~Layer#name",
     "member"
   ],
@@ -916,6 +922,12 @@ window.esdocSearchIndex = [
     "class/Source/Text.js~Text.html#instance-get-isText",
     "Source/Text.js~Text#isText",
     "member"
+  ],
+  [
+    "source/text.js~text#resizetofitcontents",
+    "class/Source/Text.js~Text.html#instance-method-resizeToFitContents",
+    "Source/Text.js~Text#resizeToFitContents",
+    "method"
   ],
   [
     "source/text.js~text#systemfontsize",
