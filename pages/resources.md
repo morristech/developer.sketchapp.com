@@ -39,6 +39,7 @@ permalink: /resources/
 - [Sketch Plugins](https://github.com/sketchplugins/plugin-directory), a list of Sketch Plugins hosted at GitHub.
 - [awesome-sket.ch](http://awesome-sket.ch), a curated list of Sketch Plugins.
 - [sketchplugins.com](http://sketchplugins.com), the mailing list for Sketch Plugin developers.
+- [Sketchpacks](http://www.sketchpacks.com), Find and discover the most useful plugins for Sketch
 
 ## Tools
 

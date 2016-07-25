@@ -35,7 +35,7 @@ log(artboard.rulerBase()) // CGPoint { x = 100, y = 100 }
 
 A Bool indicating if the Artboard has a background color. 'backgroundColorGeneric' can access the color if this method returns YES.
 
-### backgroundColorGeneric
+### backgroundColor
 
 A [MSColor](/reference/class/MSColor/) of the Artboard's background color. Only valid if 'hasBackgroundColor' is YES
 

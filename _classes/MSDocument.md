@@ -104,15 +104,6 @@ Zoom the document to the specified zoomValue.
 context.document.setZoomValue(2.0) // Sets the zoom level to 200%
 ```
 
-### (NSArray)selectedLayersOfClass:(Class)aClass
-
-Returns an NSArray of selected layers of class `className`:
-
-```
-// Get all bitmap layers in the selection
-context.document.selectedLayersOfClass(MSBitmapLayer)
-```
-
 ### (NSArray)allExportableLayers:
 
 Returns an NSArray of all the exportable layers in the document (this includes slices and layers & Artboards set to export).

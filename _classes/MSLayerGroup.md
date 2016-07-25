@@ -16,7 +16,7 @@ Returns an array of all layers in the group - not including any of their childre
 
 ### children
 
-Returns an array of all layers in the group, including those in any sub-groups that have click-through enabled. Basically this array contains all layers that are directly selectable from within this group.
+Returns an array of all layers in the group, including those in any sub-groups.
 
 ### resizeRoot:
 
