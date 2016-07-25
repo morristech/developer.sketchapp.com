@@ -9,16 +9,16 @@
           "type": "Identifier",
           "name": "WrappedObject",
           "range": [
-            237,
-            250
+            243,
+            256
           ],
           "loc": {
             "start": {
-              "line": 11,
+              "line": 14,
               "column": 13
             },
             "end": {
-              "line": 11,
+              "line": 14,
               "column": 26
             }
           }
@@ -33,16 +33,16 @@
                 "type": "Identifier",
                 "name": "constructor",
                 "range": [
-                  257,
-                  268
+                  412,
+                  423
                 ],
                 "loc": {
                   "start": {
-                    "line": 12,
+                    "line": 22,
                     "column": 4
                   },
                   "end": {
-                    "line": 12,
+                    "line": 22,
                     "column": 15
                   }
                 }
@@ -55,16 +55,16 @@
                     "type": "Identifier",
                     "name": "object",
                     "range": [
-                      269,
-                      275
+                      424,
+                      430
                     ],
                     "loc": {
                       "start": {
-                        "line": 12,
+                        "line": 22,
                         "column": 16
                       },
                       "end": {
-                        "line": 12,
+                        "line": 22,
                         "column": 22
                       }
                     }
@@ -84,50 +84,50 @@
                           "object": {
                             "type": "ThisExpression",
                             "range": [
-                              285,
-                              289
+                              525,
+                              529
                             ],
                             "loc": {
                               "start": {
-                                "line": 13,
+                                "line": 24,
                                 "column": 6
                               },
                               "end": {
-                                "line": 13,
+                                "line": 24,
                                 "column": 10
                               }
                             }
                           },
                           "property": {
                             "type": "Identifier",
-                            "name": "object",
+                            "name": "_object",
                             "range": [
-                              290,
-                              296
+                              530,
+                              537
                             ],
                             "loc": {
                               "start": {
-                                "line": 13,
+                                "line": 24,
                                 "column": 11
                               },
                               "end": {
-                                "line": 13,
-                                "column": 17
+                                "line": 24,
+                                "column": 18
                               }
                             }
                           },
                           "range": [
-                            285,
-                            296
+                            525,
+                            537
                           ],
                           "loc": {
                             "start": {
-                              "line": 13,
+                              "line": 24,
                               "column": 6
                             },
                             "end": {
-                              "line": 13,
-                              "column": 17
+                              "line": 24,
+                              "column": 18
                             }
                           }
                         },
@@ -135,62 +135,82 @@
                           "type": "Identifier",
                           "name": "object",
                           "range": [
-                            299,
-                            305
+                            540,
+                            546
                           ],
                           "loc": {
                             "start": {
-                              "line": 13,
-                              "column": 20
+                              "line": 24,
+                              "column": 21
                             },
                             "end": {
-                              "line": 13,
-                              "column": 26
+                              "line": 24,
+                              "column": 27
                             }
                           }
                         },
                         "range": [
-                          285,
-                          305
+                          525,
+                          546
                         ],
                         "loc": {
                           "start": {
-                            "line": 13,
+                            "line": 24,
                             "column": 6
                           },
                           "end": {
-                            "line": 13,
-                            "column": 26
+                            "line": 24,
+                            "column": 27
                           }
                         }
                       },
                       "range": [
-                        285,
-                        310
+                        525,
+                        551
                       ],
                       "loc": {
                         "start": {
-                          "line": 13,
+                          "line": 24,
                           "column": 6
                         },
                         "end": {
-                          "line": 14,
+                          "line": 25,
                           "column": 4
                         }
-                      }
+                      },
+                      "leadingComments": [
+                        {
+                          "type": "Block",
+                          "value": "* @type {Object} The underlying Sketch model object that we are wrapping. ",
+                          "range": [
+                            440,
+                            518
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 23,
+                              "column": 6
+                            },
+                            "end": {
+                              "line": 23,
+                              "column": 84
+                            }
+                          }
+                        }
+                      ]
                     }
                   ],
                   "range": [
-                    277,
-                    311
+                    432,
+                    552
                   ],
                   "loc": {
                     "start": {
-                      "line": 12,
+                      "line": 22,
                       "column": 24
                     },
                     "end": {
-                      "line": 14,
+                      "line": 25,
                       "column": 5
                     }
                   }
@@ -198,16 +218,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  268,
-                  311
+                  423,
+                  552
                 ],
                 "loc": {
                   "start": {
-                    "line": 12,
+                    "line": 22,
                     "column": 15
                   },
                   "end": {
-                    "line": 14,
+                    "line": 25,
                     "column": 5
                   }
                 }
@@ -215,19 +235,59 @@
               "kind": "constructor",
               "computed": false,
               "range": [
-                257,
-                311
+                412,
+                552
               ],
               "loc": {
                 "start": {
-                  "line": 12,
+                  "line": 22,
                   "column": 4
                 },
                 "end": {
-                  "line": 14,
+                  "line": 25,
                   "column": 5
                 }
               },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      Return a new wrapped object for a given Sketch model object.\n\n      @param {Object} object - The Sketch model object to wrap.\n    ",
+                  "range": [
+                    264,
+                    406
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 16,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 6
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      Returns the object ID of the wrapped Sketch model object.\n\n      @return {string} The id.\n    ",
+                  "range": [
+                    558,
+                    664
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 31,
+                      "column": 6
+                    }
+                  }
+                }
+              ],
               "static": false
             },
             {
@@ -236,16 +296,16 @@
                 "type": "Identifier",
                 "name": "id",
                 "range": [
-                  321,
-                  323
+                  674,
+                  676
                 ],
                 "loc": {
                   "start": {
-                    "line": 16,
+                    "line": 33,
                     "column": 8
                   },
                   "end": {
-                    "line": 16,
+                    "line": 33,
                     "column": 10
                   }
                 }
@@ -270,129 +330,129 @@
                             "object": {
                               "type": "ThisExpression",
                               "range": [
-                                341,
-                                345
+                                694,
+                                698
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 17,
+                                  "line": 34,
                                   "column": 13
                                 },
                                 "end": {
-                                  "line": 17,
+                                  "line": 34,
                                   "column": 17
                                 }
                               }
                             },
                             "property": {
                               "type": "Identifier",
-                              "name": "object",
+                              "name": "_object",
                               "range": [
-                                346,
-                                352
+                                699,
+                                706
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 17,
+                                  "line": 34,
                                   "column": 18
                                 },
                                 "end": {
-                                  "line": 17,
-                                  "column": 24
+                                  "line": 34,
+                                  "column": 25
                                 }
                               }
                             },
                             "range": [
-                              341,
-                              352
+                              694,
+                              706
                             ],
                             "loc": {
                               "start": {
-                                "line": 17,
+                                "line": 34,
                                 "column": 13
                               },
                               "end": {
-                                "line": 17,
-                                "column": 24
+                                "line": 34,
+                                "column": 25
                               }
                             }
                           },
                           "property": {
                             "type": "Identifier",
-                            "name": "objectID",
+                            "name": "_objectID",
                             "range": [
-                              353,
-                              361
+                              707,
+                              716
                             ],
                             "loc": {
                               "start": {
-                                "line": 17,
-                                "column": 25
+                                "line": 34,
+                                "column": 26
                               },
                               "end": {
-                                "line": 17,
-                                "column": 33
+                                "line": 34,
+                                "column": 35
                               }
                             }
                           },
                           "range": [
-                            341,
-                            361
+                            694,
+                            716
                           ],
                           "loc": {
                             "start": {
-                              "line": 17,
+                              "line": 34,
                               "column": 13
                             },
                             "end": {
-                              "line": 17,
-                              "column": 33
+                              "line": 34,
+                              "column": 35
                             }
                           }
                         },
                         "arguments": [],
                         "range": [
-                          341,
-                          363
+                          694,
+                          718
                         ],
                         "loc": {
                           "start": {
-                            "line": 17,
+                            "line": 34,
                             "column": 13
                           },
                           "end": {
-                            "line": 17,
-                            "column": 35
+                            "line": 34,
+                            "column": 37
                           }
                         }
                       },
                       "range": [
-                        334,
-                        364
+                        687,
+                        719
                       ],
                       "loc": {
                         "start": {
-                          "line": 17,
+                          "line": 34,
                           "column": 6
                         },
                         "end": {
-                          "line": 17,
-                          "column": 36
+                          "line": 34,
+                          "column": 38
                         }
                       }
                     }
                   ],
                   "range": [
-                    326,
-                    370
+                    679,
+                    725
                   ],
                   "loc": {
                     "start": {
-                      "line": 16,
+                      "line": 33,
                       "column": 13
                     },
                     "end": {
-                      "line": 18,
+                      "line": 35,
                       "column": 5
                     }
                   }
@@ -400,16 +460,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  323,
-                  370
+                  676,
+                  725
                 ],
                 "loc": {
                   "start": {
-                    "line": 16,
+                    "line": 33,
                     "column": 10
                   },
                   "end": {
-                    "line": 18,
+                    "line": 35,
                     "column": 5
                   }
                 }
@@ -417,48 +477,68 @@
               "kind": "get",
               "computed": false,
               "range": [
-                317,
-                370
+                670,
+                725
               ],
               "loc": {
                 "start": {
-                  "line": 16,
+                  "line": 33,
                   "column": 4
                 },
                 "end": {
-                  "line": 18,
+                  "line": 35,
                   "column": 5
                 }
               },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      Returns the object ID of the wrapped Sketch model object.\n\n      @return {string} The id.\n    ",
+                  "range": [
+                    558,
+                    664
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 31,
+                      "column": 6
+                    }
+                  }
+                }
+              ],
               "static": false
             }
           ],
           "range": [
-            251,
-            372
+            257,
+            727
           ],
           "loc": {
             "start": {
-              "line": 11,
+              "line": 14,
               "column": 27
             },
             "end": {
-              "line": 19,
+              "line": 36,
               "column": 1
             }
           }
         },
         "range": [
-          231,
-          372
+          237,
+          727
         ],
         "loc": {
           "start": {
-            "line": 11,
+            "line": 14,
             "column": 7
           },
           "end": {
-            "line": 19,
+            "line": 36,
             "column": 1
           }
         },
@@ -572,11 +652,11 @@
             }
           },
           {
-            "type": "Line",
-            "value": " Base class for all objects that",
+            "type": "Block",
+            "value": "*\n  Base class for all objects that\n  wrap Sketch classes.\n\n",
             "range": [
               164,
-              198
+              228
             ],
             "loc": {
               "start": {
@@ -584,26 +664,8 @@
                 "column": 0
               },
               "end": {
-                "line": 8,
-                "column": 34
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": " wrap Sketch classes.",
-            "range": [
-              199,
-              222
-            ],
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 0
-              },
-              "end": {
-                "line": 9,
-                "column": 23
+                "line": 12,
+                "column": 2
               }
             }
           }
@@ -613,16 +675,16 @@
       "specifiers": [],
       "source": null,
       "range": [
-        224,
-        372
+        230,
+        727
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 14,
           "column": 0
         },
         "end": {
-          "line": 19,
+          "line": 36,
           "column": 1
         }
       },
@@ -736,11 +798,11 @@
           }
         },
         {
-          "type": "Line",
-          "value": " Base class for all objects that",
+          "type": "Block",
+          "value": "*\n  Base class for all objects that\n  wrap Sketch classes.\n\n",
           "range": [
             164,
-            198
+            228
           ],
           "loc": {
             "start": {
@@ -748,26 +810,8 @@
               "column": 0
             },
             "end": {
-              "line": 8,
-              "column": 34
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": " wrap Sketch classes.",
-          "range": [
-            199,
-            222
-          ],
-          "loc": {
-            "start": {
-              "line": 9,
-              "column": 0
-            },
-            "end": {
-              "line": 9,
-              "column": 23
+              "line": 12,
+              "column": 2
             }
           }
         }
@@ -776,16 +820,16 @@
   ],
   "sourceType": "module",
   "range": [
-    224,
-    372
+    230,
+    727
   ],
   "loc": {
     "start": {
-      "line": 11,
+      "line": 14,
       "column": 0
     },
     "end": {
-      "line": 19,
+      "line": 36,
       "column": 1
     }
   },
@@ -899,11 +943,11 @@
       }
     },
     {
-      "type": "Line",
-      "value": " Base class for all objects that",
+      "type": "Block",
+      "value": "*\n  Base class for all objects that\n  wrap Sketch classes.\n\n",
       "range": [
         164,
-        198
+        228
       ],
       "loc": {
         "start": {
@@ -911,26 +955,62 @@
           "column": 0
         },
         "end": {
-          "line": 8,
-          "column": 34
+          "line": 12,
+          "column": 2
         }
       }
     },
     {
-      "type": "Line",
-      "value": " wrap Sketch classes.",
+      "type": "Block",
+      "value": "*\n      Return a new wrapped object for a given Sketch model object.\n\n      @param {Object} object - The Sketch model object to wrap.\n    ",
       "range": [
-        199,
-        222
+        264,
+        406
       ],
       "loc": {
         "start": {
-          "line": 9,
-          "column": 0
+          "line": 16,
+          "column": 4
         },
         "end": {
-          "line": 9,
-          "column": 23
+          "line": 20,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "* @type {Object} The underlying Sketch model object that we are wrapping. ",
+      "range": [
+        440,
+        518
+      ],
+      "loc": {
+        "start": {
+          "line": 23,
+          "column": 6
+        },
+        "end": {
+          "line": 23,
+          "column": 84
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      Returns the object ID of the wrapped Sketch model object.\n\n      @return {string} The id.\n    ",
+      "range": [
+        558,
+        664
+      ],
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 4
+        },
+        "end": {
+          "line": 31,
+          "column": 6
         }
       }
     }

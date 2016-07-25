@@ -1,15 +1,12 @@
 {
-  "coverage": "26.37%",
+  "coverage": "100%",
   "expectCount": 91,
-  "actualCount": 24,
+  "actualCount": 91,
   "files": {
     "Source/Application.js": {
       "expectCount": 20,
-      "actualCount": 18,
-      "undocumentLines": [
-        46,
-        41
-      ]
+      "actualCount": 20,
+      "undocumentLines": []
     },
     "Source/Artboard.js": {
       "expectCount": 3,
@@ -17,123 +14,54 @@
       "undocumentLines": []
     },
     "Source/Document.js": {
-      "expectCount": 8,
-      "actualCount": 3,
-      "undocumentLines": [
-        33,
-        65,
-        61,
-        51,
-        46
-      ]
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
     },
     "Source/Group.js": {
       "expectCount": 3,
-      "actualCount": 0,
-      "undocumentLines": [
-        12,
-        13,
-        17
-      ]
+      "actualCount": 3,
+      "undocumentLines": []
     },
     "Source/Image.js": {
       "expectCount": 4,
-      "actualCount": 0,
-      "undocumentLines": [
-        12,
-        13,
-        21,
-        17
-      ]
+      "actualCount": 4,
+      "undocumentLines": []
     },
     "Source/Layer.js": {
-      "expectCount": 26,
-      "actualCount": 0,
-      "undocumentLines": [
-        13,
-        123,
-        48,
-        14,
-        119,
-        16,
-        37,
-        32,
-        27,
-        67,
-        42,
-        43,
-        46,
-        41,
-        45,
-        44,
-        127,
-        19,
-        23,
-        96,
-        90,
-        102,
-        77,
-        83,
-        108,
-        115
-      ]
+      "expectCount": 22,
+      "actualCount": 22,
+      "undocumentLines": []
     },
     "Source/Page.js": {
       "expectCount": 4,
-      "actualCount": 0,
-      "undocumentLines": [
-        12,
-        13,
-        15,
-        18
-      ]
+      "actualCount": 4,
+      "undocumentLines": []
     },
     "Source/Rectangle.js": {
       "expectCount": 7,
-      "actualCount": 0,
-      "undocumentLines": [
-        10,
-        18,
-        11,
-        15,
-        14,
-        12,
-        13
-      ]
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "Source/Selection.js": {
+      "expectCount": 6,
+      "actualCount": 6,
+      "undocumentLines": []
     },
     "Source/Shape.js": {
       "expectCount": 3,
-      "actualCount": 0,
-      "undocumentLines": [
-        12,
-        13,
-        17
-      ]
+      "actualCount": 3,
+      "undocumentLines": []
     },
     "Source/Text.js": {
       "expectCount": 9,
-      "actualCount": 0,
-      "undocumentLines": [
-        17,
-        51,
-        18,
-        57,
-        39,
-        22,
-        45,
-        32,
-        28
-      ]
+      "actualCount": 9,
+      "undocumentLines": []
     },
     "Source/WrappedObject.js": {
-      "expectCount": 4,
-      "actualCount": 0,
-      "undocumentLines": [
-        11,
-        12,
-        16,
-        13
-      ]
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
     }
   }
 }

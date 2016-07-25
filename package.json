@@ -18,6 +18,7 @@
   "devDependencies": {
     "browser-sync": "^2.10.0",
     "gulp": "^3.9.0",
-    "run-sequence": "^1.1.5"
+    "run-sequence": "^1.1.5",
+    "esdoc": "^0.4.7"
   }
 }

@@ -10,9 +10,13 @@ name="${fullname##*.}"
 rm -rf "$base/api"
 
 # Build using esdoc
+esdoc="$(npm bin)/esdoc"
 cd "$scripts/api"
 pwd
-"node_modules/.bin/esdoc" -c "$scripts/esdoc.json"
+
+configpath=/tmp/esdoc.json
+echo "{\"source\": \"$scripts/api/Source/\", \"destination\": \"$base/reference/api\" }" > "$configpath"
+"$esdoc" -c "$configpath"
 
 # Add jekyll headers
 # for page in "$base/api/"*.html

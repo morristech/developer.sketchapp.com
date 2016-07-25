@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Layer.js~Layer.html">Layer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Page.js~Page.html">Page</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -48,13 +49,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Application} from &apos;<span><a href="file/Source/Application.js.html#lineNumber28">sketch-api/Source/Application.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Application} from &apos;<span><a href="file/Source/Application.js.html#lineNumber26">sketch-api/Source/Application.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/Source/Application.js.html#lineNumber28">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/Source/Application.js.html#lineNumber26">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -220,13 +221,16 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Application.js~Application.html#instance-member-factory">factory</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Application.js~Application.html#instance-member-factory">factory</a></span></span><span data-ice="signature">: <span>dictionary</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>This is a slightly clumsy way to pass related classes into Layer
+without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
+there has to be a better way to do this...</p>
+</div>
       </div>
     </td>
     <td>
@@ -238,20 +242,21 @@
     <td>
       <span class="access" data-ice="access">public</span>
       
-      
+      <span class="kind" data-ice="kind">get</span>
       
       <span class="override" data-ice="override"></span>
     </td>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Application.js~Application.html#instance-member-metadata">metadata</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/Application.js~Application.html#instance-get-full_version">full_version</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns the full version of Sketch that is running</p>
+</div>
       </div>
     </td>
     <td>
@@ -598,7 +603,7 @@ folder.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns the full version of Sketch that is running</p>
+        <div data-ice="description"><p>Return the value of a global setting for a given key.</p>
 </div>
       </div>
     </td>
@@ -626,38 +631,14 @@ folder.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-get-id">id</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-get-id">id</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-member-object">object</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Returns the object ID of the wrapped Sketch model object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -684,7 +665,7 @@ folder.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber39">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber37">source</a></span></span>
     </span>
   </h3>
 
@@ -758,7 +739,7 @@ initialise the API, so you generally shouldn&apos;t need to make new ones.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber62">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber71">source</a></span></span>
     </span>
   </h3>
 
@@ -810,7 +791,7 @@ initialise the API, so you generally shouldn&apos;t need to make new ones.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber98">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber107">source</a></span></span>
     </span>
   </h3>
 
@@ -862,7 +843,7 @@ initialise the API, so you generally shouldn&apos;t need to make new ones.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber77">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber86">source</a></span></span>
     </span>
   </h3>
 
@@ -914,18 +895,21 @@ rather than interacting with the context directly.</p>
     
     
     
-    <span data-ice="name">factory</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">factory</span><span data-ice="signature">: <span>dictionary</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber46">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber55">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>This is a slightly clumsy way to pass related classes into Layer
+without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
+there has to be a better way to do this...</p>
+</div>
 
   
 
@@ -948,31 +932,43 @@ rather than interacting with the context directly.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-metadata">
+  <h3 data-ice="anchor" id="instance-get-full_version">
     <span class="access" data-ice="access">public</span>
     
+    <span class="kind" data-ice="kind">get</span>
     
     
-    
-    <span data-ice="name">metadata</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">full_version</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber41">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber117">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns the full version of Sketch that is running</p>
+</div>
 
   
 
   <div data-ice="properties">
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>Version and build number as a string, eg &quot;3.6 (15352)&quot;.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -998,7 +994,7 @@ rather than interacting with the context directly.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber233">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber243">source</a></span></span>
     </span>
   </h3>
 
@@ -1054,7 +1050,7 @@ occurred in.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber88">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber97">source</a></span></span>
     </span>
   </h3>
 
@@ -1109,7 +1105,7 @@ occurred in.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber273">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber283">source</a></span></span>
     </span>
   </h3>
 
@@ -1176,7 +1172,7 @@ by pressing the OK button.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber216">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber226">source</a></span></span>
     </span>
   </h3>
 
@@ -1235,7 +1231,7 @@ If the condition is false, throws an exception.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber180">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber190">source</a></span></span>
     </span>
   </h3>
 
@@ -1322,7 +1318,7 @@ The selection will be the integer index of the selected item.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber160">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber170">source</a></span></span>
     </span>
   </h3>
 
@@ -1399,7 +1395,7 @@ input.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber205">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber215">source</a></span></span>
     </span>
   </h3>
 
@@ -1457,7 +1453,7 @@ input.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber259">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber269">source</a></span></span>
     </span>
   </h3>
 
@@ -1518,7 +1514,7 @@ line of text.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber243">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber253">source</a></span></span>
     </span>
   </h3>
 
@@ -1570,7 +1566,7 @@ line of text.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber288">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber298">source</a></span></span>
     </span>
   </h3>
 
@@ -1660,7 +1656,7 @@ line of text.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber148">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber158">source</a></span></span>
     </span>
   </h3>
 
@@ -1730,7 +1726,7 @@ folder.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber136">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber146">source</a></span></span>
     </span>
   </h3>
 
@@ -1798,14 +1794,14 @@ eg: defaults write com.bohemiancoding.sketch3 &lt;key&gt; &lt;value&gt;</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber121">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Application.js.html#lineNumber131">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns the full version of Sketch that is running</p>
+  <div data-ice="description"><p>Return the value of a global setting for a given key.</p>
 </div>
 
   
