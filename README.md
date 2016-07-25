@@ -25,3 +25,5 @@ gulp
 ```
 
 to start the server and open a browser automatically.
+
+Note: you may find issues with nokogiri when running `bundle install`. If that's the case, check the troubleshooting tips on [Nokogiri's page](http://www.nokogiri.org/tutorials/installing_nokogiri.html#mac_os_x)
