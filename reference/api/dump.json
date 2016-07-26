@@ -798,7 +798,7 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Document.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\nimport { Page } from './Page.js'\nimport { Selection } from './Selection.js'\n\n/**\n    A Sketch document.\n*/\n\nexport class Document extends WrappedObject {\n    /**\n        Make a new document object.\n\n        @param {MSDocument} document The underlying MSDocument object.\n        @param {Application} application The application object.\n\n        Note that constructing one of these doesn't actually create\n        a Sketch document. Instead you pass in the underlying MSDocument\n        that this object represents.\n\n        If you do want to create a new document, you can do so with Application#newDocument.\n    */\n\n    constructor(document, application) {\n      super(document)\n\n      /**\n        The application that this document belongs to.\n\n        @type {Application}\n      */\n\n      this._application = application\n    }\n\n    /**\n        The layers that the user has selected.\n\n        @return {Selection} A selection object representing the layers that the user has selected.\n    */\n\n    get selectedLayers() {\n      return new Selection(this._object);\n    }\n\n    /**\n      The current page that the user has selected.\n\n      @return {Page} A page object representing the page that the user is currently viewing.\n    */\n\n    get selectedPage() {\n      print(this._object)\n      return new Page(this._object.currentPage(), this)\n    }\n\n    /**\n      Returns a list of the pages in this document.\n\n      @return {list} The pages.\n    */\n\n    get pages() {\n      var result = [];\n      var loop = this._object.pages().objectEnumerator()\n      var item;\n      while (item = loop.nextObject()) {\n        result.push(new Page(item, this));\n      }\n      return result;\n    }\n\n    /**\n      Find the first layer in this document which has the given id.\n\n      @return {Layer} A layer object, if one was found.\n    */\n\n    layerWithID(layer_id) {\n      var layer = this._object._documentData().layerWithID_(layer_id);\n      if (layer)\n        return new Layer(layer, this);\n    }\n\n    /**\n      Find the first layer in this document which has the given name.\n\n      @return {Layer} A layer object, if one was found.\n    */\n\n    layerNamed(layer_name) {\n      // As it happens, layerWithID also matches names, so we can implement\n      // this method in the same way as layerWithID.\n      // That might not always be true though, which is why the JS API splits\n      // them into separate functions.\n\n      var layer = this._object._documentData().layerWithID_(layer_name);\n      if (layer)\n        return new Layer(layer, this);\n    }\n}\n"
+    "content": "// ********************************\n// # Document.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\nimport { Page } from './Page.js'\nimport { Selection } from './Selection.js'\n\n/**\n    A Sketch document.\n*/\n\nexport class Document extends WrappedObject {\n    /**\n        Make a new document object.\n\n        @param {MSDocument} document The underlying MSDocument object.\n        @param {Application} application The application object.\n\n        Note that constructing one of these doesn't actually create\n        a Sketch document. Instead you pass in the underlying MSDocument\n        that this object represents.\n\n        If you do want to create a new document, you can do so with Application#newDocument.\n    */\n\n    constructor(document, application) {\n      super(document)\n\n      /**\n        The application that this document belongs to.\n\n        @type {Application}\n      */\n\n      this._application = application\n    }\n\n    /**\n        The layers that the user has selected.\n\n        @return {Selection} A selection object representing the layers that the user has selected.\n    */\n\n    get selectedLayers() {\n      return new Selection(this._object);\n    }\n\n    /**\n      The current page that the user has selected.\n\n      @return {Page} A page object representing the page that the user is currently viewing.\n    */\n\n    get selectedPage() {\n      return new Page(this._object.currentPage(), this)\n    }\n\n    /**\n      Returns a list of the pages in this document.\n\n      @return {list} The pages.\n    */\n\n    get pages() {\n      var result = [];\n      var loop = this._object.pages().objectEnumerator()\n      var item;\n      while (item = loop.nextObject()) {\n        result.push(new Page(item, this));\n      }\n      return result;\n    }\n\n    /**\n      Find the first layer in this document which has the given id.\n\n      @return {Layer} A layer object, if one was found.\n    */\n\n    layerWithID(layer_id) {\n      var layer = this._object._documentData().layerWithID_(layer_id);\n      if (layer)\n        return new Layer(layer, this);\n    }\n\n    /**\n      Find the first layer in this document which has the given name.\n\n      @return {Layer} A layer object, if one was found.\n    */\n\n    layerNamed(layer_name) {\n      // As it happens, layerWithID also matches names, so we can implement\n      // this method in the same way as layerWithID.\n      // That might not always be true though, which is why the JS API splits\n      // them into separate functions.\n\n      var layer = this._object._documentData().layerWithID_(layer_name);\n      if (layer)\n        return new Layer(layer, this);\n    }\n\n    /**\n      Center the view of the document window on a given layer.\n\n      @param {Layer} layer The layer to center on.\n      */\n\n    centerOnLayer(layer) {\n      this._object.currentView().centerRect_(layer._object.rect())\n    }\n}\n"
   },
   {
     "__docId__": 29,
@@ -936,7 +936,7 @@
     "longname": "Source/Document.js~Document#pages",
     "access": null,
     "description": "Returns a list of the pages in this document.",
-    "lineNumber": 70,
+    "lineNumber": 69,
     "return": {
       "nullable": null,
       "types": [
@@ -962,7 +962,7 @@
     "longname": "Source/Document.js~Document#layerWithID",
     "access": null,
     "description": "Find the first layer in this document which has the given id.",
-    "lineNumber": 86,
+    "lineNumber": 85,
     "params": [
       {
         "name": "layer_id",
@@ -991,7 +991,7 @@
     "longname": "Source/Document.js~Document#layerNamed",
     "access": null,
     "description": "Find the first layer in this document which has the given name.",
-    "lineNumber": 98,
+    "lineNumber": 97,
     "params": [
       {
         "name": "layer_name",
@@ -1012,6 +1012,31 @@
   },
   {
     "__docId__": 37,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "centerOnLayer",
+    "memberof": "Source/Document.js~Document",
+    "longname": "Source/Document.js~Document#centerOnLayer",
+    "access": null,
+    "description": "Center the view of the document window on a given layer.",
+    "lineNumber": 114,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Layer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "layer",
+        "description": "The layer to center on."
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 38,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1024,7 +1049,7 @@
     "content": "// ********************************\n// # Group.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a group of layers.\n */\n\nexport class Group extends Layer {\n\n    /**\n      Make a new group object.\n\n      @param group {MSLayerGroup} The underlying model object from Sketch.\n      @param document The document that the group belongs to.\n    */\n\n    constructor(group, document) {\n      super(group, document)\n    }\n\n    /**\n        Is this an group?\n\n        All Layer objects respond to this method, but only Groups or things that inherit from groups return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    is_group() {\n      return true;\n    }\n\n}\n"
   },
   {
-    "__docId__": 38,
+    "__docId__": 39,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1043,7 +1068,7 @@
     ]
   },
   {
-    "__docId__": 39,
+    "__docId__": 40,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -1078,7 +1103,7 @@
     "generator": false
   },
   {
-    "__docId__": 40,
+    "__docId__": 41,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1100,7 +1125,7 @@
     "generator": false
   },
   {
-    "__docId__": 41,
+    "__docId__": 42,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1113,7 +1138,7 @@
     "content": "// ********************************\n// # Image.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents an image layer.\n */\n\nexport class Image extends Layer {\n\n  /**\n    Make a new image layer object.\n\n    @param {MSBitmapLayer} layer The underlying model object from Sketch.\n    @param {Document} document The document that the bitmap layer belongs to.\n  */\n\n  constructor(layer, document) {\n    super(layer, document)\n  }\n\n  /**\n      Is this an image layer?\n\n      All Layer objects respond to this method, but only image layers return true.\n\n      @return {bool} true for instances of Image, false for any other layer type.\n  */\n\n  get isImage() {\n    return true;\n  }\n\n  /**\n    Set the layer's image to the contents of the image file at a given URL.\n\n    @param {NSURL} url The location of the image to use.\n  */\n\n  set imageURL(url) {\n    var image = NSImage.alloc().initWithContentsOfURL_(url)\n    var imageData = MSImageData.alloc().initWithImage_convertColorSpace_(image, true)\n    this._object.setImage_(imageData)\n  }\n}\n"
   },
   {
-    "__docId__": 42,
+    "__docId__": 43,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1132,7 +1157,7 @@
     ]
   },
   {
-    "__docId__": 43,
+    "__docId__": 44,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -1167,7 +1192,7 @@
     "generator": false
   },
   {
-    "__docId__": 44,
+    "__docId__": 45,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1193,7 +1218,7 @@
     "generator": false
   },
   {
-    "__docId__": 45,
+    "__docId__": 46,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -1223,7 +1248,7 @@
     "generator": false
   },
   {
-    "__docId__": 46,
+    "__docId__": 47,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1236,7 +1261,7 @@
     "content": "// ********************************\n// # Layer.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Rectangle } from './Rectangle.js'\n\n/**\n  Represents a Sketch layer.\n */\n\nexport class Layer extends WrappedObject {\n\n    /**\n      Make a new layer object.\n\n      @param {MSLayer} layer The underlying model object from Sketch.\n      @param {Document} document The document that the layer belongs to.\n    */\n\n    constructor(layer, document) {\n      super(layer)\n\n      /** @type {Document} The document that this layer belongs to. */\n      this._document = document\n    }\n\n    /**\n      The name of the layer.\n\n      @return {string} The layer's name.\n    */\n\n    get name() {\n      return this._object.name();\n    }\n\n    /**\n      Set the name of the layer.\n\n      @param {string} name The new name.\n    */\n\n    set name(value) {\n      this._object.setName_(value);\n    }\n\n    /**\n      The frame of the layer.\n      This is given in coordinates that are local to the parent of the layer.\n\n      @return {Rectangle} The layer's frame.\n    */\n\n    get frame() {\n      var f = this._object.frame();\n      return new Rectangle(f.x(), f.y(), f.width(), f.height());\n    }\n\n    /**\n      Set the frame of the layer.\n      This will move and/or resize the layer as appropriate.\n      The new frame should be given in coordinates that are local to the parent of the layer.\n\n      @param {Rectangle} frame - The new frame of the layer.\n    */\n\n    set frame(value) {\n      var f = this._object.frame();\n      f.setRect_(NSMakeRect(value.x, value.y, value.width, value.height));\n    }\n\n    /**\n      Duplicate this layer.\n      A new identical layer will be inserted into the parent of this layer.\n\n      @return {Layer} A new layer identical to this one.\n    */\n\n    duplicate() {\n      return new Layer(this._object.duplicate(), this._document);\n    }\n\n    /**\n        Is this a page?\n\n        All Layer objects respond to this method, but only pages return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isPage() { return false; }\n\n    /**\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    */\n\n    get isArtboard() { return false; }\n\n    /**\n        Is this an group?\n\n        All Layer objects respond to this method, but only Groups or things that inherit from groups return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isGroup() { return false; }\n\n    /**\n        Is this a text layer?\n\n        All Layer objects respond to this method, but only text layers return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isText() { return false; }\n\n    /**\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isShape() { return false; }\n\n    /**\n        Is this an image layer?\n\n        All Layer objects respond to this method, but only image layers return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isImage() { return false; }\n\n    /**\n      Add a new wrapped layer object to represent a Sketch layer.\n      Apply any supplied properties to the wrapper (which will apply\n      them in turn to the wrapped layer).\n\n      @param {MSLayer} newLayer The underlying Sketch layer object.\n      @param {dictionary} properties The properties to apply.\n      @param {string} wrapper The name of wrapper class to use.\n      @return {Layer} The wrapped layer object.\n    */\n\n    _addWrappedLayerWithProperties(newLayer, properties, wrapper) {\n      if (newLayer) {\n        // add the Sketch object to this layer\n        var layer = this._object\n        layer.addLayers_(NSArray.arrayWithObject_(newLayer))\n\n        // make a Javascript wrapper object for the new layer\n        var wrapperToMake = this._document._application.factory[wrapper]\n        var wrapper = new wrapperToMake(newLayer, this._document)\n\n        // apply properties, via the wrapper\n        for (var p in properties) {\n          wrapper[p] = properties[p]\n        }\n\n        return wrapper\n      }\n    }\n\n    /**\n      Extract the frame to use for a layer from some properties.\n      If the frame wasn't supplied in the properties, we return a default value instead.\n\n      @param {dictionary} properties The properties to use when looking for a frame value.\n      @return {Rectangle} The frame rectangle to use.\n    */\n\n    _frameForLayerWithProperties(properties) {\n      var frame = properties.frame\n      if (frame) {\n        delete properties[\"frame\"]\n      } else {\n        frame = new Rectangle(0, 0, 100, 100)\n      }\n      return frame\n    }\n\n    /**\n        Returns a newly created shape, which has been added to this layer,\n        and sets it up using the supplied properties.\n\n        @param properties {dictionary} Properties to apply to the shape.\n        @return {Shape} the new shape.\n    */\n\n    newShape(properties) {\n      var frame = this._frameForLayerWithProperties(properties)\n      var newLayer = MSShapeGroup.shapeWithBezierPath_(NSBezierPath.bezierPathWithRect_(frame.asCGRect()));\n      return this._addWrappedLayerWithProperties(newLayer, properties, \"Shape\");\n    }\n\n    /**\n        Returns a newly created text layer, which has been added to this layer,\n        and sets it up using the supplied properties.\n\n        @param {dictionary} properties Properties to apply to the text layer.\n        @return {Text} the new text layer.\n    */\n\n    newText(properties) {\n      var frame = this._frameForLayerWithProperties(properties)\n      var newLayer = MSTextLayer.alloc().initWithFrame_(frame.asCGRect());\n      newLayer.adjustFrameToFit();\n      return this._addWrappedLayerWithProperties(newLayer, properties, \"Text\");\n    }\n\n    /**\n        Returns a newly created group, which has been added to this layer,\n        and sets it up using the supplied properties.\n\n        @param {dictionary} properties Properties to apply to the group.\n        @return {Group} the new group.\n    */\n\n    newGroup(properties) {\n      var frame = this._frameForLayerWithProperties(properties)\n      var newLayer = MSLayerGroup.alloc().initWithFrame_(frame.asCGRect());\n      return this._addWrappedLayerWithProperties(newLayer, properties, \"Group\");\n    }\n\n\n    /**\n        Returns a newly created image layer, which has been added to this layer,\n        and sets it up using the supplied properties.\n\n        @param {dictionary} properties Properties to apply to the layer.\n        @return {Image} the new image layer.\n    */\n\n    newImage(properties) {\n      var frame = this._frameForLayerWithProperties(properties)\n      var newLayer = MSBitmapLayer.alloc().initWithFrame_(frame.asCGRect());\n      return this._addWrappedLayerWithProperties(newLayer, properties, \"Image\");\n    }\n\n    /**\n        Remove this layer from its parent.\n    */\n\n    remove() {\n      var parent = this._object.parentGroup();\n      if (parent) {\n        parent.removeLayer_(this._object);\n      }\n    }\n\n    /**\n        Select the layer.\n        This will clear the previous selection. Use addToSelection() if you wish\n        to preserve the existing selection.\n    */\n\n    select() {\n      this._object.select_byExpandingSelection(true, false);\n    }\n\n    /**\n        Deselect this layer.\n        Any other layers that were previously selected will remain selected.\n    */\n\n    deselect() {\n      this._object.select_byExpandingSelection(false, true);\n    }\n\n    /**\n        Add this layer to the selected layers.\n        Any other layers that were previously selected will remain selected.\n    */\n\n    addToSelection() {\n      this._object.select_byExpandingSelection(true, true);\n    }\n\n    /**\n        Perform a function for every sub-layer inside this one.\n        The function will be passed a single argument each time it is\n        invoked - which will be an object representing the sub-layer.\n\n        @param block {function} The function to execute for each layer.\n    */\n\n    iterate(block) {\n      var loop = this._object().layers().objectEnumerator();\n      while (item = loop.nextObject()) {\n        block(new Layer(item, this._document));\n      }\n    }\n}\n"
   },
   {
-    "__docId__": 47,
+    "__docId__": 48,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1255,7 +1280,7 @@
     ]
   },
   {
-    "__docId__": 48,
+    "__docId__": 49,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -1290,7 +1315,7 @@
     "generator": false
   },
   {
-    "__docId__": 49,
+    "__docId__": 50,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -1310,7 +1335,7 @@
     }
   },
   {
-    "__docId__": 50,
+    "__docId__": 51,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1336,7 +1361,7 @@
     "generator": false
   },
   {
-    "__docId__": 51,
+    "__docId__": 52,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -1366,7 +1391,7 @@
     "generator": false
   },
   {
-    "__docId__": 52,
+    "__docId__": 53,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1392,7 +1417,7 @@
     "generator": false
   },
   {
-    "__docId__": 53,
+    "__docId__": 54,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -1422,7 +1447,7 @@
     "generator": false
   },
   {
-    "__docId__": 54,
+    "__docId__": 55,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1444,7 +1469,7 @@
     "generator": false
   },
   {
-    "__docId__": 55,
+    "__docId__": 56,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1470,7 +1495,7 @@
     "generator": false
   },
   {
-    "__docId__": 56,
+    "__docId__": 57,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1496,7 +1521,7 @@
     "generator": false
   },
   {
-    "__docId__": 57,
+    "__docId__": 58,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1522,7 +1547,7 @@
     "generator": false
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1548,7 +1573,7 @@
     "generator": false
   },
   {
-    "__docId__": 59,
+    "__docId__": 60,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1574,7 +1599,7 @@
     "generator": false
   },
   {
-    "__docId__": 60,
+    "__docId__": 61,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -1600,7 +1625,7 @@
     "generator": false
   },
   {
-    "__docId__": 61,
+    "__docId__": 62,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1653,7 +1678,7 @@
     "generator": false
   },
   {
-    "__docId__": 62,
+    "__docId__": 63,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1686,7 +1711,7 @@
     "generator": false
   },
   {
-    "__docId__": 63,
+    "__docId__": 64,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1719,7 +1744,7 @@
     "generator": false
   },
   {
-    "__docId__": 64,
+    "__docId__": 65,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1752,7 +1777,7 @@
     "generator": false
   },
   {
-    "__docId__": 65,
+    "__docId__": 66,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1785,7 +1810,7 @@
     "generator": false
   },
   {
-    "__docId__": 66,
+    "__docId__": 67,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1818,7 +1843,7 @@
     "generator": false
   },
   {
-    "__docId__": 67,
+    "__docId__": 68,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1832,7 +1857,7 @@
     "generator": false
   },
   {
-    "__docId__": 68,
+    "__docId__": 69,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1846,7 +1871,7 @@
     "generator": false
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1860,7 +1885,7 @@
     "generator": false
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1874,7 +1899,7 @@
     "generator": false
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1899,7 +1924,7 @@
     "generator": false
   },
   {
-    "__docId__": 72,
+    "__docId__": 73,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1912,7 +1937,7 @@
     "content": "// ********************************\n// # Page.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a Page in a Sketch document.\n */\n\nexport class Page extends Layer {\n\n  /**\n    Make a new page object.\n\n    @param {MSPage} page The underlying model object from Sketch.\n    @param document The document that the page belongs to.\n  */\n\n  constructor(page, document) {\n    super(page)\n    this._document = document\n  }\n\n  /**\n      Is this a page?\n\n      All Layer objects respond to this method, but only pages return true.\n\n      @return {bool} true for instances of Group, false for any other layer type.\n  */\n\n  get isPage() {\n    return true;\n  }\n\n  /**\n      Returns a newly created artboard, which has been added to this page,\n      and sets it up using the supplied properties.\n\n      @param properties {dictionary} Properties to apply to the artboard.\n      @return {Artboard} the new artboard.\n  */\n\n  newArtboard(properties) {\n    var frame = this._frameForLayerWithProperties(properties)\n    var newLayer = MSArtboardGroup.alloc().initWithFrame_(frame.asCGRect());\n    return this._addWrappedLayerWithProperties(newLayer, properties, \"Artboard\");\n  }\n\n}\n"
   },
   {
-    "__docId__": 73,
+    "__docId__": 74,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1931,7 +1956,7 @@
     ]
   },
   {
-    "__docId__": 74,
+    "__docId__": 75,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -1966,7 +1991,7 @@
     "generator": false
   },
   {
-    "__docId__": 75,
+    "__docId__": 76,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -1984,7 +2009,7 @@
     }
   },
   {
-    "__docId__": 76,
+    "__docId__": 77,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2010,7 +2035,7 @@
     "generator": false
   },
   {
-    "__docId__": 77,
+    "__docId__": 78,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -2043,7 +2068,7 @@
     "generator": false
   },
   {
-    "__docId__": 78,
+    "__docId__": 79,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2056,7 +2081,7 @@
     "content": "// ********************************\n// # Rectangle.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n/**\n  Represents a rectangle.\n */\n\nexport class Rectangle {\n\n  /**\n    Return a new Rectangle object for a given x,y, width and height.\n\n    @param {number} x The x coordinate of the top-left corner of the rectangle.\n    @param {number} y The y coordinate of the top-left corner of the rectangle.\n    @param {number} width The width of the rectangle.\n    @param {number} height The height of the rectangle.\n    @return The new Rectangle object.\n  */\n\n  constructor(x, y, width, height) {\n\n    /**\n      The x coordinate of the top-left corner of the rectangle.\n      @type {number}\n    */\n\n    this.x = x\n\n    /**\n      The y coordinate of the top-left corner of the rectangle.\n      @type {number}\n    */\n\n    this.y = y\n\n    /**\n      The width of the rectangle.\n      @type {number}\n    */\n\n    this.width = width\n\n    /**\n      The height of the rectangle.\n      @type {number}\n    */\n\n    this.height = height\n  }\n\n  /**\n    Return the Rectangle as a CGRect.\n\n    @return {CGRect} The rectangle.\n  */\n\n  asCGRect() {\n    return CGRectMake(this.x, this.y, this.width, this.height)\n  }\n}\n"
   },
   {
-    "__docId__": 79,
+    "__docId__": 80,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -2072,7 +2097,7 @@
     "interface": false
   },
   {
-    "__docId__": 80,
+    "__docId__": 81,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -2135,7 +2160,7 @@
     "generator": false
   },
   {
-    "__docId__": 81,
+    "__docId__": 82,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -2155,7 +2180,7 @@
     }
   },
   {
-    "__docId__": 82,
+    "__docId__": 83,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -2175,7 +2200,7 @@
     }
   },
   {
-    "__docId__": 83,
+    "__docId__": 84,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -2195,7 +2220,7 @@
     }
   },
   {
-    "__docId__": 84,
+    "__docId__": 85,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -2215,7 +2240,7 @@
     }
   },
   {
-    "__docId__": 85,
+    "__docId__": 86,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -2237,7 +2262,7 @@
     "generator": false
   },
   {
-    "__docId__": 86,
+    "__docId__": 87,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2250,7 +2275,7 @@
     "content": "// ********************************\n// # Selection.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { WrappedObject } from './WrappedObject.js'\nimport { Layer } from './Layer.js'\n\n\n/**\n    Represents the layers that the user has selected.\n*/\n\nexport class Selection extends WrappedObject {\n\n    /**\n      Make a new Selection object.\n\n      @param {Document} document The document that the selection relates to.\n    */\n\n    constructor(document) {\n      super(document)\n    }\n\n    /**\n        Does the selection contain any layers?\n\n        @return {boolean} true if the selection is empty.\n    */\n\n    get isEmpty() {\n        return (this._object.selectedLayers().count() == 0);\n    }\n\n    /**\n        Perform an action once for each layer in the selection, then clear it.\n\n        @param {function(layer: Layer)} block The function to execute for each layer.\n    */\n\n    iterateAndClear(block) {\n      var layers = this._object.selectedLayers();\n      this.clear();\n      this._iterateWithLayers(layers, block);\n    }\n\n    /**\n        Perform an action once for each layer in the selection.\n\n        @param {function(layer: Layer)} block The function to execute for each layer.\n    */\n\n    iterate(block) {\n      var layers = this._object.selectedLayers();\n      this._iterateWithLayers(layers, block);\n    }\n\n    /**\n        Clear the selection.\n    */\n\n    clear() {\n      this._object.currentPage().deselectAllLayers();\n    }\n\n\n    /**\n        Iterate through a bunch of layers, executing a block.\n\n        @param {array} layers The layers to iterate over.\n        @param {function(layer: Layer)} block The function to execute for each layer.\n    */\n\n    _iterateWithLayers(layers, block) {\n      var loop = layers.objectEnumerator();\n      var item;\n      while (item = loop.nextObject()) {\n        block(new Layer(item));\n      }\n    }\n\n}\n"
   },
   {
-    "__docId__": 87,
+    "__docId__": 88,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -2269,7 +2294,7 @@
     ]
   },
   {
-    "__docId__": 88,
+    "__docId__": 89,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -2294,7 +2319,7 @@
     "generator": false
   },
   {
-    "__docId__": 89,
+    "__docId__": 90,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2320,7 +2345,7 @@
     "generator": false
   },
   {
-    "__docId__": 90,
+    "__docId__": 91,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -2345,7 +2370,7 @@
     "generator": false
   },
   {
-    "__docId__": 91,
+    "__docId__": 92,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -2370,7 +2395,7 @@
     "generator": false
   },
   {
-    "__docId__": 92,
+    "__docId__": 93,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -2384,7 +2409,7 @@
     "generator": false
   },
   {
-    "__docId__": 93,
+    "__docId__": 94,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -2419,7 +2444,7 @@
     "generator": false
   },
   {
-    "__docId__": 94,
+    "__docId__": 95,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2432,7 +2457,7 @@
     "content": "// ********************************\n// # Shape.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n/**\n  Represents a shape layer (a rectangle, oval, path, etc).\n */\n\nexport class Shape extends Layer {\n\n    /**\n      Make a new shape object.\n\n      @param shape {MSShapeGroup} The underlying model object from Sketch.\n      @param document The document that the shape belongs to.\n    */\n\n    constructor(shape, document) {\n      super(shape, document)\n    }\n\n    /**\n        Is this a shape layer?\n\n        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isShape() {\n      return true;\n    }\n\n}\n"
   },
   {
-    "__docId__": 95,
+    "__docId__": 96,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -2451,7 +2476,7 @@
     ]
   },
   {
-    "__docId__": 96,
+    "__docId__": 97,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -2486,7 +2511,7 @@
     "generator": false
   },
   {
-    "__docId__": 97,
+    "__docId__": 98,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2512,7 +2537,7 @@
     "generator": false
   },
   {
-    "__docId__": 98,
+    "__docId__": 99,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2522,10 +2547,10 @@
     "access": null,
     "description": null,
     "lineNumber": 8,
-    "content": "// ********************************\n// # Text.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n// ## Constants\n\nconst BCTextBehaviourFlexibleWidth = 0\nconst BCTextBehaviourFixedWidth = 1\n\n/**\n  Represents a text layer.\n */\n\nexport class Text extends Layer {\n\n    /**\n      Make a new text object.\n\n      @param {MSTextLayer} text The underlying model object from Sketch.\n      @param {Document} document The document that the text layer belongs to.\n    */\n\n    constructor(text, document) {\n      super(text, document)\n    }\n\n    /**\n        Is this a text layer?\n\n        All Layer objects respond to this method, but only text layers return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isText() {\n      return true\n    }\n\n    /**\n      The text of the layer.\n    */\n\n    get text() {\n      return this._object.stringValue\n    }\n\n    /**\n      Set the text of the layer.\n\n      @param {string} value The text to use.\n    */\n\n    set text(value) {\n      this._object.stringValue = value\n    }\n\n\n    /**\n      Set the font of the layer to an NSFont object.\n\n      @param {NSFont} value The font to use.\n    */\n\n    set font(value) {\n      this._object.font = value\n    }\n\n    /**\n       Set the font of the layer to the system font at a given size.\n\n       @param {number} size The system font size to use.\n    */\n\n    set systemFontSize(size) {\n      this._object.font = NSFont.systemFontOfSize_(size)\n    }\n\n    /**\n       Set the alignment of the layer.\n\n       @param {number} mode The alignment mode to use.\n    */\n\n    set alignment(mode) {\n      this._object.textAlignment = mode\n    }\n\n    /**\n     Set the layer to be fixed width or variable width.\n\n     @param {bool} value Whether the layer should be fixed width (true) or variable width (false).\n    */\n\n    set fixedWidth(value) {\n      if (value) {\n        this._object.textBehaviour = BCTextBehaviourFixedWidth\n      } else {\n        this._object.textBehaviour = BCTextBehaviourFlexibleWidth\n      }\n    }\n}\n"
+    "content": "// ********************************\n// # Text.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\nimport { Layer } from './Layer.js'\n\n// ## Constants\n\nconst BCTextBehaviourFlexibleWidth = 0\nconst BCTextBehaviourFixedWidth = 1\n\n/**\n  Represents a text layer.\n */\n\nexport class Text extends Layer {\n\n    /**\n      Make a new text object.\n\n      @param {MSTextLayer} text The underlying model object from Sketch.\n      @param {Document} document The document that the text layer belongs to.\n    */\n\n    constructor(text, document) {\n      super(text, document)\n    }\n\n    /**\n        Is this a text layer?\n\n        All Layer objects respond to this method, but only text layers return true.\n\n        @return {bool} true for instances of Group, false for any other layer type.\n    */\n\n    get isText() {\n      return true\n    }\n\n    /**\n      The text of the layer.\n    */\n\n    get text() {\n      return this._object.stringValue\n    }\n\n    /**\n      Set the text of the layer.\n\n      @param {string} value The text to use.\n    */\n\n    set text(value) {\n      this._object.stringValue = value\n    }\n\n\n    /**\n      Set the font of the layer to an NSFont object.\n\n      @param {NSFont} value The font to use.\n    */\n\n    set font(value) {\n      this._object.font = value\n    }\n\n    /**\n       Set the font of the layer to the system font at a given size.\n\n       @param {number} size The system font size to use.\n    */\n\n    set systemFontSize(size) {\n      this._object.font = NSFont.systemFontOfSize_(size)\n    }\n\n    /**\n       Set the alignment of the layer.\n\n       @param {number} mode The alignment mode to use.\n    */\n\n    set alignment(mode) {\n      this._object.textAlignment = mode\n    }\n\n    /**\n     Set the layer to be fixed width or variable width.\n\n     @param {bool} value Whether the layer should be fixed width (true) or variable width (false).\n    */\n\n    set fixedWidth(value) {\n      if (value) {\n        this._object.textBehaviour = BCTextBehaviourFixedWidth\n      } else {\n        this._object.textBehaviour = BCTextBehaviourFlexibleWidth\n      }\n    }\n\n    /**\n      Adjust the frame of the layer to fit its contents.\n    */\n\n    resizeToFitContents() {\n      this._object.adjustFrameToFit()\n    }\n\n\n}\n"
   },
   {
-    "__docId__": 99,
+    "__docId__": 100,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2546,7 +2571,7 @@
     }
   },
   {
-    "__docId__": 100,
+    "__docId__": 101,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2567,7 +2592,7 @@
     }
   },
   {
-    "__docId__": 101,
+    "__docId__": 102,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -2586,7 +2611,7 @@
     ]
   },
   {
-    "__docId__": 102,
+    "__docId__": 103,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -2621,7 +2646,7 @@
     "generator": false
   },
   {
-    "__docId__": 103,
+    "__docId__": 104,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2647,7 +2672,7 @@
     "generator": false
   },
   {
-    "__docId__": 104,
+    "__docId__": 105,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2665,7 +2690,7 @@
     "generator": false
   },
   {
-    "__docId__": 105,
+    "__docId__": 106,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2695,7 +2720,7 @@
     "generator": false
   },
   {
-    "__docId__": 106,
+    "__docId__": 107,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2725,7 +2750,7 @@
     "generator": false
   },
   {
-    "__docId__": 107,
+    "__docId__": 108,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2755,7 +2780,7 @@
     "generator": false
   },
   {
-    "__docId__": 108,
+    "__docId__": 109,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2785,7 +2810,7 @@
     "generator": false
   },
   {
-    "__docId__": 109,
+    "__docId__": 110,
     "kind": "set",
     "static": false,
     "variation": null,
@@ -2815,7 +2840,21 @@
     "generator": false
   },
   {
-    "__docId__": 110,
+    "__docId__": 111,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "resizeToFitContents",
+    "memberof": "Source/Text.js~Text",
+    "longname": "Source/Text.js~Text#resizeToFitContents",
+    "access": null,
+    "description": "Adjust the frame of the layer to fit its contents.",
+    "lineNumber": 111,
+    "params": [],
+    "generator": false
+  },
+  {
+    "__docId__": 112,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2828,7 +2867,7 @@
     "content": "// ********************************\n// # WrappedObject.js\n// # Sketch Javascript API.\n//\n// All code (C) 2016 Bohemian Coding.\n// ********************************\n\n/**\n  Base class for all objects that\n  wrap Sketch classes.\n\n*/\n\nexport class WrappedObject {\n\n    /**\n      Return a new wrapped object for a given Sketch model object.\n\n      @param {Object} object - The Sketch model object to wrap.\n    */\n\n    constructor(object) {\n      /** @type {Object} The underlying Sketch model object that we are wrapping. */\n      this._object = object\n    }\n\n    /**\n      Returns the object ID of the wrapped Sketch model object.\n\n      @return {string} The id.\n    */\n\n    get id() {\n      return this._object._objectID();\n    }\n}\n"
   },
   {
-    "__docId__": 111,
+    "__docId__": 113,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -2844,7 +2883,7 @@
     "interface": false
   },
   {
-    "__docId__": 112,
+    "__docId__": 114,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -2869,7 +2908,7 @@
     "generator": false
   },
   {
-    "__docId__": 113,
+    "__docId__": 115,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -2889,7 +2928,7 @@
     }
   },
   {
-    "__docId__": 114,
+    "__docId__": 116,
     "kind": "get",
     "static": false,
     "variation": null,
@@ -2915,7 +2954,7 @@
     "generator": false
   },
   {
-    "__docId__": 116,
+    "__docId__": 118,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2928,7 +2967,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 119,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2941,7 +2980,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 120,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2954,7 +2993,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 121,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2967,7 +3006,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 122,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2980,7 +3019,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 121,
+    "__docId__": 123,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2993,7 +3032,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 124,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3006,7 +3045,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 125,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3019,7 +3058,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 126,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3032,7 +3071,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 125,
+    "__docId__": 127,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3045,7 +3084,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 126,
+    "__docId__": 128,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3058,7 +3097,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 127,
+    "__docId__": 129,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3071,7 +3110,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 130,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3084,7 +3123,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 131,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3097,7 +3136,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 132,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3110,7 +3149,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 133,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3123,7 +3162,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 134,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3136,7 +3175,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 135,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3149,7 +3188,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 134,
+    "__docId__": 136,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3162,7 +3201,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 135,
+    "__docId__": 137,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3175,7 +3214,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 136,
+    "__docId__": 138,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3188,7 +3227,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 137,
+    "__docId__": 139,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3201,7 +3240,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 138,
+    "__docId__": 140,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3214,7 +3253,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 141,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3227,7 +3266,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 140,
+    "__docId__": 142,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3240,7 +3279,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 143,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3253,7 +3292,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 142,
+    "__docId__": 144,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3266,7 +3305,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 143,
+    "__docId__": 145,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3279,7 +3318,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 144,
+    "__docId__": 146,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3292,7 +3331,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 145,
+    "__docId__": 147,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3305,7 +3344,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 146,
+    "__docId__": 148,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3318,7 +3357,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 147,
+    "__docId__": 149,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3331,7 +3370,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 148,
+    "__docId__": 150,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3344,7 +3383,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 149,
+    "__docId__": 151,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3357,7 +3396,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 150,
+    "__docId__": 152,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3370,7 +3409,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 151,
+    "__docId__": 153,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3383,7 +3422,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 152,
+    "__docId__": 154,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3396,7 +3435,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 153,
+    "__docId__": 155,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3409,7 +3448,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 154,
+    "__docId__": 156,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3422,7 +3461,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 155,
+    "__docId__": 157,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3435,7 +3474,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 156,
+    "__docId__": 158,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3448,7 +3487,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 157,
+    "__docId__": 159,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3461,7 +3500,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 158,
+    "__docId__": 160,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3474,7 +3513,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 159,
+    "__docId__": 161,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3487,7 +3526,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 160,
+    "__docId__": 162,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3500,7 +3539,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 161,
+    "__docId__": 163,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3513,7 +3552,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 162,
+    "__docId__": 164,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3526,7 +3565,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 164,
+    "__docId__": 166,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3539,7 +3578,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 165,
+    "__docId__": 167,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3552,7 +3591,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 166,
+    "__docId__": 168,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3565,7 +3604,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 167,
+    "__docId__": 169,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3578,7 +3617,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 168,
+    "__docId__": 170,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3591,7 +3630,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 169,
+    "__docId__": 171,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3604,7 +3643,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 170,
+    "__docId__": 172,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3617,7 +3656,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 171,
+    "__docId__": 173,
     "kind": "external",
     "static": true,
     "variation": null,

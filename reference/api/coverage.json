@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 91,
-  "actualCount": 91,
+  "expectCount": 93,
+  "actualCount": 93,
   "files": {
     "Source/Application.js": {
       "expectCount": 20,
@@ -14,8 +14,8 @@
       "undocumentLines": []
     },
     "Source/Document.js": {
-      "expectCount": 7,
-      "actualCount": 7,
+      "expectCount": 8,
+      "actualCount": 8,
       "undocumentLines": []
     },
     "Source/Group.js": {
@@ -54,8 +54,8 @@
       "undocumentLines": []
     },
     "Source/Text.js": {
-      "expectCount": 9,
-      "actualCount": 9,
+      "expectCount": 10,
+      "actualCount": 10,
       "undocumentLines": []
     },
     "Source/WrappedObject.js": {

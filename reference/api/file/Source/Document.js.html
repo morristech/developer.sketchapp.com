@@ -108,7 +108,6 @@ export class Document extends WrappedObject {
     */
 
     get selectedPage() {
-      print(this._object)
       return new Page(this._object.currentPage(), this)
     }
 
@@ -155,6 +154,16 @@ export class Document extends WrappedObject {
       var layer = this._object._documentData().layerWithID_(layer_name);
       if (layer)
         return new Layer(layer, this);
+    }
+
+    /**
+      Center the view of the document window on a given layer.
+
+      @param {Layer} layer The layer to center on.
+      */
+
+    centerOnLayer(layer) {
+      this._object.currentView().centerRect_(layer._object.rect())
     }
 }
 </code></pre>

@@ -20,7 +20,7 @@ title: resources.js
           </div>
           <p>Resources, by Sam Deane — Source code available at <a href="https://github.com/BohemianCoding/plugins.examples.resources">GitHub</a></p>
 <p>This is a simple example, which illustrates how to bundle resource files
-along with your plugin, and access them from your code.</p>
+along with your Plugin, and access them from your code.</p>
 
         </div>
         
@@ -34,7 +34,7 @@ along with your plugin, and access them from your code.</p>
             <a class="pilcrow" href="#section-2">&#182;</a>
           </div>
           <h2 id="layout">Layout</h2>
-<p>The first thing to do when making a plugin is to setup the folder structure, which should
+<p>The first thing to do when making a Plugin is to setup the folder structure, which should
 look something like this:</p>
 <pre><code>   MyPlugin.sketchplugin/
      Contents/
@@ -44,21 +44,21 @@ look something like this:</p>
        Resources/
          a-resource.png
          other-resource.txt
-</code></pre><p>For a plugin with bundled resources, you want to add a <code>Resources</code> folder as well
+</code></pre><p>For a Plugin with bundled resources, you want to add a <code>Resources</code> folder as well
 as the normal <code>Sketch</code> folder, and you want to drop into it any resources that your
 script needs to access. These can be files of any type (but obviously keep in mind
 that they contribute to the overall size of the Plugin, so your users won’t thank
 you if you put too much stuff in there).</p>
 <h2 id="manifest">Manifest</h2>
-<p>The plugin needs a <code>manifest.json</code> file. This tells Sketch which menu items your plugin supplies,
-as well as giving some general information about the plugin such as its name, author, and so on.</p>
-<p>A single plugin can supply multiple menu items, and each one can execute different code,
+<p>The Plugin needs a <code>manifest.json</code> file. This tells Sketch which menu items your Plugin supplies,
+as well as giving some general information about the Plugin such as its name, author, and so on.</p>
+<p>A single Plugin can supply multiple menu items, and each one can execute different code,
 or they can all share code. In our case though, we just have one command.</p>
 <pre><code class="lang-json">{
     <span class="hljs-attr">"name"</span> : <span class="hljs-string">"Resources"</span>,
     <span class="hljs-attr">"identifier"</span> : <span class="hljs-string">"com.sketchapp.examples.resources"</span>,
     <span class="hljs-attr">"version"</span> : <span class="hljs-string">"1.0"</span>,
-    <span class="hljs-attr">"description"</span> : <span class="hljs-string">"An example of a plugin which contains bundled resources (an image, in this case)."</span>,
+    <span class="hljs-attr">"description"</span> : <span class="hljs-string">"An example of a Plugin which contains bundled resources (an image, in this case)."</span>,
     <span class="hljs-attr">"authorEmail"</span> : <span class="hljs-string">"sam@sketchapp.com"</span>,
     <span class="hljs-attr">"author"</span> : <span class="hljs-string">"Sam Deane"</span>,
     <span class="hljs-attr">"commands"</span> : [
@@ -131,14 +131,15 @@ we want to execute a javascript handler called <code>onRun</code> in the <code>r
           <h3 id="using-the-sketch-api">Using The Sketch API</h3>
 <p>We are passed a context variable when we’re run.
 This is a dictionary containing a reference to the document,
-the current selection, the plugin, current URL and more.</p>
-<p>One of the things that the context contains is a Sketch api function,
+the current selection, the Plugin that is running, and more.</p>
+<p>One of the things that the context contains is a Sketch `api()’ function,
 which when called gives you back a javascript object that you can
-use to interact with Sketch.</p>
+use to interact with Sketch in a clean way.</p>
 <p>Note: <em>There are ways of interacting directly with the raw Sketch objects instead,
-but these tend to change when we update Sketch, which can make your plugin scripts
-break easily. By going through the Sketch API, you gain an extra level of protection
-against changes to Sketch - since we fix the API when an underlying change to Sketch
+using the other items that the context contains. The problem is that these objects
+tend to change when we update Sketch, which can make your Plugin scripts
+break easily. By going through the Sketch API instead, you gain an extra level of protection
+against changes to Sketch. We fix the API when an underlying change to Sketch
 would have broken it - so it’s the recommended way to work if you can.</em></p>
 
         </div>
@@ -152,7 +153,8 @@ would have broken it - so it’s the recommended way to work if you can.</em></p
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-7">&#182;</a>
           </div>
-          <p>So first, let’s fetch the sketch object.</p>
+          <p>So first, let’s fetch the root API object. The object we’re given back represents the
+Sketch application itself, so we’ll put it into a variable called <code>sketch</code>.</p>
 
         </div>
         
@@ -212,7 +214,7 @@ of the resource.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-11">&#182;</a>
           </div>
-          <p>Next we want to use the api to extract the selected page of the front-most document</p>
+          <p>Next we want to extract the selected page of the selected (front-most) document</p>
 
         </div>
         
@@ -230,6 +232,10 @@ of the resource.</p>
           </div>
           <p>Then we want to make a new group on the page, then put a new image layer into it, and set
 that layer to use the resource image we located earlier</p>
+<p>We can make layers in any container using <code>newGroup</code>, <code>newImage</code>, <code>newText</code> and so on.
+These functions all take a single parameter which is a dictionary of properties to set
+on the new layer. Typically you will want to set the frame of the new layer, and perhaps
+some other properties such as its name, style, and so on.</p>
 
         </div>
         
@@ -245,8 +251,10 @@ that layer to use the resource image we located earlier</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-13">&#182;</a>
           </div>
-          <p>Finally, lets also make a text layer with a message
-to the world on it…</p>
+          <p>Finally, lets also make a text layer with a message to the world on it…
+In this case we don’t supply the frame of the layer to the <code>newText</code> function, since we want to first
+adjust the font size, alignment and set it to be fixedWidth. Only once we’ve done these do we change
+the frame.</p>
 
         </div>
         
@@ -266,7 +274,7 @@ to the world on it…</p>
           <h2 id="job-done">Job Done</h2>
 <p>And that’s it.</p>
 <p>Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.</p>
-<p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#100;&#101;&#118;&#x65;&#x6c;&#x6f;&#x70;&#x65;&#114;&#x73;&#x40;&#115;&#x6b;&#x65;&#x74;&#x63;&#104;&#97;&#112;&#x70;&#46;&#x63;&#111;&#x6d;">&#100;&#101;&#118;&#x65;&#x6c;&#x6f;&#x70;&#x65;&#114;&#x73;&#x40;&#115;&#x6b;&#x65;&#x74;&#x63;&#104;&#97;&#112;&#x70;&#46;&#x63;&#111;&#x6d;</a>!</p>
+<p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x64;&#101;&#x76;&#x65;&#x6c;&#111;&#x70;&#x65;&#114;&#x73;&#64;&#x73;&#x6b;&#101;&#x74;&#99;&#x68;&#x61;&#112;&#x70;&#x2e;&#99;&#111;&#x6d;">&#x64;&#101;&#x76;&#x65;&#x6c;&#111;&#x70;&#x65;&#114;&#x73;&#64;&#x73;&#x6b;&#101;&#x74;&#99;&#x68;&#x61;&#112;&#x70;&#x2e;&#99;&#111;&#x6d;</a>!</p>
 
         </div>
         
