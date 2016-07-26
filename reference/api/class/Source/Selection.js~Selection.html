@@ -42,6 +42,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
 </ul>
@@ -88,7 +89,39 @@
 </div>
 
 
-
+<div data-ice="staticMethodSummary"><h2>Static Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Static Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>dictionary</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Return a list of tests to run for this class.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
 <div data-ice="constructorSummary"><h2>Constructor Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3">Public Constructor</td></tr></thead>
   <tbody>
@@ -104,13 +137,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(document: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(document: <span><a href="class/Source/Document.js~Document.html">Document</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Make a new Selection object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -195,7 +229,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html#instance-method-iterate">iterate</a></span></span><span data-ice="signature">(block: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html#instance-method-iterate">iterate</a></span></span><span data-ice="signature">(block: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span>)</span></span>)</span>
         </p>
       </div>
       <div>
@@ -221,7 +255,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html#instance-method-iterateAndClear">iterateAndClear</a></span></span><span data-ice="signature">(block: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html#instance-method-iterateAndClear">iterateAndClear</a></span></span><span data-ice="signature">(block: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span>)</span></span>)</span>
         </p>
       </div>
       <div>
@@ -247,21 +281,22 @@
   <tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
       
-      <span class="kind" data-ice="kind">get</span>
       
       <span class="override" data-ice="override"></span>
     </td>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-get-id">id</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>dictionary</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Return a list of tests to run for this class.</p>
+</div>
       </div>
     </td>
     <td>
@@ -273,20 +308,21 @@
     <td>
       <span class="access" data-ice="access">public</span>
       
-      
+      <span class="kind" data-ice="kind">get</span>
       
       <span class="override" data-ice="override"></span>
     </td>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-member-object">object</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-get-id">id</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns the object ID of the wrapped Sketch model object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -299,7 +335,61 @@
 </div>
 
 
+<div data-ice="staticMethodDetails"><h2 data-ice="title">Static Public Methods</h2>
 
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-tests">
+    <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    
+    
+    <span data-ice="name">tests</span><span data-ice="signature">(): <span>dictionary</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber91">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Return a list of tests to run for this class.</p>
+</div>
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/Source/WrappedObject.js~WrappedObject.html#static-method-tests">WrappedObject#tests</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>dictionary</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
 <div data-ice="constructorDetails"><h2 data-ice="title">Public Constructors</h2>
 
 <div class="detail" data-ice="detail">
@@ -309,18 +399,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(document: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(document: <span><a href="class/Source/Document.js~Document.html">Document</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber17">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Make a new Selection object.</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/Source/WrappedObject.js~WrappedObject.html#instance-constructor-constructor">WrappedObject#constructor</a></span></div>
 
@@ -334,9 +425,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">document</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/Source/Document.js~Document.html">Document</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The document that the selection relates to.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -372,7 +464,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
@@ -427,7 +519,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber54">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
@@ -464,11 +556,11 @@
     
     
     
-    <span data-ice="name">iterate</span><span data-ice="signature">(block: <span>*</span>)</span>
+    <span data-ice="name">iterate</span><span data-ice="signature">(block: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span>)</span></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber45">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber56">source</a></span></span>
     </span>
   </h3>
 
@@ -490,9 +582,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">block</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span>)</span></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The function to execute for each layer.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -521,11 +614,11 @@
     
     
     
-    <span data-ice="name">iterateAndClear</span><span data-ice="signature">(block: <span>*</span>)</span>
+    <span data-ice="name">iterateAndClear</span><span data-ice="signature">(block: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span>)</span></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="file/Source/Selection.js.html#lineNumber44">source</a></span></span>
     </span>
   </h3>
 
@@ -547,9 +640,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">block</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="class/Source/Layer.js~Layer.html">Layer</a></span>)</span></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The function to execute for each layer.</p>
+</td>
     </tr>
 </tbody>
   </table>

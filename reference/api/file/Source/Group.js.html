@@ -42,6 +42,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
 </ul>
@@ -56,19 +57,52 @@
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-// ##&#xA0;Imports
-
 import { Layer } from &apos;./Layer.js&apos;
 
+/**
+  Represents a group of layers.
+ */
+
 export class Group extends Layer {
+
+    /**
+      Make a new group object.
+
+      @param group {MSLayerGroup} The underlying model object from Sketch.
+      @param document The document that the group belongs to.
+    */
+
     constructor(group, document) {
       super(group, document)
     }
+
+    /**
+        Is this an group?
+
+        All Layer objects respond to this method, but only Groups or things that inherit from groups return true.
+
+        @return {bool} true for instances of Group, false for any other layer type.
+    */
 
     is_group() {
       return true;
     }
 
+    /**
+     Return a list of tests to run for this class.
+
+     @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+     */
+
+    static tests() {
+        return {
+            &quot;tests&quot; : {
+                &quot;test something&quot; : function(tester) {
+                    tester.assert(true);
+                },
+            }
+        };
+    }
 }
 </code></pre>
 

@@ -60,6 +60,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "developer.sketchapp.com/source/tester.js~tester",
+    "class/Source/Tester.js~Tester.html",
+    "<span>Tester</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Tester.js</span>",
+    "class"
+  ],
+  [
     "developer.sketchapp.com/source/text.js~text",
     "class/Source/Text.js~Text.html",
     "<span>Text</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Text.js</span>",
@@ -486,12 +492,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "source/application.js~application#metadata",
-    "class/Source/Application.js~Application.html#instance-member-metadata",
-    "Source/Application.js~Application#metadata",
-    "member"
-  ],
-  [
     "source/application.js~application#newdocument",
     "class/Source/Application.js~Application.html#instance-method-newDocument",
     "Source/Application.js~Application#newDocument",
@@ -507,6 +507,12 @@ window.esdocSearchIndex = [
     "source/application.js~application#resourcenamed",
     "class/Source/Application.js~Application.html#instance-method-resourceNamed",
     "Source/Application.js~Application#resourceNamed",
+    "method"
+  ],
+  [
+    "source/application.js~application#rununittests",
+    "class/Source/Application.js~Application.html#instance-method-runUnitTests",
+    "Source/Application.js~Application#runUnitTests",
     "method"
   ],
   [
@@ -534,6 +540,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/application.js~application.tests",
+    "class/Source/Application.js~Application.html#static-method-tests",
+    "Source/Application.js~Application.tests",
+    "method"
+  ],
+  [
     "source/artboard.js",
     "file/Source/Artboard.js.html",
     "Source/Artboard.js",
@@ -552,16 +564,22 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/artboard.js~artboard.tests",
+    "class/Source/Artboard.js~Artboard.html#static-method-tests",
+    "Source/Artboard.js~Artboard.tests",
+    "method"
+  ],
+  [
     "source/document.js",
     "file/Source/Document.js.html",
     "Source/Document.js",
     "file"
   ],
   [
-    "source/document.js~document#application",
-    "class/Source/Document.js~Document.html#instance-member-application",
-    "Source/Document.js~Document#application",
-    "member"
+    "source/document.js~document#centeronlayer",
+    "class/Source/Document.js~Document.html#instance-method-centerOnLayer",
+    "Source/Document.js~Document#centerOnLayer",
+    "method"
   ],
   [
     "source/document.js~document#constructor",
@@ -600,6 +618,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/document.js~document.tests",
+    "class/Source/Document.js~Document.html#static-method-tests",
+    "Source/Document.js~Document.tests",
+    "method"
+  ],
+  [
     "source/group.js",
     "file/Source/Group.js.html",
     "Source/Group.js",
@@ -615,6 +639,12 @@ window.esdocSearchIndex = [
     "source/group.js~group#is_group",
     "class/Source/Group.js~Group.html#instance-method-is_group",
     "Source/Group.js~Group#is_group",
+    "method"
+  ],
+  [
+    "source/group.js~group.tests",
+    "class/Source/Group.js~Group.html#static-method-tests",
+    "Source/Group.js~Group.tests",
     "method"
   ],
   [
@@ -642,6 +672,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/image.js~image.tests",
+    "class/Source/Image.js~Image.html#static-method-tests",
+    "Source/Image.js~Image.tests",
+    "method"
+  ],
+  [
     "source/layer.js",
     "file/Source/Layer.js.html",
     "Source/Layer.js",
@@ -651,12 +687,6 @@ window.esdocSearchIndex = [
     "source/layer.js~layer#addtoselection",
     "class/Source/Layer.js~Layer.html#instance-method-addToSelection",
     "Source/Layer.js~Layer#addToSelection",
-    "method"
-  ],
-  [
-    "source/layer.js~layer#addwrappedlayerwithproperties",
-    "class/Source/Layer.js~Layer.html#instance-method-addWrappedLayerWithProperties",
-    "Source/Layer.js~Layer#addWrappedLayerWithProperties",
     "method"
   ],
   [
@@ -672,22 +702,10 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "source/layer.js~layer#document",
-    "class/Source/Layer.js~Layer.html#instance-member-document",
-    "Source/Layer.js~Layer#document",
-    "member"
-  ],
-  [
     "source/layer.js~layer#duplicate",
     "class/Source/Layer.js~Layer.html#instance-method-duplicate",
     "Source/Layer.js~Layer#duplicate",
     "method"
-  ],
-  [
-    "source/layer.js~layer#frame",
-    "class/Source/Layer.js~Layer.html#instance-get-frame",
-    "Source/Layer.js~Layer#frame",
-    "member"
   ],
   [
     "source/layer.js~layer#frame",
@@ -696,10 +714,10 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "source/layer.js~layer#frameforlayerwithproperties",
-    "class/Source/Layer.js~Layer.html#instance-method-frameForLayerWithProperties",
-    "Source/Layer.js~Layer#frameForLayerWithProperties",
-    "method"
+    "source/layer.js~layer#frame",
+    "class/Source/Layer.js~Layer.html#instance-get-frame",
+    "Source/Layer.js~Layer#frame",
+    "member"
   ],
   [
     "source/layer.js~layer#isartboard",
@@ -756,12 +774,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "source/layer.js~layer#newartboard",
-    "class/Source/Layer.js~Layer.html#instance-method-newArtboard",
-    "Source/Layer.js~Layer#newArtboard",
-    "method"
-  ],
-  [
     "source/layer.js~layer#newgroup",
     "class/Source/Layer.js~Layer.html#instance-method-newGroup",
     "Source/Layer.js~Layer#newGroup",
@@ -798,6 +810,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "source/layer.js~layer.tests",
+    "class/Source/Layer.js~Layer.html#static-method-tests",
+    "Source/Layer.js~Layer.tests",
+    "method"
+  ],
+  [
     "source/page.js",
     "file/Source/Page.js.html",
     "Source/Page.js",
@@ -810,16 +828,22 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "source/page.js~page#document",
-    "class/Source/Page.js~Page.html#instance-member-document",
-    "Source/Page.js~Page#document",
-    "member"
-  ],
-  [
     "source/page.js~page#ispage",
     "class/Source/Page.js~Page.html#instance-get-isPage",
     "Source/Page.js~Page#isPage",
     "member"
+  ],
+  [
+    "source/page.js~page#newartboard",
+    "class/Source/Page.js~Page.html#instance-method-newArtboard",
+    "Source/Page.js~Page#newArtboard",
+    "method"
+  ],
+  [
+    "source/page.js~page.tests",
+    "class/Source/Page.js~Page.html#static-method-tests",
+    "Source/Page.js~Page.tests",
+    "method"
   ],
   [
     "source/rectangle.js",
@@ -864,6 +888,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/rectangle.js~rectangle.tests",
+    "class/Source/Rectangle.js~Rectangle.html#static-method-tests",
+    "Source/Rectangle.js~Rectangle.tests",
+    "method"
+  ],
+  [
     "source/selection.js",
     "file/Source/Selection.js.html",
     "Source/Selection.js",
@@ -900,6 +930,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "source/selection.js~selection.tests",
+    "class/Source/Selection.js~Selection.html#static-method-tests",
+    "Source/Selection.js~Selection.tests",
+    "method"
+  ],
+  [
     "source/shape.js",
     "file/Source/Shape.js.html",
     "Source/Shape.js",
@@ -916,6 +952,48 @@ window.esdocSearchIndex = [
     "class/Source/Shape.js~Shape.html#instance-get-isShape",
     "Source/Shape.js~Shape#isShape",
     "member"
+  ],
+  [
+    "source/shape.js~shape.tests",
+    "class/Source/Shape.js~Shape.html#static-method-tests",
+    "Source/Shape.js~Shape.tests",
+    "method"
+  ],
+  [
+    "source/tester.js",
+    "file/Source/Tester.js.html",
+    "Source/Tester.js",
+    "file"
+  ],
+  [
+    "source/tester.js~tester#application",
+    "class/Source/Tester.js~Tester.html#instance-get-application",
+    "Source/Tester.js~Tester#application",
+    "member"
+  ],
+  [
+    "source/tester.js~tester#assert",
+    "class/Source/Tester.js~Tester.html#instance-method-assert",
+    "Source/Tester.js~Tester#assert",
+    "method"
+  ],
+  [
+    "source/tester.js~tester#assertequal",
+    "class/Source/Tester.js~Tester.html#instance-method-assertEqual",
+    "Source/Tester.js~Tester#assertEqual",
+    "method"
+  ],
+  [
+    "source/tester.js~tester#constructor",
+    "class/Source/Tester.js~Tester.html#instance-constructor-constructor",
+    "Source/Tester.js~Tester#constructor",
+    "method"
+  ],
+  [
+    "source/tester.js~tester#rununittests",
+    "class/Source/Tester.js~Tester.html#instance-method-runUnitTests",
+    "Source/Tester.js~Tester#runUnitTests",
+    "method"
   ],
   [
     "source/text.js",
@@ -954,6 +1032,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/text.js~text#resizetofitcontents",
+    "class/Source/Text.js~Text.html#instance-method-resizeToFitContents",
+    "Source/Text.js~Text#resizeToFitContents",
+    "method"
+  ],
+  [
     "source/text.js~text#systemfontsize",
     "class/Source/Text.js~Text.html#instance-set-systemFontSize",
     "Source/Text.js~Text#systemFontSize",
@@ -970,6 +1054,12 @@ window.esdocSearchIndex = [
     "class/Source/Text.js~Text.html#instance-set-text",
     "Source/Text.js~Text#text",
     "member"
+  ],
+  [
+    "source/text.js~text.tests",
+    "class/Source/Text.js~Text.html#static-method-tests",
+    "Source/Text.js~Text.tests",
+    "method"
   ],
   [
     "source/wrappedobject.js",
@@ -990,9 +1080,9 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "source/wrappedobject.js~wrappedobject#object",
-    "class/Source/WrappedObject.js~WrappedObject.html#instance-member-object",
-    "Source/WrappedObject.js~WrappedObject#object",
-    "member"
+    "source/wrappedobject.js~wrappedobject.tests",
+    "class/Source/WrappedObject.js~WrappedObject.html#static-method-tests",
+    "Source/WrappedObject.js~WrappedObject.tests",
+    "method"
   ]
 ]

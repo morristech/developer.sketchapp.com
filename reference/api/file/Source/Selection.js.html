@@ -42,6 +42,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
 </ul>
@@ -65,6 +66,13 @@ import { Layer } from &apos;./Layer.js&apos;
 */
 
 export class Selection extends WrappedObject {
+
+    /**
+      Make a new Selection object.
+
+      @param {Document} document The document that the selection relates to.
+    */
+
     constructor(document) {
       super(document)
     }
@@ -76,25 +84,29 @@ export class Selection extends WrappedObject {
     */
 
     get isEmpty() {
-        return (this.object.selectedLayers().count() == 0);
+        return (this._object.selectedLayers().count() == 0);
     }
 
     /**
         Perform an action once for each layer in the selection, then clear it.
+
+        @param {function(layer: Layer)} block The function to execute for each layer.
     */
 
     iterateAndClear(block) {
-      var layers = this.object.selectedLayers();
+      var layers = this._object.selectedLayers();
       this.clear();
       this._iterateWithLayers(layers, block);
     }
 
     /**
         Perform an action once for each layer in the selection.
+
+        @param {function(layer: Layer)} block The function to execute for each layer.
     */
 
     iterate(block) {
-      var layers = this.object.selectedLayers();
+      var layers = this._object.selectedLayers();
       this._iterateWithLayers(layers, block);
     }
 
@@ -103,12 +115,15 @@ export class Selection extends WrappedObject {
     */
 
     clear() {
-      this.object.currentPage().deselectAllLayers();
+      this._object.currentPage().deselectAllLayers();
     }
 
 
     /**
         Iterate through a bunch of layers, executing a block.
+
+        @param {array} layers The layers to iterate over.
+        @param {function(layer: Layer)} block The function to execute for each layer.
     */
 
     _iterateWithLayers(layers, block) {
@@ -117,6 +132,22 @@ export class Selection extends WrappedObject {
       while (item = loop.nextObject()) {
         block(new Layer(item));
       }
+    }
+
+    /**
+     Return a list of tests to run for this class.
+
+     @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+     */
+
+    static tests() {
+        return {
+            &quot;tests&quot; : {
+                &quot;test something&quot; : function(tester) {
+                    tester.assert(true);
+                },
+            }
+        };
     }
 
 }

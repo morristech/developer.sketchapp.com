@@ -42,6 +42,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/Source/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
 </ul>
@@ -56,8 +57,6 @@
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-// ##&#xA0;Imports
-
 import { WrappedObject } from &apos;./WrappedObject.js&apos;
 import { Document } from &apos;./Document.js&apos;
 import { Rectangle } from &apos;./Rectangle.js&apos;
@@ -67,6 +66,9 @@ import { Image } from &apos;./Image.js&apos;
 import { Shape } from &apos;./Shape.js&apos;
 import { Artboard } from &apos;./Artboard.js&apos;
 import { Page } from &apos;./Page.js&apos;
+import { Tester } from &apos;./Tester.js&apos;
+import { Layer } from &apos;./Layer.js&apos;
+import { Selection } from &apos;./Selection.js&apos;
 
 /**
     Gives you access to Sketch, and provides access to:
@@ -89,11 +91,22 @@ export class Application extends WrappedObject {
 
     constructor(context) {
       super(context)
-      this.metadata = MSApplicationMetadata.metadata()
 
-      // this is a slightly clumsy way to pass related classes into Layer
-      // without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
-      // there has to be a better way to do this...
+      /**
+        Metadata about this version of Sketch.
+        @type {dictionary}
+      */
+      this._metadata = MSApplicationMetadata.metadata()
+
+
+      /**
+        This is a slightly clumsy way to pass related classes into Layer
+        without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
+        there has to be a better way to do this...
+
+        @type {dictionary}
+      */
+
       this.factory = {
         &quot;Group&quot; : Group,
         &quot;Page&quot; : Page,
@@ -126,7 +139,7 @@ export class Application extends WrappedObject {
     */
 
     get context() {
-      return this.object
+      return this._object
     }
 
 
@@ -137,7 +150,7 @@ export class Application extends WrappedObject {
     */
 
     get version() {
-      return this.metadata[&apos;appVersion&apos;]
+      return this._metadata[&apos;appVersion&apos;]
     }
 
     /**
@@ -147,7 +160,7 @@ export class Application extends WrappedObject {
     */
 
     get build() {
-      return this.metadata[&apos;build&apos;]
+      return this._metadata[&apos;build&apos;]
     }
 
     /**
@@ -171,7 +184,7 @@ export class Application extends WrappedObject {
     */
 
     settingForKey(key) {
-      return NSUserDefaults.standardUserDefaults().objectForKey_(key);
+      return NSUserDefaults.standardUserDefaults()._objectForKey_(key);
     }
 
     /**
@@ -198,7 +211,7 @@ export class Application extends WrappedObject {
     */
 
     resourceNamed(name) {
-      return this.object.plugin.urlForResourceNamed_(name)
+      return this._object.plugin.urlForResourceNamed_(name)
     }
 
     /**
@@ -283,7 +296,7 @@ export class Application extends WrappedObject {
     */
 
     get selectedDocument() {
-      return new Document(this.object.document, this)
+      return new Document(this._object.document, this)
     }
 
 
@@ -309,7 +322,7 @@ export class Application extends WrappedObject {
     */
 
     message(message) {
-      this.object.document.showMessage(message)
+      this._object.document.showMessage(message)
     }
 
     /**
@@ -337,9 +350,64 @@ export class Application extends WrappedObject {
         @return The new Rectangle object.
     */
 
-    rectangle(x, y, w, h) {
-      return new Rectangle(x, y, w, h)
+    rectangle(x, y, width, height) {
+      return new Rectangle(x, y, width, height)
     }
+
+    /**
+        Return a list of tests to run for this class.
+        
+        We could do some fancy introspection here to derive the tests from
+        the class, but for now we&apos;re opting for the simple approach.
+        
+        @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+    */
+
+    static tests() {
+      return {
+          &quot;tests&quot; : {
+            &quot;test api version&quot; : function(tester) {
+              tester.assertEqual(tester.application.api_version, &quot;1.1&quot;);
+            },
+            &quot;test app version&quot; : function(tester) {
+              tester.assertEqual(tester.application.version, &quot;1.0&quot;);
+            }
+          }
+      };
+    }
+
+    /**
+        Run all of our internal unit tests.
+        Returns a dictionary indicating how many tests ran, passed, failed, and crashed,
+        and a list of more detailed information for each failure.
+
+        At some point we may switch to using Mocha or some other test framework, but for
+        now we want to be able to invoke the tests from the Sketch side or from a plugin
+        command, so it&apos;s simpler to use a simple test framework of our own devising.
+    */
+
+    runUnitTests() {
+        var tests = {
+            &quot;suites&quot; : {
+                &quot;Application&quot; : Application.tests(),
+                &quot;Artboard&quot; : Artboard.tests(),
+                &quot;Document&quot; : Document.tests(),
+                &quot;Group&quot; : Group.tests(),
+                &quot;Image&quot; : Image.tests(),
+                &quot;Layer&quot; : Layer.tests(),
+                &quot;Page&quot; : Page.tests(),
+                &quot;Rectangle&quot; : Rectangle.tests(),
+                &quot;Selection&quot; : Selection.tests(),
+                &quot;Shape&quot; : Shape.tests(),
+                &quot;Text&quot; : Text.tests(),
+                &quot;WrappedObject&quot; : WrappedObject.tests()
+            }
+        }
+
+      var tester = new Tester(this);
+      return tester.runUnitTests(tests);
+    }
+
 }
 </code></pre>
 
