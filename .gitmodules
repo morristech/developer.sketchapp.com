@@ -1,18 +1,15 @@
-[submodule "_example-plugins/plugins/plugins.examples.svgo-export"]
+[submodule "_external/plugins/plugins.examples.svgo-export"]
 	path = _external/plugins/plugins.examples.svgo-export
 	url = https://github.com/BohemianCoding/plugins.examples.svgo-export.git
-[submodule "_example-plugins/plugins/plugins.examples.selected-layers"]
-	path = _example-plugins/plugins/plugins.examples.selected-layers
-	url = https://github.com/BohemianCoding/plugins.examples.selected-layers.git
-[submodule "_example-plugins/plugins/plugins.examples.hello-world"]
+[submodule "_external/plugins/plugins.examples.hello-world"]
 	path = _external/plugins/plugins.examples.hello-world
 	url = https://github.com/BohemianCoding/plugins.examples.hello-world.git
-[submodule "_example-plugins/plugins/plugins.examples.selection-changed"]
+[submodule "_external/plugins/plugins.examples.selection-changed"]
 	path = _external/plugins/plugins.examples.selection-changed
 	url = https://github.com/BohemianCoding/plugins.examples.selection-changed.git
-[submodule "_example-plugins/plugins/plugins.examples.resources"]
+[submodule "_external/plugins/plugins.examples.resources"]
 	path = _external/plugins/plugins.examples.resources
 	url = https://github.com/BohemianCoding/plugins.examples.resources.git
 [submodule "_external/api"]
 	path = _external/api
-	url = git@github.com:BohemianCoding/SketchAPI.git
+	url = https://github.com/BohemianCoding/SketchAPI.git
