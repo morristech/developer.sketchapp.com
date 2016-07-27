@@ -10,16 +10,16 @@
             "type": "Identifier",
             "name": "Layer",
             "range": [
-              168,
-              173
+              183,
+              188
             ],
             "loc": {
               "start": {
-                "line": 8,
+                "line": 10,
                 "column": 9
               },
               "end": {
-                "line": 8,
+                "line": 10,
                 "column": 14
               }
             }
@@ -28,31 +28,31 @@
             "type": "Identifier",
             "name": "Layer",
             "range": [
-              168,
-              173
+              183,
+              188
             ],
             "loc": {
               "start": {
-                "line": 8,
+                "line": 10,
                 "column": 9
               },
               "end": {
-                "line": 8,
+                "line": 10,
                 "column": 14
               }
             }
           },
           "range": [
-            168,
-            173
+            183,
+            188
           ],
           "loc": {
             "start": {
-              "line": 8,
+              "line": 10,
               "column": 9
             },
             "end": {
-              "line": 8,
+              "line": 10,
               "column": 14
             }
           }
@@ -63,16 +63,16 @@
         "value": "./Layer.js",
         "raw": "'./Layer.js'",
         "range": [
-          181,
-          193
+          196,
+          208
         ],
         "loc": {
           "start": {
-            "line": 8,
+            "line": 10,
             "column": 22
           },
           "end": {
-            "line": 8,
+            "line": 10,
             "column": 34
           }
         },
@@ -81,16 +81,16 @@
             "type": "Block",
             "value": "*\n    A Sketch artboard.\n",
             "range": [
-              195,
-              224
+              210,
+              239
             ],
             "loc": {
               "start": {
-                "line": 10,
+                "line": 12,
                 "column": 0
               },
               "end": {
-                "line": 12,
+                "line": 14,
                 "column": 2
               }
             }
@@ -98,16 +98,16 @@
         ]
       },
       "range": [
-        159,
-        226
+        174,
+        241
       ],
       "loc": {
         "start": {
-          "line": 8,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 14,
+          "line": 16,
           "column": 0
         }
       },
@@ -219,6 +219,24 @@
               "column": 35
             }
           }
+        },
+        {
+          "type": "Line",
+          "value": " ## Imports",
+          "range": [
+            159,
+            172
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 13
+            }
+          }
         }
       ]
     },
@@ -230,16 +248,16 @@
           "type": "Identifier",
           "name": "Artboard",
           "range": [
-            239,
-            247
+            254,
+            262
           ],
           "loc": {
             "start": {
-              "line": 14,
+              "line": 16,
               "column": 13
             },
             "end": {
-              "line": 14,
+              "line": 16,
               "column": 21
             }
           }
@@ -248,16 +266,16 @@
           "type": "Identifier",
           "name": "Layer",
           "range": [
-            256,
-            261
+            271,
+            276
           ],
           "loc": {
             "start": {
-              "line": 14,
+              "line": 16,
               "column": 30
             },
             "end": {
-              "line": 14,
+              "line": 16,
               "column": 35
             }
           }
@@ -271,16 +289,16 @@
                 "type": "Identifier",
                 "name": "constructor",
                 "range": [
-                  481,
-                  492
+                  478,
+                  489
                 ],
                 "loc": {
                   "start": {
-                    "line": 23,
+                    "line": 25,
                     "column": 4
                   },
                   "end": {
-                    "line": 23,
+                    "line": 25,
                     "column": 15
                   }
                 }
@@ -293,16 +311,16 @@
                     "type": "Identifier",
                     "name": "artboard",
                     "range": [
-                      493,
-                      501
+                      490,
+                      498
                     ],
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 25,
                         "column": 16
                       },
                       "end": {
-                        "line": 23,
+                        "line": 25,
                         "column": 24
                       }
                     }
@@ -311,16 +329,16 @@
                     "type": "Identifier",
                     "name": "document",
                     "range": [
-                      503,
-                      511
+                      500,
+                      508
                     ],
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 25,
                         "column": 26
                       },
                       "end": {
-                        "line": 23,
+                        "line": 25,
                         "column": 34
                       }
                     }
@@ -336,16 +354,16 @@
                         "callee": {
                           "type": "Super",
                           "range": [
-                            521,
-                            526
+                            518,
+                            523
                           ],
                           "loc": {
                             "start": {
-                              "line": 24,
+                              "line": 26,
                               "column": 6
                             },
                             "end": {
-                              "line": 24,
+                              "line": 26,
                               "column": 11
                             }
                           }
@@ -355,16 +373,16 @@
                             "type": "Identifier",
                             "name": "artboard",
                             "range": [
-                              527,
-                              535
+                              524,
+                              532
                             ],
                             "loc": {
                               "start": {
-                                "line": 24,
+                                "line": 26,
                                 "column": 12
                               },
                               "end": {
-                                "line": 24,
+                                "line": 26,
                                 "column": 20
                               }
                             }
@@ -373,63 +391,63 @@
                             "type": "Identifier",
                             "name": "document",
                             "range": [
-                              537,
-                              545
+                              534,
+                              542
                             ],
                             "loc": {
                               "start": {
-                                "line": 24,
+                                "line": 26,
                                 "column": 22
                               },
                               "end": {
-                                "line": 24,
+                                "line": 26,
                                 "column": 30
                               }
                             }
                           }
                         ],
                         "range": [
-                          521,
-                          546
+                          518,
+                          543
                         ],
                         "loc": {
                           "start": {
-                            "line": 24,
+                            "line": 26,
                             "column": 6
                           },
                           "end": {
-                            "line": 24,
+                            "line": 26,
                             "column": 31
                           }
                         }
                       },
                       "range": [
-                        521,
-                        551
+                        518,
+                        548
                       ],
                       "loc": {
                         "start": {
-                          "line": 24,
+                          "line": 26,
                           "column": 6
                         },
                         "end": {
-                          "line": 25,
+                          "line": 27,
                           "column": 4
                         }
                       }
                     }
                   ],
                   "range": [
-                    513,
-                    552
+                    510,
+                    549
                   ],
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 25,
                       "column": 36
                     },
                     "end": {
-                      "line": 25,
+                      "line": 27,
                       "column": 5
                     }
                   }
@@ -437,16 +455,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  492,
-                  552
+                  489,
+                  549
                 ],
                 "loc": {
                   "start": {
-                    "line": 23,
+                    "line": 25,
                     "column": 15
                   },
                   "end": {
-                    "line": 25,
+                    "line": 27,
                     "column": 5
                   }
                 }
@@ -454,34 +472,34 @@
               "kind": "constructor",
               "computed": false,
               "range": [
-                481,
-                552
+                478,
+                549
               ],
               "loc": {
                 "start": {
-                  "line": 23,
+                  "line": 25,
                   "column": 4
                 },
                 "end": {
-                  "line": 25,
+                  "line": 27,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n        Make a new artboard.\n\n        @param artboard {MSArtboardGroup} The underlying MSArtboardGroup model object from Sketch.\n        @param document The document that the artboard belongs to.\n    ",
+                  "value": "*\n        Make a new artboard.\n\n        @param artboard The underlying MSArtboardGroup model object from Sketch.\n        @param document The document that the artboard belongs to.\n    ",
                   "range": [
-                    269,
-                    475
+                    284,
+                    472
                   ],
                   "loc": {
                     "start": {
-                      "line": 16,
+                      "line": 18,
                       "column": 4
                     },
                     "end": {
-                      "line": 21,
+                      "line": 23,
                       "column": 6
                     }
                   }
@@ -492,16 +510,16 @@
                   "type": "Block",
                   "value": "*\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    ",
                   "range": [
-                    558,
-                    768
+                    555,
+                    765
                   ],
                   "loc": {
                     "start": {
-                      "line": 27,
+                      "line": 29,
                       "column": 4
                     },
                     "end": {
-                      "line": 33,
+                      "line": 35,
                       "column": 6
                     }
                   }
@@ -515,16 +533,16 @@
                 "type": "Identifier",
                 "name": "isArtboard",
                 "range": [
-                  778,
-                  788
+                  775,
+                  785
                 ],
                 "loc": {
                   "start": {
-                    "line": 35,
+                    "line": 37,
                     "column": 8
                   },
                   "end": {
-                    "line": 35,
+                    "line": 37,
                     "column": 18
                   }
                 }
@@ -543,47 +561,47 @@
                         "value": true,
                         "raw": "true",
                         "range": [
-                          806,
-                          810
+                          803,
+                          807
                         ],
                         "loc": {
                           "start": {
-                            "line": 36,
+                            "line": 38,
                             "column": 13
                           },
                           "end": {
-                            "line": 36,
+                            "line": 38,
                             "column": 17
                           }
                         }
                       },
                       "range": [
-                        799,
-                        811
+                        796,
+                        808
                       ],
                       "loc": {
                         "start": {
-                          "line": 36,
+                          "line": 38,
                           "column": 6
                         },
                         "end": {
-                          "line": 36,
+                          "line": 38,
                           "column": 18
                         }
                       }
                     }
                   ],
                   "range": [
-                    791,
-                    817
+                    788,
+                    814
                   ],
                   "loc": {
                     "start": {
-                      "line": 35,
+                      "line": 37,
                       "column": 21
                     },
                     "end": {
-                      "line": 37,
+                      "line": 39,
                       "column": 5
                     }
                   }
@@ -591,16 +609,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  788,
-                  817
+                  785,
+                  814
                 ],
                 "loc": {
                   "start": {
-                    "line": 35,
+                    "line": 37,
                     "column": 18
                   },
                   "end": {
-                    "line": 37,
+                    "line": 39,
                     "column": 5
                   }
                 }
@@ -608,16 +626,16 @@
               "kind": "get",
               "computed": false,
               "range": [
-                774,
-                817
+                771,
+                814
               ],
               "loc": {
                 "start": {
-                  "line": 35,
+                  "line": 37,
                   "column": 4
                 },
                 "end": {
-                  "line": 37,
+                  "line": 39,
                   "column": 5
                 }
               },
@@ -626,16 +644,16 @@
                   "type": "Block",
                   "value": "*\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    ",
                   "range": [
-                    558,
-                    768
+                    555,
+                    765
                   ],
                   "loc": {
                     "start": {
-                      "line": 27,
+                      "line": 29,
                       "column": 4
                     },
                     "end": {
-                      "line": 33,
+                      "line": 35,
                       "column": 6
                     }
                   }
@@ -645,31 +663,31 @@
             }
           ],
           "range": [
-            262,
-            820
+            277,
+            817
           ],
           "loc": {
             "start": {
-              "line": 14,
+              "line": 16,
               "column": 36
             },
             "end": {
-              "line": 39,
+              "line": 41,
               "column": 1
             }
           }
         },
         "range": [
-          233,
-          820
+          248,
+          817
         ],
         "loc": {
           "start": {
-            "line": 14,
+            "line": 16,
             "column": 7
           },
           "end": {
-            "line": 39,
+            "line": 41,
             "column": 1
           }
         },
@@ -678,16 +696,16 @@
             "type": "Block",
             "value": "*\n    A Sketch artboard.\n",
             "range": [
-              195,
-              224
+              210,
+              239
             ],
             "loc": {
               "start": {
-                "line": 10,
+                "line": 12,
                 "column": 0
               },
               "end": {
-                "line": 12,
+                "line": 14,
                 "column": 2
               }
             }
@@ -698,16 +716,16 @@
       "specifiers": [],
       "source": null,
       "range": [
-        226,
-        820
+        241,
+        817
       ],
       "loc": {
         "start": {
-          "line": 14,
+          "line": 16,
           "column": 0
         },
         "end": {
-          "line": 39,
+          "line": 41,
           "column": 1
         }
       },
@@ -716,16 +734,16 @@
           "type": "Block",
           "value": "*\n    A Sketch artboard.\n",
           "range": [
-            195,
-            224
+            210,
+            239
           ],
           "loc": {
             "start": {
-              "line": 10,
+              "line": 12,
               "column": 0
             },
             "end": {
-              "line": 12,
+              "line": 14,
               "column": 2
             }
           }
@@ -735,16 +753,16 @@
   ],
   "sourceType": "module",
   "range": [
-    159,
-    820
+    174,
+    817
   ],
   "loc": {
     "start": {
-      "line": 8,
+      "line": 10,
       "column": 0
     },
     "end": {
-      "line": 39,
+      "line": 41,
       "column": 1
     }
   },
@@ -858,37 +876,55 @@
       }
     },
     {
-      "type": "Block",
-      "value": "*\n    A Sketch artboard.\n",
+      "type": "Line",
+      "value": " ## Imports",
       "range": [
-        195,
-        224
+        159,
+        172
       ],
       "loc": {
         "start": {
-          "line": 10,
+          "line": 8,
           "column": 0
         },
         "end": {
+          "line": 8,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n    A Sketch artboard.\n",
+      "range": [
+        210,
+        239
+      ],
+      "loc": {
+        "start": {
           "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
           "column": 2
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n        Make a new artboard.\n\n        @param artboard {MSArtboardGroup} The underlying MSArtboardGroup model object from Sketch.\n        @param document The document that the artboard belongs to.\n    ",
+      "value": "*\n        Make a new artboard.\n\n        @param artboard The underlying MSArtboardGroup model object from Sketch.\n        @param document The document that the artboard belongs to.\n    ",
       "range": [
-        269,
-        475
+        284,
+        472
       ],
       "loc": {
         "start": {
-          "line": 16,
+          "line": 18,
           "column": 4
         },
         "end": {
-          "line": 21,
+          "line": 23,
           "column": 6
         }
       }
@@ -897,16 +933,16 @@
       "type": "Block",
       "value": "*\n        Is this an artboard?\n\n        All Layer objects respond to this method, but only Artboard objects return true.\n\n        @return true for instances of Artboard, false for any other layer type.\n    ",
       "range": [
-        558,
-        768
+        555,
+        765
       ],
       "loc": {
         "start": {
-          "line": 27,
+          "line": 29,
           "column": 4
         },
         "end": {
-          "line": 33,
+          "line": 35,
           "column": 6
         }
       }

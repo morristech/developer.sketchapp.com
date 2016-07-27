@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://github.com/BohemianCoding/developer.sketchapp.com" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -56,6 +56,8 @@
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
+// ##&#xA0;Imports
+
 import { WrappedObject } from &apos;./WrappedObject.js&apos;
 import { Document } from &apos;./Document.js&apos;
 import { Rectangle } from &apos;./Rectangle.js&apos;
@@ -87,22 +89,11 @@ export class Application extends WrappedObject {
 
     constructor(context) {
       super(context)
+      this.metadata = MSApplicationMetadata.metadata()
 
-      /**
-        Metadata about this version of Sketch.
-        @type {dictionary}
-      */
-      this._metadata = MSApplicationMetadata.metadata()
-
-
-      /**
-        This is a slightly clumsy way to pass related classes into Layer
-        without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
-        there has to be a better way to do this...
-
-        @type {dictionary}
-      */
-
+      // this is a slightly clumsy way to pass related classes into Layer
+      // without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
+      // there has to be a better way to do this...
       this.factory = {
         &quot;Group&quot; : Group,
         &quot;Page&quot; : Page,
@@ -135,7 +126,7 @@ export class Application extends WrappedObject {
     */
 
     get context() {
-      return this._object
+      return this.object
     }
 
 
@@ -146,7 +137,7 @@ export class Application extends WrappedObject {
     */
 
     get version() {
-      return this._metadata[&apos;appVersion&apos;]
+      return this.metadata[&apos;appVersion&apos;]
     }
 
     /**
@@ -156,7 +147,7 @@ export class Application extends WrappedObject {
     */
 
     get build() {
-      return this._metadata[&apos;build&apos;]
+      return this.metadata[&apos;build&apos;]
     }
 
     /**
@@ -180,7 +171,7 @@ export class Application extends WrappedObject {
     */
 
     settingForKey(key) {
-      return NSUserDefaults.standardUserDefaults()._objectForKey_(key);
+      return NSUserDefaults.standardUserDefaults().objectForKey_(key);
     }
 
     /**
@@ -207,7 +198,7 @@ export class Application extends WrappedObject {
     */
 
     resourceNamed(name) {
-      return this._object.plugin.urlForResourceNamed_(name)
+      return this.object.plugin.urlForResourceNamed_(name)
     }
 
     /**
@@ -292,7 +283,7 @@ export class Application extends WrappedObject {
     */
 
     get selectedDocument() {
-      return new Document(this._object.document, this)
+      return new Document(this.object.document, this)
     }
 
 
@@ -318,7 +309,7 @@ export class Application extends WrappedObject {
     */
 
     message(message) {
-      this._object.document.showMessage(message)
+      this.object.document.showMessage(message)
     }
 
     /**
@@ -346,8 +337,8 @@ export class Application extends WrappedObject {
         @return The new Rectangle object.
     */
 
-    rectangle(x, y, width, height) {
-      return new Rectangle(x, y, width, height)
+    rectangle(x, y, w, h) {
+      return new Rectangle(x, y, w, h)
     }
 }
 </code></pre>

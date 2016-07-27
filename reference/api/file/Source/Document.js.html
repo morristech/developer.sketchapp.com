@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://github.com/BohemianCoding/developer.sketchapp.com" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -81,14 +81,7 @@ export class Document extends WrappedObject {
 
     constructor(document, application) {
       super(document)
-
-      /**
-        The application that this document belongs to.
-
-        @type {Application}
-      */
-
-      this._application = application
+      this.application = application
     }
 
     /**
@@ -98,28 +91,17 @@ export class Document extends WrappedObject {
     */
 
     get selectedLayers() {
-      return new Selection(this._object);
+      return new Selection(this.object);
     }
-
-    /**
-      The current page that the user has selected.
-
-      @return {Page} A page object representing the page that the user is currently viewing.
-    */
 
     get selectedPage() {
-      return new Page(this._object.currentPage(), this)
+      print(this.object)
+      return new Page(this.object.currentPage(), this)
     }
-
-    /**
-      Returns a list of the pages in this document.
-
-      @return {list} The pages.
-    */
 
     get pages() {
       var result = [];
-      var loop = this._object.pages().objectEnumerator()
+      var loop = this.object.pages().objectEnumerator()
       var item;
       while (item = loop.nextObject()) {
         result.push(new Page(item, this));
@@ -127,43 +109,15 @@ export class Document extends WrappedObject {
       return result;
     }
 
-    /**
-      Find the first layer in this document which has the given id.
-
-      @return {Layer} A layer object, if one was found.
-    */
-
     layerWithID(layer_id) {
-      var layer = this._object._documentData().layerWithID_(layer_id);
-      if (layer)
-        return new Layer(layer, this);
+      return new Layer(this.object.documentData().layerWithID_(layer_id), this);
     }
 
-    /**
-      Find the first layer in this document which has the given name.
-
-      @return {Layer} A layer object, if one was found.
-    */
-
-    layerNamed(layer_name) {
-      // As it happens, layerWithID also matches names, so we can implement
-      // this method in the same way as layerWithID.
-      // That might not always be true though, which is why the JS API splits
-      // them into separate functions.
-
-      var layer = this._object._documentData().layerWithID_(layer_name);
+    layerNamed(layer_id) {
+      // as it happens, layerWithID also matches names
+      var layer = this.object.documentData().layerWithID_(layer_id);
       if (layer)
         return new Layer(layer, this);
-    }
-
-    /**
-      Center the view of the document window on a given layer.
-
-      @param {Layer} layer The layer to center on.
-      */
-
-    centerOnLayer(layer) {
-      this._object.currentView().centerRect_(layer._object.rect())
     }
 }
 </code></pre>
