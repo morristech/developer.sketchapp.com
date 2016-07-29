@@ -10,6 +10,7 @@ import os
 import shutil
 import json
 import re
+import pwd
 
 def check_arguments():
     if len(sys.argv) != 2:
@@ -25,9 +26,10 @@ def read_plugin(plugin):
 
 
 def build_manifest(name, source):
-    author = os.getenv('USER')
-    company = "{0}s-plugins".format(author)
-    email = "{0}@{1}.com".format(author, company)
+    user = os.getenv('USER')
+    author = pwd.getpwuid(os.getuid())[4]
+    company = "{0}s-plugins".format(user)
+    email = "{0}@{1}.com".format(user, company)
     identifier = "com.{0}.{1}".format(company, name)
     home = "https:/github.com/{0}/{1}".format(company, name)
 
@@ -42,15 +44,9 @@ def build_manifest(name, source):
         "compatibleVersion": 39,
         "commands": [{
             "identifier": "svgo",
-            "handler": "___svgo_run_handler_",
-            "script": "plugin.js",
-            "name": "About SVGO Compressor",
-            "handlers": {
-                "run": "___svgo_run_handler_",
-                "actions": {
-                    "ExportSlices": "___svgo_run_handler_"
-                }
-            }
+            "handler": "onRun",
+            "script": "script.js",
+            "name": name,
         }],
     }
 
@@ -60,9 +56,11 @@ def build_manifest(name, source):
         manifest['description'] = match.group(1)
         shortcut = match.group(3)
         if shortcut:
-            manifest['shortcut'] = shortcut
+            manifest['commands'][0]['shortcut'] = shortcut
 
-    return manifest
+        source = source.replace(match.group(0), '')
+
+    return (manifest, source)
 
 
 def convert_plugin(plugin, source):
@@ -78,10 +76,13 @@ def convert_plugin(plugin, source):
     sketchFolderPath = os.path.join(converted, 'Content','Sketch')
     os.makedirs(sketchFolderPath)
 
-    manifest = build_manifest(name, source)
+    (manifest, source) = build_manifest(name, source)
     with open(os.path.join(sketchFolderPath, 'manifest.json'), 'w') as file:
         file.write(json.dumps(manifest, indent = 2))
 
+    script = "var onRun = function(context) {\n\t" + source.strip().replace('\n', '\n\t') + "\n};\n"
+    with open(os.path.join(sketchFolderPath, 'script.js'), 'w') as file:
+        file.write(script)
 
 
 def main():
