@@ -54,7 +54,7 @@ def build_manifest(name, source):
         }],
     }
 
-    pattern = re.compile('^//\W*(.*)\W* (\((.*)\))*?$', re.MULTILINE)
+    pattern = re.compile('^//\\s*(.*?)\\s*(\\((.*)\\))?$', re.MULTILINE)
     match = pattern.match(source)
     if match:
         manifest['description'] = match.group(1)
@@ -70,7 +70,7 @@ def convert_plugin(plugin, source):
 
     (path, nameAndExt) = os.path.split(plugin)
     (name, ext) = os.path.splitext(nameAndExt)
-    converted = os.path.join(path, "{0}-converted{1}".format(name, ext))
+    converted = os.path.join(path, "{0}-converted.sketchplugin".format(name))
 
     if os.path.exists(converted):
         shutil.rmtree(converted)
