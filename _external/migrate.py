@@ -41,9 +41,9 @@ def build_manifest(name, source):
         "version": "2.0",
         "identifier": identifier,
         "homepage": home,
-        "compatibleVersion": 39,
+        "compatibleVersion": "39",
         "commands": [{
-            "identifier": "svgo",
+            "identifier": name,
             "handler": "onRun",
             "script": "script.js",
             "name": name,
