@@ -1,80 +1,80 @@
 window.esdocSearchIndex = [
   [
-    "developer.sketchapp.com/source/application.js~application",
-    "class/Source/Application.js~Application.html",
-    "<span>Application</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Application.js</span>",
+    "./api/application.js~application",
+    "class/api/Application.js~Application.html",
+    "<span>Application</span> <span class=\"search-result-import-path\">./api/Application.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/artboard.js~artboard",
-    "class/Source/Artboard.js~Artboard.html",
-    "<span>Artboard</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Artboard.js</span>",
+    "./api/artboard.js~artboard",
+    "class/api/Artboard.js~Artboard.html",
+    "<span>Artboard</span> <span class=\"search-result-import-path\">./api/Artboard.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/document.js~document",
-    "class/Source/Document.js~Document.html",
-    "<span>Document</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Document.js</span>",
+    "./api/document.js~document",
+    "class/api/Document.js~Document.html",
+    "<span>Document</span> <span class=\"search-result-import-path\">./api/Document.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/group.js~group",
-    "class/Source/Group.js~Group.html",
-    "<span>Group</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Group.js</span>",
+    "./api/group.js~group",
+    "class/api/Group.js~Group.html",
+    "<span>Group</span> <span class=\"search-result-import-path\">./api/Group.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/image.js~image",
-    "class/Source/Image.js~Image.html",
-    "<span>Image</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Image.js</span>",
+    "./api/image.js~image",
+    "class/api/Image.js~Image.html",
+    "<span>Image</span> <span class=\"search-result-import-path\">./api/Image.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/layer.js~layer",
-    "class/Source/Layer.js~Layer.html",
-    "<span>Layer</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Layer.js</span>",
+    "./api/layer.js~layer",
+    "class/api/Layer.js~Layer.html",
+    "<span>Layer</span> <span class=\"search-result-import-path\">./api/Layer.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/page.js~page",
-    "class/Source/Page.js~Page.html",
-    "<span>Page</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Page.js</span>",
+    "./api/page.js~page",
+    "class/api/Page.js~Page.html",
+    "<span>Page</span> <span class=\"search-result-import-path\">./api/Page.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/rectangle.js~rectangle",
-    "class/Source/Rectangle.js~Rectangle.html",
-    "<span>Rectangle</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Rectangle.js</span>",
+    "./api/rectangle.js~rectangle",
+    "class/api/Rectangle.js~Rectangle.html",
+    "<span>Rectangle</span> <span class=\"search-result-import-path\">./api/Rectangle.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/selection.js~selection",
-    "class/Source/Selection.js~Selection.html",
-    "<span>Selection</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Selection.js</span>",
+    "./api/selection.js~selection",
+    "class/api/Selection.js~Selection.html",
+    "<span>Selection</span> <span class=\"search-result-import-path\">./api/Selection.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/shape.js~shape",
-    "class/Source/Shape.js~Shape.html",
-    "<span>Shape</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Shape.js</span>",
+    "./api/shape.js~shape",
+    "class/api/Shape.js~Shape.html",
+    "<span>Shape</span> <span class=\"search-result-import-path\">./api/Shape.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/tester.js~tester",
-    "class/Source/Tester.js~Tester.html",
-    "<span>Tester</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Tester.js</span>",
+    "./api/tester.js~tester",
+    "class/api/Tester.js~Tester.html",
+    "<span>Tester</span> <span class=\"search-result-import-path\">./api/Tester.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/text.js~text",
-    "class/Source/Text.js~Text.html",
-    "<span>Text</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/Text.js</span>",
+    "./api/text.js~text",
+    "class/api/Text.js~Text.html",
+    "<span>Text</span> <span class=\"search-result-import-path\">./api/Text.js</span>",
     "class"
   ],
   [
-    "developer.sketchapp.com/source/wrappedobject.js~wrappedobject",
-    "class/Source/WrappedObject.js~WrappedObject.html",
-    "<span>WrappedObject</span> <span class=\"search-result-import-path\">developer.sketchapp.com/Source/WrappedObject.js</span>",
+    "./api/wrappedobject.js~wrappedobject",
+    "class/api/WrappedObject.js~WrappedObject.html",
+    "<span>WrappedObject</span> <span class=\"search-result-import-path\">./api/WrappedObject.js</span>",
     "class"
   ],
   [
@@ -408,693 +408,693 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "source/api.js",
-    "file/Source/API.js.html",
-    "Source/API.js",
+    "api/api.js",
+    "file/api/API.js.html",
+    "api/API.js",
     "file"
   ],
   [
-    "source/application.js",
-    "file/Source/Application.js.html",
-    "Source/Application.js",
+    "api/application.js",
+    "file/api/Application.js.html",
+    "api/Application.js",
     "file"
   ],
   [
-    "source/application.js~application#alert",
-    "class/Source/Application.js~Application.html#instance-method-alert",
-    "Source/Application.js~Application#alert",
+    "api/application.js~application#alert",
+    "class/api/Application.js~Application.html#instance-method-alert",
+    "api/Application.js~Application#alert",
     "method"
   ],
   [
-    "source/application.js~application#api_version",
-    "class/Source/Application.js~Application.html#instance-get-api_version",
-    "Source/Application.js~Application#api_version",
+    "api/application.js~application#api_version",
+    "class/api/Application.js~Application.html#instance-get-api_version",
+    "api/Application.js~Application#api_version",
     "member"
   ],
   [
-    "source/application.js~application#assert",
-    "class/Source/Application.js~Application.html#instance-method-assert",
-    "Source/Application.js~Application#assert",
+    "api/application.js~application#assert",
+    "class/api/Application.js~Application.html#instance-method-assert",
+    "api/Application.js~Application#assert",
     "method"
   ],
   [
-    "source/application.js~application#build",
-    "class/Source/Application.js~Application.html#instance-get-build",
-    "Source/Application.js~Application#build",
+    "api/application.js~application#build",
+    "class/api/Application.js~Application.html#instance-get-build",
+    "api/Application.js~Application#build",
     "member"
   ],
   [
-    "source/application.js~application#constructor",
-    "class/Source/Application.js~Application.html#instance-constructor-constructor",
-    "Source/Application.js~Application#constructor",
+    "api/application.js~application#constructor",
+    "class/api/Application.js~Application.html#instance-constructor-constructor",
+    "api/Application.js~Application#constructor",
     "method"
   ],
   [
-    "source/application.js~application#context",
-    "class/Source/Application.js~Application.html#instance-get-context",
-    "Source/Application.js~Application#context",
+    "api/application.js~application#context",
+    "class/api/Application.js~Application.html#instance-get-context",
+    "api/Application.js~Application#context",
     "member"
   ],
   [
-    "source/application.js~application#full_version",
-    "class/Source/Application.js~Application.html#instance-get-full_version",
-    "Source/Application.js~Application#full_version",
+    "api/application.js~application#full_version",
+    "class/api/Application.js~Application.html#instance-get-full_version",
+    "api/Application.js~Application#full_version",
     "member"
   ],
   [
-    "source/application.js~application#getselectionfromuser",
-    "class/Source/Application.js~Application.html#instance-method-getSelectionFromUser",
-    "Source/Application.js~Application#getSelectionFromUser",
+    "api/application.js~application#getselectionfromuser",
+    "class/api/Application.js~Application.html#instance-method-getSelectionFromUser",
+    "api/Application.js~Application#getSelectionFromUser",
     "method"
   ],
   [
-    "source/application.js~application#getstringfromuser",
-    "class/Source/Application.js~Application.html#instance-method-getStringFromUser",
-    "Source/Application.js~Application#getStringFromUser",
+    "api/application.js~application#getstringfromuser",
+    "class/api/Application.js~Application.html#instance-method-getStringFromUser",
+    "api/Application.js~Application#getStringFromUser",
     "method"
   ],
   [
-    "source/application.js~application#log",
-    "class/Source/Application.js~Application.html#instance-method-log",
-    "Source/Application.js~Application#log",
+    "api/application.js~application#log",
+    "class/api/Application.js~Application.html#instance-method-log",
+    "api/Application.js~Application#log",
     "method"
   ],
   [
-    "source/application.js~application#message",
-    "class/Source/Application.js~Application.html#instance-method-message",
-    "Source/Application.js~Application#message",
+    "api/application.js~application#message",
+    "class/api/Application.js~Application.html#instance-method-message",
+    "api/Application.js~Application#message",
     "method"
   ],
   [
-    "source/application.js~application#newdocument",
-    "class/Source/Application.js~Application.html#instance-method-newDocument",
-    "Source/Application.js~Application#newDocument",
+    "api/application.js~application#newdocument",
+    "class/api/Application.js~Application.html#instance-method-newDocument",
+    "api/Application.js~Application#newDocument",
     "method"
   ],
   [
-    "source/application.js~application#rectangle",
-    "class/Source/Application.js~Application.html#instance-method-rectangle",
-    "Source/Application.js~Application#rectangle",
+    "api/application.js~application#rectangle",
+    "class/api/Application.js~Application.html#instance-method-rectangle",
+    "api/Application.js~Application#rectangle",
     "method"
   ],
   [
-    "source/application.js~application#resourcenamed",
-    "class/Source/Application.js~Application.html#instance-method-resourceNamed",
-    "Source/Application.js~Application#resourceNamed",
+    "api/application.js~application#resourcenamed",
+    "class/api/Application.js~Application.html#instance-method-resourceNamed",
+    "api/Application.js~Application#resourceNamed",
     "method"
   ],
   [
-    "source/application.js~application#rununittests",
-    "class/Source/Application.js~Application.html#instance-method-runUnitTests",
-    "Source/Application.js~Application#runUnitTests",
+    "api/application.js~application#rununittests",
+    "class/api/Application.js~Application.html#instance-method-runUnitTests",
+    "api/Application.js~Application#runUnitTests",
     "method"
   ],
   [
-    "source/application.js~application#selecteddocument",
-    "class/Source/Application.js~Application.html#instance-get-selectedDocument",
-    "Source/Application.js~Application#selectedDocument",
+    "api/application.js~application#selecteddocument",
+    "class/api/Application.js~Application.html#instance-get-selectedDocument",
+    "api/Application.js~Application#selectedDocument",
     "member"
   ],
   [
-    "source/application.js~application#setsettingforkey",
-    "class/Source/Application.js~Application.html#instance-method-setSettingForKey",
-    "Source/Application.js~Application#setSettingForKey",
+    "api/application.js~application#setsettingforkey",
+    "class/api/Application.js~Application.html#instance-method-setSettingForKey",
+    "api/Application.js~Application#setSettingForKey",
     "method"
   ],
   [
-    "source/application.js~application#settingforkey",
-    "class/Source/Application.js~Application.html#instance-method-settingForKey",
-    "Source/Application.js~Application#settingForKey",
+    "api/application.js~application#settingforkey",
+    "class/api/Application.js~Application.html#instance-method-settingForKey",
+    "api/Application.js~Application#settingForKey",
     "method"
   ],
   [
-    "source/application.js~application#version",
-    "class/Source/Application.js~Application.html#instance-get-version",
-    "Source/Application.js~Application#version",
+    "api/application.js~application#version",
+    "class/api/Application.js~Application.html#instance-get-version",
+    "api/Application.js~Application#version",
     "member"
   ],
   [
-    "source/application.js~application#wrapobject",
-    "class/Source/Application.js~Application.html#instance-method-wrapObject",
-    "Source/Application.js~Application#wrapObject",
+    "api/application.js~application#wrapobject",
+    "class/api/Application.js~Application.html#instance-method-wrapObject",
+    "api/Application.js~Application#wrapObject",
     "method"
   ],
   [
-    "source/application.js~application#wrappermappings",
-    "class/Source/Application.js~Application.html#instance-method-wrapperMappings",
-    "Source/Application.js~Application#wrapperMappings",
+    "api/application.js~application#wrappermappings",
+    "class/api/Application.js~Application.html#instance-method-wrapperMappings",
+    "api/Application.js~Application#wrapperMappings",
     "method"
   ],
   [
-    "source/application.js~application.tests",
-    "class/Source/Application.js~Application.html#static-method-tests",
-    "Source/Application.js~Application.tests",
+    "api/application.js~application.tests",
+    "class/api/Application.js~Application.html#static-method-tests",
+    "api/Application.js~Application.tests",
     "method"
   ],
   [
-    "source/artboard.js",
-    "file/Source/Artboard.js.html",
-    "Source/Artboard.js",
+    "api/artboard.js",
+    "file/api/Artboard.js.html",
+    "api/Artboard.js",
     "file"
   ],
   [
-    "source/artboard.js~artboard#constructor",
-    "class/Source/Artboard.js~Artboard.html#instance-constructor-constructor",
-    "Source/Artboard.js~Artboard#constructor",
+    "api/artboard.js~artboard#constructor",
+    "class/api/Artboard.js~Artboard.html#instance-constructor-constructor",
+    "api/Artboard.js~Artboard#constructor",
     "method"
   ],
   [
-    "source/artboard.js~artboard#isartboard",
-    "class/Source/Artboard.js~Artboard.html#instance-get-isArtboard",
-    "Source/Artboard.js~Artboard#isArtboard",
+    "api/artboard.js~artboard#isartboard",
+    "class/api/Artboard.js~Artboard.html#instance-get-isArtboard",
+    "api/Artboard.js~Artboard#isArtboard",
     "member"
   ],
   [
-    "source/artboard.js~artboard.tests",
-    "class/Source/Artboard.js~Artboard.html#static-method-tests",
-    "Source/Artboard.js~Artboard.tests",
+    "api/artboard.js~artboard.tests",
+    "class/api/Artboard.js~Artboard.html#static-method-tests",
+    "api/Artboard.js~Artboard.tests",
     "method"
   ],
   [
-    "source/document.js",
-    "file/Source/Document.js.html",
-    "Source/Document.js",
+    "api/document.js",
+    "file/api/Document.js.html",
+    "api/Document.js",
     "file"
   ],
   [
-    "source/document.js~document#centeronlayer",
-    "class/Source/Document.js~Document.html#instance-method-centerOnLayer",
-    "Source/Document.js~Document#centerOnLayer",
+    "api/document.js~document#centeronlayer",
+    "class/api/Document.js~Document.html#instance-method-centerOnLayer",
+    "api/Document.js~Document#centerOnLayer",
     "method"
   ],
   [
-    "source/document.js~document#constructor",
-    "class/Source/Document.js~Document.html#instance-constructor-constructor",
-    "Source/Document.js~Document#constructor",
+    "api/document.js~document#constructor",
+    "class/api/Document.js~Document.html#instance-constructor-constructor",
+    "api/Document.js~Document#constructor",
     "method"
   ],
   [
-    "source/document.js~document#layernamed",
-    "class/Source/Document.js~Document.html#instance-method-layerNamed",
-    "Source/Document.js~Document#layerNamed",
+    "api/document.js~document#layernamed",
+    "class/api/Document.js~Document.html#instance-method-layerNamed",
+    "api/Document.js~Document#layerNamed",
     "method"
   ],
   [
-    "source/document.js~document#layerwithid",
-    "class/Source/Document.js~Document.html#instance-method-layerWithID",
-    "Source/Document.js~Document#layerWithID",
+    "api/document.js~document#layerwithid",
+    "class/api/Document.js~Document.html#instance-method-layerWithID",
+    "api/Document.js~Document#layerWithID",
     "method"
   ],
   [
-    "source/document.js~document#pages",
-    "class/Source/Document.js~Document.html#instance-get-pages",
-    "Source/Document.js~Document#pages",
+    "api/document.js~document#pages",
+    "class/api/Document.js~Document.html#instance-get-pages",
+    "api/Document.js~Document#pages",
     "member"
   ],
   [
-    "source/document.js~document#selectedlayers",
-    "class/Source/Document.js~Document.html#instance-get-selectedLayers",
-    "Source/Document.js~Document#selectedLayers",
+    "api/document.js~document#selectedlayers",
+    "class/api/Document.js~Document.html#instance-get-selectedLayers",
+    "api/Document.js~Document#selectedLayers",
     "member"
   ],
   [
-    "source/document.js~document#selectedpage",
-    "class/Source/Document.js~Document.html#instance-get-selectedPage",
-    "Source/Document.js~Document#selectedPage",
+    "api/document.js~document#selectedpage",
+    "class/api/Document.js~Document.html#instance-get-selectedPage",
+    "api/Document.js~Document#selectedPage",
     "member"
   ],
   [
-    "source/document.js~document#wrapobject",
-    "class/Source/Document.js~Document.html#instance-method-wrapObject",
-    "Source/Document.js~Document#wrapObject",
+    "api/document.js~document#wrapobject",
+    "class/api/Document.js~Document.html#instance-method-wrapObject",
+    "api/Document.js~Document#wrapObject",
     "method"
   ],
   [
-    "source/document.js~document.tests",
-    "class/Source/Document.js~Document.html#static-method-tests",
-    "Source/Document.js~Document.tests",
+    "api/document.js~document.tests",
+    "class/api/Document.js~Document.html#static-method-tests",
+    "api/Document.js~Document.tests",
     "method"
   ],
   [
-    "source/group.js",
-    "file/Source/Group.js.html",
-    "Source/Group.js",
+    "api/group.js",
+    "file/api/Group.js.html",
+    "api/Group.js",
     "file"
   ],
   [
-    "source/group.js~group#constructor",
-    "class/Source/Group.js~Group.html#instance-constructor-constructor",
-    "Source/Group.js~Group#constructor",
+    "api/group.js~group#constructor",
+    "class/api/Group.js~Group.html#instance-constructor-constructor",
+    "api/Group.js~Group#constructor",
     "method"
   ],
   [
-    "source/group.js~group#is_group",
-    "class/Source/Group.js~Group.html#instance-method-is_group",
-    "Source/Group.js~Group#is_group",
+    "api/group.js~group#is_group",
+    "class/api/Group.js~Group.html#instance-method-is_group",
+    "api/Group.js~Group#is_group",
     "method"
   ],
   [
-    "source/group.js~group.tests",
-    "class/Source/Group.js~Group.html#static-method-tests",
-    "Source/Group.js~Group.tests",
+    "api/group.js~group.tests",
+    "class/api/Group.js~Group.html#static-method-tests",
+    "api/Group.js~Group.tests",
     "method"
   ],
   [
-    "source/image.js",
-    "file/Source/Image.js.html",
-    "Source/Image.js",
+    "api/image.js",
+    "file/api/Image.js.html",
+    "api/Image.js",
     "file"
   ],
   [
-    "source/image.js~image#constructor",
-    "class/Source/Image.js~Image.html#instance-constructor-constructor",
-    "Source/Image.js~Image#constructor",
+    "api/image.js~image#constructor",
+    "class/api/Image.js~Image.html#instance-constructor-constructor",
+    "api/Image.js~Image#constructor",
     "method"
   ],
   [
-    "source/image.js~image#imageurl",
-    "class/Source/Image.js~Image.html#instance-set-imageURL",
-    "Source/Image.js~Image#imageURL",
+    "api/image.js~image#imageurl",
+    "class/api/Image.js~Image.html#instance-set-imageURL",
+    "api/Image.js~Image#imageURL",
     "member"
   ],
   [
-    "source/image.js~image#isimage",
-    "class/Source/Image.js~Image.html#instance-get-isImage",
-    "Source/Image.js~Image#isImage",
+    "api/image.js~image#isimage",
+    "class/api/Image.js~Image.html#instance-get-isImage",
+    "api/Image.js~Image#isImage",
     "member"
   ],
   [
-    "source/image.js~image.tests",
-    "class/Source/Image.js~Image.html#static-method-tests",
-    "Source/Image.js~Image.tests",
+    "api/image.js~image.tests",
+    "class/api/Image.js~Image.html#static-method-tests",
+    "api/Image.js~Image.tests",
     "method"
   ],
   [
-    "source/layer.js",
-    "file/Source/Layer.js.html",
-    "Source/Layer.js",
+    "api/layer.js",
+    "file/api/Layer.js.html",
+    "api/Layer.js",
     "file"
   ],
   [
-    "source/layer.js~layer#addtoselection",
-    "class/Source/Layer.js~Layer.html#instance-method-addToSelection",
-    "Source/Layer.js~Layer#addToSelection",
+    "api/layer.js~layer#addtoselection",
+    "class/api/Layer.js~Layer.html#instance-method-addToSelection",
+    "api/Layer.js~Layer#addToSelection",
     "method"
   ],
   [
-    "source/layer.js~layer#constructor",
-    "class/Source/Layer.js~Layer.html#instance-constructor-constructor",
-    "Source/Layer.js~Layer#constructor",
+    "api/layer.js~layer#constructor",
+    "class/api/Layer.js~Layer.html#instance-constructor-constructor",
+    "api/Layer.js~Layer#constructor",
     "method"
   ],
   [
-    "source/layer.js~layer#deselect",
-    "class/Source/Layer.js~Layer.html#instance-method-deselect",
-    "Source/Layer.js~Layer#deselect",
+    "api/layer.js~layer#deselect",
+    "class/api/Layer.js~Layer.html#instance-method-deselect",
+    "api/Layer.js~Layer#deselect",
     "method"
   ],
   [
-    "source/layer.js~layer#duplicate",
-    "class/Source/Layer.js~Layer.html#instance-method-duplicate",
-    "Source/Layer.js~Layer#duplicate",
+    "api/layer.js~layer#duplicate",
+    "class/api/Layer.js~Layer.html#instance-method-duplicate",
+    "api/Layer.js~Layer#duplicate",
     "method"
   ],
   [
-    "source/layer.js~layer#frame",
-    "class/Source/Layer.js~Layer.html#instance-set-frame",
-    "Source/Layer.js~Layer#frame",
+    "api/layer.js~layer#frame",
+    "class/api/Layer.js~Layer.html#instance-set-frame",
+    "api/Layer.js~Layer#frame",
     "member"
   ],
   [
-    "source/layer.js~layer#frame",
-    "class/Source/Layer.js~Layer.html#instance-get-frame",
-    "Source/Layer.js~Layer#frame",
+    "api/layer.js~layer#frame",
+    "class/api/Layer.js~Layer.html#instance-get-frame",
+    "api/Layer.js~Layer#frame",
     "member"
   ],
   [
-    "source/layer.js~layer#isartboard",
-    "class/Source/Layer.js~Layer.html#instance-get-isArtboard",
-    "Source/Layer.js~Layer#isArtboard",
+    "api/layer.js~layer#isartboard",
+    "class/api/Layer.js~Layer.html#instance-get-isArtboard",
+    "api/Layer.js~Layer#isArtboard",
     "member"
   ],
   [
-    "source/layer.js~layer#isgroup",
-    "class/Source/Layer.js~Layer.html#instance-get-isGroup",
-    "Source/Layer.js~Layer#isGroup",
+    "api/layer.js~layer#isgroup",
+    "class/api/Layer.js~Layer.html#instance-get-isGroup",
+    "api/Layer.js~Layer#isGroup",
     "member"
   ],
   [
-    "source/layer.js~layer#isimage",
-    "class/Source/Layer.js~Layer.html#instance-get-isImage",
-    "Source/Layer.js~Layer#isImage",
+    "api/layer.js~layer#isimage",
+    "class/api/Layer.js~Layer.html#instance-get-isImage",
+    "api/Layer.js~Layer#isImage",
     "member"
   ],
   [
-    "source/layer.js~layer#ispage",
-    "class/Source/Layer.js~Layer.html#instance-get-isPage",
-    "Source/Layer.js~Layer#isPage",
+    "api/layer.js~layer#ispage",
+    "class/api/Layer.js~Layer.html#instance-get-isPage",
+    "api/Layer.js~Layer#isPage",
     "member"
   ],
   [
-    "source/layer.js~layer#isshape",
-    "class/Source/Layer.js~Layer.html#instance-get-isShape",
-    "Source/Layer.js~Layer#isShape",
+    "api/layer.js~layer#isshape",
+    "class/api/Layer.js~Layer.html#instance-get-isShape",
+    "api/Layer.js~Layer#isShape",
     "member"
   ],
   [
-    "source/layer.js~layer#istext",
-    "class/Source/Layer.js~Layer.html#instance-get-isText",
-    "Source/Layer.js~Layer#isText",
+    "api/layer.js~layer#istext",
+    "class/api/Layer.js~Layer.html#instance-get-isText",
+    "api/Layer.js~Layer#isText",
     "member"
   ],
   [
-    "source/layer.js~layer#iterate",
-    "class/Source/Layer.js~Layer.html#instance-method-iterate",
-    "Source/Layer.js~Layer#iterate",
+    "api/layer.js~layer#iterate",
+    "class/api/Layer.js~Layer.html#instance-method-iterate",
+    "api/Layer.js~Layer#iterate",
     "method"
   ],
   [
-    "source/layer.js~layer#name",
-    "class/Source/Layer.js~Layer.html#instance-get-name",
-    "Source/Layer.js~Layer#name",
+    "api/layer.js~layer#name",
+    "class/api/Layer.js~Layer.html#instance-set-name",
+    "api/Layer.js~Layer#name",
     "member"
   ],
   [
-    "source/layer.js~layer#name",
-    "class/Source/Layer.js~Layer.html#instance-set-name",
-    "Source/Layer.js~Layer#name",
+    "api/layer.js~layer#name",
+    "class/api/Layer.js~Layer.html#instance-get-name",
+    "api/Layer.js~Layer#name",
     "member"
   ],
   [
-    "source/layer.js~layer#newgroup",
-    "class/Source/Layer.js~Layer.html#instance-method-newGroup",
-    "Source/Layer.js~Layer#newGroup",
+    "api/layer.js~layer#newgroup",
+    "class/api/Layer.js~Layer.html#instance-method-newGroup",
+    "api/Layer.js~Layer#newGroup",
     "method"
   ],
   [
-    "source/layer.js~layer#newimage",
-    "class/Source/Layer.js~Layer.html#instance-method-newImage",
-    "Source/Layer.js~Layer#newImage",
+    "api/layer.js~layer#newimage",
+    "class/api/Layer.js~Layer.html#instance-method-newImage",
+    "api/Layer.js~Layer#newImage",
     "method"
   ],
   [
-    "source/layer.js~layer#newshape",
-    "class/Source/Layer.js~Layer.html#instance-method-newShape",
-    "Source/Layer.js~Layer#newShape",
+    "api/layer.js~layer#newshape",
+    "class/api/Layer.js~Layer.html#instance-method-newShape",
+    "api/Layer.js~Layer#newShape",
     "method"
   ],
   [
-    "source/layer.js~layer#newtext",
-    "class/Source/Layer.js~Layer.html#instance-method-newText",
-    "Source/Layer.js~Layer#newText",
+    "api/layer.js~layer#newtext",
+    "class/api/Layer.js~Layer.html#instance-method-newText",
+    "api/Layer.js~Layer#newText",
     "method"
   ],
   [
-    "source/layer.js~layer#remove",
-    "class/Source/Layer.js~Layer.html#instance-method-remove",
-    "Source/Layer.js~Layer#remove",
+    "api/layer.js~layer#remove",
+    "class/api/Layer.js~Layer.html#instance-method-remove",
+    "api/Layer.js~Layer#remove",
     "method"
   ],
   [
-    "source/layer.js~layer#select",
-    "class/Source/Layer.js~Layer.html#instance-method-select",
-    "Source/Layer.js~Layer#select",
+    "api/layer.js~layer#select",
+    "class/api/Layer.js~Layer.html#instance-method-select",
+    "api/Layer.js~Layer#select",
     "method"
   ],
   [
-    "source/layer.js~layer.tests",
-    "class/Source/Layer.js~Layer.html#static-method-tests",
-    "Source/Layer.js~Layer.tests",
+    "api/layer.js~layer.tests",
+    "class/api/Layer.js~Layer.html#static-method-tests",
+    "api/Layer.js~Layer.tests",
     "method"
   ],
   [
-    "source/page.js",
-    "file/Source/Page.js.html",
-    "Source/Page.js",
+    "api/page.js",
+    "file/api/Page.js.html",
+    "api/Page.js",
     "file"
   ],
   [
-    "source/page.js~page#constructor",
-    "class/Source/Page.js~Page.html#instance-constructor-constructor",
-    "Source/Page.js~Page#constructor",
+    "api/page.js~page#constructor",
+    "class/api/Page.js~Page.html#instance-constructor-constructor",
+    "api/Page.js~Page#constructor",
     "method"
   ],
   [
-    "source/page.js~page#ispage",
-    "class/Source/Page.js~Page.html#instance-get-isPage",
-    "Source/Page.js~Page#isPage",
+    "api/page.js~page#ispage",
+    "class/api/Page.js~Page.html#instance-get-isPage",
+    "api/Page.js~Page#isPage",
     "member"
   ],
   [
-    "source/page.js~page#newartboard",
-    "class/Source/Page.js~Page.html#instance-method-newArtboard",
-    "Source/Page.js~Page#newArtboard",
+    "api/page.js~page#newartboard",
+    "class/api/Page.js~Page.html#instance-method-newArtboard",
+    "api/Page.js~Page#newArtboard",
     "method"
   ],
   [
-    "source/page.js~page.tests",
-    "class/Source/Page.js~Page.html#static-method-tests",
-    "Source/Page.js~Page.tests",
+    "api/page.js~page.tests",
+    "class/api/Page.js~Page.html#static-method-tests",
+    "api/Page.js~Page.tests",
     "method"
   ],
   [
-    "source/rectangle.js",
-    "file/Source/Rectangle.js.html",
-    "Source/Rectangle.js",
+    "api/rectangle.js",
+    "file/api/Rectangle.js.html",
+    "api/Rectangle.js",
     "file"
   ],
   [
-    "source/rectangle.js~rectangle#ascgrect",
-    "class/Source/Rectangle.js~Rectangle.html#instance-method-asCGRect",
-    "Source/Rectangle.js~Rectangle#asCGRect",
+    "api/rectangle.js~rectangle#ascgrect",
+    "class/api/Rectangle.js~Rectangle.html#instance-method-asCGRect",
+    "api/Rectangle.js~Rectangle#asCGRect",
     "method"
   ],
   [
-    "source/rectangle.js~rectangle#constructor",
-    "class/Source/Rectangle.js~Rectangle.html#instance-constructor-constructor",
-    "Source/Rectangle.js~Rectangle#constructor",
+    "api/rectangle.js~rectangle#constructor",
+    "class/api/Rectangle.js~Rectangle.html#instance-constructor-constructor",
+    "api/Rectangle.js~Rectangle#constructor",
     "method"
   ],
   [
-    "source/rectangle.js~rectangle#height",
-    "class/Source/Rectangle.js~Rectangle.html#instance-member-height",
-    "Source/Rectangle.js~Rectangle#height",
+    "api/rectangle.js~rectangle#height",
+    "class/api/Rectangle.js~Rectangle.html#instance-member-height",
+    "api/Rectangle.js~Rectangle#height",
     "member"
   ],
   [
-    "source/rectangle.js~rectangle#width",
-    "class/Source/Rectangle.js~Rectangle.html#instance-member-width",
-    "Source/Rectangle.js~Rectangle#width",
+    "api/rectangle.js~rectangle#width",
+    "class/api/Rectangle.js~Rectangle.html#instance-member-width",
+    "api/Rectangle.js~Rectangle#width",
     "member"
   ],
   [
-    "source/rectangle.js~rectangle#x",
-    "class/Source/Rectangle.js~Rectangle.html#instance-member-x",
-    "Source/Rectangle.js~Rectangle#x",
+    "api/rectangle.js~rectangle#x",
+    "class/api/Rectangle.js~Rectangle.html#instance-member-x",
+    "api/Rectangle.js~Rectangle#x",
     "member"
   ],
   [
-    "source/rectangle.js~rectangle#y",
-    "class/Source/Rectangle.js~Rectangle.html#instance-member-y",
-    "Source/Rectangle.js~Rectangle#y",
+    "api/rectangle.js~rectangle#y",
+    "class/api/Rectangle.js~Rectangle.html#instance-member-y",
+    "api/Rectangle.js~Rectangle#y",
     "member"
   ],
   [
-    "source/rectangle.js~rectangle.tests",
-    "class/Source/Rectangle.js~Rectangle.html#static-method-tests",
-    "Source/Rectangle.js~Rectangle.tests",
+    "api/rectangle.js~rectangle.tests",
+    "class/api/Rectangle.js~Rectangle.html#static-method-tests",
+    "api/Rectangle.js~Rectangle.tests",
     "method"
   ],
   [
-    "source/selection.js",
-    "file/Source/Selection.js.html",
-    "Source/Selection.js",
+    "api/selection.js",
+    "file/api/Selection.js.html",
+    "api/Selection.js",
     "file"
   ],
   [
-    "source/selection.js~selection#clear",
-    "class/Source/Selection.js~Selection.html#instance-method-clear",
-    "Source/Selection.js~Selection#clear",
+    "api/selection.js~selection#clear",
+    "class/api/Selection.js~Selection.html#instance-method-clear",
+    "api/Selection.js~Selection#clear",
     "method"
   ],
   [
-    "source/selection.js~selection#constructor",
-    "class/Source/Selection.js~Selection.html#instance-constructor-constructor",
-    "Source/Selection.js~Selection#constructor",
+    "api/selection.js~selection#constructor",
+    "class/api/Selection.js~Selection.html#instance-constructor-constructor",
+    "api/Selection.js~Selection#constructor",
     "method"
   ],
   [
-    "source/selection.js~selection#isempty",
-    "class/Source/Selection.js~Selection.html#instance-get-isEmpty",
-    "Source/Selection.js~Selection#isEmpty",
+    "api/selection.js~selection#isempty",
+    "class/api/Selection.js~Selection.html#instance-get-isEmpty",
+    "api/Selection.js~Selection#isEmpty",
     "member"
   ],
   [
-    "source/selection.js~selection#iterate",
-    "class/Source/Selection.js~Selection.html#instance-method-iterate",
-    "Source/Selection.js~Selection#iterate",
+    "api/selection.js~selection#iterate",
+    "class/api/Selection.js~Selection.html#instance-method-iterate",
+    "api/Selection.js~Selection#iterate",
     "method"
   ],
   [
-    "source/selection.js~selection#iterateandclear",
-    "class/Source/Selection.js~Selection.html#instance-method-iterateAndClear",
-    "Source/Selection.js~Selection#iterateAndClear",
+    "api/selection.js~selection#iterateandclear",
+    "class/api/Selection.js~Selection.html#instance-method-iterateAndClear",
+    "api/Selection.js~Selection#iterateAndClear",
     "method"
   ],
   [
-    "source/selection.js~selection.tests",
-    "class/Source/Selection.js~Selection.html#static-method-tests",
-    "Source/Selection.js~Selection.tests",
+    "api/selection.js~selection.tests",
+    "class/api/Selection.js~Selection.html#static-method-tests",
+    "api/Selection.js~Selection.tests",
     "method"
   ],
   [
-    "source/shape.js",
-    "file/Source/Shape.js.html",
-    "Source/Shape.js",
+    "api/shape.js",
+    "file/api/Shape.js.html",
+    "api/Shape.js",
     "file"
   ],
   [
-    "source/shape.js~shape#constructor",
-    "class/Source/Shape.js~Shape.html#instance-constructor-constructor",
-    "Source/Shape.js~Shape#constructor",
+    "api/shape.js~shape#constructor",
+    "class/api/Shape.js~Shape.html#instance-constructor-constructor",
+    "api/Shape.js~Shape#constructor",
     "method"
   ],
   [
-    "source/shape.js~shape#isshape",
-    "class/Source/Shape.js~Shape.html#instance-get-isShape",
-    "Source/Shape.js~Shape#isShape",
+    "api/shape.js~shape#isshape",
+    "class/api/Shape.js~Shape.html#instance-get-isShape",
+    "api/Shape.js~Shape#isShape",
     "member"
   ],
   [
-    "source/shape.js~shape.tests",
-    "class/Source/Shape.js~Shape.html#static-method-tests",
-    "Source/Shape.js~Shape.tests",
+    "api/shape.js~shape.tests",
+    "class/api/Shape.js~Shape.html#static-method-tests",
+    "api/Shape.js~Shape.tests",
     "method"
   ],
   [
-    "source/tester.js",
-    "file/Source/Tester.js.html",
-    "Source/Tester.js",
+    "api/tester.js",
+    "file/api/Tester.js.html",
+    "api/Tester.js",
     "file"
   ],
   [
-    "source/tester.js~tester#application",
-    "class/Source/Tester.js~Tester.html#instance-get-application",
-    "Source/Tester.js~Tester#application",
+    "api/tester.js~tester#application",
+    "class/api/Tester.js~Tester.html#instance-get-application",
+    "api/Tester.js~Tester#application",
     "member"
   ],
   [
-    "source/tester.js~tester#assert",
-    "class/Source/Tester.js~Tester.html#instance-method-assert",
-    "Source/Tester.js~Tester#assert",
+    "api/tester.js~tester#assert",
+    "class/api/Tester.js~Tester.html#instance-method-assert",
+    "api/Tester.js~Tester#assert",
     "method"
   ],
   [
-    "source/tester.js~tester#assertequal",
-    "class/Source/Tester.js~Tester.html#instance-method-assertEqual",
-    "Source/Tester.js~Tester#assertEqual",
+    "api/tester.js~tester#assertequal",
+    "class/api/Tester.js~Tester.html#instance-method-assertEqual",
+    "api/Tester.js~Tester#assertEqual",
     "method"
   ],
   [
-    "source/tester.js~tester#constructor",
-    "class/Source/Tester.js~Tester.html#instance-constructor-constructor",
-    "Source/Tester.js~Tester#constructor",
+    "api/tester.js~tester#constructor",
+    "class/api/Tester.js~Tester.html#instance-constructor-constructor",
+    "api/Tester.js~Tester#constructor",
     "method"
   ],
   [
-    "source/tester.js~tester#rununittests",
-    "class/Source/Tester.js~Tester.html#instance-method-runUnitTests",
-    "Source/Tester.js~Tester#runUnitTests",
+    "api/tester.js~tester#rununittests",
+    "class/api/Tester.js~Tester.html#instance-method-runUnitTests",
+    "api/Tester.js~Tester#runUnitTests",
     "method"
   ],
   [
-    "source/text.js",
-    "file/Source/Text.js.html",
-    "Source/Text.js",
+    "api/text.js",
+    "file/api/Text.js.html",
+    "api/Text.js",
     "file"
   ],
   [
-    "source/text.js~text#alignment",
-    "class/Source/Text.js~Text.html#instance-set-alignment",
-    "Source/Text.js~Text#alignment",
+    "api/text.js~text#alignment",
+    "class/api/Text.js~Text.html#instance-set-alignment",
+    "api/Text.js~Text#alignment",
     "member"
   ],
   [
-    "source/text.js~text#constructor",
-    "class/Source/Text.js~Text.html#instance-constructor-constructor",
-    "Source/Text.js~Text#constructor",
+    "api/text.js~text#constructor",
+    "class/api/Text.js~Text.html#instance-constructor-constructor",
+    "api/Text.js~Text#constructor",
     "method"
   ],
   [
-    "source/text.js~text#fixedwidth",
-    "class/Source/Text.js~Text.html#instance-set-fixedWidth",
-    "Source/Text.js~Text#fixedWidth",
+    "api/text.js~text#fixedwidth",
+    "class/api/Text.js~Text.html#instance-set-fixedWidth",
+    "api/Text.js~Text#fixedWidth",
     "member"
   ],
   [
-    "source/text.js~text#font",
-    "class/Source/Text.js~Text.html#instance-set-font",
-    "Source/Text.js~Text#font",
+    "api/text.js~text#font",
+    "class/api/Text.js~Text.html#instance-set-font",
+    "api/Text.js~Text#font",
     "member"
   ],
   [
-    "source/text.js~text#istext",
-    "class/Source/Text.js~Text.html#instance-get-isText",
-    "Source/Text.js~Text#isText",
+    "api/text.js~text#istext",
+    "class/api/Text.js~Text.html#instance-get-isText",
+    "api/Text.js~Text#isText",
     "member"
   ],
   [
-    "source/text.js~text#resizetofitcontents",
-    "class/Source/Text.js~Text.html#instance-method-resizeToFitContents",
-    "Source/Text.js~Text#resizeToFitContents",
+    "api/text.js~text#resizetofitcontents",
+    "class/api/Text.js~Text.html#instance-method-resizeToFitContents",
+    "api/Text.js~Text#resizeToFitContents",
     "method"
   ],
   [
-    "source/text.js~text#systemfontsize",
-    "class/Source/Text.js~Text.html#instance-set-systemFontSize",
-    "Source/Text.js~Text#systemFontSize",
+    "api/text.js~text#systemfontsize",
+    "class/api/Text.js~Text.html#instance-set-systemFontSize",
+    "api/Text.js~Text#systemFontSize",
     "member"
   ],
   [
-    "source/text.js~text#text",
-    "class/Source/Text.js~Text.html#instance-set-text",
-    "Source/Text.js~Text#text",
+    "api/text.js~text#text",
+    "class/api/Text.js~Text.html#instance-set-text",
+    "api/Text.js~Text#text",
     "member"
   ],
   [
-    "source/text.js~text#text",
-    "class/Source/Text.js~Text.html#instance-get-text",
-    "Source/Text.js~Text#text",
+    "api/text.js~text#text",
+    "class/api/Text.js~Text.html#instance-get-text",
+    "api/Text.js~Text#text",
     "member"
   ],
   [
-    "source/text.js~text.tests",
-    "class/Source/Text.js~Text.html#static-method-tests",
-    "Source/Text.js~Text.tests",
+    "api/text.js~text.tests",
+    "class/api/Text.js~Text.html#static-method-tests",
+    "api/Text.js~Text.tests",
     "method"
   ],
   [
-    "source/wrappedobject.js",
-    "file/Source/WrappedObject.js.html",
-    "Source/WrappedObject.js",
+    "api/wrappedobject.js",
+    "file/api/WrappedObject.js.html",
+    "api/WrappedObject.js",
     "file"
   ],
   [
-    "source/wrappedobject.js~wrappedobject#constructor",
-    "class/Source/WrappedObject.js~WrappedObject.html#instance-constructor-constructor",
-    "Source/WrappedObject.js~WrappedObject#constructor",
+    "api/wrappedobject.js~wrappedobject#constructor",
+    "class/api/WrappedObject.js~WrappedObject.html#instance-constructor-constructor",
+    "api/WrappedObject.js~WrappedObject#constructor",
     "method"
   ],
   [
-    "source/wrappedobject.js~wrappedobject#id",
-    "class/Source/WrappedObject.js~WrappedObject.html#instance-get-id",
-    "Source/WrappedObject.js~WrappedObject#id",
+    "api/wrappedobject.js~wrappedobject#id",
+    "class/api/WrappedObject.js~WrappedObject.html#instance-get-id",
+    "api/WrappedObject.js~WrappedObject#id",
     "member"
   ],
   [
-    "source/wrappedobject.js~wrappedobject.tests",
-    "class/Source/WrappedObject.js~WrappedObject.html#static-method-tests",
-    "Source/WrappedObject.js~WrappedObject.tests",
+    "api/wrappedobject.js~wrappedobject.tests",
+    "class/api/WrappedObject.js~WrappedObject.html#static-method-tests",
+    "api/WrappedObject.js~WrappedObject.tests",
     "method"
   ]
 ]

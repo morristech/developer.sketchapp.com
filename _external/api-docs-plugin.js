@@ -26,8 +26,8 @@ exports.onHandleHTML = function(ev) {
       body = match[1]
     }
 
-    // adjust class links
-    body = body.replace(/href="(.*)\/Source\//g, "href=\"/reference/api/$1/Source/")
+    // adjust internal links to be absolute
+    body = body.replace(/href="(?!http)(.*?)"/g, "href=\"/reference/api/$1\"")
 
     // write out the jekyll header plus the extracted body
     ev.data.html = "---\n" + header + "---\n\n" + body;

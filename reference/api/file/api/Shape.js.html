@@ -1,6 +1,6 @@
 ---
 layout: api-page
-title: API Document
+title: api/Shape.js | API Document
 ---
 
 
@@ -41,57 +41,64 @@ title: API Document
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="sketch-api">Sketch API</h1>
-<p>This is a prototype Javascript API for Sketch.</p>
-<p>The intention is to make something which is:</p>
-<ul>
-<li>native Javascript</li>
-<li>an easily understandable subset of the full internals of Sketch</li>
-<li>fully supported by Bohemian between releases (ie we try not to change it, unlike our internal API which we can and do change whenever we need to)</li>
-<li>still allows you to drop down to our internal API when absolutely necessary.</li>
-</ul>
-<p>Comments and suggestions for this API are welcome - send them to developers@sketchapp.com.</p>
-<h2 id="install">Install</h2>
-<p>The API comes bundled inside Sketch, so no installation is required.</p>
-<h2 id="usage">Usage</h2>
-<p>Example script:</p>
-<pre><code><code class="source-code prettyprint">var sketch = context.api()
+<div class="content" data-ice="content"><h1 data-ice="title">api/Shape.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
+// # Shape.js
+// # Sketch Javascript API.
+//
+// All code (C) 2016 Bohemian Coding.
+// ********************************
 
-log(sketch.api_version)
-log(sketch.version)
-log(sketch.build)
-log(sketch.full_version)
+import { Layer } from &apos;./Layer.js&apos;
 
+/**
+  Represents a shape layer (a rectangle, oval, path, etc).
+ */
 
-var document = sketch.selectedDocument;
-var selection = document.selectedLayers;
-var page = document.selectedPage;
+export class Shape extends Layer {
 
-var group = page.newGroup({frame:sketch.rectangle(0, 0, 100, 100), name:&quot;Test&quot;});
-var rect = group.newShape({frame:sketch.rectangle(10, 10, 80, 80)});
+    /**
+      Make a new shape object.
 
-log(selection.isEmpty);
-selection.iterate(function(item) { log(item.name); } );
+      @param shape {MSShapeGroup} The underlying model object from Sketch.
+      @param document The document that the shape belongs to.
+    */
 
-selection.clear();
-log(selection.isEmpty);
+    constructor(shape, document) {
+      super(shape, document)
+    }
 
-group.select();
-rect.addToSelection();
+    /**
+        Is this a shape layer?
 
-sketch.getStringFromUser(&quot;Test&quot;, &quot;default&quot;);
-sketch.getSelectionFromUser(&quot;Test&quot;, [&quot;One&quot;, &quot;Two&quot;], 1);
-sketch.message(&quot;Hello mum!&quot;);
-sketch.alert(&quot;Title&quot;, &quot;message&quot;);</code>
-</code></pre><h2 id="acknowledgements">Acknowledgements</h2>
-<p>We would like to thank:</p>
-<ul>
-<li><a href="https://github.com/turbobabr">Andrey Shakhmin</a>, for his inspiration during the <a href="http://designtoolshackday.com">Hamburg Hackathon</a>, where he showed us how to use node modules inside Sketch.</li>
-<li>The Sketch plugin community everywhere, for such awesome work.</li>
-</ul>
-<h2 id="development">Development</h2>
-<p>(tbc)</p>
-</div>
+        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.
+
+        @return {bool} true for instances of Group, false for any other layer type.
+    */
+
+    get isShape() {
+      return true;
+    }
+
+    /**
+     Return a list of tests to run for this class.
+
+     @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+     */
+
+    static tests() {
+        return {
+            &quot;tests&quot; : {
+                &quot;test something&quot; : function(tester) {
+                    tester.assert(true);
+                },
+            }
+        };
+    }
+
+}
+</code></pre>
+
 </div>
 
 <footer class="footer">
