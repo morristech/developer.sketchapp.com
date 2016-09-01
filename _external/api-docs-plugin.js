@@ -28,10 +28,11 @@ exports.onStart = function(ev) {
 //   ev.data.tag = ...;
 // };
 
-// exports.onHandleHTML = function(ev) {
-//   // modify HTML
-//   ev.data.html = "blah";
-// };
+exports.onHandleHTML = function(ev) {
+  // modify HTML
+  modified = ev.data.html.replace("<header>", "<preheader>\n</preheader>\n\n<header>");
+  ev.data.html = modified;
+};
 
 // exports.onComplete = function(ev) {
 //   // complete
