@@ -29,7 +29,7 @@ exports.onHandleHTML = function(ev) {
     // adjust internal links to be absolute
     body = body.replace(/href="(?!http)(.*?)"/g, "href=\"/reference/api/$1\"")
 
-    // write out the jekyll header plus the extracted body
+    // write out the jekyll front matter header plus the extracted body
     ev.data.html = "---\n" + header + "---\n\n" + body;
   }
 };
