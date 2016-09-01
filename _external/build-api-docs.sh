@@ -15,7 +15,7 @@ cd "$scripts/api"
 pwd
 
 configpath=/tmp/esdoc.json
-echo "{\"source\": \"$base/../SketchAPI/Source/\", \"destination\": \"$base/reference/api\" }" > "$configpath"
+echo "{\"source\": \"$base/../SketchAPI/Source/\", \"destination\": \"$base/reference/api\", \"plugins\": [ { \"name\": \"$scripts/api-docs-header.js\" } ] }" > "$configpath"
 "$esdoc" -c "$configpath"
 
 # Add jekyll headers
