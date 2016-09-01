@@ -1,6 +1,8 @@
+var fs = require("fs");
+
 exports.onStart = function(ev) {
   // take option
-  ev.data.option;
+  preheaderPath = ev.data.option["header"];
 };
 
 // exports.onHandleConfig = function(ev) {
@@ -30,7 +32,9 @@ exports.onStart = function(ev) {
 
 exports.onHandleHTML = function(ev) {
   // modify HTML
-  modified = ev.data.html.replace("<header>", "<preheader>\n</preheader>\n\n<header>");
+  var preheader = fs.readFileSync(preheaderPath).toString();
+  wrappedPreheader = "<preheader>\n" + preheader + "\n</preheader>\n\n"
+  modified = ev.data.html.replace("<header>", wrappedPreheader + "<header>");
   ev.data.html = modified;
 };
 
