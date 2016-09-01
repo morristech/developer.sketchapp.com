@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">Source/Application.js | API Document</title>
-  <link type="text/css" rel="stylesheet" href="css/style.css">
-  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
-  <script src="script/prettify/prettify.js"></script>
-  
-  
-  <script src="script/manual.js"></script>
-</head>
-<body class="layout-container" data-ice="rootContainer">
+---
+layout: api-page
+---
+
+
 
 <header>
   <a href="./">Home</a>
@@ -97,24 +88,6 @@ export class Application extends WrappedObject {
          @type {dictionary}
          */
         this._metadata = MSApplicationMetadata.metadata()
-
-
-        /**
-         This is a slightly clumsy way to pass related classes into Layer
-         without setting up a circular dependency between classes (eg Layer imports Artboard which imports Layer...)
-         there has to be a better way to do this...
-
-         @type {dictionary}
-         */
-
-        this.factory = {
-            &quot;Group&quot; : Group,
-            &quot;Page&quot; : Page,
-            &quot;Artboard&quot; : Artboard,
-            &quot;Shape&quot; : Shape,
-            &quot;Image&quot; : Image,
-            &quot;Text&quot; : Text
-        }
     }
 
     /**
@@ -184,7 +157,7 @@ export class Application extends WrappedObject {
      */
 
     settingForKey(key) {
-        return NSUserDefaults.standardUserDefaults()._objectForKey_(key);
+        return NSUserDefaults.standardUserDefaults().objectForKey_(key);
     }
 
     /**
@@ -355,6 +328,48 @@ export class Application extends WrappedObject {
     }
 
     /**
+     Return a lookup table of known mappings between Sketch model classes
+     and our JS API wrapper classes.
+
+     @return {dictionary} A dictionary with keys for the Sketch Model classes, and values for the corresponding API wrapper classes.
+     */
+
+    wrapperMappings() {
+      var mappings = {
+        MSLayerGroup : Group,
+        MSPage : Page,
+        MSArtboardGroup : Artboard,
+        MSShapeGroup : Shape,
+        MSBitmapLayer : Image,
+        MSTextLayer : Text
+      }
+      return mappings
+    }
+
+    /**
+     Return a wrapped version of a Sketch object.
+     We don&apos;t know about *all* Sketch object types, but
+     for some we will return a special subclass.
+     The fallback position is just to return an instance of WrappedObject.
+
+     @param {object} sketchObject The underlying sketch object that we&apos;re wrapping.
+     @param {Document} inDocument The wrapped document that this object is part of.
+     @return {WrappedObject} A javascript object (subclass of WrappedObject), which represents the Sketch object we were given.
+    */
+
+    wrapObject(sketchObject, inDocument) {
+      var mapping = this.wrapperMappings()
+
+      var jsClass = mapping[sketchObject.class()]
+      if (!jsClass) {
+        print(&quot;no mapped wrapper for &quot; + sketchObject.class())
+        jsClass = WrappedObject
+      }
+
+      return new jsClass(sketchObject, inDocument)
+    }
+
+    /**
      Return a list of tests to run for this class.
 
      We could do some fancy introspection here to derive the tests from
@@ -368,13 +383,29 @@ export class Application extends WrappedObject {
             /** @test {Application} */
             &quot;tests&quot; : {
                 /** @test {Application#api_version} */
-                &quot;test api version&quot; : function(tester) {
-                    tester.assertEqual(tester.application.api_version, &quot;1.1&quot;);
+                testAPIVersion(tester) {
+                    tester.assertEqual(tester.application.api_version, &quot;1.1&quot;)
                 },
 
                 /** @test {Application#version} */
-                &quot;test app version&quot; : function(tester) {
-                    tester.assertEqual(tester.application.version, &quot;1.0&quot;);
+                testApplicationVersion(tester) {
+                    tester.assertEqual(tester.application.version, &quot;1.0&quot;)
+                },
+
+                /** @test {Application#wrapObject} */
+                testWrapObject(tester) {
+                  var classesToTest = [MSLayerGroup, MSPage, MSArtboardGroup, MSShapeGroup, MSBitmapLayer, MSTextLayer]
+                  var mappings = tester.application.wrapperMappings()
+                  for (var index in classesToTest) {
+                    var classToTest = classesToTest[index]
+                    var frame = NSMakeRect(0, 0, 100, 100)
+                    var object = classToTest.alloc().initWithFrame(frame)
+                    var mockDocument = {}
+                    var wrapped = tester.application.wrapObject(object, mockDocument)
+                    tester.assertEqual(wrapped._object, object)
+                    tester.assertEqual(wrapped._document, mockDocument)
+                    tester.assertEqual(wrapped.class, mappings[classToTest].class)
+                  }
                 }
             }
         };
@@ -407,11 +438,11 @@ export class Application extends WrappedObject {
                 &quot;WrappedObject&quot; : WrappedObject.tests()
             }
         }
-        
+
         var tester = new Tester(this);
         return tester.runUnitTests(tests);
     }
-    
+
 }
 </code></pre>
 
@@ -428,5 +459,3 @@ export class Application extends WrappedObject {
 <script src="script/test-summary.js"></script>
 <script src="script/inner-link.js"></script>
 <script src="script/patch-for-local.js"></script>
-</body>
-</html>

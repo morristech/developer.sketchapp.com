@@ -456,12 +456,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "source/application.js~application#factory",
-    "class/Source/Application.js~Application.html#instance-member-factory",
-    "Source/Application.js~Application#factory",
-    "member"
-  ],
-  [
     "source/application.js~application#full_version",
     "class/Source/Application.js~Application.html#instance-get-full_version",
     "Source/Application.js~Application#full_version",
@@ -540,6 +534,18 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "source/application.js~application#wrapobject",
+    "class/Source/Application.js~Application.html#instance-method-wrapObject",
+    "Source/Application.js~Application#wrapObject",
+    "method"
+  ],
+  [
+    "source/application.js~application#wrappermappings",
+    "class/Source/Application.js~Application.html#instance-method-wrapperMappings",
+    "Source/Application.js~Application#wrapperMappings",
+    "method"
+  ],
+  [
     "source/application.js~application.tests",
     "class/Source/Application.js~Application.html#static-method-tests",
     "Source/Application.js~Application.tests",
@@ -616,6 +622,12 @@ window.esdocSearchIndex = [
     "class/Source/Document.js~Document.html#instance-get-selectedPage",
     "Source/Document.js~Document#selectedPage",
     "member"
+  ],
+  [
+    "source/document.js~document#wrapobject",
+    "class/Source/Document.js~Document.html#instance-method-wrapObject",
+    "Source/Document.js~Document#wrapObject",
+    "method"
   ],
   [
     "source/document.js~document.tests",
@@ -1045,13 +1057,13 @@ window.esdocSearchIndex = [
   ],
   [
     "source/text.js~text#text",
-    "class/Source/Text.js~Text.html#instance-get-text",
+    "class/Source/Text.js~Text.html#instance-set-text",
     "Source/Text.js~Text#text",
     "member"
   ],
   [
     "source/text.js~text#text",
-    "class/Source/Text.js~Text.html#instance-set-text",
+    "class/Source/Text.js~Text.html#instance-get-text",
     "Source/Text.js~Text#text",
     "member"
   ],

@@ -7,7 +7,7 @@ base=`pwd`
 fullname=$(basename "$dest")
 name="${fullname##*.}"
 
-rm -rf "$base/api" 2> /dev/null
+rm -rf "$base/reference/api" 2> /dev/null
 
 # Build using esdoc
 esdoc="$(npm bin)/esdoc"
@@ -16,10 +16,14 @@ configpath=/tmp/esdoc.json
 echo "{" > "$configpath"
 echo "\"source\": \"$base/../SketchAPI/Source/\"," >> "$configpath"
 echo " \"destination\": \"$base/reference/api\"," >> "$configpath"
-echo " \"plugins\": [ { \"name\": \"$scripts/api-docs-plugin.js\", \"option\": { \"scripts\": \"$scripts\" } } ]," >> "$configpath"
+echo " \"plugins\": [ { \"name\": \"$scripts/api-docs-plugin.js\", \"option\": { \"scripts\": \"$scripts\" } } ]" >> "$configpath"
 echo " }" >> "$configpath"
 
 "$esdoc" -c "$configpath"
+
+# Remove the json files, which we probably don't need
+rm -f "$base/reference/api/"*.json
+rm -rf "$base/reference/api/ast"
 
 # Add jekyll headers
 # for page in "$base/api/"*.html
