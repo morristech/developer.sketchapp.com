@@ -75,7 +75,7 @@ defaults:
     scope:
       type: "api"
     values:
-      layout: "docco-page"
+      layout: "api-page"
   -
     scope:
       type: "actions"

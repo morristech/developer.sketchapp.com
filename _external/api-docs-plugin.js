@@ -32,10 +32,12 @@ exports.onStart = function(ev) {
 
 exports.onHandleHTML = function(ev) {
   // modify HTML
-  var preheader = fs.readFileSync(preheaderPath).toString();
-  wrappedPreheader = "<preheader>\n" + preheader + "\n</preheader>\n\n"
-  modified = ev.data.html.replace("<header>", wrappedPreheader + "<header>");
-  ev.data.html = modified;
+  // var preheader = fs.readFileSync(preheaderPath).toString();
+  // wrappedPreheader = "<preheader>\n" + preheader + "\n</preheader>\n\n"
+  match = ev.data.html.match(/body.*>([^]*)<\/body/)
+  if (match) {
+    ev.data.html = "---\n\n---\n\n" + match[1];
+  }
 };
 
 // exports.onComplete = function(ev) {
