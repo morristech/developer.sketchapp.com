@@ -1,7 +1,3 @@
----
-layout: api-page
----
-
 window.esdocSearchIndex = [
   [
     "developer.sketchapp.com/source/application.js~application",
