@@ -13,7 +13,7 @@ We use [Jekyll](http://jekyllrb.com) as our content backend, so make sure to rea
 If you want to get the site working locally, you'll need to have [node](https://nodejs.org/en/) and [bundler](http://bundler.io) installed. Once you have them, run this:
 
 ```
-npm install --global gulp
+sudo npm install --global gulp
 bundle install --path _vendor
 npm install
 ```
