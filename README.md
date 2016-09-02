@@ -10,7 +10,9 @@ We use [Jekyll](http://jekyllrb.com) as our content backend, so make sure to rea
 
 ## Setup
 
-If you want to get the site working locally, you'll need to have [node](https://nodejs.org/en/) and [bundler](http://bundler.io) installed. Once you have them, run this:
+If you want to get the site working locally, you'll need to have [node](https://nodejs.org/en/) and [bundler](http://bundler.io) installed. On OS X you'll also need to have Xcode's command line tools installed (`xcode-select --install`).
+
+Once you have them, run this:
 
 ```
 sudo npm install --global gulp
@@ -26,4 +28,10 @@ gulp
 
 to start the server and open a browser automatically.
 
-Note: you may find issues with nokogiri when running `bundle install`. If that's the case, check the troubleshooting tips on [Nokogiri's page](http://www.nokogiri.org/tutorials/installing_nokogiri.html#mac_os_x)
+Note: you may find issues with nokogiri when running `bundle install`. If that's the case, try the following:
+
+```
+  bundle config build.nokogiri --use-system-libraries --with-xml2-include=/usr/include/libxml2/
+```
+
+If that doesn't work, check the troubleshooting tips on [Nokogiri's page](http://www.nokogiri.org/tutorials/installing_nokogiri.html#mac_os_x)
