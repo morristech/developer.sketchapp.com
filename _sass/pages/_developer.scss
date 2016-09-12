@@ -68,9 +68,13 @@ td {
   padding: 1rem;
 }
 
+thead td {
+  font-weight: $font-regular;
+}
+
 @include tablet-and-above {
   td {
-    width: 50%;
+    // width: 50%;
     border-bottom: 1px solid $border-dark;
     vertical-align: top;
   }
