@@ -49,23 +49,31 @@
 
 /* search box */
 .search-box {
-
+  width: 25%;
 }
 
 .search-box img {
   display: none;
 }
 
+.search-input {
+  padding: .5rem;
+  font-size: .8125rem; //13px
+  background-position: .75rem center;
+  padding-left: 2.25rem;
+  width: 100%;
+}
+
 .search-result {
   position: absolute;
+  right: 2rem;
   display: none;
-  height: 600px;
-  width: 100%;
+  max-height: 300px;
+  width: 40%;
   padding: 0;
-  margin-top: 5px;
-  margin-left: 24px;
   background: white;
-  box-shadow: 1px 1px 4px rgb(0,0,0);
+  box-shadow: 0 0 1px $border-dark-high, 0 1px 4px 1px $border-dark-high;
+  border-radius: $radius-normal;
   white-space: nowrap;
   overflow-y: scroll;
 }
@@ -77,7 +85,7 @@
 
 .search-result li {
   list-style: none;
-  padding: 2px 4px;
+  padding: .5rem 1rem;
 }
 
 .search-result li a {
@@ -85,16 +93,18 @@
 }
 
 .search-result li.selected {
-  background: #ddd;
+  background-color: $action-ultra-low;
 }
 
 .search-result li.search-separator {
-  background: rgb(37, 138, 175);
-  color: white;
+  background: $border-dark;
+  color: $text-dark-high;
+  font-size: .8125rem;
+  font-weight: $font-regular;
 }
 
 @include tablet-and-above {
-  .api > .row > header,
+  //.api > .row > header,
   .api footer,
   .api .page-contribute {
     width: 69.6969697%;
@@ -102,16 +112,24 @@
   }
 
   .api > .row > header {
-    padding-bottom: .5rem;
+    padding: 0 .25rem .5rem;
     border-bottom: 1px solid $divider-dark;
-    margin-bottom: 1rem;
+    margin-top: -3rem;
+    margin-bottom: 2rem;
 
-    display: none;
+    width: 100%;
+    margin-left: 05.3030303%;
+
+    // display: none;
   }
 
   .api > .row > header a {
+    padding-top: .5rem;
     font-size: .8125rem;
     line-height: 1.23125rem;
+    display: inline-block;
+    margin-right: 1rem;
+    color: $text-dark;
   }
 
     // Hiding the Home link
@@ -121,6 +139,7 @@
 
   .api .search-box {
     display: inline-block;
+    float: right;
   }
 
   .api .navigation {
