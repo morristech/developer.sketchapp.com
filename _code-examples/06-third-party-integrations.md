@@ -14,6 +14,7 @@ Here are some services and tools that already support Sketch:
 - [Avocode](http://avocode.com)
 - [Flinto](https://www.flinto.com/mac)
 - [Folio for Mac](http://folioformac.com)
+- [Framer](http://framerjs.com)
 - [Invision](http://www.invisionapp.com)
 - [Markly](http://marklyapp.com)
 - [Marvel](https://marvelapp.com)
