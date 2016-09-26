@@ -97,12 +97,10 @@ we want to execute  a javascript handler called <code>onRun</code>.</p>
             <a class="pilcrow" href="#section-4">&#182;</a>
           </div>
           <p>We are passed a context variable when we’re run.
-We use this to get hold of a javascript object
-which we can use in turn to manipulate Sketch.</p>
+This is a dictionary containing a reference to the document,
+the current selection, the plugin, current URL and more.</p>
 
         </div>
-        
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> sketch = context.api()</pre></div></div>
         
       </li>
       
@@ -113,12 +111,12 @@ which we can use in turn to manipulate Sketch.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-5">&#182;</a>
           </div>
-          <p>Next we want to extract the selected page of the selected (front-most) document</p>
+          <p>One of the things that the context contains is the current document,
+so let’s fetch that.</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> <span class="hljs-built_in">document</span> = sketch.selectedDocument
-  <span class="hljs-keyword">var</span> page = <span class="hljs-built_in">document</span>.selectedPage</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> doc = context.document;</pre></div></div>
         
       </li>
       
@@ -129,11 +127,11 @@ which we can use in turn to manipulate Sketch.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-6">&#182;</a>
           </div>
-          <p>Now let’s create a new text layer, using a large font, and a traditional value…</p>
+          <p>From the document, we can fetch the current page that the user is looking at.</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> layer = page.newText({alignment: NSTextAlignmentCenter, systemFontSize: <span class="hljs-number">36</span>, text:<span class="hljs-string">"Hello World"</span>})</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> page = [doc currentPage];</pre></div></div>
         
       </li>
       
@@ -144,11 +142,12 @@ which we can use in turn to manipulate Sketch.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-7">&#182;</a>
           </div>
-          <p>…resize it so that the text just fits…</p>
+          <p>Now let’s create a new text layer…</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  layer.resizeToFitContents()</pre></div></div>
+        <div class="content"><div class='highlight'><pre>
+  <span class="hljs-keyword">var</span> layer = MSTextLayer.alloc().initWithFrame_(NSMakeRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>))</pre></div></div>
         
       </li>
       
@@ -159,13 +158,11 @@ which we can use in turn to manipulate Sketch.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-8">&#182;</a>
           </div>
-          <p>Finally, lets center the view on our new layer
-so that we can see where it is.</p>
+          <p>…give it a large font…</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-built_in">document</span>.centerOnLayer(layer)
-};</pre></div></div>
+        <div class="content"><div class='highlight'><pre>  layer.font = NSFont.systemFontOfSize_(<span class="hljs-number">36.0</span>)</pre></div></div>
         
       </li>
       
@@ -176,9 +173,71 @@ so that we can see where it is.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-9">&#182;</a>
           </div>
+          <p>…set its text to a traditional value…</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  layer.stringValue = <span class="hljs-string">"Hello World!"</span></pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-10">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
+          <p>…resize it so that the text just fits…</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  layer.adjustFrameToFit()</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-11">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-11">&#182;</a>
+          </div>
+          <p>…and add it to the page</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  page.addLayers_([layer])</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-12">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-12">&#182;</a>
+          </div>
+          <p>Finally, lets center the view on our new layer
+so that we can see where it is.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>  doc.currentView().centerRect_(layer.rect())
+};</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-13">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-13">&#182;</a>
+          </div>
           <p>And that’s it. Job done.</p>
 <p>Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.</p>
-<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x64;&#x65;&#x76;&#x65;&#108;&#111;&#112;&#101;&#114;&#115;&#x40;&#x73;&#x6b;&#101;&#x74;&#99;&#x68;&#97;&#112;&#112;&#46;&#x63;&#x6f;&#109;">&#x64;&#x65;&#x76;&#x65;&#108;&#111;&#112;&#101;&#114;&#115;&#x40;&#x73;&#x6b;&#101;&#x74;&#99;&#x68;&#97;&#112;&#112;&#46;&#x63;&#x6f;&#109;</a>!</p>
+<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x64;&#101;&#x76;&#101;&#108;&#x6f;&#x70;&#x65;&#x72;&#x73;&#x40;&#115;&#107;&#x65;&#x74;&#99;&#x68;&#x61;&#112;&#x70;&#46;&#99;&#111;&#109;">&#x64;&#101;&#x76;&#101;&#108;&#x6f;&#x70;&#x65;&#x72;&#x73;&#x40;&#115;&#107;&#x65;&#x74;&#99;&#x68;&#x61;&#112;&#x70;&#46;&#99;&#111;&#109;</a>!</p>
 
         </div>
         
