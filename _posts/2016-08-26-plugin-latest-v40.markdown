@@ -1,17 +1,19 @@
 ---
-title: What's New In V40
+title: What's New For Plugins In Sketch 40?
 categories: scripting update
 ---
 
 ## Scripting API
 
-With the release of version 40 of Sketch, we're continuing to (slowly) move towards rolling out our Javascript API as better way to work with the Sketch model from within your plugins.
+With the release of version 40 of Sketch, we're slowly moving towards rolling out our Javascript API as better way to work with the Sketch model from within your plugins.
 
-As part of this work, we've updated this site to include a [API Reference](/reference/api) section.
+As part of this work, we've updated this site to include an [API Reference](/reference/api) section.
 
 The API itself is still under development, and should not be regarded as completely fixed or ready for prime-time.
 
-It's getting there however, and if you're starting to work on new plugins, you may want to consider trying it out. Over the next few releases we'll be developing it further, and also updating all of our [plugin examples](/examples/) to use the API.
+It's getting there however, and if you're starting to work on new plugins, you may want to consider trying it out.
+
+Over the next few releases we'll be developing the API further, updating all of our existing [plugin examples](/examples/) to use the API, and also adding some new examples.
 
 
 ## NSAppTransportSecurity
@@ -24,4 +26,4 @@ Unless your plugin requests content from web pages, it should be unaffected by t
 
 If however you *do* fetch data or resources from web pages, you will need to change over to using `https:` in your URLs.
 
-We also suggest that everyone changes to using `https` for any URLs specified in the plugin's manifest file. Future versions of Sketch may use these URLs.
+We also suggest that everyone changes to using `https:` for any URLs specified in the plugin's manifest file. Future versions of Sketch may use these URLs.
