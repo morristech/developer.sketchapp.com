@@ -16,4 +16,4 @@ fi
 
 git commit "$base/_plugins" -m "rebuilt plugin pages"
 
-open "http://localhost:3000/examples/plugins"
+open "http://localhost:3000/examples"
