@@ -1,0 +1,156 @@
+---
+name: text-utilities
+title: text-utilities.js
+---
+  <div id="container">
+    
+    <ul class="sections">
+      
+      <li id="title">
+        <div class="annotation"><h1>text-utilities.js</h1></div>
+      </li>
+      
+      
+      
+      <li id="section-1">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          
+        </div>
+        
+        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> fillInRect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">container, rect, color</span>) </span>{
+  <span class="hljs-keyword">if</span> (! color) {
+    color = [MSColor colorWithRed:<span class="hljs-number">1.0</span> green:<span class="hljs-number">0.0</span> blue:<span class="hljs-number">0.0</span> alpha:<span class="hljs-number">0.6</span>];
+  }
+  <span class="hljs-keyword">var</span> containerRect = container.pageRectToLocalRect(rect);
+  <span class="hljs-keyword">var</span> line = container.newShape({<span class="hljs-string">"frame"</span>: containerRect, <span class="hljs-string">"color"</span>: color});
+  line.style.fillEnabled = <span class="hljs-literal">true</span>
+  line.style.borderEnabled = <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">var</span> style = line._object.style();
+  <span class="hljs-keyword">return</span> line;
+}
+
+
+<span class="hljs-keyword">var</span> getLineFragments = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+  <span class="hljs-keyword">var</span> textLayer = layer._object
+  <span class="hljs-keyword">var</span> storage = textLayer.createTextStorage();
+  <span class="hljs-keyword">var</span> layout = storage.layoutManagers().firstObject();
+  <span class="hljs-keyword">var</span> actualCharacterRangePtr = MOPointer.new();
+  <span class="hljs-keyword">var</span> charRange = NSMakeRange(<span class="hljs-number">0</span>, storage.length());
+  <span class="hljs-keyword">var</span> origin = textLayer.rect().origin;
+
+  [layout glyphRangeForCharacterRange:charRange actualCharacterRange:actualCharacterRangePtr];
+  <span class="hljs-keyword">var</span> glyphRange = actualCharacterRangePtr.value();
+
+  <span class="hljs-keyword">var</span> fragments = NSMutableArray.new();
+  <span class="hljs-keyword">var</span> currentLocation = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">while</span> (currentLocation &lt; NSMaxRange(glyphRange)) {
+    <span class="hljs-keyword">var</span> effectiveRangePtr = MOPointer.new();
+    <span class="hljs-keyword">var</span> rect = [layout lineFragmentRectForGlyphAtIndex:currentLocation effectiveRange:effectiveRangePtr];
+    rect = textLayer.convertRectToAbsoluteCoordinates(rect);
+    <span class="hljs-keyword">var</span> effectiveRange = effectiveRangePtr.value();
+    <span class="hljs-keyword">var</span> baselineOffset = [[layout typesetter] baselineOffsetInLayoutManager:layout glyphIndex:currentLocation];
+    fragments.addObject({<span class="hljs-string">"rect"</span>: rect, <span class="hljs-string">"baselineOffset"</span>: baselineOffset, range: effectiveRange});
+    currentLocation = NSMaxRange(effectiveRange)+<span class="hljs-number">1</span>;
+  }
+
+  <span class="hljs-keyword">return</span> fragments;
+}
+
+
+<span class="hljs-keyword">var</span> processFragments = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, container, fragments, title, action</span>) </span>{
+    <span class="hljs-keyword">var</span> group = container.newGroup({<span class="hljs-string">"name"</span>: title });
+    group.moveToBack();
+
+    <span class="hljs-keyword">var</span> fragmentCount = fragments.count();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;fragmentCount; i++) {
+      <span class="hljs-keyword">var</span> fragment = fragments[i];
+      action(sketch, group, fragment, i);
+    }
+
+    group.adjustToFit();
+}
+
+<span class="hljs-keyword">var</span> addBaselines = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, container, fragments</span>) </span>{
+    processFragments(sketch, container, fragments, <span class="hljs-string">"Baselines"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, group, fragment, index</span>) </span>{
+        <span class="hljs-keyword">var</span> rect = fragment.rect;
+        <span class="hljs-keyword">var</span> baselineOffset = fragment.baselineOffset;
+        <span class="hljs-keyword">var</span> baselineRect = sketch.rectangle(
+          NSMinX(rect),
+          NSMaxY(rect)-baselineOffset,
+          NSWidth(rect),
+          <span class="hljs-number">0.5</span>
+        );
+        fillInRect(group, baselineRect);
+    })
+}
+
+
+<span class="hljs-keyword">var</span> addLineFragments = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, container, fragments</span>) </span>{
+    processFragments(sketch, container, fragments, <span class="hljs-string">"Line Fragments"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, group, fragment, index</span>) </span>{
+        <span class="hljs-keyword">var</span> rect = fragment.rect;
+        <span class="hljs-keyword">var</span> fragmentRect = sketch.rectangle(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
+        <span class="hljs-keyword">var</span> alpha = ( index &amp; <span class="hljs-number">1</span> ) ? <span class="hljs-number">0.1</span> : <span class="hljs-number">0.25</span>;
+        <span class="hljs-keyword">var</span> color = [MSColor colorWithRed:<span class="hljs-number">0.0</span> green:<span class="hljs-number">1.0</span> blue:<span class="hljs-number">0.0</span> alpha:alpha];
+        fillInRect(group, fragmentRect, color);
+    })
+}
+
+
+<span class="hljs-keyword">var</span> onAddLineFragments = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+    <span class="hljs-keyword">var</span> sketch = context.api()
+    sketch.selectedDocument.selectedLayers.iterate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+        <span class="hljs-keyword">var</span> lineFragments = getLineFragments(layer);
+        addLineFragments(sketch, layer.container, lineFragments);
+    }, <span class="hljs-string">"isText"</span>)
+};
+
+<span class="hljs-keyword">var</span> onAddBaselines = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+    <span class="hljs-keyword">var</span> sketch = context.api()
+    sketch.selectedDocument.selectedLayers.iterate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+        <span class="hljs-keyword">var</span> lineFragments = getLineFragments(layer);
+        addBaselines(sketch, layer.container, lineFragments);
+    }, <span class="hljs-string">"isText"</span>)
+};
+
+<span class="hljs-keyword">var</span> onAddBoth = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+    <span class="hljs-keyword">var</span> sketch = context.api()
+    sketch.selectedDocument.selectedLayers.iterate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+        <span class="hljs-keyword">var</span> lineFragments = getLineFragments(layer);
+        <span class="hljs-keyword">var</span> container = layer.container;
+        addBaselines(sketch, container, lineFragments);
+        addLineFragments(sketch, container, lineFragments);
+    }, <span class="hljs-string">"isText"</span>)
+};
+
+
+<span class="hljs-keyword">var</span> setTypeSetterMode = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context, lineSpacingBehaviour</span>) </span>{
+    <span class="hljs-keyword">var</span> sketch = context.api()
+    sketch.selectedDocument.selectedLayers.iterate(filter = <span class="hljs-string">"isText"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+        <span class="hljs-keyword">var</span> textLayer = layer._object;
+        <span class="hljs-keyword">var</span> initialBaselineOffset = textLayer.firstBaselineOffset();
+        textLayer.lineSpacingBehaviour = lineSpacingBehaviour;
+        <span class="hljs-keyword">var</span> baselineOffset = textLayer.firstBaselineOffset();
+
+        <span class="hljs-keyword">var</span> rect = layer.frame;
+        rect.y -= (baselineOffset - initialBaselineOffset);
+        layer.frame = rect;
+        sketch.log(<span class="hljs-string">"Set spacing mode for '"</span> + layer.name + <span class="hljs-string">"' to "</span> + lineSpacingBehaviour)
+    })
+}
+
+<span class="hljs-keyword">var</span> onUseLegacyBaselines = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+    setTypeSetterMode(context, <span class="hljs-number">1</span>);
+}
+
+<span class="hljs-keyword">var</span> onUseConstantBaselines = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
+    setTypeSetterMode(context, <span class="hljs-number">2</span>);
+}</pre></div></div>
+        
+      </li>
+      
+    </ul>
+  </div>
