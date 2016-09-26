@@ -21,7 +21,7 @@ An instance of [MSRect](/reference/class/MSRect/). Determines size and position 
 
 An instance of [MSStyle](/reference/class/MSStyle/). Determines all style-related attributes such as Borders, Fills, Shadows and more
 
-### name: setName:(NSString)name
+### name:, setName:(NSString)name
 
 Get /set the name of the layer, as it appears in the layer list.
 

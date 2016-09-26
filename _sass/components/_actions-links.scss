@@ -69,3 +69,8 @@ a .h4 {
 //   &:active,
 //   &:focus { transform: scale(1.025); }
 // }
+
+h1 > a {
+  color: $text-dark-high;
+  font-weight: inherit;
+}

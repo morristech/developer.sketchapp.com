@@ -24,19 +24,6 @@
   background: $background-dark;
 }
 
-body {
-  /*
-    Make a Native Smooth Scrolling work: http://blog.gospodarets.com/native_smooth_scrolling/
-    After that browser starts to scroll blocks
-    when you use anchors: http://help.typepad.com/anchor-tags.html
-    It adds smooth scrolling instead of "jumping"
-    when you press number of a slide to scroll to.
-    */
-    overflow-y: scroll; /* has to be scroll, not auto */
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-}
-
 body > section {
   overflow: hidden;
 }
@@ -65,6 +52,10 @@ body > section {
 
 body .col {
   vertical-align: middle;
+}
+
+.content h1:first-child {
+  margin-top: 0;
 }
 
 /* @group Common styles */
