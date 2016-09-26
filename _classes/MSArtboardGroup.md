@@ -1,6 +1,6 @@
 ---
 title: MSArtboardGroup
-summary: Since Sketch 2.2, an Artboard is just special kind of layer.
+summary: Since Sketch 2.2, an Artboard is just a special kind of layer.
 inherits:
   - MSLayerGroup
 rels:

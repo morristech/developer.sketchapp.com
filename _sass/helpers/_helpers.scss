@@ -75,3 +75,10 @@ img.max {
   background-image: url('data:image/svg+xml;utf8,%3Csvg%20width%3D%228%22%20height%3D%2213%22%20viewBox%3D%220%200%208%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EDisclosure%20Indicator%3C%2Ftitle%3E%3Cpath%20d%3D%22M0%2C1.5%20L1.5%2C0%20L7.29201249%2C5.79201249%20C7.68302319%2C6.18302319%207.68649149%2C6.81350851%207.29201249%2C7.20798751%20L1.5%2C13%20L0%2C11.5%20L4.29422684%2C7.20577316%20C4.68401459%2C6.81598541%204.68722761%2C6.18722761%204.29422684%2C5.79422684%20L0%2C1.5%20Z%22%20fill%3D%22%23207cdf%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
   background-size: cover;
 }
+
+.warning {
+  border: 1px solid yellow;
+  background-color: rgba(255,255,0,0.2);
+  padding: 0.5em 1em;
+  border-radius: 4px;
+}
