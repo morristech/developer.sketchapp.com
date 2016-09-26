@@ -18,10 +18,134 @@ title: text-utilities.js
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-1">&#182;</a>
           </div>
-          
+          <p>Text Utilities, by Johnnie Walker — Source code available at <a href="https://github.com/BohemianCoding/plugins.examples.text-utilities">GitHub</a></p>
+<p>This plugin illustrates a few techniques:</p>
+<ul>
+<li>iterating over the selected layers</li>
+<li>analysing the text layout (in great detail!)</li>
+<li>creating new layers</li>
+<li>defining multiple commands in a single plugin</li>
+</ul>
+<h2 id="layout-of-the-plugin">Layout Of The Plugin</h2>
+<p>The first thing to do when making a Plugin is to setup the folder structure, which should
+look something like this:</p>
+<pre><code>   MyPlugin.sketchplugin/
+     Contents/
+       Sketch/
+         manifest.json
+         script.js
+       Resources/
+         a-resource.png
+         other-resource.txt
+</code></pre><p>For a Plugin with bundled resources, you want to add a <code>Resources</code> folder as well
+as the normal <code>Sketch</code> folder, and you want to drop into it any resources that your
+script needs to access. These can be files of any type (but obviously keep in mind
+that they contribute to the overall size of the Plugin, so your users won’t thank
+you if you put too much stuff in there).</p>
+<h2 id="manifest">Manifest</h2>
+<p>The Plugin needs a <code>manifest.json</code> file. This tells Sketch which menu items your Plugin supplies,
+as well as giving some general information about the Plugin such as its name, author, and so on.</p>
+<p>A single Plugin can supply multiple menu items, and each one can execute different code,
+or they can all share code. In our case though, we just have one command.</p>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"author"</span> : <span class="hljs-string">"Johnnie Walker"</span>,
+  <span class="hljs-attr">"commands"</span> : [
+    {
+      <span class="hljs-attr">"script"</span> : <span class="hljs-string">"text-utilities.js"</span>,
+      <span class="hljs-attr">"handler"</span> : <span class="hljs-string">"onAddBoth"</span>,
+      <span class="hljs-attr">"name"</span> : <span class="hljs-string">"Add Line Fragments &amp; Baselines"</span>,
+      <span class="hljs-attr">"identifier"</span> : <span class="hljs-string">"fragmentsandbaselines"</span>
+    },
+    {
+      <span class="hljs-attr">"script"</span> : <span class="hljs-string">"text-utilities.js"</span>,
+      <span class="hljs-attr">"handler"</span> : <span class="hljs-string">"onAddBaselines"</span>,
+      <span class="hljs-attr">"name"</span> : <span class="hljs-string">"Add Baselines"</span>,
+      <span class="hljs-attr">"identifier"</span> : <span class="hljs-string">"baselines"</span>
+    },
+    {
+      <span class="hljs-attr">"script"</span> : <span class="hljs-string">"text-utilities.js"</span>,
+      <span class="hljs-attr">"handler"</span> : <span class="hljs-string">"onAddLineFragments"</span>,
+      <span class="hljs-attr">"name"</span> : <span class="hljs-string">"Add Line Fragments"</span>,
+      <span class="hljs-attr">"identifier"</span> : <span class="hljs-string">"fragments"</span>
+    },
+    {
+      <span class="hljs-attr">"script"</span> : <span class="hljs-string">"text-utilities.js"</span>,
+      <span class="hljs-attr">"handler"</span> : <span class="hljs-string">"onUseLegacyBaselines"</span>,
+      <span class="hljs-attr">"name"</span> : <span class="hljs-string">"Use legacy typesetter"</span>,
+      <span class="hljs-attr">"identifier"</span> : <span class="hljs-string">"legacyTypesetter"</span>
+    },
+    {
+      <span class="hljs-attr">"script"</span> : <span class="hljs-string">"text-utilities.js"</span>,
+      <span class="hljs-attr">"handler"</span> : <span class="hljs-string">"onUseConstantBaselines"</span>,
+      <span class="hljs-attr">"name"</span> : <span class="hljs-string">"Use constant baselines typesetter"</span>,
+      <span class="hljs-attr">"identifier"</span> : <span class="hljs-string">"constantBaselinesTypesetter"</span>
+    },
+  ],
+  <span class="hljs-attr">"menu"</span>: {
+    <span class="hljs-attr">"items"</span>: [
+      <span class="hljs-string">"baselines"</span>,
+      <span class="hljs-string">"fragments"</span>,
+      <span class="hljs-string">"fragmentsandbaselines"</span>,
+      <span class="hljs-string">"-"</span>,
+      <span class="hljs-string">"legacyTypesetter"</span>,
+      <span class="hljs-string">"constantBaselinesTypesetter"</span>,
+    ],
+  },
+  <span class="hljs-attr">"identifier"</span> : <span class="hljs-string">"com.sketchapp.examples.text-utilities"</span>,
+  <span class="hljs-attr">"version"</span> : <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-attr">"description"</span> : <span class="hljs-string">"Utilities for text layers"</span>,
+  <span class="hljs-attr">"authorEmail"</span> : <span class="hljs-string">"developer@sketchapp.com"</span>,
+  <span class="hljs-attr">"name"</span> : <span class="hljs-string">"Text Layer Utilities"</span>
+}
+</code></pre>
+
         </div>
         
-        <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> fillInRect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">container, rect, color</span>) </span>{
+      </li>
+      
+      
+      <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <h2 id="code">Code</h2>
+<h3 id="defining-the-run-handler">Defining The Run Handler</h3>
+
+        </div>
+        
+      </li>
+      
+      
+      <li id="section-3">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>In the manifest, we told Sketch that every time the “Bundled Resources Example” menu is selected,
+we want to execute a javascript handler called <code>onRun</code> in the <code>resources.js</code> file.</p>
+
+        </div>
+        
+      </li>
+      
+      
+      <li id="section-4">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>So now we need to put some code into the <code>resources.js</code> file to implement that command.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+
+
+<span class="hljs-keyword">var</span> fillInRect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">container, rect, color</span>) </span>{
   <span class="hljs-keyword">if</span> (! color) {
     color = [MSColor colorWithRed:<span class="hljs-number">1.0</span> green:<span class="hljs-number">0.0</span> blue:<span class="hljs-number">0.0</span> alpha:<span class="hljs-number">0.6</span>];
   }
@@ -100,6 +224,23 @@ title: text-utilities.js
 }
 
 
+<span class="hljs-keyword">var</span> setTypeSetterMode = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context, lineSpacingBehaviour</span>) </span>{
+    <span class="hljs-keyword">var</span> sketch = context.api()
+    sketch.selectedDocument.selectedLayers.iterate(filter = <span class="hljs-string">"isText"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+        <span class="hljs-keyword">var</span> textLayer = layer._object;
+        <span class="hljs-keyword">var</span> initialBaselineOffset = textLayer.firstBaselineOffset();
+        textLayer.lineSpacingBehaviour = lineSpacingBehaviour;
+        <span class="hljs-keyword">var</span> baselineOffset = textLayer.firstBaselineOffset();
+
+        <span class="hljs-keyword">var</span> rect = layer.frame;
+        rect.y -= (baselineOffset - initialBaselineOffset);
+        layer.frame = rect;
+        sketch.log(<span class="hljs-string">"Set spacing mode for '"</span> + layer.name + <span class="hljs-string">"' to "</span> + lineSpacingBehaviour)
+    })
+}
+
+
+
 <span class="hljs-keyword">var</span> onAddLineFragments = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
     <span class="hljs-keyword">var</span> sketch = context.api()
     sketch.selectedDocument.selectedLayers.iterate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
@@ -126,21 +267,6 @@ title: text-utilities.js
     }, <span class="hljs-string">"isText"</span>)
 };
 
-
-<span class="hljs-keyword">var</span> setTypeSetterMode = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context, lineSpacingBehaviour</span>) </span>{
-    <span class="hljs-keyword">var</span> sketch = context.api()
-    sketch.selectedDocument.selectedLayers.iterate(filter = <span class="hljs-string">"isText"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
-        <span class="hljs-keyword">var</span> textLayer = layer._object;
-        <span class="hljs-keyword">var</span> initialBaselineOffset = textLayer.firstBaselineOffset();
-        textLayer.lineSpacingBehaviour = lineSpacingBehaviour;
-        <span class="hljs-keyword">var</span> baselineOffset = textLayer.firstBaselineOffset();
-
-        <span class="hljs-keyword">var</span> rect = layer.frame;
-        rect.y -= (baselineOffset - initialBaselineOffset);
-        layer.frame = rect;
-        sketch.log(<span class="hljs-string">"Set spacing mode for '"</span> + layer.name + <span class="hljs-string">"' to "</span> + lineSpacingBehaviour)
-    })
-}
 
 <span class="hljs-keyword">var</span> onUseLegacyBaselines = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
     setTypeSetterMode(context, <span class="hljs-number">1</span>);
