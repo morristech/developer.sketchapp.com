@@ -45,8 +45,7 @@ you if you put too much stuff in there).</p>
 <h2 id="manifest">Manifest</h2>
 <p>The Plugin needs a <code>manifest.json</code> file. This tells Sketch which menu items your Plugin supplies,
 as well as giving some general information about the Plugin such as its name, author, and so on.</p>
-<p>A single Plugin can supply multiple menu items, and each one can execute different code,
-or they can all share code. In our case though, we just have one command.</p>
+<p>As this Plugin illustrates, we can supply multiple menu items, and each one can execute a different command.</p>
 <pre><code class="lang-json">{
   <span class="hljs-attr">"author"</span> : <span class="hljs-string">"Johnnie Walker"</span>,
   <span class="hljs-attr">"commands"</span> : [
@@ -111,7 +110,6 @@ or they can all share code. In our case though, we just have one command.</p>
             <a class="pilcrow" href="#section-2">&#182;</a>
           </div>
           <h2 id="code">Code</h2>
-<h3 id="defining-the-run-handler">Defining The Run Handler</h3>
 
         </div>
         
@@ -124,10 +122,14 @@ or they can all share code. In our case though, we just have one command.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-3">&#182;</a>
           </div>
-          <p>In the manifest, we told Sketch that every time the “Bundled Resources Example” menu is selected,
-we want to execute a javascript handler called <code>onRun</code> in the <code>resources.js</code> file.</p>
+          <h3 id="some-utilities">Some Utilities</h3>
+<p>First up, we want to define a few utility functions to help us in implementing the plugin commands.</p>
+<p>The first of these takes a container, a list of line fragments, and an action function which it applies to each fragment.</p>
 
         </div>
+        
+        <div class="content"><div class='highlight'><pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processFragments</span>(<span class="hljs-params">sketch, container, fragments, action</span>) </span>{</pre></div></div>
         
       </li>
       
@@ -138,142 +140,146 @@ we want to execute a javascript handler called <code>onRun</code> in the <code>r
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-4">&#182;</a>
           </div>
+          <p>First move the container to the back of the document.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>    container.moveToBack()</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-5">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>Iterate through each fragment, executing the action.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> fragments) {
+      action(sketch, container, fragments[i], i)
+    }</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-6">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <p>Adjust the container to enclose any new layers we’ve placed in it.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>    container.adjustToFit()
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addBaselines</span>(<span class="hljs-params">sketch, layer, fragments</span>) </span>{
+    <span class="hljs-keyword">var</span> container = layer.container.newGroup({<span class="hljs-string">"name"</span> : <span class="hljs-string">"Baselines"</span>})
+    processFragments(sketch, container, fragments, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, group, fragment, index</span>) </span>{
+        <span class="hljs-keyword">var</span> rect = layer.localRectToParentRect(fragment.rect)
+        rect.y += rect.height - fragment.baselineOffset
+        rect.height = <span class="hljs-number">0.5</span>
+        group.newShape({<span class="hljs-string">"frame"</span>: rect, fills: [<span class="hljs-string">"#ff000090"</span>], borders: []})
+    })
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addLineFragments</span>(<span class="hljs-params">sketch, layer, fragments</span>) </span>{
+    <span class="hljs-keyword">var</span> container = layer.container.newGroup({<span class="hljs-string">"name"</span> : <span class="hljs-string">"Line Fragments"</span>})
+    processFragments(sketch, container, fragments, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, group, fragment, index</span>) </span>{
+        <span class="hljs-keyword">var</span> color = ( index &amp; <span class="hljs-number">1</span> ) ? <span class="hljs-string">"#00ff00ff"</span> : <span class="hljs-string">"#00fff0044"</span>
+        <span class="hljs-keyword">var</span> localRect = layer.localRectToParentRect(fragment.rect)
+        <span class="hljs-keyword">var</span> line = group.newShape({<span class="hljs-string">"frame"</span>: localRect, fills: [color], borders: []})
+    })
+}</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-7">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <h3 id="defining-the-run-handler">Defining The Run Handler</h3>
+
+        </div>
+        
+      </li>
+      
+      
+      <li id="section-8">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>In the manifest, we told Sketch that every time the “Bundled Resources Example” menu is selected,
+we want to execute a javascript handler called <code>onRun</code> in the <code>resources.js</code> file.</p>
+
+        </div>
+        
+      </li>
+      
+      
+      <li id="section-9">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
           <p>So now we need to put some code into the <code>resources.js</code> file to implement that command.</p>
 
         </div>
         
         <div class="content"><div class='highlight'><pre>
-
-
-<span class="hljs-keyword">var</span> fillInRect = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">container, rect, color</span>) </span>{
-  <span class="hljs-keyword">if</span> (! color) {
-    color = [MSColor colorWithRed:<span class="hljs-number">1.0</span> green:<span class="hljs-number">0.0</span> blue:<span class="hljs-number">0.0</span> alpha:<span class="hljs-number">0.6</span>];
-  }
-  <span class="hljs-keyword">var</span> containerRect = container.pageRectToLocalRect(rect);
-  <span class="hljs-keyword">var</span> line = container.newShape({<span class="hljs-string">"frame"</span>: containerRect, <span class="hljs-string">"color"</span>: color});
-  line.style.fillEnabled = <span class="hljs-literal">true</span>
-  line.style.borderEnabled = <span class="hljs-literal">false</span>
-  <span class="hljs-keyword">var</span> style = line._object.style();
-  <span class="hljs-keyword">return</span> line;
-}
-
-
-<span class="hljs-keyword">var</span> getLineFragments = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
-  <span class="hljs-keyword">var</span> textLayer = layer._object
-  <span class="hljs-keyword">var</span> storage = textLayer.createTextStorage();
-  <span class="hljs-keyword">var</span> layout = storage.layoutManagers().firstObject();
-  <span class="hljs-keyword">var</span> actualCharacterRangePtr = MOPointer.new();
-  <span class="hljs-keyword">var</span> charRange = NSMakeRange(<span class="hljs-number">0</span>, storage.length());
-  <span class="hljs-keyword">var</span> origin = textLayer.rect().origin;
-
-  [layout glyphRangeForCharacterRange:charRange actualCharacterRange:actualCharacterRangePtr];
-  <span class="hljs-keyword">var</span> glyphRange = actualCharacterRangePtr.value();
-
-  <span class="hljs-keyword">var</span> fragments = NSMutableArray.new();
-  <span class="hljs-keyword">var</span> currentLocation = <span class="hljs-number">0</span>;
-  <span class="hljs-keyword">while</span> (currentLocation &lt; NSMaxRange(glyphRange)) {
-    <span class="hljs-keyword">var</span> effectiveRangePtr = MOPointer.new();
-    <span class="hljs-keyword">var</span> rect = [layout lineFragmentRectForGlyphAtIndex:currentLocation effectiveRange:effectiveRangePtr];
-    rect = textLayer.convertRectToAbsoluteCoordinates(rect);
-    <span class="hljs-keyword">var</span> effectiveRange = effectiveRangePtr.value();
-    <span class="hljs-keyword">var</span> baselineOffset = [[layout typesetter] baselineOffsetInLayoutManager:layout glyphIndex:currentLocation];
-    fragments.addObject({<span class="hljs-string">"rect"</span>: rect, <span class="hljs-string">"baselineOffset"</span>: baselineOffset, range: effectiveRange});
-    currentLocation = NSMaxRange(effectiveRange)+<span class="hljs-number">1</span>;
-  }
-
-  <span class="hljs-keyword">return</span> fragments;
-}
-
-
-<span class="hljs-keyword">var</span> processFragments = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, container, fragments, title, action</span>) </span>{
-    <span class="hljs-keyword">var</span> group = container.newGroup({<span class="hljs-string">"name"</span>: title });
-    group.moveToBack();
-
-    <span class="hljs-keyword">var</span> fragmentCount = fragments.count();
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;fragmentCount; i++) {
-      <span class="hljs-keyword">var</span> fragment = fragments[i];
-      action(sketch, group, fragment, i);
-    }
-
-    group.adjustToFit();
-}
-
-<span class="hljs-keyword">var</span> addBaselines = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, container, fragments</span>) </span>{
-    processFragments(sketch, container, fragments, <span class="hljs-string">"Baselines"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, group, fragment, index</span>) </span>{
-        <span class="hljs-keyword">var</span> rect = fragment.rect;
-        <span class="hljs-keyword">var</span> baselineOffset = fragment.baselineOffset;
-        <span class="hljs-keyword">var</span> baselineRect = sketch.rectangle(
-          NSMinX(rect),
-          NSMaxY(rect)-baselineOffset,
-          NSWidth(rect),
-          <span class="hljs-number">0.5</span>
-        );
-        fillInRect(group, baselineRect);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onAddLineFragments</span>(<span class="hljs-params">context</span>) </span>{
+    <span class="hljs-keyword">var</span> sketch = context.api()
+    sketch.selectedDocument.selectedLayers.iterateWithFilter(<span class="hljs-string">"isText"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+        addLineFragments(sketch, layer, layer.fragments)
     })
 }
 
 
-<span class="hljs-keyword">var</span> addLineFragments = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, container, fragments</span>) </span>{
-    processFragments(sketch, container, fragments, <span class="hljs-string">"Line Fragments"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, group, fragment, index</span>) </span>{
-        <span class="hljs-keyword">var</span> rect = fragment.rect;
-        <span class="hljs-keyword">var</span> fragmentRect = sketch.rectangle(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
-        <span class="hljs-keyword">var</span> alpha = ( index &amp; <span class="hljs-number">1</span> ) ? <span class="hljs-number">0.1</span> : <span class="hljs-number">0.25</span>;
-        <span class="hljs-keyword">var</span> color = [MSColor colorWithRed:<span class="hljs-number">0.0</span> green:<span class="hljs-number">1.0</span> blue:<span class="hljs-number">0.0</span> alpha:alpha];
-        fillInRect(group, fragmentRect, color);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onAddBaselines</span>(<span class="hljs-params">context</span>) </span>{
+    <span class="hljs-keyword">var</span> sketch = context.api()
+    sketch.selectedDocument.selectedLayers.iterateWithFilter(<span class="hljs-string">"isText"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+        addBaselines(sketch, layer, layer.fragments)
     })
 }
 
 
-<span class="hljs-keyword">var</span> setTypeSetterMode = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context, lineSpacingBehaviour</span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onAddBoth</span>(<span class="hljs-params">context</span>) </span>{
     <span class="hljs-keyword">var</span> sketch = context.api()
-    sketch.selectedDocument.selectedLayers.iterate(filter = <span class="hljs-string">"isText"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
-        <span class="hljs-keyword">var</span> textLayer = layer._object;
-        <span class="hljs-keyword">var</span> initialBaselineOffset = textLayer.firstBaselineOffset();
-        textLayer.lineSpacingBehaviour = lineSpacingBehaviour;
-        <span class="hljs-keyword">var</span> baselineOffset = textLayer.firstBaselineOffset();
-
-        <span class="hljs-keyword">var</span> rect = layer.frame;
-        rect.y -= (baselineOffset - initialBaselineOffset);
-        layer.frame = rect;
-        sketch.log(<span class="hljs-string">"Set spacing mode for '"</span> + layer.name + <span class="hljs-string">"' to "</span> + lineSpacingBehaviour)
+    sketch.selectedDocument.selectedLayers.iterateWithFilter(<span class="hljs-string">"isText"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+        <span class="hljs-keyword">var</span> lineFragments = layer.fragments
+        addBaselines(sketch, layer, lineFragments)
+        addLineFragments(sketch, layer, lineFragments)
     })
 }
 
 
-
-<span class="hljs-keyword">var</span> onAddLineFragments = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
-    <span class="hljs-keyword">var</span> sketch = context.api()
-    sketch.selectedDocument.selectedLayers.iterate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
-        <span class="hljs-keyword">var</span> lineFragments = getLineFragments(layer);
-        addLineFragments(sketch, layer.container, lineFragments);
-    }, <span class="hljs-string">"isText"</span>)
-};
-
-<span class="hljs-keyword">var</span> onAddBaselines = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
-    <span class="hljs-keyword">var</span> sketch = context.api()
-    sketch.selectedDocument.selectedLayers.iterate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
-        <span class="hljs-keyword">var</span> lineFragments = getLineFragments(layer);
-        addBaselines(sketch, layer.container, lineFragments);
-    }, <span class="hljs-string">"isText"</span>)
-};
-
-<span class="hljs-keyword">var</span> onAddBoth = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
-    <span class="hljs-keyword">var</span> sketch = context.api()
-    sketch.selectedDocument.selectedLayers.iterate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
-        <span class="hljs-keyword">var</span> lineFragments = getLineFragments(layer);
-        <span class="hljs-keyword">var</span> container = layer.container;
-        addBaselines(sketch, container, lineFragments);
-        addLineFragments(sketch, container, lineFragments);
-    }, <span class="hljs-string">"isText"</span>)
-};
-
-
-<span class="hljs-keyword">var</span> onUseLegacyBaselines = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
-    setTypeSetterMode(context, <span class="hljs-number">1</span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onUseLegacyBaselines</span>(<span class="hljs-params">context</span>) </span>{
+  <span class="hljs-keyword">var</span> sketch = context.api()
+  sketch.selectedDocument.selectedLayers.iterateWithFilter(<span class="hljs-string">"isText"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+    layer.useConstantBaselines = <span class="hljs-literal">false</span>
+  })
 }
 
-<span class="hljs-keyword">var</span> onUseConstantBaselines = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>) </span>{
-    setTypeSetterMode(context, <span class="hljs-number">2</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onUseConstantBaselines</span>(<span class="hljs-params">context</span>) </span>{
+  <span class="hljs-keyword">var</span> sketch = context.api()
+  sketch.selectedDocument.selectedLayers.iterateWithFilter(<span class="hljs-string">"isText"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+    layer.useConstantBaselines = <span class="hljs-literal">true</span>
+  })
 }</pre></div></div>
         
       </li>
