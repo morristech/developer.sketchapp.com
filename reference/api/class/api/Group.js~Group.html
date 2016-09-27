@@ -43,13 +43,13 @@ title: Group | API Document
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Group} from &apos;<span><a href="/reference/api/file/api/Group.js.html#lineNumber14">./api/Group.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Group} from &apos;<span><a href="/reference/api/file/api/Group.js.html#lineNumber16">./api/Group.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="/reference/api/file/api/Group.js.html#lineNumber14">source</a></span></span>
+  <span data-ice="source">| <span><a href="/reference/api/file/api/Group.js.html#lineNumber16">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -97,13 +97,14 @@ title: Group | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>*</span></span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>dictionary</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Return a list of tests to run for this class.</p>
+</div>
       </div>
     </td>
     <td>
@@ -129,7 +130,7 @@ title: Group | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(group: <span>*</span>, document: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(group: <span>MSLayerGroup</span>, document: <span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span>)</span>
         </p>
       </div>
       <div>
@@ -267,7 +268,7 @@ title: Group | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-method-pageRectToLocalRect">pageRectToLocalRect</a></span></span><span data-ice="signature">(rect: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-method-pageRectToLocalRect">pageRectToLocalRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
         </p>
       </div>
       <div>
@@ -386,13 +387,14 @@ title: Group | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>*</span></span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>dictionary</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Return a list of tests to run for this class.</p>
+</div>
       </div>
     </td>
     <td>
@@ -1094,18 +1096,19 @@ and sets it up using the supplied properties.</p>
     
     
     
-    <span data-ice="name">tests</span><span data-ice="signature">(): <span>*</span></span>
+    <span data-ice="name">tests</span><span data-ice="signature">(): <span>dictionary</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber89">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber108">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Return a list of tests to run for this class.</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="/reference/api/class/api/Layer.js~Layer.html#static-method-tests">Layer#tests</a></span></div>
 
@@ -1116,8 +1119,9 @@ and sets it up using the supplied properties.</p>
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span>dictionary</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -1147,11 +1151,11 @@ and sets it up using the supplied properties.</p>
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(group: <span>*</span>, document: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(group: <span>MSLayerGroup</span>, document: <span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber23">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber26">source</a></span></span>
     </span>
   </h3>
 
@@ -1173,14 +1177,14 @@ and sets it up using the supplied properties.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">group</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span>MSLayerGroup</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>{MSLayerGroup} The underlying model object from Sketch.</p>
+      <td data-ice="description"><p>The underlying model object from Sketch.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">document</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>The document that the group belongs to.</p>
 </td>
@@ -1220,7 +1224,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber85">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber97">source</a></span></span>
     </span>
   </h3>
 
@@ -1261,7 +1265,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -1314,7 +1318,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber53">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber59">source</a></span></span>
     </span>
   </h3>
 
@@ -1374,7 +1378,7 @@ invoked - which will be an object representing the sub-layer.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber67">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber74">source</a></span></span>
     </span>
   </h3>
 
@@ -1437,11 +1441,11 @@ invoked - which will be an object representing the sub-layer.</p>
     
     
     
-    <span data-ice="name">pageRectToLocalRect</span><span data-ice="signature">(rect: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">pageRectToLocalRect</span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber76">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber87">source</a></span></span>
     </span>
   </h3>
 
@@ -1463,9 +1467,10 @@ invoked - which will be an object representing the sub-layer.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">rect</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The rectangle to convert.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1476,8 +1481,9 @@ invoked - which will be an object representing the sub-layer.</p>
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The rectangle in local coordinates.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">

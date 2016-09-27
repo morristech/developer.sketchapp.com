@@ -763,13 +763,13 @@ window.esdocSearchIndex = [
   ],
   [
     "api/layer.js~layer#frame",
-    "class/api/Layer.js~Layer.html#instance-get-frame",
+    "class/api/Layer.js~Layer.html#instance-set-frame",
     "api/Layer.js~Layer#frame",
     "member"
   ],
   [
     "api/layer.js~layer#frame",
-    "class/api/Layer.js~Layer.html#instance-set-frame",
+    "class/api/Layer.js~Layer.html#instance-get-frame",
     "api/Layer.js~Layer#frame",
     "member"
   ],
@@ -847,13 +847,13 @@ window.esdocSearchIndex = [
   ],
   [
     "api/layer.js~layer#name",
-    "class/api/Layer.js~Layer.html#instance-get-name",
+    "class/api/Layer.js~Layer.html#instance-set-name",
     "api/Layer.js~Layer#name",
     "member"
   ],
   [
     "api/layer.js~layer#name",
-    "class/api/Layer.js~Layer.html#instance-set-name",
+    "class/api/Layer.js~Layer.html#instance-get-name",
     "api/Layer.js~Layer#name",
     "member"
   ],
@@ -1057,13 +1057,13 @@ window.esdocSearchIndex = [
   ],
   [
     "api/shape.js~shape#style",
-    "class/api/Shape.js~Shape.html#instance-set-style",
+    "class/api/Shape.js~Shape.html#instance-get-style",
     "api/Shape.js~Shape#style",
     "member"
   ],
   [
     "api/shape.js~shape#style",
-    "class/api/Shape.js~Shape.html#instance-get-style",
+    "class/api/Shape.js~Shape.html#instance-set-style",
     "api/Shape.js~Shape#style",
     "member"
   ],
@@ -1080,18 +1080,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "api/style.js~style#borderenabled",
-    "class/api/Style.js~Style.html#instance-get-borderEnabled",
-    "api/Style.js~Style#borderEnabled",
-    "member"
-  ],
-  [
-    "api/style.js~style#borderenabled",
-    "class/api/Style.js~Style.html#instance-set-borderEnabled",
-    "api/Style.js~Style#borderEnabled",
-    "member"
-  ],
-  [
     "api/style.js~style#borders",
     "class/api/Style.js~Style.html#instance-set-borders",
     "api/Style.js~Style#borders",
@@ -1102,18 +1090,6 @@ window.esdocSearchIndex = [
     "class/api/Style.js~Style.html#instance-constructor-constructor",
     "api/Style.js~Style#constructor",
     "method"
-  ],
-  [
-    "api/style.js~style#fillenabled",
-    "class/api/Style.js~Style.html#instance-get-fillEnabled",
-    "api/Style.js~Style#fillEnabled",
-    "member"
-  ],
-  [
-    "api/style.js~style#fillenabled",
-    "class/api/Style.js~Style.html#instance-set-fillEnabled",
-    "api/Style.js~Style#fillEnabled",
-    "member"
   ],
   [
     "api/style.js~style#fills",
