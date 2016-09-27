@@ -124,6 +124,7 @@ as well as giving some general information about the Plugin such as its name, au
           </div>
           <h3 id="some-utilities">Some Utilities</h3>
 <p>First up, we want to define a few utility functions to help us in implementing the plugin commands.</p>
+<h4 id="processing-fragments">Processing Fragments</h4>
 <p>The first of these takes a container, a list of line fragments, and an action function which it applies to each fragment.</p>
 
         </div>
@@ -140,7 +141,7 @@ as well as giving some general information about the Plugin such as its name, au
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-4">&#182;</a>
           </div>
-          <p>First move the container to the back of the document.</p>
+          <p>We first move the container to the back of the document.</p>
 
         </div>
         
@@ -155,7 +156,7 @@ as well as giving some general information about the Plugin such as its name, au
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-5">&#182;</a>
           </div>
-          <p>Iterate through each fragment, executing the action.</p>
+          <p>Then iterate through each fragment, executing the action.</p>
 
         </div>
         
@@ -172,21 +173,94 @@ as well as giving some general information about the Plugin such as its name, au
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-6">&#182;</a>
           </div>
-          <p>Adjust the container to enclose any new layers we’ve placed in it.</p>
+          <p>Finally, we adjust the container to enclose any new layers we’ve placed in it.</p>
 
         </div>
         
         <div class="content"><div class='highlight'><pre>    container.adjustToFit()
-}
+}</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-7">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <h4 id="adding-baselines">Adding Baselines</h4>
+<p>Given a text layer and a list of its baselines, we want to be able to add a
+group at the same location and make new rectangles in the group to represent
+the baseline of each line of text.</p>
 
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addBaselines</span>(<span class="hljs-params">sketch, layer, fragments</span>) </span>{</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-8">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>First we make a new group to contain our baseline layers</p>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addBaselines</span>(<span class="hljs-params">sketch, layer, fragments</span>) </span>{
-    <span class="hljs-keyword">var</span> container = layer.container.newGroup({<span class="hljs-string">"name"</span> : <span class="hljs-string">"Baselines"</span>})
-    processFragments(sketch, container, fragments, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, group, fragment, index</span>) </span>{
-        <span class="hljs-keyword">var</span> rect = layer.localRectToParentRect(fragment.rect)
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> container = layer.container.newGroup({<span class="hljs-string">"name"</span> : <span class="hljs-string">"Baselines"</span>})</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-9">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <p>The we process each fragment in turn</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>    processFragments(sketch, container, fragments, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sketch, group, fragment, index</span>) </span>{</pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-10">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
+          <p>We make a rectangle that’s just 0.5 pixels high, positioned to match
+the location of the baseline</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> rect = layer.localRectToParentRect(fragment.rect)
         rect.y += rect.height - fragment.baselineOffset
-        rect.height = <span class="hljs-number">0.5</span>
-        group.newShape({<span class="hljs-string">"frame"</span>: rect, fills: [<span class="hljs-string">"#ff000090"</span>], borders: []})
+        rect.height = <span class="hljs-number">0.5</span></pre></div></div>
+        
+      </li>
+      
+      
+      <li id="section-11">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-11">&#182;</a>
+          </div>
+          <p>We make a new shape layer with this rectangle.</p>
+
+        </div>
+        
+        <div class="content"><div class='highlight'><pre>        group.newShape({<span class="hljs-string">"frame"</span>: rect, fills: [<span class="hljs-string">"#ff000090"</span>], borders: []})
     })
 }
 
@@ -203,11 +277,11 @@ as well as giving some general information about the Plugin such as its name, au
       </li>
       
       
-      <li id="section-7">
+      <li id="section-12">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-7">&#182;</a>
+            <a class="pilcrow" href="#section-12">&#182;</a>
           </div>
           <h3 id="defining-the-run-handler">Defining The Run Handler</h3>
 
@@ -216,11 +290,11 @@ as well as giving some general information about the Plugin such as its name, au
       </li>
       
       
-      <li id="section-8">
+      <li id="section-13">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-8">&#182;</a>
+            <a class="pilcrow" href="#section-13">&#182;</a>
           </div>
           <p>In the manifest, we told Sketch that every time the “Bundled Resources Example” menu is selected,
 we want to execute a javascript handler called <code>onRun</code> in the <code>resources.js</code> file.</p>
@@ -230,11 +304,11 @@ we want to execute a javascript handler called <code>onRun</code> in the <code>r
       </li>
       
       
-      <li id="section-9">
+      <li id="section-14">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-9">&#182;</a>
+            <a class="pilcrow" href="#section-14">&#182;</a>
           </div>
           <p>So now we need to put some code into the <code>resources.js</code> file to implement that command.</p>
 
