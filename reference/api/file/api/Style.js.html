@@ -1,6 +1,6 @@
 ---
 layout: api-page
-title: api/API.js | API Document
+title: api/Style.js | API Document
 ---
 
 
@@ -42,42 +42,110 @@ title: api/API.js | API Document
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">api/API.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">api/Style.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
-// ## Sketch API.
+// # Style.js
+// # Sketch Javascript API.
 //
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-import { Application } from &apos;./Application.js&apos;
-
+import { WrappedObject } from &apos;./WrappedObject.js&apos;
 
 /**
-    Return a function that captures the context.
-    When called, this function will initialise the API
-    and return an Application object that provides access
-    to all API functions.
-
-    We do it like this to defer having to perform a lot
-    of setup until context.api() is actually called -- thus
-    scripts which don&apos;t call it at all suffer minimal overhead.
+  Represents a Sketch layer style.
  */
 
-function SketchAPIWithCapturedContext(context) {
-    return (function() {
+const BCFillTypeColor    = 0
+const BCFillTypeGradient = 1
+const BCFillTypePattern  = 4
+const BCFillTypeNoise    = 5
 
-      // The Application object effectively *is* the api -- all other
-      // functions and objects can be accessed via it.
+export class Style extends WrappedObject {
 
-      return new Application(context)
-    });
+    /**
+      Make a new style object.
+
+      @param {MSStyle} style The underlying model object from Sketch.
+    */
+
+    constructor(style) {
+      if (!style) {
+        style = MSDefaultStyle.defaultStyle()
+      }
+
+      super(style)
+    }
+
+
+    get fillEnabled() {
+        return this.sketchObject.fill().enabled
+    }
+
+    set fillEnabled(value) {
+      var fill = this.sketchObject.fill()
+      if (fill) {
+        fill.enabled = value
+      }
+    }
+
+    get borderEnabled() {
+        return this.sketchObject.border().enabled
+    }
+
+    set borderEnabled(value) {
+      var border = this.sketchObject.border()
+      if (border) {
+        border.enabled = value
+      }
+    }
+
+    set borders(value) {
+      var objects = []
+      for (var b in value) {
+        var color = MSColor.colorWithSVGString_(value[b])
+        var border = MSStyleBorder.new()
+        border.setColor_(color)
+        border.setFillType_(BCFillTypeColor)
+        border.enabled = true
+
+        objects.push(border)
+      }
+      this.sketchObject.setBorders_(objects)
+    }
+
+    set fills(value) {
+      var objects = []
+      for (var b in value) {
+        var color = MSColor.colorWithSVGString_(value[b])
+        var fill = MSStyleFill.new()
+        fill.setColor_(color)
+        fill.setFillType_(BCFillTypeColor)
+        fill.enabled = true
+
+        objects.push(fill)
+      }
+      this.sketchObject.setFills_(objects)
+    }
+
+    /**
+     Return a list of tests to run for this class.
+
+     @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+     */
+
+
+    static tests() {
+        return {
+            &quot;tests&quot; : {
+                &quot;test something&quot; : function(tester) {
+                    tester.assert(true);
+                },
+            }
+        };
+    }
+
 }
-
-// HACK: expose the SketchAPIWithCapturedContext function globally
-// I suspect that there&apos;s a better way to do this, but I&apos;ve
-// not yet figured it out.
-
-__globals.SketchAPIWithCapturedContext = SketchAPIWithCapturedContext
 </code></pre>
 
 </div>
