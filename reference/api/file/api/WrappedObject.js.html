@@ -86,7 +86,7 @@ export class WrappedObject {
     */
 
     get id() {
-      return this._object._objectID();
+      return this._object.objectID();
     }
 
 
@@ -99,9 +99,18 @@ export class WrappedObject {
     static tests() {
         return {
             &quot;tests&quot; : {
-                &quot;test something&quot; : function(tester) {
-                    tester.assert(true);
+                &quot;testSketchObject&quot; : function(tester) {
+                    var object = MSLayer.new()
+                    var wrapped = new WrappedObject(object)
+                    tester.assertEqual(wrapped.sketchObject, object);
                 },
+
+                &quot;testID&quot; : function(tester) {
+                    var object = MSLayer.new()
+                    var wrapped = new WrappedObject(object)
+                    tester.assertEqual(wrapped.id, object.objectID());
+                },
+
             }
         };
     }

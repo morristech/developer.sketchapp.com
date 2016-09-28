@@ -50,13 +50,14 @@ title: api/Page.js | API Document
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-import { Layer } from &apos;./Layer.js&apos;
+import { Group } from &apos;./Group.js&apos;
+import { Selection } from &apos;./Selection.js&apos;
 
 /**
   Represents a Page in a Sketch document.
  */
 
-export class Page extends Layer {
+export class Page extends Group {
 
   /**
     Make a new page object.
@@ -70,6 +71,17 @@ export class Page extends Layer {
     this._document = document
   }
 
+
+  /**
+  The layers that the user has selected.
+
+  @return {Selection} A selection object representing the layers that the user has selected.
+  */
+
+  get selectedLayers() {
+    return new Selection(this);
+  }
+
   /**
       Is this a page?
 
@@ -81,6 +93,18 @@ export class Page extends Layer {
   get isPage() {
     return true;
   }
+
+
+  /**
+  The layers that the user has selected.
+
+  @return {Selection} A selection object representing the layers that the user has selected.
+  */
+
+  get selectedLayers() {
+    return new Selection(this);
+  }
+
 
   /**
       Returns a newly created artboard, which has been added to this page,
@@ -105,9 +129,26 @@ export class Page extends Layer {
     static tests() {
         return {
             &quot;tests&quot; : {
-                &quot;test something&quot; : function(tester) {
-                    tester.assert(true);
-                },
+              &quot;testSelectedLayers&quot; : function(tester) {
+                var document = tester.newTestDocument()
+                var selection = document.selectedLayers
+                tester.assert(selection.isEmpty, &quot;should have an empty selection&quot;)
+
+                var page = document.selectedPage
+                var group = page.newGroup({ &apos;name&apos;: &quot;Test&quot;})
+                group.select()
+
+                tester.assert(!selection.isEmpty, &quot;should no longer have an empty selection&quot;)
+              },
+
+              &quot;testLayerWithID&quot; : function(tester) {
+                var document = tester.newTestDocument()
+                var page = document.selectedPage
+                var group = page.newGroup({ &apos;name&apos;: &quot;Test&quot;})
+                var id = group.id
+                var found = document.layerWithID(id)
+                tester.assertEqual(group.sketchObject, found.sketchObject)
+              }
             }
         };
     }

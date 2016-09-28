@@ -81,9 +81,7 @@ export class Group extends Layer {
   @return {bool} true for instances of Group, false for any other layer type.
   */
 
-  is_group() {
-    return true;
-  }
+  get isGroup() { return true; }
 
 
   /**
@@ -102,7 +100,7 @@ export class Group extends Layer {
   */
 
   iterate(block) {
-    var layers = this._object().layers()
+    var layers = this._object.layers()
     this._document.iterateWithNativeLayers(layers, null, block)
   }
 
@@ -117,7 +115,7 @@ export class Group extends Layer {
   */
 
   iterateWithFilter(filter, block) {
-    var layers = this._object().layers()
+    var layers = this._object.layers()
     this._document.iterateWithNativeLayers(layers, filter, block)
   }
 
@@ -153,9 +151,44 @@ export class Group extends Layer {
   static tests() {
     return {
       &quot;tests&quot; : {
-        &quot;test something&quot; : function(tester) {
-          tester.assert(true);
+        &quot;testIterate&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup()
+          var text = page.newText()
+
+          var iterations = 0
+          var groups = 0
+          page.iterate(function(layer) {
+            iterations++
+            if (layer.sketchObject == group.sketchObject) groups++
+          })
+          tester.assertEqual(iterations, 2)
+          tester.assertEqual(groups, 1)
         },
+
+        &quot;testIterateWithFilter&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup()
+          var text = page.newText()
+
+          var iterations = 0
+          var groups = 0
+          page.iterateWithFilter(&quot;isGroup&quot;, function(layer) {
+            iterations++
+            if (layer.sketchObject == group.sketchObject) groups++
+          })
+          tester.assertEqual(iterations, 1)
+          tester.assertEqual(groups, 1)
+        },
+
+        &quot;testPageToLocalRect&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup({&quot;frame&quot; : new Rectangle(100, 100, 100, 100)})
+
+        }
       }
     };
   }

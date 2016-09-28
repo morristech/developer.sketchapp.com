@@ -63,13 +63,26 @@ export class Selection extends WrappedObject {
     /**
       Make a new Selection object.
 
-      @param {Document} document The document that the selection relates to.
+      @param {Page} page The page that the selection relates to.
     */
 
-    constructor(document) {
-      super(document._object)
-      this._document = document
+    constructor(page) {
+      super(page._object)
+      this._page = page
     }
+
+    /**
+      Return the native Sketch layers in the selection.
+
+      @return {array} The selected layers.
+      */
+
+    get nativeLayers() {
+      var layers = this._object.selectedLayers().layers();
+      return layers
+    }
+
+
 
     /**
         Does the selection contain any layers?
@@ -78,8 +91,9 @@ export class Selection extends WrappedObject {
     */
 
     get isEmpty() {
-        return (this._object.selectedLayers().count() == 0);
+        return (this.nativeLayers.count() == 0);
     }
+
 
     /**
         Perform an action once for each layer in the selection, then clear it.
@@ -88,9 +102,9 @@ export class Selection extends WrappedObject {
     */
 
     iterateThenClear(block) {
-      var layers = this._object.selectedLayers();
+      var layers = this.nativeLayers
       this.clear();
-      this._document.iterateWithNativeLayers(layers, null, block);
+      this._page._document.iterateWithNativeLayers(layers, null, block);
     }
 
     /**
@@ -101,9 +115,9 @@ export class Selection extends WrappedObject {
     */
 
     iterateWithFilterThenClear(filter, block) {
-      var layers = this._object.selectedLayers();
+      var layers = this.nativeLayers
       this.clear();
-      this._document.iterateWithNativeLayers(layers, filter, block);
+      this._page._document.iterateWithNativeLayers(layers, filter, block);
     }
 
     /**
@@ -113,8 +127,7 @@ export class Selection extends WrappedObject {
     */
 
     iterate(block) {
-      var layers = this._object.selectedLayers();
-      this._document.iterateWithNativeLayers(layers, null, block);
+      this._page._document.iterateWithNativeLayers(this.nativeLayers, null, block);
     }
 
     /**
@@ -125,8 +138,7 @@ export class Selection extends WrappedObject {
     */
 
     iterateWithFilter(filter, block) {
-      var layers = this._object.selectedLayers();
-      this._document.iterateWithNativeLayers(layers, filter, block);
+      this._page._document.iterateWithNativeLayers(this.nativeLayers, filter, block);
     }
 
 
@@ -135,7 +147,7 @@ export class Selection extends WrappedObject {
     */
 
     clear() {
-      this._object.currentPage().deselectAllLayers();
+      this._page.sketchObject.deselectAllLayers();
     }
 
 
@@ -149,9 +161,86 @@ export class Selection extends WrappedObject {
     static tests() {
         return {
             &quot;tests&quot; : {
-                &quot;test something&quot; : function(tester) {
-                    tester.assert(true);
-                },
+              &quot;testEmpty&quot; : function(tester) {
+                var document = tester.newTestDocument()
+                tester.assert(document.selectedLayers.isEmpty, &quot;selection should be empty&quot;)
+              },
+
+              &quot;testClear&quot; : function(tester) {
+                var document = tester.newTestDocument()
+                var group = document.selectedPage.newGroup()
+                group.select()
+                var selection = document.selectedLayers
+                tester.assert(!selection.isEmpty, &quot;selection should not be empty&quot;)
+                selection.clear()
+                tester.assert(selection.isEmpty, &quot;selection should be empty&quot;)
+              },
+
+              &quot;testIterate&quot; : function(tester) {
+                var document = tester.newTestDocument()
+                var group = document.selectedPage.newGroup()
+                var text = document.selectedPage.newText()
+                text.select()
+                group.addToSelection()
+                var selection = document.selectedLayers
+
+                var iterations = 0
+                var groups = 0
+                selection.iterate(function(layer) {
+                  iterations++
+                  if (layer.sketchObject == group.sketchObject) groups++
+                })
+                tester.assertEqual(iterations, 2)
+                tester.assertEqual(groups, 1)
+              },
+
+              &quot;testIterateWithFilter&quot; : function(tester) {
+                var document = tester.newTestDocument()
+                var group = document.selectedPage.newGroup()
+                var text = document.selectedPage.newText()
+                text.select()
+                group.addToSelection()
+                var selection = document.selectedLayers
+
+                var iterations = 0
+                var groups = 0
+                selection.iterateWithFilter(&quot;isGroup&quot;, function(layer) {
+                  iterations++
+                  if (layer.sketchObject == group.sketchObject) groups++
+                })
+                tester.assertEqual(iterations, 1)
+                tester.assertEqual(groups, 1)
+              },
+
+              &quot;testIterateThenClear&quot; : function(tester) {
+                var document = tester.newTestDocument()
+                var group = document.selectedPage.newGroup()
+                group.select()
+                var selection = document.selectedLayers
+
+                var iterations = 0
+                tester.assert(!selection.isEmpty, &quot;selection should not be empty&quot;)
+                selection.iterateThenClear(function(layer) {
+                  iterations++
+                })
+                tester.assertEqual(iterations, 1)
+                tester.assert(selection.isEmpty, &quot;selection should be empty&quot;)
+              },
+
+              &quot;testIterateWithFilterThenClear&quot; : function(tester) {
+                var document = tester.newTestDocument()
+                var group = document.selectedPage.newGroup()
+                group.select()
+                var selection = document.selectedLayers
+
+                var iterations = 0
+                tester.assert(!selection.isEmpty, &quot;selection should not be empty&quot;)
+                selection.iterateWithFilterThenClear(&quot;isText&quot;, function(layer) {
+                  iterations++
+                })
+                tester.assertEqual(iterations, 0)
+                tester.assert(selection.isEmpty, &quot;selection should be empty&quot;)
+              },
             }
         };
     }
