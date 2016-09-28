@@ -52,7 +52,6 @@ title: api/Layer.js | API Document
 
 import { WrappedObject } from &apos;./WrappedObject.js&apos;
 import { Rectangle } from &apos;./Rectangle.js&apos;
-import { Style } from &apos;./Style.js&apos;
 
 /**
 Represents a Sketch layer.
@@ -120,17 +119,6 @@ export class Layer extends WrappedObject {
   }
 
   /**
-  Duplicate this layer.
-  A new identical layer will be inserted into the parent of this layer.
-
-  @return {Layer} A new layer identical to this one.
-  */
-
-  duplicate() {
-    return self._document.wrapObject(this._object.duplicate());
-  }
-
-  /**
   Is this a page?
 
   All Layer objects respond to this method, but only pages return true.
@@ -190,138 +178,19 @@ export class Layer extends WrappedObject {
 
   get isImage() { return false; }
 
-  /**
-  Add a new wrapped layer object to represent a Sketch layer.
-  Apply any supplied properties to the wrapper (which will apply
-  them in turn to the wrapped layer).
-
-  @param {MSLayer} newLayer The underlying Sketch layer object.
-  @param {dictionary} properties The properties to apply.
-  @param {string} wrapper The name of wrapper class to use.
-  @return {Layer} The wrapped layer object.
-  */
-
-  _addWrappedLayerWithProperties(newLayer, properties, wrapper) {
-    if (newLayer) {
-      // add the Sketch object to this layer
-      var layer = this._object
-      layer.addLayers_(NSArray.arrayWithObject_(newLayer))
-
-      // make a Javascript wrapper object for the new layer
-      var wrapper = this._document.wrapObject(newLayer)
-
-      // apply properties, via the wrapper
-      for (var p in properties) {
-        wrapper[p] = properties[p]
-      }
-
-      return wrapper
-    }
-  }
-
-  /**
-  Extract the frame to use for a layer from some properties.
-  If the frame wasn&apos;t supplied in the properties, we return a default value instead.
-
-  @param {dictionary} properties The properties to use when looking for a frame value.
-  @return {Rectangle} The frame rectangle to use.
-  */
-
-  _frameForLayerWithProperties(properties) {
-    var frame = properties.frame
-    if (frame) {
-      delete properties[&quot;frame&quot;]
-    } else {
-      frame = new Rectangle(0, 0, 100, 100)
-    }
-    return frame
-  }
-
-  /**
-  Extract the style to use for a layer from some properties.
-  If the style wasn&apos;t supplied at all, we use the default one.
-  */
-
-  _styleForLayerWithProperties(properties) {
-    var style = properties.style
-    if (!style) {
-      style = new Style()
-    }
-
-    var fills = properties.fills
-    if (fills) {
-      delete properties[&quot;fills&quot;]
-      style.fills = fills
-    }
-
-    var borders = properties.borders
-    if (borders) {
-      delete properties[&quot;borders&quot;]
-      style.borders = borders
-    }
-
-    return style
-  }
-
-  /**
-  Returns a newly created shape, which has been added to this layer,
-  and sets it up using the supplied properties.
-
-  @param {dictionary} properties Properties to apply to the shape.
-  @return {Shape} the new shape.
-  */
-
-  newShape(properties = {}) {
-    var frame = this._frameForLayerWithProperties(properties)
-    var newLayer = MSShapeGroup.shapeWithBezierPath_(NSBezierPath.bezierPathWithRect_(frame.asCGRect()));
-    properties[&quot;style&quot;] = this._styleForLayerWithProperties(properties)
-
-    return this._addWrappedLayerWithProperties(newLayer, properties, &quot;Shape&quot;);
-  }
-
-  /**
-  Returns a newly created text layer, which has been added to this layer,
-  and sets it up using the supplied properties.
-
-  @param {dictionary} properties Properties to apply to the text layer.
-  @return {Text} the new text layer.
-  */
-
-  newText(properties = {}) {
-    var frame = this._frameForLayerWithProperties(properties)
-    var newLayer = MSTextLayer.alloc().initWithFrame_(frame.asCGRect());
-    newLayer.adjustFrameToFit();
-    return this._addWrappedLayerWithProperties(newLayer, properties, &quot;Text&quot;);
-  }
-
-  /**
-  Returns a newly created group, which has been added to this layer,
-  and sets it up using the supplied properties.
-
-  @param {dictionary} properties Properties to apply to the group.
-  @return {Group} the new group.
-  */
-
-  newGroup(properties = {}) {
-    var frame = this._frameForLayerWithProperties(properties)
-    var newLayer = MSLayerGroup.alloc().initWithFrame_(frame.asCGRect());
-    return this._addWrappedLayerWithProperties(newLayer, properties, &quot;Group&quot;);
-  }
 
 
   /**
-  Returns a newly created image layer, which has been added to this layer,
-  and sets it up using the supplied properties.
+  Duplicate this layer.
+  A new identical layer will be inserted into the parent of this layer.
 
-  @param {dictionary} properties Properties to apply to the layer.
-  @return {Image} the new image layer.
+  @return {Layer} A new layer identical to this one.
   */
 
-  newImage(properties = {}) {
-    var frame = this._frameForLayerWithProperties(properties)
-    var newLayer = MSBitmapLayer.alloc().initWithFrame_(frame.asCGRect());
-    return this._addWrappedLayerWithProperties(newLayer, properties, &quot;Image&quot;);
+  duplicate() {
+    return this._document.wrapObject(this._object.duplicate());
   }
+
 
   /**
   Remove this layer from its parent.
@@ -334,6 +203,7 @@ export class Layer extends WrappedObject {
     }
   }
 
+
   /**
   Select the layer.
   This will clear the previous selection. Use addToSelection() if you wish
@@ -344,6 +214,7 @@ export class Layer extends WrappedObject {
     this._object.select_byExpandingSelection(true, false);
   }
 
+
   /**
   Deselect this layer.
   Any other layers that were previously selected will remain selected.
@@ -352,6 +223,7 @@ export class Layer extends WrappedObject {
   deselect() {
     this._object.select_byExpandingSelection(false, true);
   }
+
 
   /**
   Add this layer to the selected layers.
@@ -446,9 +318,68 @@ export class Layer extends WrappedObject {
   static tests() {
     return {
       &quot;tests&quot; : {
-        &quot;test something&quot; : function(tester) {
-          tester.assert(true);
+        &quot;testName&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          page.name = &quot;This is a page&quot;
+          tester.assertEqual(page.name, &quot;This is a page&quot;)
+          var group = page.newGroup({&quot;name&quot; : &quot;blah&quot;})
+          tester.assertEqual(group.name, &quot;blah&quot;)
         },
+
+        &quot;testFrame&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var frame = new Rectangle(10, 10, 20, 20)
+          var group = page.newGroup({&quot;frame&quot; : frame})
+          tester.assertEqual(group.frame, frame)
+        },
+
+        &quot;testDuplicate&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup({&quot;name&quot; : &quot;Test&quot;})
+          tester.assertEqual(page.sketchObject.layers().count(), 1)
+          var group2 = group.duplicate()
+          tester.assertEqual(page.sketchObject.layers().count(), 2)
+        },
+
+        &quot;testRemove&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup({&quot;name&quot; : &quot;Test&quot;})
+          tester.assertEqual(page.sketchObject.layers().count(), 1)
+          group.remove()
+          tester.assertEqual(page.sketchObject.layers().count(), 0)
+        },
+
+        &quot;testSelection&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup({&quot;name&quot; : &quot;Test&quot;})
+
+          // start with nothing selected
+          tester.assertTrue(page.selectedLayers.isEmpty)
+
+          // select a layer
+          group.select()
+          tester.assertFalse(page.selectedLayers.isEmpty)
+
+          // deselect it - should go back to nothing selected
+          group.deselect()
+          tester.assertTrue(page.selectedLayers.isEmpty)
+
+          // select one layer then another - only the last should be selected
+          var group2 = page.newGroup({&quot;name&quot; : &quot;Test&quot;})
+          group.select()
+          group2.select()
+          tester.assertEqual(page.selectedLayers.length, 1)
+
+          // add a second layer to the selection - both should be selected
+          group.addToSelection()
+          tester.assertEqual(page.selectedLayers.length, 2)
+        },
+
       }
     };
   }

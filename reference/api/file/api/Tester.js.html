@@ -110,9 +110,50 @@ export class Tester {
     */
 
     assertEqual(v1, v2) {
-        if (v1 != v2) {
-            this._testFailures.push(v1 + &quot; != &quot; + v2)
+      var different = v1 != v2
+
+      // if we&apos;re comparing two objects, try matching them as strings
+      // (crude, and not guaranteed, but it will cover some basic cases)
+      if (different &amp;&amp; (typeof v1 === &apos;object&apos;) &amp;&amp; (typeof v2 === &apos;object&apos;)) {
+        if (v1.compare) {
+          different = v1.compare(v2)
+        } else {
+          different = v1.toString() != v2.toString()
         }
+      }
+
+      if (different) {
+          this._testFailures.push(v1 + &quot; != &quot; + v2)
+      }
+    }
+
+
+    /**
+     Assert that a value is true.
+     If the assertion fails, the failure is recorded for later reporting by the tester.
+
+     @param v The value to check.
+    */
+
+    assertTrue(v) {
+      if (!v) {
+        this._testFailures.push(&quot;expected true, got: &quot; + v)
+      }
+    }
+
+
+
+    /**
+     Assert that a value is false.
+     If the assertion fails, the failure is recorded for later reporting by the tester.
+
+     @param v The value to check.
+    */
+
+    assertFalse(v) {
+      if (v) {
+        this._testFailures.push(&quot;expected false, got: &quot; + v)
+      }
     }
 
 
@@ -139,7 +180,7 @@ export class Tester {
       return document
     }
 
-    
+
     /**
      Run a collection of tests.
 
