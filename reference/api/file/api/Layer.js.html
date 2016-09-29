@@ -253,6 +253,18 @@ export class Layer extends WrappedObject {
   */
 
   /**
+  Return the index of this layer in it&apos;s container.
+  The layer at the back of the container (visualy) will be layer 0. The layer at the front will be layer n - 1 (if there are n layers).
+
+  @return {number} The layer order.
+  */
+
+  get index() {
+    var ourLayer = this.sketchObject
+    return ourLayer.parentGroup().indexOfLayer_(ourLayer)
+  }
+
+  /**
   Move this layer to the front of its container.
   */
 
@@ -325,6 +337,8 @@ export class Layer extends WrappedObject {
           tester.assertEqual(page.name, &quot;This is a page&quot;)
           var group = page.newGroup({&quot;name&quot; : &quot;blah&quot;})
           tester.assertEqual(group.name, &quot;blah&quot;)
+          var group2 = page.newGroup()
+          tester.assertEqual(group2.name, &quot;Group&quot;)
         },
 
         &quot;testFrame&quot; : function(tester) {
@@ -338,7 +352,7 @@ export class Layer extends WrappedObject {
         &quot;testDuplicate&quot; : function(tester) {
           var document = tester.newTestDocument()
           var page = document.selectedPage
-          var group = page.newGroup({&quot;name&quot; : &quot;Test&quot;})
+          var group = page.newGroup()
           tester.assertEqual(page.sketchObject.layers().count(), 1)
           var group2 = group.duplicate()
           tester.assertEqual(page.sketchObject.layers().count(), 2)
@@ -347,7 +361,7 @@ export class Layer extends WrappedObject {
         &quot;testRemove&quot; : function(tester) {
           var document = tester.newTestDocument()
           var page = document.selectedPage
-          var group = page.newGroup({&quot;name&quot; : &quot;Test&quot;})
+          var group = page.newGroup()
           tester.assertEqual(page.sketchObject.layers().count(), 1)
           group.remove()
           tester.assertEqual(page.sketchObject.layers().count(), 0)
@@ -356,7 +370,7 @@ export class Layer extends WrappedObject {
         &quot;testSelection&quot; : function(tester) {
           var document = tester.newTestDocument()
           var page = document.selectedPage
-          var group = page.newGroup({&quot;name&quot; : &quot;Test&quot;})
+          var group = page.newGroup()
 
           // start with nothing selected
           tester.assertTrue(page.selectedLayers.isEmpty)
@@ -370,7 +384,7 @@ export class Layer extends WrappedObject {
           tester.assertTrue(page.selectedLayers.isEmpty)
 
           // select one layer then another - only the last should be selected
-          var group2 = page.newGroup({&quot;name&quot; : &quot;Test&quot;})
+          var group2 = page.newGroup()
           group.select()
           group2.select()
           tester.assertEqual(page.selectedLayers.length, 1)
@@ -379,6 +393,45 @@ export class Layer extends WrappedObject {
           group.addToSelection()
           tester.assertEqual(page.selectedLayers.length, 2)
         },
+
+        &quot;testContainer&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup()
+          tester.assertEqual(group.container.sketchObject, page.sketchObject)
+        },
+
+        &quot;testOrdering&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group1 = page.newGroup()
+          var group2 = page.newGroup()
+          var group3 = page.newGroup()
+          tester.assertEqual(group1.index, 0)
+          tester.assertEqual(group2.index, 1)
+          tester.assertEqual(group3.index, 2)
+
+          group1.moveToFront()
+          tester.assertEqual(group2.index, 0)
+          tester.assertEqual(group3.index, 1)
+          tester.assertEqual(group1.index, 2)
+
+          group3.moveToBack()
+          tester.assertEqual(group3.index, 0)
+          tester.assertEqual(group2.index, 1)
+          tester.assertEqual(group1.index, 2)
+
+          group2.moveForward()
+          tester.assertEqual(group3.index, 0)
+          tester.assertEqual(group1.index, 1)
+          tester.assertEqual(group2.index, 2)
+
+          group1.moveBackward()
+          tester.assertEqual(group1.index, 0)
+          tester.assertEqual(group3.index, 1)
+          tester.assertEqual(group2.index, 2)
+
+        }
 
       }
     };

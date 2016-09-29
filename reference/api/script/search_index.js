@@ -480,6 +480,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "api/application.js~application#style",
+    "class/api/Application.js~Application.html#instance-member-Style",
+    "api/Application.js~Application#Style",
+    "member"
+  ],
+  [
     "api/application.js~application#text",
     "class/api/Application.js~Application.html#instance-member-Text",
     "api/Application.js~Application#Text",
@@ -852,6 +858,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "api/layer.js~layer#index",
+    "class/api/Layer.js~Layer.html#instance-get-index",
+    "api/Layer.js~Layer#index",
+    "member"
+  ],
+  [
     "api/layer.js~layer#isartboard",
     "class/api/Layer.js~Layer.html#instance-get-isArtboard",
     "api/Layer.js~Layer#isArtboard",
@@ -1141,13 +1153,13 @@ window.esdocSearchIndex = [
   ],
   [
     "api/shape.js~shape#style",
-    "class/api/Shape.js~Shape.html#instance-set-style",
+    "class/api/Shape.js~Shape.html#instance-get-style",
     "api/Shape.js~Shape#style",
     "member"
   ],
   [
     "api/shape.js~shape#style",
-    "class/api/Shape.js~Shape.html#instance-get-style",
+    "class/api/Shape.js~Shape.html#instance-set-style",
     "api/Shape.js~Shape#style",
     "member"
   ],
@@ -1248,8 +1260,20 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "api/text.js~text#adjusttofit",
+    "class/api/Text.js~Text.html#instance-method-adjustToFit",
+    "api/Text.js~Text#adjustToFit",
+    "method"
+  ],
+  [
     "api/text.js~text#alignment",
     "class/api/Text.js~Text.html#instance-set-alignment",
+    "api/Text.js~Text#alignment",
+    "member"
+  ],
+  [
+    "api/text.js~text#alignment",
+    "class/api/Text.js~Text.html#instance-get-alignment",
     "api/Text.js~Text#alignment",
     "member"
   ],
@@ -1290,12 +1314,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "api/text.js~text#resizetofitcontents",
-    "class/api/Text.js~Text.html#instance-method-resizeToFitContents",
-    "api/Text.js~Text#resizeToFitContents",
-    "method"
-  ],
-  [
     "api/text.js~text#systemfontsize",
     "class/api/Text.js~Text.html#instance-set-systemFontSize",
     "api/Text.js~Text#systemFontSize",
@@ -1303,13 +1321,13 @@ window.esdocSearchIndex = [
   ],
   [
     "api/text.js~text#text",
-    "class/api/Text.js~Text.html#instance-set-text",
+    "class/api/Text.js~Text.html#instance-get-text",
     "api/Text.js~Text#text",
     "member"
   ],
   [
     "api/text.js~text#text",
-    "class/api/Text.js~Text.html#instance-get-text",
+    "class/api/Text.js~Text.html#instance-set-text",
     "api/Text.js~Text#text",
     "member"
   ],
