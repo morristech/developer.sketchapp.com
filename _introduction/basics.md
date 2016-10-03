@@ -11,8 +11,6 @@ On disk, a Plugin is just a folder arranged in a [standard layout](/introduction
 
 It contains one or more scripts. Each script defines one or more commands which extend Sketch in some way. It can also contain any other optional resources (such as images) that the commands make use of to do whatever they do.
 
-Other files in the Plugin folder include the actual scripts which implement the commands, and
-
 Plugin scripts are written using [CocoaScript](https://github.com/ccgus/CocoaScript), which is a variation of JavaScript.
 
 ## Terminology
