@@ -103,6 +103,11 @@ defaults:
       layout: "docco-page"
   -
     scope:
+      type: "generated-api"
+    values:
+      layout: "api-page"
+  -
+    scope:
       type: "posts"
     values:
       layout: "post"

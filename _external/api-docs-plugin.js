@@ -10,7 +10,7 @@ exports.onStart = function(ev) {
 exports.onHandleHTML = function(ev) {
   original = ev.data.html
   if (original.search("<html") != -1) {
-    header = "layout: api-page\npermalink: /reference/api/" + ev.data.fileName + "\n"
+    header = ""
 
     // extract the title
     match = original.match(/<title.*>(.*)<\/title>/)
