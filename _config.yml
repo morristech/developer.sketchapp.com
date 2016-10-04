@@ -92,6 +92,11 @@ defaults:
       script: "/js/search.js"
   -
     scope:
+      type: "generated-plugins"
+    values:
+      layout: "docco-page"
+  -
+    scope:
       type: "posts"
     values:
       layout: "post"

@@ -1,16 +1,14 @@
 ---
 name: text-utilities
-permalink: /examples/plugins/text-utilities/
-layout: docco-page
-summary: This plugin illustrates a few techniques:- iterating over the selected layers
 title: Text Utilities
+summary: This plugin provides some debugging tools which annotate text layers to show where their baselines and bounding boxes are. 
 ---
   <div id="container">
     
     <ul class="sections">
       
       <li id="title">
-        <div class="annotation"><h1>text-utilities.js</h1></div>
+        <div class="annotation"><h1>Text Utilities</h1></div>
       </li>
       
       
@@ -22,7 +20,20 @@ title: Text Utilities
             <a class="pilcrow" href="#section-1">&#182;</a>
           </div>
           <p>Text Utilities, by Johnnie Walker — Source code available at <a href="https://github.com/BohemianCoding/plugins.examples.text-utilities">GitHub</a></p>
-<p>This plugin illustrates a few techniques:</p>
+<p>This plugin provides some debugging tools which annotate text layers to show where their baselines and bounding boxes are.</p>
+
+        </div>
+        
+      </li>
+      
+      
+      <li id="section-2">
+        <div class="annotation">
+          
+          <div class="pilwrap ">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <p>The plugin illustrates a few techniques:</p>
 <ul>
 <li>iterating over the selected layers</li>
 <li>iterating over the position of each line in a text layer</li>
@@ -106,11 +117,11 @@ as well as giving some general information about the Plugin such as its name, au
       </li>
       
       
-      <li id="section-2">
+      <li id="section-3">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-2">&#182;</a>
+            <a class="pilcrow" href="#section-3">&#182;</a>
           </div>
           <h2 id="code">Code</h2>
 
@@ -119,11 +130,11 @@ as well as giving some general information about the Plugin such as its name, au
       </li>
       
       
-      <li id="section-3">
+      <li id="section-4">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-3">&#182;</a>
+            <a class="pilcrow" href="#section-4">&#182;</a>
           </div>
           <h3 id="some-utilities">Some Utilities</h3>
 <p>First up, we want to define a few utility functions to help us in implementing the plugin commands.</p>
@@ -138,11 +149,11 @@ as well as giving some general information about the Plugin such as its name, au
       </li>
       
       
-      <li id="section-4">
+      <li id="section-5">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-4">&#182;</a>
+            <a class="pilcrow" href="#section-5">&#182;</a>
           </div>
           <p>We first move the container to the back of the document.</p>
 
@@ -153,11 +164,11 @@ as well as giving some general information about the Plugin such as its name, au
       </li>
       
       
-      <li id="section-5">
+      <li id="section-6">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-5">&#182;</a>
+            <a class="pilcrow" href="#section-6">&#182;</a>
           </div>
           <p>Then iterate through each fragment, executing the action.</p>
 
@@ -170,11 +181,11 @@ as well as giving some general information about the Plugin such as its name, au
       </li>
       
       
-      <li id="section-6">
+      <li id="section-7">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-6">&#182;</a>
+            <a class="pilcrow" href="#section-7">&#182;</a>
           </div>
           <p>Finally, we adjust the container to enclose any new layers we’ve placed in it.</p>
 
@@ -186,11 +197,11 @@ as well as giving some general information about the Plugin such as its name, au
       </li>
       
       
-      <li id="section-7">
+      <li id="section-8">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-7">&#182;</a>
+            <a class="pilcrow" href="#section-8">&#182;</a>
           </div>
           <h4 id="adding-baselines">Adding Baselines</h4>
 <p>Given a text layer and a list of its baselines, we want to be able to add a
@@ -205,11 +216,11 @@ the baseline of each line of text.</p>
       </li>
       
       
-      <li id="section-8">
+      <li id="section-9">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-8">&#182;</a>
+            <a class="pilcrow" href="#section-9">&#182;</a>
           </div>
           <p>First we make a new group to contain our baseline layers</p>
 
@@ -220,11 +231,11 @@ the baseline of each line of text.</p>
       </li>
       
       
-      <li id="section-9">
+      <li id="section-10">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-9">&#182;</a>
+            <a class="pilcrow" href="#section-10">&#182;</a>
           </div>
           <p>The we process each fragment in turn</p>
 
@@ -235,11 +246,11 @@ the baseline of each line of text.</p>
       </li>
       
       
-      <li id="section-10">
+      <li id="section-11">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-10">&#182;</a>
+            <a class="pilcrow" href="#section-11">&#182;</a>
           </div>
           <p>We make a rectangle that’s just 0.5 pixels high, positioned to match
 the location of the baseline</p>
@@ -253,11 +264,11 @@ the location of the baseline</p>
       </li>
       
       
-      <li id="section-11">
+      <li id="section-12">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-11">&#182;</a>
+            <a class="pilcrow" href="#section-12">&#182;</a>
           </div>
           <p>We make a new shape layer with this rectangle.</p>
 
@@ -270,11 +281,11 @@ the location of the baseline</p>
       </li>
       
       
-      <li id="section-12">
+      <li id="section-13">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-12">&#182;</a>
+            <a class="pilcrow" href="#section-13">&#182;</a>
           </div>
           <h4 id="adding-line-fragments">Adding Line Fragments</h4>
 <p>Given a text layer and a list of its baselines, we want to be able to add a
@@ -289,11 +300,11 @@ the lines of text.</p>
       </li>
       
       
-      <li id="section-13">
+      <li id="section-14">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-13">&#182;</a>
+            <a class="pilcrow" href="#section-14">&#182;</a>
           </div>
           <p>First we make a new group to contain our line fragments</p>
 
@@ -304,11 +315,11 @@ the lines of text.</p>
       </li>
       
       
-      <li id="section-14">
+      <li id="section-15">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-14">&#182;</a>
+            <a class="pilcrow" href="#section-15">&#182;</a>
           </div>
           <p>The we process each fragment in turn</p>
 
@@ -319,11 +330,11 @@ the lines of text.</p>
       </li>
       
       
-      <li id="section-15">
+      <li id="section-16">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-15">&#182;</a>
+            <a class="pilcrow" href="#section-16">&#182;</a>
           </div>
           <p>We alternate the color of the lines, so that we can tell them apart</p>
 
@@ -334,11 +345,11 @@ the lines of text.</p>
       </li>
       
       
-      <li id="section-16">
+      <li id="section-17">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-16">&#182;</a>
+            <a class="pilcrow" href="#section-17">&#182;</a>
           </div>
           <p>We make a new shape layer with the rectangle of each line in turn</p>
 
@@ -352,11 +363,11 @@ the lines of text.</p>
       </li>
       
       
-      <li id="section-17">
+      <li id="section-18">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-17">&#182;</a>
+            <a class="pilcrow" href="#section-18">&#182;</a>
           </div>
           <h3 id="defining-the-run-handlers">Defining The Run Handlers</h3>
 
@@ -365,11 +376,11 @@ the lines of text.</p>
       </li>
       
       
-      <li id="section-18">
+      <li id="section-19">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-18">&#182;</a>
+            <a class="pilcrow" href="#section-19">&#182;</a>
           </div>
           <p>In the manifest, we listed the javascript function to call for each of our five commands.
 So now we need to implement these functions.</p>
@@ -383,11 +394,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-19">
+      <li id="section-20">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-19">&#182;</a>
+            <a class="pilcrow" href="#section-20">&#182;</a>
           </div>
           <p>Fetch the root Sketch object</p>
 
@@ -398,11 +409,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-20">
+      <li id="section-21">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-20">&#182;</a>
+            <a class="pilcrow" href="#section-21">&#182;</a>
           </div>
           <p>Iterate over each text layer in the selection, calling our addLineFragments function</p>
 
@@ -419,11 +430,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-21">
+      <li id="section-22">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-21">&#182;</a>
+            <a class="pilcrow" href="#section-22">&#182;</a>
           </div>
           <p>Fetch the root Sketch object</p>
 
@@ -434,11 +445,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-22">
+      <li id="section-23">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-22">&#182;</a>
+            <a class="pilcrow" href="#section-23">&#182;</a>
           </div>
           <p>Iterate over each text layer in the selection, calling our addBaselines function</p>
 
@@ -455,11 +466,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-23">
+      <li id="section-24">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-23">&#182;</a>
+            <a class="pilcrow" href="#section-24">&#182;</a>
           </div>
           <p>Fetch the root Sketch object</p>
 
@@ -470,11 +481,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-24">
+      <li id="section-25">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-24">&#182;</a>
+            <a class="pilcrow" href="#section-25">&#182;</a>
           </div>
           <p>Iterate over each text layer in the selection, calling our addBaselines and addLineFragments functions</p>
 
@@ -493,11 +504,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-25">
+      <li id="section-26">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-25">&#182;</a>
+            <a class="pilcrow" href="#section-26">&#182;</a>
           </div>
           <p>Fetch the root Sketch object</p>
 
@@ -508,11 +519,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-26">
+      <li id="section-27">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-26">&#182;</a>
+            <a class="pilcrow" href="#section-27">&#182;</a>
           </div>
           <p>Iterate over each text layer in the selection, turning off constant baselines.</p>
 
@@ -529,11 +540,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-27">
+      <li id="section-28">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-27">&#182;</a>
+            <a class="pilcrow" href="#section-28">&#182;</a>
           </div>
           <p>Fetch the root Sketch object</p>
 
@@ -544,11 +555,11 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-28">
+      <li id="section-29">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-28">&#182;</a>
+            <a class="pilcrow" href="#section-29">&#182;</a>
           </div>
           <p>Iterate over each text layer in the selection, turning on constant baselines.</p>
 
@@ -562,16 +573,16 @@ So now we need to implement these functions.</p>
       </li>
       
       
-      <li id="section-29">
+      <li id="section-30">
         <div class="annotation">
           
           <div class="pilwrap ">
-            <a class="pilcrow" href="#section-29">&#182;</a>
+            <a class="pilcrow" href="#section-30">&#182;</a>
           </div>
           <h2 id="job-done">Job Done</h2>
 <p>And that’s it.</p>
 <p>Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.</p>
-<p>If you have questions, comments or any feedback, ping us at <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x64;&#101;&#x76;&#101;&#x6c;&#111;&#x70;&#101;&#114;&#x40;&#x73;&#107;&#101;&#x74;&#99;&#104;&#97;&#x70;&#x70;&#x2e;&#99;&#111;&#x6d;">&#x64;&#101;&#x76;&#101;&#x6c;&#111;&#x70;&#101;&#114;&#x40;&#x73;&#107;&#101;&#x74;&#99;&#104;&#97;&#x70;&#x70;&#x2e;&#99;&#111;&#x6d;</a>!</p>
+<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x64;&#x65;&#118;&#101;&#x6c;&#111;&#112;&#x65;&#x72;&#64;&#115;&#x6b;&#101;&#x74;&#99;&#104;&#97;&#x70;&#x70;&#46;&#x63;&#111;&#109;">&#x64;&#x65;&#118;&#101;&#x6c;&#111;&#112;&#x65;&#x72;&#64;&#115;&#x6b;&#101;&#x74;&#99;&#104;&#97;&#x70;&#x70;&#46;&#x63;&#111;&#109;</a>!</p>
 
         </div>
         
