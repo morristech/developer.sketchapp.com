@@ -58,7 +58,7 @@ collections:
 
   generated-api:
     output: true
-    permalink: /reference/api/:path/
+    permalink: /reference/api/:path
 
   generated-plugins:
     output: true
