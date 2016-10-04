@@ -7,7 +7,7 @@ base=`pwd`
 fullname=$(basename "$dest")
 name="${fullname##*.}"
 
-dest="$base/reference/api"
+dest="$base/_generated/api"
 rm -rf "$dest" 2> /dev/null
 mkdir -p "$dest"
 

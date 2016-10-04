@@ -54,7 +54,9 @@ collections:
   plugins:
     output: true
     permalink: /examples/plugins/:path/
-
+  generated:
+    output: true
+    
 # Defaults
 defaults:
   -
