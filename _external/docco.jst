@@ -1,6 +1,9 @@
 ---
-name: <%= title.replace(/\.[^/.]+$/, "") %>
+<% var name = title.replace(/\.[^/.]+$/, ""); %>
+name: <%= name %>
 title: <%= title %>
+permalink: /examples/plugins/<%= name %>/
+layout: docco-page
 ---
   <div id="container">
     <% if (sources.length > 1) { %>
