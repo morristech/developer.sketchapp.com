@@ -1,7 +1,9 @@
 ---
 name: selection-changed
 title: selection-changed.js
-permalink: /examples/plugins/[object Object]
+permalink: /examples/plugins/function (file) {
+      return path.join(config.output, path.basename(file, path.extname(file)) + '.html');
+    }
 ---
   <div id="container">
     
