@@ -1,9 +1,9 @@
 ---
-<% var name = title.replace(/\.[^/.]+$/, ""); %>
-name: <%= name %>
-title: <%= title %>
+<% var name = title.replace(/\.[^/.]+$/, ""); %>name: <%= name %>
 permalink: /examples/plugins/<%= name %>/
 layout: docco-page
+<% var detail = sections[0].docsText.match(/(.*),.*\n\n(.*)\n*(.*)/) %>summary: <%= detail[2] %><%= detail[3] %>
+title: <%= detail[1] %>
 ---
   <div id="container">
     <% if (sources.length > 1) { %>
