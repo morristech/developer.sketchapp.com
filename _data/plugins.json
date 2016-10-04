@@ -17,3 +17,8 @@
   "name" : "SVGO Export",
   "summary": "Post-processes any exported SVG files using svgo. Illustrates how to respond to the ExportSlices action, which is sent whenever an export occurs."
 }
+
+"text-utilities.js": {
+  "name" : "Text Utilities",
+  "summary": "Debugging tools which add some annotations to text layers, to make the position of baselines etc clearer."
+}

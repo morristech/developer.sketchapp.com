@@ -34,6 +34,7 @@ title: Group | API Document
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -42,13 +43,13 @@ title: Group | API Document
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Group} from &apos;<span><a href="/reference/api/file/api/Group.js.html#lineNumber14">./api/Group.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Group} from &apos;<span><a href="/reference/api/file/api/Group.js.html#lineNumber16">./api/Group.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="/reference/api/file/api/Group.js.html#lineNumber14">source</a></span></span>
+  <span data-ice="source">| <span><a href="/reference/api/file/api/Group.js.html#lineNumber16">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -129,7 +130,7 @@ title: Group | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(group: <span>*</span>, document: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(group: <span>MSLayerGroup</span>, document: <span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span>)</span>
         </p>
       </div>
       <div>
@@ -163,6 +164,32 @@ title: Group | API Document
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-method-adjustToFit">adjustToFit</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Adjust the group to fit its children.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-method-is_group">is_group</a></span></span><span data-ice="signature">(): <span>bool</span></span>
         </p>
       </div>
@@ -170,6 +197,84 @@ title: Group | API Document
         
         
         <div data-ice="description"><p>Is this an group?</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-method-iterate">iterate</a></span></span><span data-ice="signature">(block: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>)</span></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Perform a function for every sub-layer inside this one.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-method-iterateWithFilter">iterateWithFilter</a></span></span><span data-ice="signature">(filter: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>)</span></span>, block: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>)</span></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Perform a function for every sub-layer inside this one that passes a filter.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html#instance-method-pageRectToLocalRect">pageRectToLocalRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Convert a rectangle in page coordinates to one relative to this container&apos;s coordinates.</p>
 </div>
       </div>
     </td>
@@ -238,6 +343,32 @@ title: Group | API Document
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      <span class="kind" data-ice="kind">get</span>
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html#instance-get-sketchObject">sketchObject</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns the wrapped Sketch object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 
@@ -263,6 +394,32 @@ title: Group | API Document
         
         
         <div data-ice="description"><p>Return a list of tests to run for this class.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      <span class="kind" data-ice="kind">get</span>
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-get-container">container</a></span></span><span data-ice="signature">: <span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span>: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Return the parent container of this layer.</p>
 </div>
       </div>
     </td>
@@ -620,13 +777,143 @@ title: Group | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-iterate">iterate</a></span></span><span data-ice="signature">(block: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-localRectToPageRect">localRectToPageRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Perform a function for every sub-layer inside this one.</p>
+        <div data-ice="description"><p>Convert a rectangle in the coordinates that this layer uses to absolute (page) coordinates.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-localRectToParentRect">localRectToParentRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Convert a rectangle in the coordinates that this layer uses to it&apos;s parent&apos;s coordinates.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveBackward">moveBackward</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer backwards in its container.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveForward">moveForward</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer forward in its container.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveToBack">moveToBack</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer to the back of its container.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveToFront">moveToFront</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer to the front of its container.</p>
 </div>
       </div>
     </td>
@@ -813,7 +1100,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber45">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber108">source</a></span></span>
     </span>
   </h3>
 
@@ -864,11 +1151,11 @@ and sets it up using the supplied properties.</p>
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(group: <span>*</span>, document: <span>*</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(group: <span>MSLayerGroup</span>, document: <span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber23">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber26">source</a></span></span>
     </span>
   </h3>
 
@@ -890,14 +1177,14 @@ and sets it up using the supplied properties.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">group</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span>MSLayerGroup</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>{MSLayerGroup} The underlying model object from Sketch.</p>
+      <td data-ice="description"><p>The underlying model object from Sketch.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">document</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>The document that the group belongs to.</p>
 </td>
@@ -927,6 +1214,47 @@ and sets it up using the supplied properties.</p>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-adjustToFit">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">adjustToFit</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber97">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Adjust the group to fit its children.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-is_group">
     <span class="access" data-ice="access">public</span>
     
@@ -937,7 +1265,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -959,6 +1287,202 @@ and sets it up using the supplied properties.</p>
       <tr>
         <td class="return-type" data-ice="returnType"><span>bool</span></td>
         <td class="return-desc" data-ice="returnDescription"><p>true for instances of Group, false for any other layer type.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-iterate">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">iterate</span><span data-ice="signature">(block: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>)</span></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber59">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Perform a function for every sub-layer inside this one.
+The function will be passed a single argument each time it is
+invoked - which will be an object representing the sub-layer.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">block</td>
+      <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>)</span></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The function to execute for each layer.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-iterateWithFilter">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">iterateWithFilter</span><span data-ice="signature">(filter: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>)</span></span>, block: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>)</span></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber74">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Perform a function for every sub-layer inside this one that passes a filter.
+The function will be passed a single argument each time it is
+invoked - which will be an object representing the sub-layer.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">filter</td>
+      <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>)</span></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Filter function called on each layer first to check whether it should be iterated.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">block</td>
+      <td data-ice="type"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(layer: <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>)</span></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The function to execute for each layer.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-pageRectToLocalRect">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">pageRectToLocalRect</span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Group.js.html#lineNumber87">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Convert a rectangle in page coordinates to one relative to this container&apos;s coordinates.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">rect</td>
+      <td data-ice="type"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The rectangle to convert.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The rectangle in local coordinates.</p>
 </td>
       </tr>
     </table>

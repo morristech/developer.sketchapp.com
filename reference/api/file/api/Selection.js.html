@@ -34,6 +34,7 @@ title: api/Selection.js | API Document
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -66,7 +67,8 @@ export class Selection extends WrappedObject {
     */
 
     constructor(document) {
-      super(document)
+      super(document._object)
+      this._document = document
     }
 
     /**
@@ -85,10 +87,23 @@ export class Selection extends WrappedObject {
         @param {function(layer: Layer)} block The function to execute for each layer.
     */
 
-    iterateAndClear(block) {
+    iterateThenClear(block) {
       var layers = this._object.selectedLayers();
       this.clear();
-      this._iterateWithLayers(layers, block);
+      this._document.iterateWithNativeLayers(layers, null, block);
+    }
+
+    /**
+        Perform an action once for each layer in the selection that passes a filter, then clear the selection.
+
+        @param {function(layer: Layer)} filter Filter function called on each layer first to check whether it should be iterated.
+        @param {function(layer: Layer)} block The function to execute for each layer.
+    */
+
+    iterateWithFilterThenClear(filter, block) {
+      var layers = this._object.selectedLayers();
+      this.clear();
+      this._document.iterateWithNativeLayers(layers, filter, block);
     }
 
     /**
@@ -99,8 +114,21 @@ export class Selection extends WrappedObject {
 
     iterate(block) {
       var layers = this._object.selectedLayers();
-      this._iterateWithLayers(layers, block);
+      this._document.iterateWithNativeLayers(layers, null, block);
     }
+
+    /**
+        Perform an action once for each layer in the selection that passes a filter.
+
+        @param {function(layer: Layer)} filter Filter function called on each layer first to check whether it should be iterated.
+        @param {function(layer: Layer)} block The function to execute for each layer.
+    */
+
+    iterateWithFilter(filter, block) {
+      var layers = this._object.selectedLayers();
+      this._document.iterateWithNativeLayers(layers, filter, block);
+    }
+
 
     /**
         Clear the selection.
@@ -111,21 +139,6 @@ export class Selection extends WrappedObject {
     }
 
 
-    /**
-        Iterate through a bunch of layers, executing a block.
-
-        @param {array} layers The layers to iterate over.
-        @param {function(layer: Layer)} block The function to execute for each layer.
-    */
-
-    _iterateWithLayers(layers, block) {
-      var loop = layers.objectEnumerator();
-      var item;
-      while (item = loop.nextObject()) {
-        var layer = this._object._application.wrapObject(item, this._object)
-        block(layer);
-      }
-    }
 
     /**
      Return a list of tests to run for this class.

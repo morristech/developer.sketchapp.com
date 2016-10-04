@@ -34,6 +34,7 @@ title: Layer | API Document
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -42,13 +43,13 @@ title: Layer | API Document
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Layer} from &apos;<span><a href="/reference/api/file/api/Layer.js.html#lineNumber15">./api/Layer.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Layer} from &apos;<span><a href="/reference/api/file/api/Layer.js.html#lineNumber16">./api/Layer.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="/reference/api/file/api/Layer.js.html#lineNumber15">source</a></span></span>
+  <span data-ice="source">| <span><a href="/reference/api/file/api/Layer.js.html#lineNumber16">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -152,6 +153,32 @@ title: Layer | API Document
   <tbody>
   
   <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      <span class="kind" data-ice="kind">get</span>
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-get-container">container</a></span></span><span data-ice="signature">: <span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span>: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Return the parent container of this layer.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -363,32 +390,6 @@ title: Layer | API Document
     <td>
       <span class="access" data-ice="access">public</span>
       
-      <span class="kind" data-ice="kind">get</span>
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-get-name">name</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>The name of the layer.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
       <span class="kind" data-ice="kind">set</span>
       
       <span class="override" data-ice="override"></span>
@@ -403,6 +404,32 @@ title: Layer | API Document
         
         
         <div data-ice="description"><p>Set the name of the layer.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      <span class="kind" data-ice="kind">get</span>
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-get-name">name</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>The name of the layer.</p>
 </div>
       </div>
     </td>
@@ -507,13 +534,143 @@ title: Layer | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-iterate">iterate</a></span></span><span data-ice="signature">(block: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-localRectToPageRect">localRectToPageRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Perform a function for every sub-layer inside this one.</p>
+        <div data-ice="description"><p>Convert a rectangle in the coordinates that this layer uses to absolute (page) coordinates.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-localRectToParentRect">localRectToParentRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Convert a rectangle in the coordinates that this layer uses to it&apos;s parent&apos;s coordinates.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveBackward">moveBackward</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer backwards in its container.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveForward">moveForward</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer forward in its container.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveToBack">moveToBack</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer to the back of its container.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveToFront">moveToFront</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer to the front of its container.</p>
 </div>
       </div>
     </td>
@@ -742,6 +899,32 @@ and sets it up using the supplied properties.</p>
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      <span class="kind" data-ice="kind">get</span>
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html#instance-get-sketchObject">sketchObject</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns the wrapped Sketch object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -760,7 +943,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber313">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber401">source</a></span></span>
     </span>
   </h3>
 
@@ -815,7 +998,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber24">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber25">source</a></span></span>
     </span>
   </h3>
 
@@ -873,6 +1056,58 @@ and sets it up using the supplied properties.</p>
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-get-container">
+    <span class="access" data-ice="access">public</span>
+    
+    <span class="kind" data-ice="kind">get</span>
+    
+    
+    <span data-ice="name">container</span><span data-ice="signature">: <span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span>: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber328">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Return the parent container of this layer.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The containing layer of this layer.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-get-frame">
     <span class="access" data-ice="access">public</span>
     
@@ -883,7 +1118,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber58">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber59">source</a></span></span>
     </span>
   </h3>
 
@@ -936,7 +1171,7 @@ This is given in coordinates that are local to the parent of the layer.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber71">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber72">source</a></span></span>
     </span>
   </h3>
 
@@ -979,7 +1214,7 @@ The new frame should be given in coordinates that are local to the parent of the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber105">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber106">source</a></span></span>
     </span>
   </h3>
 
@@ -1032,7 +1267,7 @@ The new frame should be given in coordinates that are local to the parent of the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber115">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber116">source</a></span></span>
     </span>
   </h3>
 
@@ -1085,7 +1320,7 @@ The new frame should be given in coordinates that are local to the parent of the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber145">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber146">source</a></span></span>
     </span>
   </h3>
 
@@ -1138,7 +1373,7 @@ The new frame should be given in coordinates that are local to the parent of the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber95">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber96">source</a></span></span>
     </span>
   </h3>
 
@@ -1191,7 +1426,7 @@ The new frame should be given in coordinates that are local to the parent of the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber135">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber136">source</a></span></span>
     </span>
   </h3>
 
@@ -1244,7 +1479,7 @@ The new frame should be given in coordinates that are local to the parent of the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber125">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber126">source</a></span></span>
     </span>
   </h3>
 
@@ -1287,6 +1522,47 @@ The new frame should be given in coordinates that are local to the parent of the
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-set-name">
+    <span class="access" data-ice="access">public</span>
+    
+    <span class="kind" data-ice="kind">set</span>
+    
+    
+    <span data-ice="name">name</span><span data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber48">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Set the name of the layer.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-get-name">
     <span class="access" data-ice="access">public</span>
     
@@ -1297,7 +1573,7 @@ The new frame should be given in coordinates that are local to the parent of the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber37">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber38">source</a></span></span>
     </span>
   </h3>
 
@@ -1338,47 +1614,6 @@ The new frame should be given in coordinates that are local to the parent of the
   
   
 </div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-set-name">
-    <span class="access" data-ice="access">public</span>
-    
-    <span class="kind" data-ice="kind">set</span>
-    
-    
-    <span data-ice="name">name</span><span data-ice="signature">(name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber47">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Set the name of the layer.</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
 </div>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
@@ -1393,7 +1628,7 @@ The new frame should be given in coordinates that are local to the parent of the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber287">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber316">source</a></span></span>
     </span>
   </h3>
 
@@ -1435,7 +1670,7 @@ Any other layers that were previously selected will remain selected.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber278">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber307">source</a></span></span>
     </span>
   </h3>
 
@@ -1477,7 +1712,7 @@ Any other layers that were previously selected will remain selected.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber83">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber84">source</a></span></span>
     </span>
   </h3>
 
@@ -1520,26 +1755,24 @@ A new identical layer will be inserted into the parent of this layer.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-iterate">
+  <h3 data-ice="anchor" id="instance-method-localRectToPageRect">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">iterate</span><span data-ice="signature">(block: <span>*</span>)</span>
+    <span data-ice="name">localRectToPageRect</span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber299">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber378">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Perform a function for every sub-layer inside this one.
-The function will be passed a single argument each time it is
-invoked - which will be an object representing the sub-layer.</p>
+  <div data-ice="description"><p>Convert a rectangle in the coordinates that this layer uses to absolute (page) coordinates.</p>
 </div>
 
   
@@ -1553,15 +1786,259 @@ invoked - which will be an object representing the sub-layer.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">block</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="name" data-depth="0">rect</td>
+      <td data-ice="type"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>{function} The function to execute for each layer.</p>
+      <td data-ice="description"><p>The rectangle to convert.</p>
 </td>
     </tr>
 </tbody>
   </table>
 </div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The converted rectangle expressed in page coordinates.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-localRectToParentRect">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">localRectToParentRect</span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber390">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Convert a rectangle in the coordinates that this layer uses to it&apos;s parent&apos;s coordinates.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">rect</td>
+      <td data-ice="type"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The rectangle to convert.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The converted rectangle expressed in the coordinate system of the parent layer.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-moveBackward">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">moveBackward</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber366">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Move this layer backwards in its container.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-moveForward">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">moveForward</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber350">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Move this layer forward in its container.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-moveToBack">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">moveToBack</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber358">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Move this layer to the back of its container.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-moveToFront">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">moveToFront</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber342">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Move this layer to the front of its container.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
 </div>
 
   
@@ -1590,7 +2067,7 @@ invoked - which will be an object representing the sub-layer.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber231">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber260">source</a></span></span>
     </span>
   </h3>
 
@@ -1660,7 +2137,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber246">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber275">source</a></span></span>
     </span>
   </h3>
 
@@ -1730,7 +2207,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber202">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber229">source</a></span></span>
     </span>
   </h3>
 
@@ -1800,7 +2277,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber216">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber245">source</a></span></span>
     </span>
   </h3>
 
@@ -1870,7 +2347,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber256">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber285">source</a></span></span>
     </span>
   </h3>
 
@@ -1911,7 +2388,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber269">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber298">source</a></span></span>
     </span>
   </h3>
 

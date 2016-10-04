@@ -34,6 +34,7 @@ title: api/Text.js | API Document
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -50,11 +51,22 @@ title: api/Text.js | API Document
 // ********************************
 
 import { Layer } from &apos;./Layer.js&apos;
+import { Rectangle } from &apos;./Rectangle.js&apos;
 
-// ## Constants
 
+/// Width is adjusted to fit the content.
 const BCTextBehaviourFlexibleWidth = 0
+
+/// Width is fixed.
 const BCTextBehaviourFixedWidth = 1
+
+
+/// Uses min &amp; max line height on paragraph style
+const BCTextLineSpacingBehaviourV2 = 1
+
+/// Uses MSConstantBaselineTypesetter for fixed line height
+const BCTextLineSpacingBehaviourV3 = 2
+
 
 /**
   Represents a text layer.
@@ -73,6 +85,7 @@ export class Text extends Layer {
       super(text, document)
     }
 
+
     /**
         Is this a text layer?
 
@@ -85,13 +98,17 @@ export class Text extends Layer {
       return true
     }
 
+
     /**
       The text of the layer.
+
+      @return {string} The layer text.
     */
 
     get text() {
       return this._object.stringValue
     }
+
 
     /**
       Set the text of the layer.
@@ -114,6 +131,7 @@ export class Text extends Layer {
       this._object.font = value
     }
 
+
     /**
        Set the font of the layer to the system font at a given size.
 
@@ -124,6 +142,7 @@ export class Text extends Layer {
       this._object.font = NSFont.systemFontOfSize_(size)
     }
 
+
     /**
        Set the alignment of the layer.
 
@@ -133,6 +152,7 @@ export class Text extends Layer {
     set alignment(mode) {
       this._object.textAlignment = mode
     }
+
 
     /**
      Set the layer to be fixed width or variable width.
@@ -148,6 +168,7 @@ export class Text extends Layer {
       }
     }
 
+
     /**
       Adjust the frame of the layer to fit its contents.
     */
@@ -155,6 +176,59 @@ export class Text extends Layer {
     resizeToFitContents() {
       this._object.adjustFrameToFit()
     }
+
+
+    /**
+      Return a list of the text fragments for the text.
+
+      @return {array} The line fragments. Each one is a dictionary containing a rectangle, and a baseline offset.
+    */
+
+    get fragments() {
+      var textLayer = this.sketchObject
+      var storage = textLayer.createTextStorage()
+      var layout = storage.layoutManagers().firstObject()
+      var actualCharacterRangePtr = MOPointer.new()
+      var charRange = NSMakeRange(0, storage.length())
+      var origin = textLayer.rect().origin
+
+      layout.glyphRangeForCharacterRange_actualCharacterRange_(charRange, actualCharacterRangePtr)
+      var glyphRange = actualCharacterRangePtr.value()
+
+      var fragments = []
+      var currentLocation = 0
+      while (currentLocation &lt; NSMaxRange(glyphRange)) {
+        var effectiveRangePtr = MOPointer.new()
+        var localRect = layout.lineFragmentRectForGlyphAtIndex_effectiveRange_(currentLocation, effectiveRangePtr)
+        var rect = new Rectangle(localRect.origin.x, localRect.origin.y, localRect.size.width, localRect.size.height)
+        var effectiveRange = effectiveRangePtr.value()
+        var baselineOffset = layout.typesetter().baselineOffsetInLayoutManager_glyphIndex_(layout, currentLocation)
+
+        fragments.push({&quot;rect&quot;: rect, &quot;baselineOffset&quot;: baselineOffset, range: effectiveRange})
+        currentLocation = NSMaxRange(effectiveRange) + 1
+      }
+
+      return fragments;
+    }
+
+
+    /**
+      Set whether to use constant baseline line spacing mode.
+
+      @param {bool} value If true, we use constant baseline spacing mode. This is the default for new text layers in Sketch. If false, we use the legacy line spacing mode.
+      */
+
+    set useConstantBaselines(value) {
+      var lineSpacingBehaviour = value ? BCTextLineSpacingBehaviourV3 : BCTextLineSpacingBehaviourV2
+      var textLayer = this.sketchObject
+      var initialBaselineOffset = textLayer.firstBaselineOffset()
+      textLayer.lineSpacingBehaviour = lineSpacingBehaviour
+      var baselineOffset = textLayer.firstBaselineOffset()
+      var rect = this.frame
+      rect.y -= (baselineOffset - initialBaselineOffset)
+      this.frame = rect
+    }
+
 
     /**
      Return a list of tests to run for this class.

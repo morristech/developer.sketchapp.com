@@ -34,6 +34,7 @@ title: Text | API Document
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -42,13 +43,13 @@ title: Text | API Document
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Text} from &apos;<span><a href="/reference/api/file/api/Text.js.html#lineNumber19">./api/Text.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Text} from &apos;<span><a href="/reference/api/file/api/Text.js.html#lineNumber30">./api/Text.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="/reference/api/file/api/Text.js.html#lineNumber19">source</a></span></span>
+  <span data-ice="source">| <span><a href="/reference/api/file/api/Text.js.html#lineNumber30">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -240,6 +241,57 @@ title: Text | API Document
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html#instance-get-fragments">fragments</a></span></span><span data-ice="signature">: <span>array</span>: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Return a list of the text fragments for the text.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html#instance-member-frame">frame</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      <span class="kind" data-ice="kind">get</span>
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html#instance-get-isText">isText</a></span></span><span data-ice="signature">: <span>bool</span>: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
@@ -292,7 +344,7 @@ title: Text | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html#instance-get-text">text</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html#instance-get-text">text</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -325,6 +377,32 @@ title: Text | API Document
         
         
         <div data-ice="description"><p>Set the text of the layer.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      <span class="kind" data-ice="kind">set</span>
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html#instance-set-useConstantBaselines">useConstantBaselines</a></span></span><span data-ice="signature">(value: <span>bool</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Set whether to use constant baseline line spacing mode.</p>
 </div>
       </div>
     </td>
@@ -426,6 +504,32 @@ title: Text | API Document
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      <span class="kind" data-ice="kind">get</span>
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html#instance-get-sketchObject">sketchObject</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns the wrapped Sketch object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 
@@ -451,6 +555,32 @@ title: Text | API Document
         
         
         <div data-ice="description"><p>Return a list of tests to run for this class.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      <span class="kind" data-ice="kind">get</span>
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-get-container">container</a></span></span><span data-ice="signature">: <span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span>: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Return the parent container of this layer.</p>
 </div>
       </div>
     </td>
@@ -808,13 +938,143 @@ title: Text | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-iterate">iterate</a></span></span><span data-ice="signature">(block: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-localRectToPageRect">localRectToPageRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Perform a function for every sub-layer inside this one.</p>
+        <div data-ice="description"><p>Convert a rectangle in the coordinates that this layer uses to absolute (page) coordinates.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-localRectToParentRect">localRectToParentRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span>): <span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Convert a rectangle in the coordinates that this layer uses to it&apos;s parent&apos;s coordinates.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveBackward">moveBackward</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer backwards in its container.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveForward">moveForward</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer forward in its container.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveToBack">moveToBack</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer to the back of its container.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-moveToFront">moveToFront</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Move this layer to the front of its container.</p>
 </div>
       </div>
     </td>
@@ -1001,7 +1261,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber121">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber194">source</a></span></span>
     </span>
   </h3>
 
@@ -1056,7 +1316,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber28">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -1124,7 +1384,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber89">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber107">source</a></span></span>
     </span>
   </h3>
 
@@ -1165,7 +1425,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber99">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber118">source</a></span></span>
     </span>
   </h3>
 
@@ -1206,7 +1466,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber69">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber85">source</a></span></span>
     </span>
   </h3>
 
@@ -1237,6 +1497,98 @@ and sets it up using the supplied properties.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-get-fragments">
+    <span class="access" data-ice="access">public</span>
+    
+    <span class="kind" data-ice="kind">get</span>
+    
+    
+    <span data-ice="name">fragments</span><span data-ice="signature">: <span>array</span>: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber142">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Return a list of the text fragments for the text.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>array</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The line fragments. Each one is a dictionary containing a rectangle, and a baseline offset.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-frame">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">frame</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber184">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-get-frame">Layer#frame</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-get-isText">
     <span class="access" data-ice="access">public</span>
     
@@ -1247,7 +1599,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber40">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber52">source</a></span></span>
     </span>
   </h3>
 
@@ -1300,7 +1652,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber79">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber96">source</a></span></span>
     </span>
   </h3>
 
@@ -1337,11 +1689,11 @@ and sets it up using the supplied properties.</p>
     <span class="kind" data-ice="kind">get</span>
     
     
-    <span data-ice="name">text</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">text</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber48">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber63">source</a></span></span>
     </span>
   </h3>
 
@@ -1356,7 +1708,18 @@ and sets it up using the supplied properties.</p>
   <div data-ice="properties">
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The layer text.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -1382,7 +1745,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber58">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber74">source</a></span></span>
     </span>
   </h3>
 
@@ -1390,6 +1753,47 @@ and sets it up using the supplied properties.</p>
   
   
   <div data-ice="description"><p>Set the text of the layer.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-set-useConstantBaselines">
+    <span class="access" data-ice="access">public</span>
+    
+    <span class="kind" data-ice="kind">set</span>
+    
+    
+    <span data-ice="name">useConstantBaselines</span><span data-ice="signature">(value: <span>bool</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber176">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Set whether to use constant baseline line spacing mode.</p>
 </div>
 
   
@@ -1426,7 +1830,7 @@ and sets it up using the supplied properties.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber111">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Text.js.html#lineNumber131">source</a></span></span>
     </span>
   </h3>
 
