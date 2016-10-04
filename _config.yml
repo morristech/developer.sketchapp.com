@@ -39,25 +39,31 @@ collections:
   classes:
     output: true
     permalink: /reference/class/:path/
+
   actions:
     output: true
     permalink: /reference/action/:path/
+
   code-examples:
     output: true
     permalink: /examples/code/:path/
+
   introduction:
     output: true
     permalink: /introduction/:path/
+
   posts:
     output: true
     permalink: /blog/:path/
-  generated:
+
+  generated-api:
     output: true
+    permalink: /reference/api/:path/
+
   generated-plugins:
     output: true
     permalink: /examples/plugins/:path/
-  external:
-    output: false
+
 
 # Defaults
 defaults:
