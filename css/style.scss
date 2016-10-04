@@ -21,6 +21,7 @@
 @import "components/navigation-secondary";
 @import "components/navigation-toc";
 @import "components/navigation-footer";
+@import "components/forms";
 @import "components/overlay";
 @import "components/video-overlay";
 @import "components/search";
@@ -30,6 +31,9 @@
 @import "pages/developer";
 @import "pages/examples";
 @import "pages/blog";
+
+// API help
+@import "pages/api"
 
 // Diagnostic
 // @import "debug/debug-grid";
