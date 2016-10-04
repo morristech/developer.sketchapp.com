@@ -16,16 +16,6 @@ A bundle is a directory with a standardized hierarchical structure that holds ex
 
 Sketch Plugins don’t allow native compiled code, but we do use the standard bundle layout (resources, for example, live in the Resources/ folder in the bundle), with the plugin-specific files located in a Sketch/ directory.
 
-## Terminology
-
-Before we get any further, let’s define a bit of terminology.
-
-- *Plugin Bundle*: the folder on disk containing the files that make up the *Plugin*
-- *Plugin*: a collection of *scripts*, *commands* and other resources grouped together as a discrete unit
-- *Action*: something the user does (selecting a menu, or changing the document) which triggers a Plugin *command*
-- *Command*: a Plugin can define more than one action; typically each one is associated with a different menu command, and causes a different *handler* to be executed in a *script* within the *Plugin*
-- *Script*: a CocoaScript file containing one or more *handlers* which implement the behaviour of the *Plugin*.
-- *Handler*: a CocoaScript function which executes some code to implement a command.
 
 ## Plugin Bundle Folder Structure
 
