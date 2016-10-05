@@ -1,0 +1,186 @@
+---
+title: api/Tester.js | API Document
+---
+
+
+
+<header>
+  <a href="/reference/api/./">Home</a>
+  
+  <a href="/reference/api/identifiers.html">Reference</a>
+  <a href="/reference/api/source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="/reference/api/image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Application.js~Application.html">Application</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Artboard.js~Artboard.html">Artboard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Image.js~Image.html">Image</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Page.js~Page.html">Page</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">api/Tester.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
+// # Tester.js
+// # Sketch Javascript API.
+//
+// All code (C) 2016 Bohemian Coding.
+// ********************************
+
+
+/**
+    Very simple unit testing utility.
+
+
+    At some point we may switch to using Mocha or some other test framework, but for
+    now we want to be able to invoke the tests from the Sketch side or from a plugin
+    command, so it&apos;s simpler to use a simple test framework of our own devising.
+*/
+
+export class Tester {
+
+    /**
+     Make a new tester.
+
+     */
+
+    constructor(application) {
+        /** @type {array} List of failures in the currently running test. */
+        this._testFailures = []
+
+        /** @type {Application} The application that is running these tests. */
+        this._application = application
+
+        /** @type {number} The number of tests we&apos;ve run. */
+        this._ran = 0
+
+        /** @type {array} The names of the tests that have passed. */
+        this._passes = []
+
+        /** @type {array} Failure information for each test that has failed. */
+        this._failures = []
+
+    }
+
+    /**
+     Assert that a condition is true.
+     If the assertion fails, the failure is recorded for later reporting by the tester.
+     
+     @param {bool} condition The condition we&apos;re asserting.
+     @param {string} description A description of the test.
+     */
+
+    assert(condition, description) {
+        if (!condition) {
+            if (!description) description = &quot;&quot;
+            this._testFailures.push(description)
+        }
+    }
+
+    /**
+     Assert that two values are equal.
+     If the assertion fails, the failure is recorded for later reporting by the tester.
+
+     @param v1 The first value to compare.
+     @param v2 The second value to compare.
+    */
+
+    assertEqual(v1, v2) {
+        if (v1 != v2) {
+            this._testFailures.push(v1 + &quot; != &quot; + v2)
+        }
+    }
+
+
+    /**
+        The application instance that we&apos;re running the tests for.
+        This is the instance associated with the script context that launched the tests.
+     
+        @return {Application} The application object.
+     */
+
+    get application() {
+        return this._application
+    }
+    
+    /**
+     Run a collection of tests.
+     
+     The method takes a dictionary describing the tests to run.
+     The dictionary can contain two keys:
+     - suites: this is a dictionary of sub-collections, each of which is recursively run by calling this method again.
+     - tests: this is a dictionary of test functions, each of which is executed.
+     
+     The test functions are passed this tester object when they are executed, and should use the assertion methods on it
+     to perform tests.
+
+     @param {dictionary} specification A dictionary describing the tests to run. See discussion.
+     @param {string} suiteName The name of the suite, if we&apos;re running a sub-collection. This will be null for the top level tests.
+     @return {dictionary} Returns a dictionary indicating how many tests ran, and a list of the passed, failed, and crashed tests.
+     */
+
+    runUnitTests(specification, suiteName) {
+        var suites = specification.suites
+        for (var suite in suites) {
+            this.runUnitTests(suites[suite], suite)
+        }
+
+        var tests = specification.tests
+        for (var name in tests) {
+            var test = tests[name]
+            this._ran++;
+            this._testFailures = [];
+            var result = test(this);
+            var fullName = suiteName ? suiteName + &quot; : &quot; + name : name
+            if (this._testFailures.length &gt; 0) {
+              this._failures.push({&quot;name&quot; : fullName, &quot;reasons&quot; : this._testFailures})
+            } else {
+              this._passes.push(fullName)
+            }
+        }
+
+      return {
+        &quot;ran&quot; : this._ran,
+        &quot;crashes&quot; : [],
+        &quot;failures&quot; : this._failures,
+        &quot;passes&quot; : this._passes
+      };
+    }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
