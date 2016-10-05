@@ -10,16 +10,20 @@ then
   name="${fullname##*.}"
 
   echo "Regenerating $dest"
-  docout="$scripts/../_plugins"
+  docout="$scripts/../_generated-plugins"
+  mkdir -p "$docout"
   for plugin in *.sketchplugin
   do
       echo "Found plugin $plugin"
+
+      # compile the plugin documentation
       docco --output temp --template "$scripts/docco.jst" --css "$scripts/docco.css" "$plugin/Contents/Sketch/$name.js"
 
-      mv -f "temp/$name.html" "$docout"
+      # copy it into place
+      mv -f "temp/$name.html" "$docout/$name.html"
       rm -rf temp
 
       echo "Making zip"
-      ditto -ck --keepParent *.sketchplugin "$scripts/../downloads/plugins/$name.zip"
+      ditto -ck --keepParent *.sketchplugin "$docout/$name.zip"
   done
 fi
