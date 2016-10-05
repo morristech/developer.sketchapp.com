@@ -13,13 +13,12 @@ Follow the main link for each one for an annotated view of the source code, or c
 <table>
   <tbody>
 
-  {% assign plugins = site.plugins | sort: 'title' %}
+  {% assign plugins = site.generated-plugins %}
   {% for plugin in plugins %}
-    {% assign info = site.data.plugins[plugin.title] %}
     <tr>
-      <td><a href="{{plugin.url}}">{{info.name}}</a></td>
-      <td>{{info.summary}}</td>
-      <td><a href="/downloads/plugins/{{plugin.title}}.zip">download</a></td>
+      <td><a href="{{plugin.url}}">{{plugin.title}}</a></td>
+      <td>{{plugin.summary}}</td>
+      <td><a href="/examples/plugins/{{plugin.name}}.zip">download</a></td>
       <td><a href="https://github.com/BohemianCoding/plugins.examples.{{plugin.name}}">github</a></td>
     </tr>
   {% endfor %}

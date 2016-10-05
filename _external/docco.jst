@@ -1,6 +1,7 @@
----
-name: <%= title.replace(/\.[^/.]+$/, "") %>
-title: <%= title %>
+<% var name = title.replace(/\.[^/.]+$/, ""); var detail = sections[0].docsText.match(/(.*),.*\n\n((.*\n)*)/); %>---
+name: <%= name %>
+title: <%= detail[1] %>
+<%  %>summary: <%= detail[2].replace(/\n/gm, ' ') %>
 ---
   <div id="container">
     <% if (sources.length > 1) { %>
@@ -23,7 +24,7 @@ title: <%= title %>
     <ul class="sections">
       <% if (!hasTitle) { %>
       <li id="title">
-        <div class="annotation"><h1><%= title %></h1></div>
+        <div class="annotation"><h1><%= detail[1] %></h1></div>
       </li>
       <% } %>
       <% for (var i=0, l=sections.length; i<l; i++) { %>
