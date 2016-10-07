@@ -1,14 +1,14 @@
 ---
-name: hello-world
-title: Hello World
-summary: This is an extremely simple plugin example, which illustrates how to add a menu command to the Plugins menu and execute some code when it is selected. 
+name: exporting
+title: Exporting Examples
+summary: This is an example plugin, which illustrates how to export layers, artboards and pages. 
 ---
   <div id="container">
     
     <ul class="sections">
       
       <li id="title">
-        <div class="annotation"><h1>Hello World</h1></div>
+        <div class="annotation"><h1>Exporting Examples</h1></div>
       </li>
       
       
@@ -19,9 +19,8 @@ summary: This is an extremely simple plugin example, which illustrates how to ad
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-1">&#182;</a>
           </div>
-          <p>Hello World, by Sam Deane — Source code available at <a href="https://github.com/BohemianCoding/plugins.examples.hello-world">GitHub</a></p>
-<p>This is an extremely simple plugin example, which illustrates how to add a menu command to the Plugins menu
-and execute some code when it is selected.</p>
+          <p>Exporting Examples, by Sam Deane — Source code available at <a href="https://github.com/BohemianCoding/plugins.examples.exporter">GitHub</a></p>
+<p>This is an example plugin, which illustrates how to export layers, artboards and pages.</p>
 
         </div>
         
@@ -86,7 +85,7 @@ we want to execute  a javascript handler called <code>onRun</code>.</p>
         </div>
         
         <div class="content"><div class='highlight'><pre>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRun</span>(<span class="hljs-params">context</span>) </span>{</pre></div></div>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onExportLayers</span>(<span class="hljs-params">context</span>) </span>{</pre></div></div>
         
       </li>
       
@@ -97,13 +96,11 @@ we want to execute  a javascript handler called <code>onRun</code>.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-4">&#182;</a>
           </div>
-          <p>We are passed a context variable when we’re run.
-We use this to get hold of a javascript object
-which we can use in turn to manipulate Sketch.</p>
+          <p>Fetch the root Sketch object</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> sketch = context.api()</pre></div></div>
+        <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> sketch = context.api()</pre></div></div>
         
       </li>
       
@@ -114,12 +111,28 @@ which we can use in turn to manipulate Sketch.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-5">&#182;</a>
           </div>
-          <p>Next we want to extract the selected page of the selected (front-most) document</p>
+          <p>We can specify a lot of different options for the exporting.</p>
+<h3 id="general-options">General Options</h3>
+<ul>
+<li>use-id-for-name : normally the exported files are given the same names as the layers they represent, but if this options is true, then the layer ids are used instead; defaults to false.</li>
+<li>output : this is the path of the folder where all exported files are placed; defaults to “~/Documents/Sketch Exports”</li>
+<li>overwriting : if true, the exporter will overwrite any existing files with new ones; defaults to false.</li>
+<li>trimmed: if true, any transparent space around the exported image will be trimmed; defaults to false.<h3 id="svg-options">SVG options</h3>
+</li>
+<li>compact : if exporting as SVG, this option makes the output more compact; defaults to false.</li>
+<li>include-namespaces : if exporting as SVG, this option includes extra attributes; defaults to false.<h3 id="png-options">PNG options</h3>
+</li>
+<li>save-for-web : if exporting a PNG, this option removes metadata such as the colour profile from the exported file; defaults to false.<h3 id="jpg-options">JPG options</h3>
+</li>
+<li>compression : if exporting a JPG, this option determines the level of compression, with 0 being the minimum, 1.0 the maximum; defaults to 1.0</li>
+<li>progressive : if exporting a JPG, this option makes it progressive; defaults to false.</li>
+<li>group-contents-only : false,</li>
+</ul>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> <span class="hljs-built_in">document</span> = sketch.selectedDocument
-  <span class="hljs-keyword">var</span> page = <span class="hljs-built_in">document</span>.selectedPage</pre></div></div>
+        <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">var</span> options = { <span class="hljs-string">"scales"</span> : <span class="hljs-string">"1, 2, 3"</span>, <span class="hljs-string">"formats"</span> : <span class="hljs-string">"png, jpg"</span> }</pre></div></div>
         
       </li>
       
@@ -130,11 +143,16 @@ which we can use in turn to manipulate Sketch.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-6">&#182;</a>
           </div>
-          <p>Now let’s create a new text layer, using a large font, and a traditional value…</p>
+          <p>Iterate over each layer in the selection, exporting it</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> layer = page.newText({alignment: NSTextAlignmentCenter, systemFontSize: <span class="hljs-number">36</span>, text:<span class="hljs-string">"Hello World"</span>})</pre></div></div>
+        <div class="content"><div class='highlight'><pre>    sketch.selectedDocument.selectedLayers.iterate(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layer</span>) </span>{
+      layer.export(options)
+    })
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onExportPage</span>(<span class="hljs-params">context</span>) </span>{</pre></div></div>
         
       </li>
       
@@ -145,11 +163,16 @@ which we can use in turn to manipulate Sketch.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-7">&#182;</a>
           </div>
-          <p>…resize it so that the text just fits…</p>
+          <p>Fetch the root Sketch object</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  layer.adjustToFit()</pre></div></div>
+        <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> sketch = context.api()
+    <span class="hljs-keyword">var</span> options = { <span class="hljs-string">"scales"</span> : <span class="hljs-string">"1, 2, 3"</span>, <span class="hljs-string">"formats"</span> : <span class="hljs-string">"png, jpg"</span> }
+    sketch.selectedDocument.selectedPage.export(options)
+};
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onExportArtboards</span>(<span class="hljs-params">context</span>) </span>{</pre></div></div>
         
       </li>
       
@@ -160,12 +183,13 @@ which we can use in turn to manipulate Sketch.</p>
           <div class="pilwrap ">
             <a class="pilcrow" href="#section-8">&#182;</a>
           </div>
-          <p>Finally, lets center the view on our new layer
-so that we can see where it is.</p>
+          <p>Fetch the root Sketch object</p>
 
         </div>
         
-        <div class="content"><div class='highlight'><pre>  <span class="hljs-built_in">document</span>.centerOnLayer(layer)
+        <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> sketch = context.api()
+    <span class="hljs-keyword">var</span> options = { <span class="hljs-string">"scales"</span> : <span class="hljs-string">"1, 2, 3"</span>, <span class="hljs-string">"formats"</span> : <span class="hljs-string">"png, jpg"</span> }
+    sketch.selectedDocument.selectedPage.exportArtboards(options)
 };</pre></div></div>
         
       </li>
@@ -179,7 +203,7 @@ so that we can see where it is.</p>
           </div>
           <p>And that’s it. Job done.</p>
 <p>Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.</p>
-<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#100;&#101;&#118;&#x65;&#108;&#111;&#x70;&#x65;&#x72;&#64;&#115;&#x6b;&#x65;&#116;&#99;&#x68;&#x61;&#112;&#x70;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#101;&#118;&#x65;&#108;&#111;&#x70;&#x65;&#x72;&#64;&#115;&#x6b;&#x65;&#116;&#99;&#x68;&#x61;&#112;&#x70;&#x2e;&#99;&#x6f;&#x6d;</a>!</p>
+<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x64;&#101;&#118;&#101;&#108;&#x6f;&#112;&#101;&#114;&#x40;&#115;&#107;&#x65;&#x74;&#x63;&#104;&#97;&#x70;&#x70;&#46;&#99;&#111;&#109;">&#x64;&#101;&#118;&#101;&#108;&#x6f;&#112;&#101;&#114;&#x40;&#115;&#107;&#x65;&#x74;&#x63;&#104;&#97;&#x70;&#x70;&#46;&#99;&#111;&#109;</a>!</p>
 
         </div>
         
