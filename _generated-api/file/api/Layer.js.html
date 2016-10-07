@@ -33,6 +33,7 @@ title: api/Layer.js | API Document
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
@@ -52,316 +53,391 @@ import { WrappedObject } from &apos;./WrappedObject.js&apos;
 import { Rectangle } from &apos;./Rectangle.js&apos;
 
 /**
-  Represents a Sketch layer.
- */
+Represents a Sketch layer.
+*/
 
 export class Layer extends WrappedObject {
 
-    /**
-      Make a new layer object.
+  /**
+  Make a new layer object.
 
-      @param {MSLayer} layer The underlying model object from Sketch.
-      @param {Document} document The document that the layer belongs to.
-    */
+  @param {MSLayer} layer The underlying model object from Sketch.
+  @param {Document} document The document that the layer belongs to.
+  */
 
-    constructor(layer, document) {
-      super(layer)
+  constructor(layer, document) {
+    super(layer)
 
-      /** @type {Document} The document that this layer belongs to. */
-      this._document = document
+    /** @type {Document} The document that this layer belongs to. */
+    this._document = document
+  }
+
+  /**
+  The name of the layer.
+
+  @return {string} The layer&apos;s name.
+  */
+
+  get name() {
+    return this._object.name();
+  }
+
+  /**
+  Set the name of the layer.
+
+  @param {string} name The new name.
+  */
+
+  set name(value) {
+    this._object.setName_(value);
+  }
+
+  /**
+  The frame of the layer.
+  This is given in coordinates that are local to the parent of the layer.
+
+  @return {Rectangle} The layer&apos;s frame.
+  */
+
+  get frame() {
+    var f = this._object.frame();
+    return new Rectangle(f.x(), f.y(), f.width(), f.height());
+  }
+
+  /**
+  Set the frame of the layer.
+  This will move and/or resize the layer as appropriate.
+  The new frame should be given in coordinates that are local to the parent of the layer.
+
+  @param {Rectangle} frame - The new frame of the layer.
+  */
+
+  set frame(value) {
+    var f = this._object.frame();
+    f.setRect_(NSMakeRect(value.x, value.y, value.width, value.height));
+  }
+
+  /**
+  Is this a page?
+
+  All Layer objects respond to this method, but only pages return true.
+
+  @return {bool} true for instances of Group, false for any other layer type.
+  */
+
+  get isPage() { return false; }
+
+  /**
+  Is this an artboard?
+
+  All Layer objects respond to this method, but only Artboard objects return true.
+
+  @return true for instances of Artboard, false for any other layer type.
+  */
+
+  get isArtboard() { return false; }
+
+  /**
+  Is this a group?
+
+  All Layer objects respond to this method, but only Groups or things that inherit from groups return true.
+
+  @return {bool} true for instances of Group, false for any other layer type.
+  */
+
+  get isGroup() { return false; }
+
+  /**
+  Is this a text layer?
+
+  All Layer objects respond to this method, but only text layers return true.
+
+  @return {bool} true for instances of Group, false for any other layer type.
+  */
+
+  get isText() { return false; }
+
+  /**
+  Is this a shape layer?
+
+  All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.
+
+  @return {bool} true for instances of Group, false for any other layer type.
+  */
+
+  get isShape() { return false; }
+
+  /**
+  Is this an image layer?
+
+  All Layer objects respond to this method, but only image layers return true.
+
+  @return {bool} true for instances of Group, false for any other layer type.
+  */
+
+  get isImage() { return false; }
+
+
+
+  /**
+  Duplicate this layer.
+  A new identical layer will be inserted into the parent of this layer.
+
+  @return {Layer} A new layer identical to this one.
+  */
+
+  duplicate() {
+    var object = this.sketchObject
+    var duplicate = object.copy()
+    object.parentGroup().insertLayers_afterLayer_([duplicate], object)
+    return this._document.wrapObject(duplicate);
+  }
+
+
+  /**
+  Remove this layer from its parent.
+  */
+
+  remove() {
+    var parent = this._object.parentGroup();
+    if (parent) {
+      parent.removeLayer_(this._object);
     }
+  }
 
-    /**
-      The name of the layer.
 
-      @return {string} The layer&apos;s name.
-    */
+  /**
+  Select the layer.
+  This will clear the previous selection. Use addToSelection() if you wish
+  to preserve the existing selection.
+  */
 
-    get name() {
-      return this._object.name();
-    }
+  select() {
+    this._object.select_byExpandingSelection(true, false);
+  }
 
-    /**
-      Set the name of the layer.
 
-      @param {string} name The new name.
-    */
+  /**
+  Deselect this layer.
+  Any other layers that were previously selected will remain selected.
+  */
 
-    set name(value) {
-      this._object.setName_(value);
-    }
+  deselect() {
+    this._object.select_byExpandingSelection(false, true);
+  }
 
-    /**
-      The frame of the layer.
-      This is given in coordinates that are local to the parent of the layer.
 
-      @return {Rectangle} The layer&apos;s frame.
-    */
+  /**
+  Add this layer to the selected layers.
+  Any other layers that were previously selected will remain selected.
+  */
 
-    get frame() {
-      var f = this._object.frame();
-      return new Rectangle(f.x(), f.y(), f.width(), f.height());
-    }
+  addToSelection() {
+    this._object.select_byExpandingSelection(true, true);
+  }
 
-    /**
-      Set the frame of the layer.
-      This will move and/or resize the layer as appropriate.
-      The new frame should be given in coordinates that are local to the parent of the layer.
 
-      @param {Rectangle} frame - The new frame of the layer.
-    */
 
-    set frame(value) {
-      var f = this._object.frame();
-      f.setRect_(NSMakeRect(value.x, value.y, value.width, value.height));
-    }
+  /**
+  Return the parent container of this layer.
 
-    /**
-      Duplicate this layer.
-      A new identical layer will be inserted into the parent of this layer.
+  @return {Group} The containing layer of this layer.
+  */
 
-      @return {Layer} A new layer identical to this one.
-    */
+  get container() {
+    return this._document.wrapObject(this._object.parentGroup())
+  }
 
-    duplicate() {
-      return self._document.wrapObject(this._object.duplicate());
-    }
+  /**
+  Return a list of tests to run for this class.
 
-    /**
-        Is this a page?
+  @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+  */
 
-        All Layer objects respond to this method, but only pages return true.
+  /**
+  Return the index of this layer in it&apos;s container.
+  The layer at the back of the container (visualy) will be layer 0. The layer at the front will be layer n - 1 (if there are n layers).
 
-        @return {bool} true for instances of Group, false for any other layer type.
-    */
+  @return {number} The layer order.
+  */
 
-    get isPage() { return false; }
+  get index() {
+    var ourLayer = this.sketchObject
+    return ourLayer.parentGroup().indexOfLayer_(ourLayer)
+  }
 
-    /**
-        Is this an artboard?
+  /**
+  Move this layer to the front of its container.
+  */
 
-        All Layer objects respond to this method, but only Artboard objects return true.
+  moveToFront() {
+    MSLayerMovement.moveToFront([this._object])
+  }
 
-        @return true for instances of Artboard, false for any other layer type.
-    */
+  /**
+  Move this layer forward in its container.
+  */
 
-    get isArtboard() { return false; }
+  moveForward() {
+    MSLayerMovement.moveForward([this._object])
+  }
 
-    /**
-        Is this an group?
+  /**
+  Move this layer to the back of its container.
+  */
 
-        All Layer objects respond to this method, but only Groups or things that inherit from groups return true.
+  moveToBack() {
+    MSLayerMovement.moveToBack([this._object])
+  }
 
-        @return {bool} true for instances of Group, false for any other layer type.
-    */
+  /**
+  Move this layer backwards in its container.
+  */
 
-    get isGroup() { return false; }
+  moveBackward() {
+    MSLayerMovement.moveBackward([this._object])
+  }
 
-    /**
-        Is this a text layer?
 
-        All Layer objects respond to this method, but only text layers return true.
+  /**
+  Convert a rectangle in the coordinates that this layer uses to absolute (page) coordinates.
 
-        @return {bool} true for instances of Group, false for any other layer type.
-    */
+  @param {Rectangle} rect The rectangle to convert.
+  @return {Rectangle} The converted rectangle expressed in page coordinates.
+  */
 
-    get isText() { return false; }
+  localRectToPageRect(rect) {
+    var rect = this.sketchObject.convertRectToAbsoluteCoordinates(rect.asCGRect)
+    return new Rectangle(rect.x, rect.y, rect.width, rect.height)
+  }
 
-    /**
-        Is this a shape layer?
+  /**
+  Convert a rectangle in the coordinates that this layer uses to it&apos;s parent&apos;s coordinates.
 
-        All Layer objects respond to this method, but only shape layers (rectangles, ovals, paths etc) return true.
+  @param {Rectangle} rect The rectangle to convert.
+  @return {Rectangle} The converted rectangle expressed in the coordinate system of the parent layer.
+  */
 
-        @return {bool} true for instances of Group, false for any other layer type.
-    */
+  localRectToParentRect(rect) {
+    var frame = this.frame
+    return new Rectangle(rect.x + frame.x, rect.y + frame.y, rect.width, rect.height)
+  }
 
-    get isShape() { return false; }
+  /**
+  Return a list of tests to run for this class.
 
-    /**
-        Is this an image layer?
+  @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+  */
 
-        All Layer objects respond to this method, but only image layers return true.
+  static tests() {
+    return {
+      &quot;tests&quot; : {
+        &quot;testName&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          page.name = &quot;This is a page&quot;
+          tester.assertEqual(page.name, &quot;This is a page&quot;)
+          var group = page.newGroup({&quot;name&quot; : &quot;blah&quot;})
+          tester.assertEqual(group.name, &quot;blah&quot;)
+          var group2 = page.newGroup()
+          tester.assertEqual(group2.name, &quot;Group&quot;)
+        },
 
-        @return {bool} true for instances of Group, false for any other layer type.
-    */
+        &quot;testFrame&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var frame = new Rectangle(10, 10, 20, 20)
+          var group = page.newGroup({&quot;frame&quot; : frame})
+          tester.assertEqual(group.frame, frame)
+        },
 
-    get isImage() { return false; }
+        &quot;testDuplicate&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup()
+          tester.assertEqual(page.sketchObject.layers().count(), 1)
+          var group2 = group.duplicate()
+          tester.assertEqual(page.sketchObject.layers().count(), 2)
+        },
 
-    /**
-      Add a new wrapped layer object to represent a Sketch layer.
-      Apply any supplied properties to the wrapper (which will apply
-      them in turn to the wrapped layer).
+        &quot;testRemove&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup()
+          tester.assertEqual(page.sketchObject.layers().count(), 1)
+          group.remove()
+          tester.assertEqual(page.sketchObject.layers().count(), 0)
+        },
 
-      @param {MSLayer} newLayer The underlying Sketch layer object.
-      @param {dictionary} properties The properties to apply.
-      @param {string} wrapper The name of wrapper class to use.
-      @return {Layer} The wrapped layer object.
-    */
+        &quot;testSelection&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup()
 
-    _addWrappedLayerWithProperties(newLayer, properties, wrapper) {
-      if (newLayer) {
-        // add the Sketch object to this layer
-        var layer = this._object
-        layer.addLayers_(NSArray.arrayWithObject_(newLayer))
+          // start with nothing selected
+          tester.assertTrue(page.selectedLayers.isEmpty)
 
-        // make a Javascript wrapper object for the new layer
-        var wrapper = this._document.wrapObject(newLayer)
+          // select a layer
+          group.select()
+          tester.assertFalse(page.selectedLayers.isEmpty)
 
-        // apply properties, via the wrapper
-        for (var p in properties) {
-          wrapper[p] = properties[p]
+          // deselect it - should go back to nothing selected
+          group.deselect()
+          tester.assertTrue(page.selectedLayers.isEmpty)
+
+          // select one layer then another - only the last should be selected
+          var group2 = page.newGroup()
+          group.select()
+          group2.select()
+          tester.assertEqual(page.selectedLayers.length, 1)
+
+          // add a second layer to the selection - both should be selected
+          group.addToSelection()
+          tester.assertEqual(page.selectedLayers.length, 2)
+        },
+
+        &quot;testContainer&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup()
+          tester.assertEqual(group.container.sketchObject, page.sketchObject)
+        },
+
+        &quot;testOrdering&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group1 = page.newGroup()
+          var group2 = page.newGroup()
+          var group3 = page.newGroup()
+          tester.assertEqual(group1.index, 0)
+          tester.assertEqual(group2.index, 1)
+          tester.assertEqual(group3.index, 2)
+
+          group1.moveToFront()
+          tester.assertEqual(group2.index, 0)
+          tester.assertEqual(group3.index, 1)
+          tester.assertEqual(group1.index, 2)
+
+          group3.moveToBack()
+          tester.assertEqual(group3.index, 0)
+          tester.assertEqual(group2.index, 1)
+          tester.assertEqual(group1.index, 2)
+
+          group2.moveForward()
+          tester.assertEqual(group3.index, 0)
+          tester.assertEqual(group1.index, 1)
+          tester.assertEqual(group2.index, 2)
+
+          group1.moveBackward()
+          tester.assertEqual(group1.index, 0)
+          tester.assertEqual(group3.index, 1)
+          tester.assertEqual(group2.index, 2)
+
         }
 
-        return wrapper
       }
-    }
-
-    /**
-      Extract the frame to use for a layer from some properties.
-      If the frame wasn&apos;t supplied in the properties, we return a default value instead.
-
-      @param {dictionary} properties The properties to use when looking for a frame value.
-      @return {Rectangle} The frame rectangle to use.
-    */
-
-    _frameForLayerWithProperties(properties) {
-      var frame = properties.frame
-      if (frame) {
-        delete properties[&quot;frame&quot;]
-      } else {
-        frame = new Rectangle(0, 0, 100, 100)
-      }
-      return frame
-    }
-
-    /**
-        Returns a newly created shape, which has been added to this layer,
-        and sets it up using the supplied properties.
-
-        @param {dictionary} properties Properties to apply to the shape.
-        @return {Shape} the new shape.
-    */
-
-    newShape(properties) {
-      var frame = this._frameForLayerWithProperties(properties)
-      var newLayer = MSShapeGroup.shapeWithBezierPath_(NSBezierPath.bezierPathWithRect_(frame.asCGRect()));
-      return this._addWrappedLayerWithProperties(newLayer, properties, &quot;Shape&quot;);
-    }
-
-    /**
-        Returns a newly created text layer, which has been added to this layer,
-        and sets it up using the supplied properties.
-
-        @param {dictionary} properties Properties to apply to the text layer.
-        @return {Text} the new text layer.
-    */
-
-    newText(properties) {
-      var frame = this._frameForLayerWithProperties(properties)
-      var newLayer = MSTextLayer.alloc().initWithFrame_(frame.asCGRect());
-      newLayer.adjustFrameToFit();
-      return this._addWrappedLayerWithProperties(newLayer, properties, &quot;Text&quot;);
-    }
-
-    /**
-        Returns a newly created group, which has been added to this layer,
-        and sets it up using the supplied properties.
-
-        @param {dictionary} properties Properties to apply to the group.
-        @return {Group} the new group.
-    */
-
-    newGroup(properties) {
-      var frame = this._frameForLayerWithProperties(properties)
-      var newLayer = MSLayerGroup.alloc().initWithFrame_(frame.asCGRect());
-      return this._addWrappedLayerWithProperties(newLayer, properties, &quot;Group&quot;);
-    }
-
-
-    /**
-        Returns a newly created image layer, which has been added to this layer,
-        and sets it up using the supplied properties.
-
-        @param {dictionary} properties Properties to apply to the layer.
-        @return {Image} the new image layer.
-    */
-
-    newImage(properties) {
-      var frame = this._frameForLayerWithProperties(properties)
-      var newLayer = MSBitmapLayer.alloc().initWithFrame_(frame.asCGRect());
-      return this._addWrappedLayerWithProperties(newLayer, properties, &quot;Image&quot;);
-    }
-
-    /**
-        Remove this layer from its parent.
-    */
-
-    remove() {
-      var parent = this._object.parentGroup();
-      if (parent) {
-        parent.removeLayer_(this._object);
-      }
-    }
-
-    /**
-        Select the layer.
-        This will clear the previous selection. Use addToSelection() if you wish
-        to preserve the existing selection.
-    */
-
-    select() {
-      this._object.select_byExpandingSelection(true, false);
-    }
-
-    /**
-        Deselect this layer.
-        Any other layers that were previously selected will remain selected.
-    */
-
-    deselect() {
-      this._object.select_byExpandingSelection(false, true);
-    }
-
-    /**
-        Add this layer to the selected layers.
-        Any other layers that were previously selected will remain selected.
-    */
-
-    addToSelection() {
-      this._object.select_byExpandingSelection(true, true);
-    }
-
-    /**
-        Perform a function for every sub-layer inside this one.
-        The function will be passed a single argument each time it is
-        invoked - which will be an object representing the sub-layer.
-
-        @param block {function} The function to execute for each layer.
-    */
-
-    iterate(block) {
-      var loop = this._object().layers().objectEnumerator();
-      while (item = loop.nextObject()) {
-        var layer = self._document.wrapObject(item)
-        block(layer);
-      }
-    }
-
-    /**
-     Return a list of tests to run for this class.
-
-     @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
-     */
-
-    static tests() {
-        return {
-            &quot;tests&quot; : {
-                &quot;test something&quot; : function(tester) {
-                    tester.assert(true);
-                },
-            }
-        };
-    }
+    };
+  }
 
 }
 </code></pre>
