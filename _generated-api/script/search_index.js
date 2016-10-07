@@ -60,6 +60,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "./api/style.js~style",
+    "class/api/Style.js~Style.html",
+    "<span>Style</span> <span class=\"search-result-import-path\">./api/Style.js</span>",
+    "class"
+  ],
+  [
     "./api/tester.js~tester",
     "class/api/Tester.js~Tester.html",
     "<span>Tester</span> <span class=\"search-result-import-path\">./api/Tester.js</span>",
@@ -420,6 +426,72 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "api/application.js~application#application",
+    "class/api/Application.js~Application.html#instance-member-Application",
+    "api/Application.js~Application#Application",
+    "member"
+  ],
+  [
+    "api/application.js~application#artboard",
+    "class/api/Application.js~Application.html#instance-member-Artboard",
+    "api/Application.js~Application#Artboard",
+    "member"
+  ],
+  [
+    "api/application.js~application#document",
+    "class/api/Application.js~Application.html#instance-member-Document",
+    "api/Application.js~Application#Document",
+    "member"
+  ],
+  [
+    "api/application.js~application#group",
+    "class/api/Application.js~Application.html#instance-member-Group",
+    "api/Application.js~Application#Group",
+    "member"
+  ],
+  [
+    "api/application.js~application#image",
+    "class/api/Application.js~Application.html#instance-member-Image",
+    "api/Application.js~Application#Image",
+    "member"
+  ],
+  [
+    "api/application.js~application#page",
+    "class/api/Application.js~Application.html#instance-member-Page",
+    "api/Application.js~Application#Page",
+    "member"
+  ],
+  [
+    "api/application.js~application#rectangle",
+    "class/api/Application.js~Application.html#instance-member-Rectangle",
+    "api/Application.js~Application#Rectangle",
+    "member"
+  ],
+  [
+    "api/application.js~application#selection",
+    "class/api/Application.js~Application.html#instance-member-Selection",
+    "api/Application.js~Application#Selection",
+    "member"
+  ],
+  [
+    "api/application.js~application#shape",
+    "class/api/Application.js~Application.html#instance-member-Shape",
+    "api/Application.js~Application#Shape",
+    "member"
+  ],
+  [
+    "api/application.js~application#style",
+    "class/api/Application.js~Application.html#instance-member-Style",
+    "api/Application.js~Application#Style",
+    "member"
+  ],
+  [
+    "api/application.js~application#text",
+    "class/api/Application.js~Application.html#instance-member-Text",
+    "api/Application.js~Application#Text",
+    "member"
+  ],
+  [
     "api/application.js~application#alert",
     "class/api/Application.js~Application.html#instance-method-alert",
     "api/Application.js~Application#alert",
@@ -489,12 +561,6 @@ window.esdocSearchIndex = [
     "api/application.js~application#newdocument",
     "class/api/Application.js~Application.html#instance-method-newDocument",
     "api/Application.js~Application#newDocument",
-    "method"
-  ],
-  [
-    "api/application.js~application#rectangle",
-    "class/api/Application.js~Application.html#instance-method-rectangle",
-    "api/Application.js~Application#rectangle",
     "method"
   ],
   [
@@ -594,6 +660,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "api/document.js~document#iteratewithnativelayers",
+    "class/api/Document.js~Document.html#instance-method-iterateWithNativeLayers",
+    "api/Document.js~Document#iterateWithNativeLayers",
+    "method"
+  ],
+  [
     "api/document.js~document#layernamed",
     "class/api/Document.js~Document.html#instance-method-layerNamed",
     "api/Document.js~Document#layerNamed",
@@ -642,15 +714,63 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "api/group.js~group#adjusttofit",
+    "class/api/Group.js~Group.html#instance-method-adjustToFit",
+    "api/Group.js~Group#adjustToFit",
+    "method"
+  ],
+  [
     "api/group.js~group#constructor",
     "class/api/Group.js~Group.html#instance-constructor-constructor",
     "api/Group.js~Group#constructor",
     "method"
   ],
   [
-    "api/group.js~group#is_group",
-    "class/api/Group.js~Group.html#instance-method-is_group",
-    "api/Group.js~Group#is_group",
+    "api/group.js~group#isgroup",
+    "class/api/Group.js~Group.html#instance-get-isGroup",
+    "api/Group.js~Group#isGroup",
+    "member"
+  ],
+  [
+    "api/group.js~group#iterate",
+    "class/api/Group.js~Group.html#instance-method-iterate",
+    "api/Group.js~Group#iterate",
+    "method"
+  ],
+  [
+    "api/group.js~group#iteratewithfilter",
+    "class/api/Group.js~Group.html#instance-method-iterateWithFilter",
+    "api/Group.js~Group#iterateWithFilter",
+    "method"
+  ],
+  [
+    "api/group.js~group#newgroup",
+    "class/api/Group.js~Group.html#instance-method-newGroup",
+    "api/Group.js~Group#newGroup",
+    "method"
+  ],
+  [
+    "api/group.js~group#newimage",
+    "class/api/Group.js~Group.html#instance-method-newImage",
+    "api/Group.js~Group#newImage",
+    "method"
+  ],
+  [
+    "api/group.js~group#newshape",
+    "class/api/Group.js~Group.html#instance-method-newShape",
+    "api/Group.js~Group#newShape",
+    "method"
+  ],
+  [
+    "api/group.js~group#newtext",
+    "class/api/Group.js~Group.html#instance-method-newText",
+    "api/Group.js~Group#newText",
+    "method"
+  ],
+  [
+    "api/group.js~group#pagerecttolocalrect",
+    "class/api/Group.js~Group.html#instance-method-pageRectToLocalRect",
+    "api/Group.js~Group#pageRectToLocalRect",
     "method"
   ],
   [
@@ -708,6 +828,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "api/layer.js~layer#container",
+    "class/api/Layer.js~Layer.html#instance-get-container",
+    "api/Layer.js~Layer#container",
+    "member"
+  ],
+  [
     "api/layer.js~layer#deselect",
     "class/api/Layer.js~Layer.html#instance-method-deselect",
     "api/Layer.js~Layer#deselect",
@@ -720,15 +846,33 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "api/layer.js~layer#export",
+    "class/api/Layer.js~Layer.html#instance-method-export",
+    "api/Layer.js~Layer#export",
+    "method"
+  ],
+  [
+    "api/layer.js~layer#exportoptionsmergedwithdefaults",
+    "class/api/Layer.js~Layer.html#instance-method-exportOptionsMergedWithDefaults",
+    "api/Layer.js~Layer#exportOptionsMergedWithDefaults",
+    "method"
+  ],
+  [
+    "api/layer.js~layer#frame",
+    "class/api/Layer.js~Layer.html#instance-get-frame",
+    "api/Layer.js~Layer#frame",
+    "member"
+  ],
+  [
     "api/layer.js~layer#frame",
     "class/api/Layer.js~Layer.html#instance-set-frame",
     "api/Layer.js~Layer#frame",
     "member"
   ],
   [
-    "api/layer.js~layer#frame",
-    "class/api/Layer.js~Layer.html#instance-get-frame",
-    "api/Layer.js~Layer#frame",
+    "api/layer.js~layer#index",
+    "class/api/Layer.js~Layer.html#instance-get-index",
+    "api/Layer.js~Layer#index",
     "member"
   ],
   [
@@ -768,9 +912,39 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "api/layer.js~layer#iterate",
-    "class/api/Layer.js~Layer.html#instance-method-iterate",
-    "api/Layer.js~Layer#iterate",
+    "api/layer.js~layer#localrecttopagerect",
+    "class/api/Layer.js~Layer.html#instance-method-localRectToPageRect",
+    "api/Layer.js~Layer#localRectToPageRect",
+    "method"
+  ],
+  [
+    "api/layer.js~layer#localrecttoparentrect",
+    "class/api/Layer.js~Layer.html#instance-method-localRectToParentRect",
+    "api/Layer.js~Layer#localRectToParentRect",
+    "method"
+  ],
+  [
+    "api/layer.js~layer#movebackward",
+    "class/api/Layer.js~Layer.html#instance-method-moveBackward",
+    "api/Layer.js~Layer#moveBackward",
+    "method"
+  ],
+  [
+    "api/layer.js~layer#moveforward",
+    "class/api/Layer.js~Layer.html#instance-method-moveForward",
+    "api/Layer.js~Layer#moveForward",
+    "method"
+  ],
+  [
+    "api/layer.js~layer#movetoback",
+    "class/api/Layer.js~Layer.html#instance-method-moveToBack",
+    "api/Layer.js~Layer#moveToBack",
+    "method"
+  ],
+  [
+    "api/layer.js~layer#movetofront",
+    "class/api/Layer.js~Layer.html#instance-method-moveToFront",
+    "api/Layer.js~Layer#moveToFront",
     "method"
   ],
   [
@@ -784,30 +958,6 @@ window.esdocSearchIndex = [
     "class/api/Layer.js~Layer.html#instance-get-name",
     "api/Layer.js~Layer#name",
     "member"
-  ],
-  [
-    "api/layer.js~layer#newgroup",
-    "class/api/Layer.js~Layer.html#instance-method-newGroup",
-    "api/Layer.js~Layer#newGroup",
-    "method"
-  ],
-  [
-    "api/layer.js~layer#newimage",
-    "class/api/Layer.js~Layer.html#instance-method-newImage",
-    "api/Layer.js~Layer#newImage",
-    "method"
-  ],
-  [
-    "api/layer.js~layer#newshape",
-    "class/api/Layer.js~Layer.html#instance-method-newShape",
-    "api/Layer.js~Layer#newShape",
-    "method"
-  ],
-  [
-    "api/layer.js~layer#newtext",
-    "class/api/Layer.js~Layer.html#instance-method-newText",
-    "api/Layer.js~Layer#newText",
-    "method"
   ],
   [
     "api/layer.js~layer#remove",
@@ -840,6 +990,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "api/page.js~page#export",
+    "class/api/Page.js~Page.html#instance-method-export",
+    "api/Page.js~Page#export",
+    "method"
+  ],
+  [
+    "api/page.js~page#exportartboards",
+    "class/api/Page.js~Page.html#instance-method-exportArtboards",
+    "api/Page.js~Page#exportArtboards",
+    "method"
+  ],
+  [
     "api/page.js~page#ispage",
     "class/api/Page.js~Page.html#instance-get-isPage",
     "api/Page.js~Page#isPage",
@@ -850,6 +1012,18 @@ window.esdocSearchIndex = [
     "class/api/Page.js~Page.html#instance-method-newArtboard",
     "api/Page.js~Page#newArtboard",
     "method"
+  ],
+  [
+    "api/page.js~page#selectedlayers",
+    "class/api/Page.js~Page.html#instance-get-selectedLayers",
+    "api/Page.js~Page#selectedLayers",
+    "member"
+  ],
+  [
+    "api/page.js~page#selectedlayers",
+    "class/api/Page.js~Page.html#instance-get-selectedLayers",
+    "api/Page.js~Page#selectedLayers",
+    "member"
   ],
   [
     "api/page.js~page.tests",
@@ -880,6 +1054,18 @@ window.esdocSearchIndex = [
     "class/api/Rectangle.js~Rectangle.html#instance-member-height",
     "api/Rectangle.js~Rectangle#height",
     "member"
+  ],
+  [
+    "api/rectangle.js~rectangle#offset",
+    "class/api/Rectangle.js~Rectangle.html#instance-method-offset",
+    "api/Rectangle.js~Rectangle#offset",
+    "method"
+  ],
+  [
+    "api/rectangle.js~rectangle#tostring",
+    "class/api/Rectangle.js~Rectangle.html#instance-method-toString",
+    "api/Rectangle.js~Rectangle#toString",
+    "method"
   ],
   [
     "api/rectangle.js~rectangle#width",
@@ -936,10 +1122,34 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "api/selection.js~selection#iterateandclear",
-    "class/api/Selection.js~Selection.html#instance-method-iterateAndClear",
-    "api/Selection.js~Selection#iterateAndClear",
+    "api/selection.js~selection#iteratethenclear",
+    "class/api/Selection.js~Selection.html#instance-method-iterateThenClear",
+    "api/Selection.js~Selection#iterateThenClear",
     "method"
+  ],
+  [
+    "api/selection.js~selection#iteratewithfilter",
+    "class/api/Selection.js~Selection.html#instance-method-iterateWithFilter",
+    "api/Selection.js~Selection#iterateWithFilter",
+    "method"
+  ],
+  [
+    "api/selection.js~selection#iteratewithfilterthenclear",
+    "class/api/Selection.js~Selection.html#instance-method-iterateWithFilterThenClear",
+    "api/Selection.js~Selection#iterateWithFilterThenClear",
+    "method"
+  ],
+  [
+    "api/selection.js~selection#length",
+    "class/api/Selection.js~Selection.html#instance-get-length",
+    "api/Selection.js~Selection#length",
+    "member"
+  ],
+  [
+    "api/selection.js~selection#nativelayers",
+    "class/api/Selection.js~Selection.html#instance-get-nativeLayers",
+    "api/Selection.js~Selection#nativeLayers",
+    "member"
   ],
   [
     "api/selection.js~selection.tests",
@@ -966,9 +1176,57 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "api/shape.js~shape#style",
+    "class/api/Shape.js~Shape.html#instance-set-style",
+    "api/Shape.js~Shape#style",
+    "member"
+  ],
+  [
+    "api/shape.js~shape#style",
+    "class/api/Shape.js~Shape.html#instance-get-style",
+    "api/Shape.js~Shape#style",
+    "member"
+  ],
+  [
     "api/shape.js~shape.tests",
     "class/api/Shape.js~Shape.html#static-method-tests",
     "api/Shape.js~Shape.tests",
+    "method"
+  ],
+  [
+    "api/style.js",
+    "file/api/Style.js.html",
+    "api/Style.js",
+    "file"
+  ],
+  [
+    "api/style.js~style#borders",
+    "class/api/Style.js~Style.html#instance-set-borders",
+    "api/Style.js~Style#borders",
+    "member"
+  ],
+  [
+    "api/style.js~style#colorfromstring",
+    "class/api/Style.js~Style.html#instance-method-colorFromString",
+    "api/Style.js~Style#colorFromString",
+    "method"
+  ],
+  [
+    "api/style.js~style#constructor",
+    "class/api/Style.js~Style.html#instance-constructor-constructor",
+    "api/Style.js~Style#constructor",
+    "method"
+  ],
+  [
+    "api/style.js~style#fills",
+    "class/api/Style.js~Style.html#instance-set-fills",
+    "api/Style.js~Style#fills",
+    "member"
+  ],
+  [
+    "api/style.js~style.tests",
+    "class/api/Style.js~Style.html#static-method-tests",
+    "api/Style.js~Style.tests",
     "method"
   ],
   [
@@ -996,9 +1254,27 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "api/tester.js~tester#assertfalse",
+    "class/api/Tester.js~Tester.html#instance-method-assertFalse",
+    "api/Tester.js~Tester#assertFalse",
+    "method"
+  ],
+  [
+    "api/tester.js~tester#asserttrue",
+    "class/api/Tester.js~Tester.html#instance-method-assertTrue",
+    "api/Tester.js~Tester#assertTrue",
+    "method"
+  ],
+  [
     "api/tester.js~tester#constructor",
     "class/api/Tester.js~Tester.html#instance-constructor-constructor",
     "api/Tester.js~Tester#constructor",
+    "method"
+  ],
+  [
+    "api/tester.js~tester#newtestdocument",
+    "class/api/Tester.js~Tester.html#instance-method-newTestDocument",
+    "api/Tester.js~Tester#newTestDocument",
     "method"
   ],
   [
@@ -1012,6 +1288,18 @@ window.esdocSearchIndex = [
     "file/api/Text.js.html",
     "api/Text.js",
     "file"
+  ],
+  [
+    "api/text.js~text#adjusttofit",
+    "class/api/Text.js~Text.html#instance-method-adjustToFit",
+    "api/Text.js~Text#adjustToFit",
+    "method"
+  ],
+  [
+    "api/text.js~text#alignment",
+    "class/api/Text.js~Text.html#instance-get-alignment",
+    "api/Text.js~Text#alignment",
+    "member"
   ],
   [
     "api/text.js~text#alignment",
@@ -1038,16 +1326,22 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "api/text.js~text#fragments",
+    "class/api/Text.js~Text.html#instance-get-fragments",
+    "api/Text.js~Text#fragments",
+    "member"
+  ],
+  [
+    "api/text.js~text#frame",
+    "class/api/Text.js~Text.html#instance-member-frame",
+    "api/Text.js~Text#frame",
+    "member"
+  ],
+  [
     "api/text.js~text#istext",
     "class/api/Text.js~Text.html#instance-get-isText",
     "api/Text.js~Text#isText",
     "member"
-  ],
-  [
-    "api/text.js~text#resizetofitcontents",
-    "class/api/Text.js~Text.html#instance-method-resizeToFitContents",
-    "api/Text.js~Text#resizeToFitContents",
-    "method"
   ],
   [
     "api/text.js~text#systemfontsize",
@@ -1065,6 +1359,12 @@ window.esdocSearchIndex = [
     "api/text.js~text#text",
     "class/api/Text.js~Text.html#instance-get-text",
     "api/Text.js~Text#text",
+    "member"
+  ],
+  [
+    "api/text.js~text#useconstantbaselines",
+    "class/api/Text.js~Text.html#instance-set-useConstantBaselines",
+    "api/Text.js~Text#useConstantBaselines",
     "member"
   ],
   [
@@ -1089,6 +1389,12 @@ window.esdocSearchIndex = [
     "api/wrappedobject.js~wrappedobject#id",
     "class/api/WrappedObject.js~WrappedObject.html#instance-get-id",
     "api/WrappedObject.js~WrappedObject#id",
+    "member"
+  ],
+  [
+    "api/wrappedobject.js~wrappedobject#sketchobject",
+    "class/api/WrappedObject.js~WrappedObject.html#instance-get-sketchObject",
+    "api/WrappedObject.js~WrappedObject#sketchObject",
     "member"
   ],
   [
