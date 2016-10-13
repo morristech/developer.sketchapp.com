@@ -31,6 +31,10 @@ With a bit of code (or in some cases, a lot of code!), you can extend Sketch wit
 
 If you want to learn how to do that, you’ve come to the right place.
 
+<div class="embed-container">
+  <iframe src="https://www.youtube.com/embed/TlSfoGN6WRw?rel=0&amp;showinfo=0&amp;color=white" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
 ## Sections
 
 We’ve divided the contents into four parts:

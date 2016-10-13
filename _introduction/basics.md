@@ -13,6 +13,10 @@ It contains one or more scripts. Each script defines one or more commands which 
 
 Plugin scripts are written using [CocoaScript](https://github.com/ccgus/CocoaScript), which is a variation of JavaScript.
 
+<div class="embed-container">
+  <iframe src="https://www.youtube.com/embed/TlSfoGN6WRw?rel=0&amp;showinfo=0&amp;color=white" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
 ## Terminology
 
 Before we get any further, let’s define a bit of terminology.
