@@ -43,4 +43,5 @@ permalink: /resources/
 
 ## Tools
 
+- [Sketch Scripter](https://github.com/timuric/sketchapp-scripter), by Timur Carpeev. an Atom package for running Sketch scripts from the Atom editor.
 - [class-dump](http://stevenygard.com/projects/class-dump/). We do our best to document everything, but if you are of the adventurous type, you’ll probably want to play with this.
