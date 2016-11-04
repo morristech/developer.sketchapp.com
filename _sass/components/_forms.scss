@@ -1,4 +1,5 @@
 label,
+.label,
 div.invalid {
   display: block;
   font-size: .8125rem; //13px
@@ -6,16 +7,12 @@ div.invalid {
   font-weight: $font-regular;
 }
 
-label {
+label,
+.label {
   margin-bottom: .25rem; //4px
-  text-transform: capitalize;
   user-select: none;
   color: $text-dark-high;
 }
-
-  label > small {
-    text-transform: none;
-  }
 
   input[type="checkbox"] + label,
   input[type="radio"] + label,
@@ -25,26 +22,63 @@ label {
 
   input[type="checkbox"] + label,
   input[type="radio"] + label {
-    margin-left: .25rem;
+    margin-left: .375rem;
   }
+
+  label > input[type="checkbox"],
+  label > input[type="radio"] {
+    margin-right: .375rem;
+  }
+
+.label-inline {
+  display: inline-block;
+  text-transform: none;
+}
+
+@include tablet-and-above {
+  .label-inline + .label-inline {
+    margin-left: 1rem;
+  }
+}
+
+@include tablet-and-below {
+  .label-inline + .label-inline {
+    margin-top: 1rem;
+  }
+}
 
 input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="search"],
 input[type="button"],
+input[type="number"],
 select,
-textarea,
-.search-input {
+textarea {
+  -webkit-appearance: none;
   appearance: none;
   -moz-appearance: none;
   padding: .625rem 1rem .6875rem;
-  background-color: $text-light-low;
+  background-color: $background-white;
   color: $text-dark-high;
   border: .0625rem solid $border-dark-ultra-high;
   border-radius: $radius-normal;
   transition: all .12s linear;
 }
+
+  .background-dark input[type="text"],
+  .background-dark input[type="email"],
+  .background-dark input[type="password"],
+  .background-dark input[type="search"],
+  .background-dark input[type="button"],
+  .background-dark input[type="number"],
+  .background-dark select,
+  .background-dark textarea {
+    background-color: rgba( $action-light , .05);
+    border-color: $action-light-border;
+    border-right: 0;
+    color: $action-light;
+  }
 
 input[type="reset"] {
   appearance: none;
@@ -56,10 +90,14 @@ input[type="reset"] {
   line-height: 1.5;
 }
 
-input[type="search"],
-.search-input {
-  background: $background-light url(images/loupe.svg) 1rem center no-repeat;
+input[type="search"] {
+  background: $background-light url(/images/plugins/loupe.svg) 1rem center no-repeat;
   padding-left: 2.5rem;
+}
+
+input[type="file"] {
+  line-height: 1;
+  padding: .5rem 0;
 }
 
 select {
@@ -71,6 +109,7 @@ select {
 
 select.empty {
   background-image: url('data:image/svg+xml;utf8,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EShape%3C%2Ftitle%3E%3Cpath%20fill%3D%22%23373D47%22%20d%3D%22M0%200h8.485L4.243%204.243z%22%20fill-rule%3D%22evenodd%22%20opacity%3D%22.6%22%2F%3E%3C%2Fsvg%3E');
+  color: $text-dark-ultra-low;
 }
 
 @include tablet-and-below {
@@ -80,7 +119,7 @@ select.empty {
   input[type="search"],
   input[type="button"],
   input[type="reset"],
-  input:not([type="checkbox"]),
+  input[type="number"],
   select,
   textarea,
   form button {
@@ -88,16 +127,41 @@ select.empty {
   }
 }
 
-input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="button"],
+input[type="reset"],
+input[type="number"],
 textarea {
   box-shadow: inset 0 1px 0 $divider-dark;
 }
 
-  input:focus,
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  input[type="search"]:focus,
+  input[type="button"]:focus,
+  input[type="reset"]:focus,
+  input[type="number"]:focus,
   select:focus,
   textarea:focus {
-    background-color: $text-light;
+    background-color: $background-white;
     border-color: $action-border;
+  }
+
+  .background-dark input[type="text"]:focus,
+  .background-dark input[type="email"]:focus,
+  .background-dark input[type="password"]:focus,
+  .background-dark input[type="search"]:focus,
+  .background-dark input[type="button"]:focus,
+  .background-dark input[type="reset"]:focus,
+  .background-dark input[type="number"]:focus,
+  .background-dark select:focus,
+  .background-dark textarea:focus {
+    border-color: $background-white;
+    color: $text-dark;
   }
 
 textarea {
@@ -129,10 +193,18 @@ textarea {
     border-color: $action-border;
   }
 
-::placeholder,
-select.empty {
+::placeholder {
   color: $text-dark-ultra-low;
 }
+
+.background-dark ::placeholder,
+.background-dark select.empty {
+  color: rgba( $action-light , .6 );
+}
+
+  .background-dark :focus::placeholder {
+    color: $text-dark-ultra-low;
+  }
 
 //Invalid fields
 :root .invalid,
@@ -165,21 +237,21 @@ div.invalid {
   }
 
   @keyframes shake {
-      8%, 41% {
-          transform: translateX(-4px);
-      }
-      25%, 58% {
-          transform: translateX(4px);
-      }
-      75% {
-          transform: translateX(-2px);
-      }
-      92% {
-          transform: translateX(2px);
-      }
-      0%, 100% {
-          transform: translateX(0);
-      }
+    8%, 41% {
+        transform: translateX(-4px);
+    }
+    25%, 58% {
+        transform: translateX(4px);
+    }
+    75% {
+        transform: translateX(-2px);
+    }
+    92% {
+        transform: translateX(2px);
+    }
+    0%, 100% {
+        transform: translateX(0);
+    }
   }
 
 
@@ -201,4 +273,49 @@ form > ol > li {
 
 form > ol > li:last-child {
   margin-top: 2rem;
+}
+
+.inline-fields {
+  display: inline-block;
+}
+
+.inline-fields input,
+.inline-fields select {
+  width: 100%;
+}
+
+.radio-group {
+  padding-bottom: .625rem;
+}
+
+.input-group {
+  // display: inline-table;
+  // vertical-align: middle;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.input-group input {
+  flex: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+
+.input-group .button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  &:hover,
+  &:active,
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+@include tablet-and-below {
+  .input-group .button {
+    width: auto;
+  }
 }
