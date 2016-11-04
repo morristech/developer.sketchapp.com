@@ -5,8 +5,6 @@ summary: Some more details on how to use CocoaScript
 order: 500
 ---
 
-## CocoaScript
-
 Sketch Plugins are made possible by [CocoaScript](https://github.com/ccgus/CocoaScript), a bridge that lets you use Objective-C/Cocoa code from an external script written in JavaScript. The bridge takes care of the translation between JavaScript and Cocoa, so you can concentrate on the important parts (namely, making Sketch do awesome stuff).
 
 From CocoaScript’s README:
