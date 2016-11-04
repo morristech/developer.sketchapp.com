@@ -100,17 +100,6 @@ thead td {
   }
 }
 
-// External links
-.content a[href^="http://"]:not([href*="sketchapp.com"]):after,
-.content a[href^="https://"]:not([href*="sketchapp.com"]):after {
-   content: "\21F1"; //⇱
-   display: inline-block;
-   margin-left: .25rem;
-   font-size: .75rem;
-   vertical-align: top;
-   transform: scaleX(-1); //Flipping, as this char doesn't exist that way
-}
-
 .developer .content footer {
   margin-top: 3rem;
   padding-top: 2.5rem;

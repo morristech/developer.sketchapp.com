@@ -8,7 +8,7 @@
   border: 1px solid $action-border;
   border-radius: $radius-normal;
   //font-weight: $font-semibold;
-  box-shadow: 0 1px 1px 0 rgba( $sk-indigo8 , .05 );
+  box-shadow: 0 1px 1px 0 rgba( $sk-orange8 , .05 );
   transition: all .25s $ease-out-quad;
   &:hover,
   &:active,
@@ -17,7 +17,7 @@
     background: $action-high;
     color: $text-light-high;
     border-color: rgba( $action-high, .6 );
-    box-shadow: 0 4px 12px rgba( $sk-indigo6 , .25 );
+    box-shadow: 0 4px 12px rgba( $sk-orange6 , .25 );
   }
 
   // Primary action button
@@ -42,14 +42,14 @@
   &:active,
   &:focus {
     background: $action-light-high;
-    color: $sk-indigo8;
+    color: $sk-orange8;
     border-color: rgba( $action-light-high, .6 );
     box-shadow: 0 4px 12px rgba( $sk-yellow6 , .25 );
   }
 
   &.full {
     background-color: $action-light;
-    color: $sk-indigo8;
+    color: $sk-orange8;
     &:hover,
     &:active,
     &:focus {

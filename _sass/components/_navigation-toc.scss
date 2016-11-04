@@ -20,6 +20,7 @@
 
   .nav-toggle {
     display: inline-block;
+    margin-top: 0;
   }
 
   .toc-nav header {
@@ -211,7 +212,7 @@
     max-height: none !important;
     height: auto !important;
   }
-  
+
 }
 
 .glossary-nav ol {

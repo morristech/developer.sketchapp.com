@@ -2,7 +2,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font: $font-regular 16px/1.5 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif; //1.48125
-  color: $text-dark-low;
+  color: $text-dark;
 
   // Enabling kerning and optional ligatures
   text-rendering: optimizeLegibility;
@@ -183,13 +183,7 @@ th,
     color: $text-light-high;
   }
 
-display-1:first-child,
-h1:first-child, .h1:first-child,
-h2:first-child, .h2:first-child,
-h3:first-child, .h3:first-child,
-h4:first-child, .h4:first-child,
-h5:first-child, .h5:first-child,
-h6:first-child, .h6:first-child {
+.content h1:first-child {
   margin-top: 0;
 }
 
@@ -295,7 +289,7 @@ strong {
     display: inline-block;
     padding: .09em;
     margin: -.09em;
-    background: $sk-indigo-8;
+    background: $sk-orange-8;
   }
 
   .background-dark .display-1 em,
@@ -305,7 +299,7 @@ strong {
   .background-dark h4 em, .background-dark .h4 em,
   .background-dark h5 em, .background-dark .h5 em,
   .background-dark th em {
-    background: $sk-indigo6;
+    background: $sk-orange6;
   }
 
 pre code,
@@ -393,8 +387,8 @@ kbd {
 }
 
   .background-dark code {
-    background-color: $sk-indigo6;
-    color: $sk-indigo-8;
+    background-color: $sk-orange6;
+    color: $sk-orange-8;
   }
 
   .background-dark kbd {
