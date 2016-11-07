@@ -4,22 +4,10 @@
   margin:0;
 }
 
-/*
-  Force border-box so that % widths fit the parent
-  container without overlap because of margin/padding.
-
-  More Info : http://www.quirksmode.org/css/box.html
-*/
-.docco ul.sections > li > div {
-  -moz-box-sizing: border-box;    /* firefox */
-  -ms-box-sizing: border-box;     /* ie */
-  -webkit-box-sizing: border-box; /* webkit */
-  -khtml-box-sizing: border-box;  /* konqueror */
-  box-sizing: border-box;         /* css3 */
-}
-
 .docco {
+
 }
+
 .docco .annotation {
   width: 50%;
   h1, h2, h3, h4 {
@@ -30,14 +18,15 @@
     margin-bottom: 0.5em;
   }
 }
+
 .docco .content {
   width: 50%;
-  font-size: 0.9em;
-//  background-color: #eee;
-  code,
-  pre {
-    font-weight: 400 !important;
-  }
+  //font-size: 0.9em;
+  //background-color: #eee;
+  // code,
+  // pre {
+  //   font-weight: 400 !important;
+  // }
 }
 
 
@@ -47,7 +36,7 @@
   background: white;
   -webkit-box-shadow: 0 0 25px #777; -moz-box-shadow: 0 0 25px #777;
   -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px;
-  font: 16px Arial;
+  font-size: 16px;
   cursor: pointer;
   text-align: right;
   list-style: none;
@@ -279,7 +268,7 @@ pre {
     width: 50%;
   }
   .docco .content { border: none; }
-  
+
   #container {
     position: relative;
   }
@@ -291,7 +280,7 @@ pre {
     padding: 0;
   }
   #jump_to, #jump_page {
-    font: 10px Arial;
+    font-size: 10px;
     text-transform: uppercase;
   }
   #jump_page .source {
@@ -335,11 +324,11 @@ pre {
     display: inline;
   }
   .pilcrow {
-    font: 12px Arial;
+    font-size: 12px;
     text-decoration: none;
     color: #454545;
     position: absolute;
-    top: 3px; left: -20px;
+    top: 1px; left: -20px;
     padding: 1px 2px;
     opacity: 0.1;
     -webkit-transition: opacity 0.2s linear;
@@ -372,6 +361,3 @@ pre {
     padding: 9px 15px 16px 25px;
   }
 }
-
-
-
