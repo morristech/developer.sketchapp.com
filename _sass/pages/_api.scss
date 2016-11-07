@@ -57,12 +57,26 @@
 }
 
 .search-input {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
   padding: .5rem;
   font-size: .8125rem; //13px
+  color: $text-dark-high;
+  background-color: $background-white;
+  background-image: url(images/loupe.svg);
   background-position: .75rem center;
+  background-repeat: no-repeat;
   padding-left: 2.25rem;
   width: 100%;
+  border: .0625rem solid $border-dark-high;
+  border-radius: $radius-normal;
+  transition: all .12s linear;
 }
+
+  .search-input:focus {
+    border-color: $action-border;
+  }
 
 .search-result {
   position: absolute;
