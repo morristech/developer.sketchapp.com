@@ -103,11 +103,11 @@ figcaption {
 /*Selection color for pages*/
 *::selection {
   color: $text-light-high;
-  background: $sk-orange4;
+  background: $sk-orange2;
 }
 
   *::selection:window-inactive {
-      background: $sk-orange2;
+      background: $sk-orange4;
   }
 
 /* Avoid the ugly focus ring in form elements in Safari */
