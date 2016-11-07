@@ -91,7 +91,7 @@ $(document).ready(function(){
     });
     //Removing the search results contents
     $('.search-results').html('');
-    $('.search-form').show();
+    $('.search-form').show().removeClass('hide');
     $('.search-field').focus();
   });
 });
