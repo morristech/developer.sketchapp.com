@@ -3,9 +3,7 @@ title: Hello, World
 permalink: /
 ---
 
-## Welcome to Sketch's Developer Site
-
-We’ve worked very hard to make Sketch the dream “designer toolbox”, but everyone has slightly different needs, and there is a good chance that there’s a feature that you would like, which we’ve not implemented.
+Welcome to Sketch's Developer Site. We’ve worked very hard to make Sketch the dream “designer toolbox”, but everyone has slightly different needs, and there is a good chance that there’s a feature that you would like, which we’ve not implemented.
 
 Luckily, Sketch includes a plugin engine so that developers can extend its functionality.
 

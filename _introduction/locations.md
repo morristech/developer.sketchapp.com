@@ -5,8 +5,6 @@ permalink: /introduction/installing-plugins/
 order: 350
 ---
 
-## Where are Plugins located?
-
 When Sketch starts up, it scans a folder on your disk looking for Plugins.
 
 ```
@@ -15,7 +13,7 @@ When Sketch starts up, it scans a folder on your disk looking for Plugins.
 
 *(~ here is shorthand for your home folder, e.g. `/Users/joe`)*
 
-You can access this Plugins folder easily by holding `Alt` while opening the Plugins menu and then choosing 'Reveal Plugins Folder'. 
+You can access this Plugins folder easily by holding `Alt` while opening the Plugins menu and then choosing 'Reveal Plugins Folder'.
 
 
 ### Installing Plugins

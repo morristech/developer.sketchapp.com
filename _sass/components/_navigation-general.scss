@@ -23,3 +23,28 @@ nav li {
     vertical-align: middle;
   }
 }
+
+nav a {
+  color: $text-dark;
+  //font-weight: $font-semibold;
+  &:hover,
+  &:focus {
+    color: $action-high;
+  }
+  &:active,
+  &.active {
+    color: $text-dark-ultra-low;
+  }
+}
+
+.background-dark nav a {
+  color: $text-light;
+  &:hover,
+  &:focus {
+    color: $text-light-low;
+  }
+  &:active,
+  &.active {
+    color: $text-light-ultra-low;
+  }
+}

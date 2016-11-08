@@ -5,8 +5,6 @@ permalink: /introduction/
 order: 100
 ---
 
-## What is a Plugin?
-
 On disk, a Plugin is just a folder arranged in a [standard layout](/introduction/plugin-bundles/).
 
 It contains one or more scripts. Each script defines one or more commands which extend Sketch in some way. It can also contain any other optional resources (such as images) that the commands make use of to do whatever they do.

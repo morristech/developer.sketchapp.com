@@ -53,7 +53,8 @@ body > section:nth-child(even):last-of-type ~ footer {
   }
 
 //Tables
-table {
+.content > table,
+.content div:not(.highlight) > table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
@@ -64,16 +65,18 @@ table {
   color: $text-dark;
 }
 
-td {
+.content > table td,
+.content div:not(.highlight) > table td  {
   padding: 1rem;
 }
 
-thead td {
+.content > thead td,
+.content div:not(.highlight) thead td {
   font-weight: $font-regular;
 }
 
 @include tablet-and-above {
-  td {
+  .content div:not(.highlight) > table td {
     // width: 50%;
     border-bottom: 1px solid $border-dark;
     vertical-align: top;
@@ -98,17 +101,6 @@ thead td {
   td:empty {
     padding-bottom: 0;
   }
-}
-
-// External links
-.content a[href^="http://"]:not([href*="sketchapp.com"]):after,
-.content a[href^="https://"]:not([href*="sketchapp.com"]):after {
-   content: "\21F1"; //⇱
-   display: inline-block;
-   margin-left: .25rem;
-   font-size: .75rem;
-   vertical-align: top;
-   transform: scaleX(-1); //Flipping, as this char doesn't exist that way
 }
 
 .developer .content footer {
