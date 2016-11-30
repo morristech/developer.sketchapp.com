@@ -1,6 +1,6 @@
 # Site settings
 title: Sketch Developers
-email: developers@sketchapp.com
+email: developer@sketchapp.com
 url: "http://developer.sketchapp.com"
 github_repo:  https://github.com/BohemianCoding/developer.sketchapp.com
 
@@ -41,21 +41,31 @@ collections:
   classes:
     output: true
     permalink: /reference/class/:path/
+
   actions:
     output: true
     permalink: /reference/action/:path/
+
   code-examples:
     output: true
     permalink: /examples/code/:path/
+
   introduction:
     output: true
     permalink: /introduction/:path/
+
   posts:
     output: true
     permalink: /blog/:path/
-  plugins:
+
+  generated-api:
+    output: true
+    permalink: /reference/api/:path
+
+  generated-plugins:
     output: true
     permalink: /examples/plugins/:path/
+
 
 # Defaults
 defaults:
@@ -78,11 +88,6 @@ defaults:
       script: "/js/search.js"
   -
     scope:
-      type: "plugins"
-    values:
-      layout: "docco-page"
-  -
-    scope:
       type: "code-examples"
     values:
       layout: "sidebar-page"
@@ -93,6 +98,16 @@ defaults:
     values:
       layout: "sidebar-page"
       script: "/js/search.js"
+  -
+    scope:
+      type: "generated-plugins"
+    values:
+      layout: "docco-page"
+  -
+    scope:
+      type: "generated-api"
+    values:
+      layout: "api-page"
   -
     scope:
       type: "posts"

@@ -1,0 +1,136 @@
+---
+title: API Document
+---
+
+
+
+<header>
+  <a href="/reference/api/./">Home</a>
+  
+  <a href="/reference/api/identifiers.html">Reference</a>
+  <a href="/reference/api/source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="/reference/api/image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Application.js~Application.html">Application</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Artboard.js~Artboard.html">Artboard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Image.js~Image.html">Image</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Page.js~Page.html">Page</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="sketch-api">Sketch API</h1>
+<p>This is a prototype Javascript API for Sketch.</p>
+<p>The intention is to make something which is:</p>
+<ul>
+<li>native Javascript</li>
+<li>an easily understandable subset of the full internals of Sketch</li>
+<li>fully supported by Bohemian between releases (ie we try not to change it, unlike our internal API which we can and do change whenever we need to)</li>
+<li>still allows you to drop down to our internal API when absolutely necessary.</li>
+</ul>
+<p>Comments and suggestions for this API are welcome - send them to developers@sketchapp.com, or hack on the code and send us a pull request at <a href="https://github.com/BohemianCoding/SketchAPI">https://github.com/BohemianCoding/SketchAPI</a>.</p>
+<p>The API comes bundled inside Sketch, so no installation is required. You access it by obtaining a root &quot;sketch&quot; object via the context that&apos;s passed to your script, like so:</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">var sketch = context.api()</code>
+</code></pre>
+<p>Calls to this object then give you access to the rest of the API.</p>
+<h2 id="overview">Overview</h2>
+<p>The API exposed is deliberately thin at the moment, and primarily covers the following areas:</p>
+<ul>
+<li>obtaining the selected document, page, and layers</li>
+<li>iterating over the selection</li>
+<li>iterating over any page, artboard or group</li>
+<li>finding layers by name or id</li>
+<li>creating new layers</li>
+</ul>
+<p>The approach taken is to wrap the native Sketch model objects inside javascript objects. These are thin wrappers, and contain no state - they just exist as a way to provide a cleaner and more stable coding interface to the underlying model.</p>
+<p>The layer hierarchy is deliberately simplified, with all shape layers being treated the same way. Thus there are currently wrapper classes for the following layer types: <code>Page</code>, <code>Artboard</code>, <code>Group</code>, <code>Shape</code>, <code>Text</code>, <code>Image</code>.</p>
+<p>On top of this sits a <code>Document</code> class for each document, and an <code>Application</code> class which is the root of the tree. It&apos;s an instance of this that you are given when you call <code>context.api()</code>, and it is this single object which gives you access to all the others.</p>
+<p>One or two important properties of layers are exposed directly in the wrappers. For example <code>name</code>, <code>id</code>, and <code>frame</code>. Over time, more properties will be exposed this way, but for now you will often have to drop down to interrogating the underlying model object: <code>layer.sketchObject.</code>.</p>
+<p>There is the beginning of a wrapper class <code>Style</code> for layer styles, but it&apos;s currently very simple. The plan here will be to allow a quick way to set up all the common properties of a style, in a way that is uniform and consistent.</p>
+<p>On the <code>Application</code> class there is also some support for more global tasks such as reading/writing preferences. This stuff will be expanded over time.</p>
+<p>The application object also exposes some utility classes. Currently the main one of note is <code>Rectangle</code>, which is a javascript-native representation of a rectangle. The plan is to use this class consistently within the API, in order to try to mask the fact that the model itself uses a confusing mix of <code>NSRect</code>, <code>CGRect</code>,  <code>MSRect</code> and <code>MSAbsoluteRect</code>! In time more utility classes may be added. In time, also, we hope to clean up the model to be more consistent, at which point <code>Rectangle</code> might just turn into a thin wrapper for one of the native types.</p>
+<p>Finally, there is some crude support for interaction with the user via alerts/sheets and the messages area at the bottom of the canvas. This stuff is <em>not</em> final, and is currently just a re-working of some of our original code snippets. Ideally we&apos;d like to come up with a more powerful and cleaner API to allow your plugin to interact with the user in a way that is consistent and compatible with the way Sketch itself interacts. It will probably take some time for us to get to this stuff!</p>
+<h2 id="performance-and-identity">Performance and Identity</h2>
+<p>Because the API objects are thin wrappers, they are created on demand and are thrown away regularly.</p>
+<p>No attempt is made to have a one-to-one correspondence between wrapper and model object - many wrapper instances may exist which point to the same model object.</p>
+<p>This is not the most efficient solution in some respects, but it&apos;s pragmatic and works well for simple cases.</p>
+<p>If you have a performance issue where you&apos;re iterating across very large numbers of model objects, you may need to drop down to a more direct access.</p>
+<p>Because multiple wrappers might exist for a given model object, if you&apos;re testing two for equality, you should test the things that they wrap, rather than the wrapper objects themselves:</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">if (obj1 == obj2)                           { /* do stuff */ }    // this is probably not what you meant
+if (obj1.sketchObject == obj2.sketchObject) { /* do stuff */ }    // this is better - both wrappers might represent the same object</code>
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Here&apos;s a very simple example script:</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">var sketch = context.api()
+
+log(sketch.api_version)
+log(sketch.version)
+log(sketch.build)
+log(sketch.full_version)
+
+
+var document = sketch.selectedDocument;
+var selection = document.selectedLayers;
+var page = document.selectedPage;
+
+var group = page.newGroup({frame: new sketch.Rectangle(0, 0, 100, 100), name:&quot;Test&quot;});
+var rect = group.newShape({frame: new sketch.Rectangle(10, 10, 80, 80)});
+
+log(selection.isEmpty);
+selection.iterate(function(item) { log(item.name); } );
+
+selection.clear();
+log(selection.isEmpty);
+
+group.select();
+rect.addToSelection();
+
+sketch.getStringFromUser(&quot;Test&quot;, &quot;default&quot;);
+sketch.getSelectionFromUser(&quot;Test&quot;, [&quot;One&quot;, &quot;Two&quot;], 1);
+sketch.message(&quot;Hello mum!&quot;);
+sketch.alert(&quot;Title&quot;, &quot;message&quot;);</code>
+</code></pre>
+<p>For more examples, we recommend checking out the <a href="http://developer.sketchapp.com/examples/">examples section of the developer website</a>.</p>
+<p>Happy coding!</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>We would like to thank:</p>
+<ul>
+<li><a href="https://github.com/turbobabr">Andrey Shakhmin</a>, for his inspiration during the <a href="http://designtoolshackday.com">Hamburg Hackathon</a>, where he showed us how to use node modules inside Sketch.</li>
+<li>The Sketch plugin community everywhere, for such awesome work.</li>
+</ul>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>

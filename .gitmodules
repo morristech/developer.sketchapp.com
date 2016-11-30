@@ -10,3 +10,6 @@
 [submodule "_external/plugins/plugins.examples.resources"]
 	path = _external/plugins/plugins.examples.resources
 	url = https://github.com/BohemianCoding/plugins.examples.resources.git
+[submodule "_external/plugins/plugins.examples.text-utilities"]
+	path = _external/plugins/plugins.examples.text-utilities
+	url = git@github.com:BohemianCoding/plugins.examples.text-utilities
