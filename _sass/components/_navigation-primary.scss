@@ -1,193 +1,143 @@
 /*Main Navigation*/
 .main-nav {
-  position: fixed;
-  width: 100%;
-  z-index: 99;
+  border: 0;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(90deg,
+    hsla(0, 100%, 100%, 0),
+    hsla(0, 100%, 100%, .10) 50%,
+    hsla(0, 100%, 100%, 0) 100%) 5%;
 }
 
-body:not(.hero) > .main-nav {
-  box-shadow: 0 1px 2px $divider-dark;
-  border-bottom: 1px solid $border-dark;
-  background: rgba( $background-light, .99 );
+.main-nav nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
-  body.hero > .main-nav {
-    border: 0;
-    border-bottom-width: 1px;
-    border-image: linear-gradient(90deg,
-      hsla(0, 100%, 100%, 0),
-      hsla(0, 100%, 100%, .15) 50%,
-      hsla(0, 100%, 100%, 0) 100%) 5%;
-    background: rgba( $background-dark, .99 );
-  }
 
 /*Logo*/
 .main-nav h1 {
-  display: inline-block;
   margin: 0;
-  font-size: 1.625rem; /*26px*/
-  font-weight: $font-regular;
-  line-height: 1;
-  vertical-align: middle;
+  height: 3.125rem; /*50px*/
+  display: inline-block;
 }
-
-body:not(.hero) .main-nav h1 a {
-  color: $text-dark-high;
-}
-
-  body.hero .main-nav h1 a {
-    color: $text-light-high;
-  }
 
 [role="banner"] {
-  width: 1em; /*26px*/
-  height: .923076923em; /*24px*/
+  height: 3.125rem; /*50px*/
 }
 
-  [role="banner"] * {
-    fill: $text-dark-high;
-  }
+.sketch-wordmark {
+  transition: opacity .2s $ease-in-out-quad;
+}
 
-  .hero [role="banner"] * {
-    fill: $text-light-high;
-  }
+[role="banner"]:hover .sketch-wordmark,
+[role="banner"]:focus .sketch-wordmark {
+  opacity: .85;
+}
 
 .main-nav .nav-toggle {
   display: none;
 }
 
-.main-nav a {
-  display: block;
-}
-
-  .main-nav a:active,
-  .main-nav a.active {
-    color: $text-dark-high;
-  }
-
-  .hero .main-nav a {
-    color: $text-light-ultra-low;
-    &:hover,
-    &:focus { color: $text-light; }
-    &:active,
-    &.active { color: $text-light-high; }
-  }
-
-.main-nav a > * {
-  vertical-align: middle;
-}
-
 @include tablet-and-above {
-  body {
-    padding-top: 4.3125rem; //69px
-  }
-
-  [id]:target::before {
-    content: "";
-    display: block;
-    padding-top: 4.3125rem; //Hack to make targets scroll below the main navigation (as it's fixed)
-    margin-top: -4.3125rem;
-  }
-
   .main-nav {
-    margin-top: -4.3125rem; //69px
-    padding-top: 1.125rem ; /*18px*/
-    padding-bottom: 1.125rem ; /*18px*/
-    overflow: hidden; //easy auto clearing
+    width: 100%;
+    padding-top: .4375rem; /*7px*/
+    padding-bottom: .4375rem; /*7px*/
+  }
+
+  .main-nav nav {
+    flex-wrap: nowrap; //to prevent nav elements to fall into a new line
+  }
+
+  .main-nav h1 {
+    flex: 1;
   }
 
   .main-nav ul {
-    float: right;
-  }
-
-  .main-nav li {
-    margin-left: 2rem; /*32px*/
+    flex: 3.3; //to balance with the logo
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .main-nav a.buy {
-    padding: .2rem .625rem;
-    border: 1px solid $action-border;
-    border-radius: $radius-normal;
-      &:hover,
-      &:active,
-      &:focus {
-        color: $text-light-high;
-        background: $action;
-      }
+    color: $action;
+    &:hover,
+    &:active,
+    &:focus {
+      color: $action-high;
+    }
   }
 
-    .hero .main-nav a.buy {
-      color: $text-light;
-      border-color: rgba($text-light-high,.3);
-        &:hover,
-        &:active,
-        &:focus {
-          background: rgba($text-light-high,.04);
-          color: $text-light-high;
-          border-color: rgba($text-light-high,.4);
-        }
+  .main-nav.background-dark a.buy {
+    color: $action-light;
+    &:hover,
+    &:active,
+    &:focus {
+      color: $action-light-low;
     }
+  }
 }
 
 @include tablet-and-below {
   body {
-    padding-top: 3.8125rem; //61px
+    padding-top: 3.5rem; //56px
   }
 
   [id]:target::before {
     content: "";
     display: block;
-    padding-top: 3.8125rem; //Hack to make targets scroll below the main navigation (as it's fixed)
-    margin-top: -3.8125rem;
+    padding-top: 3.5rem; //Hack to make targets scroll below the main navigation (as it's fixed)
+    margin-top: -3.5rem;
   }
 
   .main-nav {
-    margin-top: -3.8125rem; //61px
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    position: fixed;
+    will-change: transform; //Perf!
+    width: 100%;
+    z-index: 99;
+    margin-top: -3.5rem; //56px
+    padding-top: .1875rem; //3px
+    padding-bottom: .1875rem; //3px
   }
 
-  .main-nav h1 {
-    font-size: 1.4375rem; //23px
+  .main-nav nav {
+    display: flex;
+    flex-wrap: wrap; //as the sections menu will fall into a new line
+    justify-content: space-between;
+    align-items: center;
   }
 
   .main-nav ul {
-    margin-top: 1.0625rem;
-    margin-left: -1rem;
-    margin-bottom: -1.0625rem !important;
-    padding-left: 1rem;
-    margin-right: -1rem;
-    border-top: 1px solid $border-dark;
-
+    flex: 0 1 100%; //in order to make it full width
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: opacity .1s ease-out, max-height .1s cubic-bezier(0.165, 0.840, 0.440, 1.000); /* Up */
+    position: relative;
+    top: .25rem; //4px to compensate the 3px padding + 1px border
+    border-top: 1px solid $divider-light;
   }
 
     .main-nav ul.active {
-      max-height: 999px;
+      max-height: 999px; //in order to animate transition
       opacity: 1;
       transition: opacity .05s ease-in,
       max-height 1.2s cubic-bezier(0.075, 0.820, 0.165, 1.000); /* Down */
     }
 
-    .hero .main-nav ul {
-      border-top-color: $divider-light;
-    }
-
   .main-nav li:not(:last-child) {
     padding: 0;
-    border-bottom: 1px solid $border-dark;
+    border-bottom: 1px solid $divider-light;
   }
-
-    body.hero .main-nav li {
-      border-bottom-color: $divider-light;
-    }
 
   .main-nav ul a {
     display: block;
-    padding: 1rem 0;
+    width: calc(100% + 2rem);
+    margin-left: -1rem;
+    padding: 1rem;
     position: relative;
   }
 
@@ -203,10 +153,10 @@ body:not(.hero) .main-nav h1 a {
       transform: translateY(-50%);
       background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%2213%22%20viewBox%3D%220%200%208%2013%22%3E%3Cpath%20fill%3D%22%23207cdf%22%20fill-rule%3D%22evenodd%22%20d%3D%22M0%201.5L1.5%200l5.792%205.792c.39.39.394%201.022%200%201.416L1.5%2013%200%2011.5l4.294-4.294c.39-.39.393-1.02%200-1.412L0%201.5z%22%2F%3E%3C%2Fsvg%3E');
       background-size: cover;
-      opacity: .25;
+      opacity: .60;
     }
 
-    .hero .main-nav ul a:not(.active)::before {
+    .main-nav ul a:not(.active)::before {
       -webkit-filter: hue-rotate(276deg) saturate(0) saturate(0) brightness(100%);
       filter: hue-rotate(276deg) saturate(0) saturate(0) brightness(100%);
     }
@@ -214,18 +164,14 @@ body:not(.hero) .main-nav h1 a {
   // Navigation Toggle
   .main-nav .nav-toggle {
     display: inline-block;
-    float: right;
     cursor: pointer;
     color: $action-high;
 
-    font-weight: $font-regular;
-    position: relative;
-    top: 2px;
-    padding: 1rem; //Fitts
-    margin: -1rem; //Compensating
+    padding: .8125rem; //Fitts
+    margin: -.8125rem; //Compensating
   }
 
-    .hero .main-nav .nav-toggle {
+    .main-nav .nav-toggle {
       color: $text-light-high;
     }
 
@@ -250,7 +196,7 @@ body:not(.hero) .main-nav h1 a {
     transition: transform .12s ease-out;
   }
 
-    .hero .nav-toggle::after {
+    .nav-toggle::after {
       border-top-color: $text-light-high;
     }
 

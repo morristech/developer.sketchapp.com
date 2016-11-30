@@ -3,9 +3,7 @@ title: Hello, World
 permalink: /
 ---
 
-## Welcome to Sketch's Developer Site
-
-We’ve worked very hard to make Sketch the dream “designer toolbox”, but everyone has slightly different needs, and there is a good chance that there’s a feature that you would like, which we’ve not implemented.
+Welcome to Sketch's Developer Site. We’ve worked very hard to make Sketch the dream “designer toolbox”, but everyone has slightly different needs, and there is a good chance that there’s a feature that you would like, which we’ve not implemented.
 
 Luckily, Sketch includes a plugin engine so that developers can extend its functionality.
 
@@ -30,6 +28,10 @@ Plugins in Sketch can do anything a user can do. For example:
 With a bit of code (or in some cases, a lot of code!), you can extend Sketch with a plugin to do pretty much anything you need.
 
 If you want to learn how to do that, you’ve come to the right place.
+
+<div class="embed-container">
+  <iframe src="https://www.youtube.com/embed/TlSfoGN6WRw?rel=0&amp;showinfo=0&amp;color=white" frameborder="0" allowfullscreen=""></iframe>
+</div>
 
 ## Sections
 

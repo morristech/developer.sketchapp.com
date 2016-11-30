@@ -1,8 +1,13 @@
-var observer = new FontFaceObserver('Aktiv-Grotesk');
-
-observer.check().then(function () {
-  document.documentElement.className += " fonts-loaded";
-});
+(function( w ){
+  // if the class is already set, we're good.
+  if( w.document.documentElement.className.indexOf( "fonts-loaded" ) > -1 ){
+    return;
+  }
+  var font = new w.FontFaceObserver( "Eina01-SemiBold-webfont");
+  font.load().then(function () {
+    w.document.documentElement.className += " fonts-loaded";
+  });
+}( this ));
 
 var tempScrollTop;
 
@@ -58,6 +63,7 @@ $(window).resize(function(){
     $('.overlay[class="active"]').removeClass('active');
     $('.main-nav ul').removeClass('active');
     $('.toc-nav ol').removeAttr('style');
+    $('.toc-nav nav').removeClass('active');
     $('.nav-toggle').removeClass('active');
   }
 });

@@ -13,12 +13,15 @@ layout: blog-index
   </article>
 {% endfor %}
 {% if paginator.total_pages > 1 %}
-  <div class="pagination">
+  <div class="pagination group">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="prev">Prev</a>
+  {% comment %}
   {% else %}
     <span>&laquo; Prev</span>
+  {% endcomment %}
   {% endif %}
+  {% comment %}
   {% for page in (1..paginator.total_pages) %}
     {% if page == paginator.page %}
       <em>{{ page }}</em>
@@ -28,10 +31,13 @@ layout: blog-index
       <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
     {% endif %}
   {% endfor %}
+  {% endcomment %}
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="next">Next</a>
+  {% comment %}
   {% else %}
     <span>Next &raquo;</span>
+  {% endcomment %}
   {% endif %}
   </div>
 {% endif %}
