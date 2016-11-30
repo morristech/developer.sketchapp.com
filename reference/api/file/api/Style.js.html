@@ -1,5 +1,6 @@
 ---
-title: api/Page.js | API Document
+layout: api-page
+title: api/Style.js | API Document
 ---
 
 
@@ -41,125 +42,147 @@ title: api/Page.js | API Document
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">api/Page.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">api/Style.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
-// # Page.js
+// # Style.js
 // # Sketch Javascript API.
 //
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-import { Group } from &apos;./Group.js&apos;
-import { Selection } from &apos;./Selection.js&apos;
+import { WrappedObject } from &apos;./WrappedObject.js&apos;
+
+/// A solid fill/border.
+const BCFillTypeColor    = 0
+
+/// A gradient fill/border.
+const BCFillTypeGradient = 1
+
+/// A pattern fill/border.
+const BCFillTypePattern  = 4
+
+/// A noise fill/border.
+const BCFillTypeNoise    = 5
+
 
 /**
-Represents a Page in a Sketch document.
-*/
+  Represents a Sketch layer style.
+ */
 
-export class Page extends Group {
+export class Style extends WrappedObject {
 
-  /**
-  Make a new page object.
+    /**
+      Make a new style object.
 
-  @param {MSPage} page The underlying model object from Sketch.
-  @param document The document that the page belongs to.
-  */
+      @param {MSStyle} style The underlying model object from Sketch.
+    */
 
-  constructor(page, document) {
-    super(page)
-    this._document = document
-  }
-
-
-  /**
-  The layers that the user has selected.
-
-  @return {Selection} A selection object representing the layers that the user has selected.
-  */
-
-  get selectedLayers() {
-    return new Selection(this);
-  }
-
-  /**
-  Is this a page?
-
-  All Layer objects respond to this method, but only pages return true.
-
-  @return {bool} true for instances of Group, false for any other layer type.
-  */
-
-  get isPage() {
-    return true;
-  }
-
-
-  /**
-  The layers that the user has selected.
-
-  @return {Selection} A selection object representing the layers that the user has selected.
-  */
-
-  get selectedLayers() {
-    return new Selection(this);
-  }
-
-
-  /**
-  Returns a newly created artboard, which has been added to this page,
-  and sets it up using the supplied properties.
-
-  @param properties {dictionary} Properties to apply to the artboard.
-  @return {Artboard} the new artboard.
-  */
-
-  newArtboard(properties = {}) {
-    var frame = this._frameForLayerWithProperties(properties)
-    var newLayer = MSArtboardGroup.alloc().initWithFrame_(frame.asCGRect());
-    return this._addWrappedLayerWithProperties(newLayer, properties, &quot;Artboard&quot;);
-  }
-
-  /**
-  Return a list of tests to run for this class.
-
-  @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
-  */
-
-  static tests() {
-    return {
-      &quot;tests&quot; : {
-        &quot;testSelectedLayers&quot; : function(tester) {
-          var document = tester.newTestDocument()
-          var selection = document.selectedLayers
-          tester.assert(selection.isEmpty, &quot;should have an empty selection&quot;)
-
-          var page = document.selectedPage
-          var group = page.newGroup({ &apos;name&apos;: &quot;Test&quot;})
-          group.select()
-
-          tester.assert(!selection.isEmpty, &quot;should no longer have an empty selection&quot;)
-        },
-
-        &quot;testLayerWithID&quot; : function(tester) {
-          var document = tester.newTestDocument()
-          var page = document.selectedPage
-          var group = page.newGroup({ &apos;name&apos;: &quot;Test&quot;})
-          var id = group.id
-          var found = document.layerWithID(id)
-          tester.assertEqual(group.sketchObject, found.sketchObject)
-        },
-
-        &quot;testIsPage&quot; : function(tester) {
-          var document = tester.newTestDocument()
-          var page = document.selectedPage
-          var image = page.newImage()
-          tester.assertTrue(page.isPage)
-          tester.assertFalse(image.isPage)
-        },
-
+    constructor(style) {
+      if (!style) {
+        style = MSDefaultStyle.defaultStyle()
       }
-    };
-  }
+
+      super(style)
+    }
+
+    /**
+      Given a string description of a color, return an MSColor.
+      */
+
+    colorFromString(value) {
+      var immutable = MSImmutableColor.colorWithSVGString_(value)
+      return MSColor.alloc().initWithImmutableObject_(immutable)
+    }
+
+
+    /**
+      Set the borders to use for this style.
+
+      The value provided is a list of items, with each one representing a style.
+
+      Currently these values can only be strings with css-style color specifications
+      such as #ffee33 (alpha values are supported too, so #aabbccdd is valid).
+
+      These strings are used to create simple borders.
+
+      In the future the intention is to also support dictionaries allowing gradients
+      and other more complex border parameters to be specified.
+
+      @param {array} values A list of colors - each one representing a border to create.
+
+    */
+
+    set borders(value) {
+      var objects = []
+      for (var b in value) {
+        var color = this.colorFromString(value[b])
+        var border = MSStyleBorder.new()
+        border.setColor_(color)
+        border.setFillType_(BCFillTypeColor)
+        border.enabled = true
+
+        objects.push(border)
+      }
+      this.sketchObject.setBorders_(objects)
+    }
+
+
+    /**
+      Set the fills to use for this style.
+
+      The value provided is a list of items, with each one representing a style.
+
+      Currently these values can only be strings with css-style color specifications
+      such as #ffee33 (alpha values are supported too, so #aabbccdd is valid).
+
+      These strings are used to create simple fills.
+
+      In the future the intention is to also support dictionaries allowing gradients
+      and other more complex fill parameters to be specified.
+
+      @param {array} values A list of colors - each one representing a fill to create.
+
+    */
+
+    set fills(value) {
+      var objects = []
+      for (var b in value) {
+        var color = this.colorFromString(value[b])
+        var fill = MSStyleFill.new()
+        fill.setColor_(color)
+        fill.setFillType_(BCFillTypeColor)
+        fill.enabled = true
+
+        objects.push(fill)
+      }
+      this.sketchObject.setFills_(objects)
+    }
+
+
+    /**
+     Return a list of tests to run for this class.
+
+     @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+     */
+
+    static tests() {
+        return {
+            &quot;tests&quot; : {
+                &quot;testBorders&quot; : function(tester) {
+                  var style = new Style()
+                  style.borders = [ &quot;#11223344&quot;, &quot;#1234&quot; ]
+                  tester.assertEqual(style.sketchObject.borders().count(), 2)
+                },
+
+                &quot;testFills&quot; : function(tester) {
+                  var style = new Style()
+                  style.borders = [ &quot;#11223344&quot;, &quot;#1234&quot; ]
+                  tester.assertEqual(style.sketchObject.borders().count(), 2)
+                },
+
+            }
+        };
+    }
 
 }
 </code></pre>
