@@ -1,10 +1,15 @@
 [submodule "_external/plugins/plugins.examples.svgo-export"]
 	url = https://github.com/BohemianCoding/plugins.examples.svgo-export.git
+	path = _external/plugins/plugins.examples.svgo-export
 [submodule "_external/plugins/plugins.examples.hello-world"]
 	url = https://github.com/BohemianCoding/plugins.examples.hello-world.git
+	path = _external/plugins/plugins.examples.hello-world
 [submodule "_external/plugins/plugins.examples.selection-changed"]
 	url = https://github.com/BohemianCoding/plugins.examples.selection-changed.git
+	path = _external/plugins/plugins.examples.selection-changed
 [submodule "_external/plugins/plugins.examples.resources"]
 	url = https://github.com/BohemianCoding/plugins.examples.resources.git
+	path = _external/plugins/plugins.examples.resources
 [submodule "_external/plugins/plugins.examples.text-utilities"]
 	url = https://github.com/BohemianCoding/plugins.examples.text-utilities.git
+	path = _external/plugins/plugins.examples.text-utilities
