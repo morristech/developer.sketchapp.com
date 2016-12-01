@@ -41,26 +41,18 @@ exclude:
 
 # Dynamic Content
 collections:
-  classes:
-    output: true
-    permalink: /reference/class/:path/
-
   actions:
     output: true
     permalink: /reference/action/:path/
-
   introduction:
     output: true
     permalink: /introduction/:path/
-
   posts:
     output: true
     permalink: /blog/:path/
-
   generated-plugins:
     output: true
     permalink: /examples/plugins/:path/
-
 
 # Defaults
 defaults:
@@ -69,12 +61,6 @@ defaults:
       path: ""
     values:
       layout: "single-page"
-  -
-    scope:
-      type: "classes"
-    values:
-      layout: "sidebar-page"
-      script: "/js/search.js"
   -
     scope:
       type: "actions"
