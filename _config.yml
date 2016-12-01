@@ -50,10 +50,6 @@ collections:
     output: true
     permalink: /reference/action/:path/
 
-  code-examples:
-    output: true
-    permalink: /examples/code/:path/
-
   introduction:
     output: true
     permalink: /introduction/:path/

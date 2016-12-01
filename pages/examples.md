@@ -25,9 +25,3 @@ Follow the main link for each one for an annotated view of the source code, or c
 
   </tbody>
 </table>
-
-## Code Snippets
-
-We also have some [code snippets](/examples/code/) showing you how to perform various common tasks.
-
-These do things in an older way and are generally being phased out in favour of the new [Sketch API](/reference/api), but we're leaving them up for now as they may still be useful.
