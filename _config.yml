@@ -35,6 +35,10 @@ exclude:
   - package.json
   - .sass-cache
   - README.md
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - DEVNOTES.md
 
 # Dynamic Content
 collections:
