@@ -10,7 +10,7 @@ name="${fullname##*.}"
 # Build using esdoc
 esdoc="$(npm bin)/esdoc"
 
-# Copy source files into temporary location
+# Copy source files into temporary location
 src="/tmp/esdoc/api"
 rm -rf "$src" 2> /dev/null
 mkdir -p "$src"
@@ -19,7 +19,7 @@ cp "$base/../SketchAPI/README.md" "$src/"
 cd "$src/"
 
 # Start with a clean destination
-dest="$base/_generated-api"
+dest="$base/reference/api"
 rm -rf "$dest" 2> /dev/null
 mkdir -p "$dest"
 
@@ -33,7 +33,7 @@ echo " }" >> "$configpath"
 
 "$esdoc" -c "$configpath"
 
-# Remove the json files, and the raw source files, which we probably don't need
+# Remove the json files, and the raw source files, which we probably don't need
 rm -f "$dest/"*.json
 rm -rf "$dest/ast"
 rm -rf "$src"

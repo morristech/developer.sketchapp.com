@@ -29,6 +29,7 @@ exports.onHandleHTML = function(ev) {
     // adjust internal links to be absolute
     body = body.replace(/href="(?!http)(.*?)"/g, "href=\"/reference/api/$1\"")
     body = body.replace(/src=".\/image/g, "src=\"/reference/api/image")
+    body = body.replace(/src="script/g, 'src="/reference/api/script/')
 
     // write out the jekyll front matter header plus the extracted body
     ev.data.html = "---\n" + header + "---\n\n" + body;

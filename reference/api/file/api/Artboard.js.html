@@ -1,0 +1,117 @@
+---
+title: api/Artboard.js | API Document
+---
+
+
+
+<header>
+  <a href="/reference/api/./">Home</a>
+  
+  <a href="/reference/api/identifiers.html">Reference</a>
+  <a href="/reference/api/source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="/reference/api/image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Application.js~Application.html">Application</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Artboard.js~Artboard.html">Artboard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Image.js~Image.html">Image</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Page.js~Page.html">Page</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">api/Artboard.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
+// # Artboard.js
+// # Sketch Javascript API.
+//
+// All code (C) 2016 Bohemian Coding.
+// ********************************
+
+import { Group } from &apos;./Group.js&apos;
+
+/**
+    A Sketch artboard.
+*/
+
+export class Artboard extends Group {
+
+    /**
+        Make a new artboard.
+
+        @param artboard {MSArtboardGroup} The underlying MSArtboardGroup model object from Sketch.
+        @param document The document that the artboard belongs to.
+    */
+
+    constructor(artboard, document) {
+      super(artboard, document)
+    }
+
+    /**
+        Is this an artboard?
+
+        All Layer objects respond to this method, but only Artboard objects return true.
+
+        @return true for instances of Artboard, false for any other layer type.
+    */
+
+    get isArtboard() {
+      return true;
+    }
+
+    /**
+     Return a list of tests to run for this class.
+
+     @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+     */
+
+    static tests() {
+        return {
+            &quot;tests&quot; : {
+                &quot;testIsArtboard&quot; : function(tester) {
+                  var document = tester.newTestDocument()
+                  var page = document.selectedPage
+                  var artboard = page.newArtboard({&quot;name&quot; : &quot;Test&quot;})
+                  tester.assertTrue(artboard.isArtboard)
+                  tester.assertFalse(page.isArtboard)
+                },
+            }
+        };
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="/reference/api/script//search_index.js"></script>
+<script src="/reference/api/script//search.js"></script>
+<script src="/reference/api/script//pretty-print.js"></script>
+<script src="/reference/api/script//inherited-summary.js"></script>
+<script src="/reference/api/script//test-summary.js"></script>
+<script src="/reference/api/script//inner-link.js"></script>
+<script src="/reference/api/script//patch-for-local.js"></script>
