@@ -1,8 +1,7 @@
 # Site settings
 title: Sketch Developers
 email: developer@sketchapp.com
-url: "http://developer.sketchapp.com"
-github_repo:  https://github.com/BohemianCoding/developer.sketchapp.com
+# url: "http://developer.sketchapp.com"
 
 # Build settings
 kramdown:
