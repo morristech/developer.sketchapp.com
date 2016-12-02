@@ -117,13 +117,21 @@ we want to execute  a javascript handler called <code>onRun</code>.</p>
 <li>use-id-for-name : normally the exported files are given the same names as the layers they represent, but if this options is true, then the layer ids are used instead; defaults to false.</li>
 <li>output : this is the path of the folder where all exported files are placed; defaults to “~/Documents/Sketch Exports”</li>
 <li>overwriting : if true, the exporter will overwrite any existing files with new ones; defaults to false.</li>
-<li>trimmed: if true, any transparent space around the exported image will be trimmed; defaults to false.<h3 id="svg-options">SVG options</h3>
-</li>
+<li>trimmed: if true, any transparent space around the exported image will be trimmed; defaults to false.</li>
+<li>scales: this should be a list of numbers; it will determine the sizes at which the layers are exported; defaults to “1”</li>
+<li>formats: this should be a list of one or more of “png”, “jpg”, “svg”, and “pdf”; defaults to “png” (see discussion below)</li>
+</ul>
+<h3 id="svg-options">SVG options</h3>
+<ul>
 <li>compact : if exporting as SVG, this option makes the output more compact; defaults to false.</li>
-<li>include-namespaces : if exporting as SVG, this option includes extra attributes; defaults to false.<h3 id="png-options">PNG options</h3>
-</li>
-<li>save-for-web : if exporting a PNG, this option removes metadata such as the colour profile from the exported file; defaults to false.<h3 id="jpg-options">JPG options</h3>
-</li>
+<li>include-namespaces : if exporting as SVG, this option includes extra attributes; defaults to false.</li>
+</ul>
+<h3 id="png-options">PNG options</h3>
+<ul>
+<li>save-for-web : if exporting a PNG, this option removes metadata such as the colour profile from the exported file; defaults to false.</li>
+</ul>
+<h3 id="jpg-options">JPG options</h3>
+<ul>
 <li>compression : if exporting a JPG, this option determines the level of compression, with 0 being the minimum, 1.0 the maximum; defaults to 1.0</li>
 <li>progressive : if exporting a JPG, this option makes it progressive; defaults to false.</li>
 <li>group-contents-only : false,</li>
@@ -203,7 +211,7 @@ we want to execute  a javascript handler called <code>onRun</code>.</p>
           </div>
           <p>And that’s it. Job done.</p>
 <p>Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.</p>
-<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x64;&#101;&#118;&#101;&#108;&#x6f;&#112;&#101;&#114;&#x40;&#115;&#107;&#x65;&#x74;&#x63;&#104;&#97;&#x70;&#x70;&#46;&#99;&#111;&#109;">&#x64;&#101;&#118;&#101;&#108;&#x6f;&#112;&#101;&#114;&#x40;&#115;&#107;&#x65;&#x74;&#x63;&#104;&#97;&#x70;&#x70;&#46;&#99;&#111;&#109;</a>!</p>
+<p>If you have questions, comments or any feedback, ping us at <a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#100;&#101;&#x76;&#x65;&#x6c;&#111;&#112;&#101;&#x72;&#x40;&#x73;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#x70;&#x70;&#46;&#x63;&#111;&#x6d;">&#100;&#101;&#x76;&#x65;&#x6c;&#111;&#112;&#101;&#x72;&#x40;&#x73;&#107;&#x65;&#x74;&#99;&#x68;&#97;&#x70;&#x70;&#46;&#x63;&#111;&#x6d;</a>!</p>
 
         </div>
         
