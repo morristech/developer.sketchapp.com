@@ -17,6 +17,14 @@
     margin-bottom: -3.5rem !important; //Compensating columns' margin bottom
   }
 
+    .sidebar-main-content .row {
+      margin-left: -07.61%;
+    }
+
+    .sidebar-main-content .col {
+      margin-left: 07.0707071%; //56/792
+    }
+
     /*Horizontally center the columns*/
     .row.center-h,
     .col.center-h {
@@ -50,7 +58,7 @@
   .col {
     margin-bottom: 3.5rem !important; /*56*/
     /*Gap between columns*/
-    margin-left: 05.3030303%; /*56/1056*/
+    margin-left: 5.3030303%; /*56/1056*/
   }
 
     /*To vertically center contents inside each block (needs div wrapping the contents inside)*/
@@ -65,23 +73,18 @@
     }
 
   // Span sizes
-  .span-1  { width: 03.2%; /*32px*/ }
-  .span-2  { width: 12.0%; /*120px*/ }
-  .span-3  { width: 20.8%; /*208px*/ }
-  .span-4  { width: 29.6%; /*296px*/ }
-  .span-5  { width: 38.4%; /*384px*/ }
-  .span-6  { width: 47.2%; /*472px*/ }
-  .span-7  { width: 56%.0; /*560px*/ }
-  .span-8  { width: 64.8%; /*648px*/ }
-  .span-9  { width: 73.6%; /*736px*/ }
-  .span-10 { width: 82.4%; /*824px*/ }
-  .span-11 { width: 91.2%; /*912px*/ }
-  .span-12 { width: 100%; /*1000px*/ }
-
-    //If there's only a span, center it
-    [class*="span"]:only-child {
-      margin: 0 auto;
-    }
+  .span-1:not(.col)  { width: 03.2%; /*32px*/ }
+  .span-2:not(.col)  { width: 12.0%; /*120px*/ }
+  .span-3:not(.col)  { width: 20.8%; /*208px*/ }
+  .span-4:not(.col)  { width: 29.6%; /*296px*/ }
+  .span-5:not(.col)  { width: 38.4%; /*384px*/ }
+  .span-6:not(.col)  { width: 47.2%; /*472px*/ }
+  .span-7:not(.col)  { width: 56%.0; /*560px*/ }
+  .span-8:not(.col)  { width: 64.8%; /*648px*/ }
+  .span-9:not(.col)  { width: 73.6%; /*736px*/ }
+  .span-10:not(.col) { width: 82.4%; /*824px*/ }
+  .span-11:not(.col) { width: 91.2%; /*912px*/ }
+  .span-12:not(.col) { width: 100%; /*1000px*/ }
 
   /*Column span sizes*/
   //1000px of the main container + 56px of the negative margin I used to compensate
@@ -97,4 +100,9 @@
   .col.span-10 { width: 78.030303%; /*824px*/ }
   .col.span-11 { width: 86.3636364%; /*912px*/ }
   .col.span-12 { width: 94.6969697%; /*1000px*/ }
+
+  // Sidebar column span sizes
+  // TODO add the rest of the sizes
+  // 736px of the main container + 56px of the negative margin I used to compensate (792px)
+  .sidebar-main-content .col.span-3  { width: 26.2626263%; /*26.2626263% 208px*/ }
 }

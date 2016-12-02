@@ -201,7 +201,7 @@ svg:not(:root) {
  */
 
 figure {
-  margin: 1em 40px;
+  margin: 0;
 }
 
 /**
@@ -295,14 +295,6 @@ input[type="submit"] {
   cursor: pointer; /* 3 */
 }
 
-/**
- * Re-set default cursor for disabled elements.
- */
-
-button[disabled],
-html input[disabled] {
-  cursor: default;
-}
 
 /**
  * Remove inner padding and border in Firefox 4+.

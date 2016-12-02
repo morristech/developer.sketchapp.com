@@ -3,15 +3,15 @@ body > section + footer {
   background-color: $background-light;
 }
 
-  .extensions > section + footer {
-    background-color: #F5F6F7;
+  .sections-inverted > section + footer {
+    background-color: $background-light-dark;
   }
 
 body > section:nth-of-type(even):last-of-type + footer {
   background-color: $background-light-dark;
 }
 
-  .extensions > section:nth-of-type(even):last-of-type + footer {
+  .sections-inverted > section:nth-of-type(even):last-of-type + footer {
     background-color: $background-light;
   }
 
@@ -20,6 +20,10 @@ body > section:nth-of-type(even):last-of-type + footer {
   line-height: 1.5;
   vertical-align: middle;
 	color: $text-dark-low;
+}
+
+.main-footer a {
+  color: $text-dark-low;
 }
 
 @include tablet-and-above {

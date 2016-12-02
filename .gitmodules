@@ -12,7 +12,4 @@
 	url = https://github.com/BohemianCoding/plugins.examples.resources.git
 [submodule "_external/plugins/plugins.examples.text-utilities"]
 	path = _external/plugins/plugins.examples.text-utilities
-	url = git@github.com:BohemianCoding/plugins.examples.text-utilities
-[submodule "_external/plugins/plugins.examples.exporting"]
-	path = _external/plugins/plugins.examples.exporting
-	url = git@github.com:BohemianCoding/plugins.examples.exporting
+	url = https://github.com/BohemianCoding/plugins.examples.text-utilities.git

@@ -1,11 +1,9 @@
 ---
-title: Plugin Scripts
+title: Plugins, Scripts, and Commands
 summary: An introduction to writing plugin scripts.
 permalink: /introduction/plugin-scripts/
 order: 300
 ---
-
-## Plugins, Scripts, and Commands
 
 A Plugin in Sketch defines one or more commands, which Sketch will display menu items for.
 

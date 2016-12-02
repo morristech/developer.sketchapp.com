@@ -1,40 +1,48 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+# Main CSS
 ---
-
-@charset "utf-8";
-
 /* SCSS */
+// Base
+@import "base/web-fonts";
 @import "base/normalize";
 @import "base/variables";
 @import "base/mediaqueries";
-@import "base/web-fonts";
 @import "base/typography";
+
+// Layout
 @import "layout/grid";
 @import "layout/layout";
+
+// Helpers
 @import "helpers/helpers";
-@import "helpers/syntax-highlighting";
+
+// Components - Links, Buttons and Forms
 @import "components/actions-links";
 @import "components/actions-buttons";
+@import "components/forms";
+
+// Components - Navigation
 @import "components/navigation-general";
 @import "components/navigation-primary";
 @import "components/navigation-secondary";
-@import "components/navigation-toc";
 @import "components/navigation-footer";
-@import "components/forms";
+
+// Components - General
 @import "components/overlay";
 @import "components/video-overlay";
 @import "components/search";
 
+// CSS only used on the Sidebar Layout Pages
+@import "layout/layout-sidebar";
+@import "helpers/syntax-highlighting"; // !We might decide to use this elsewhere
+@import "components/navigation-toc";
+@import "components/sticky-sidebar-nav";
+@import "components/pagination";
+
 // Main pages
-//@import "pages/support";
 @import "pages/developer";
 @import "pages/examples";
 @import "pages/blog";
 
 // API help
 @import "pages/api"
-
-// Diagnostic
-// @import "debug/debug-grid";
-// @import "debug/diagnostic";
