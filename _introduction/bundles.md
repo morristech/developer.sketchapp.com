@@ -54,10 +54,10 @@ Here’s an example:
   "description": "Plugins to select and deselect shapes",
   "author": "Joe Bloggs",
   "homepage": "http://github.com/example/sketchplugins",
-  "version": 1.0,
+  "version": "1.0",
   "identifier": "com.example.sketch.shape-plugins",
   "updateURL": "https://github.com/downloads/example/sketchplugins/sketchplugins.json",
-  "compatibleVersion": 3,
+  "compatibleVersion": "3",
   "bundleVersion": 1,
   "commands": [
     {
