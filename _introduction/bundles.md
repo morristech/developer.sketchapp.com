@@ -56,7 +56,7 @@ Here’s an example:
   "homepage": "http://github.com/example/sketchplugins",
   "version": 1.0,
   "identifier": "com.example.sketch.shape-plugins",
-  "updateURL": "https://github.com/downloads/example/sketchplugins/sketchplugins.json",
+  "appcastURL": "https://excellent.sketchplugin.com/excellent-plugin-appcast.xml",
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "commands": [
@@ -124,9 +124,9 @@ Reverse-domain syntax is strongly encouraged, for example `com.example.sketch.sh
 
 Sketch uses this string internally to track the Plugin, store settings for it, etc.
 
-#### Update URL
+#### Appcast URL
 
-Specifies an update URL for the Plugin (currently unused, but documented for future-proofness).
+A string specifying a URL for the online appcast url. This is intended to be periodically checked by a plugin manager and used to determine what plugin updates are available for the user to install when they are ready.
 
 #### Compatible Version
 
