@@ -90,6 +90,8 @@ Here’s an example:
 
 This Plugin is called “Select Shapes”. It defines three commands “All”, “Circles”, and “Rectangles”, which will be placed in a “Select Shapes” menu.
 
+This plugin can be updated by Sketch. Sketch will download the file at the location specified by appcastURL and use it to determine if an update is available or not.
+
 Unpacking this file a bit further, here are the supported keys and what they are for:
 
 #### Name
@@ -126,7 +128,7 @@ Sketch uses this string internally to track the Plugin, store settings for it, e
 
 #### Appcast URL
 
-A string specifying a URL for the online appcast url. This is intended to be periodically checked by a plugin manager and used to determine what plugin updates are available for the user to install when they are ready.
+A string specifying a URL to the appcast file. The appcast file contains information about updates to the plugin, like the versions of available updates and where the updates can be downloaded from. Sketch downloads this file to determine if there are plugin updates avaiable.
 
 #### Compatible Version
 

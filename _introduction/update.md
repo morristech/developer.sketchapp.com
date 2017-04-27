@@ -5,11 +5,13 @@ permalink: /introduction/updating-plugins/
 order: 150
 ---
 
-From Sketch v45 onwards Sketch provides a mechanism for a Plugin to be updated from within Sketch and BohemianCoding recommends Plugin writers use this officially supported mechanism.
+From Sketch v45 onwards Sketch provides a mechanism for updating plugins within Sketch and we recommend using this officially supported mechanism for updating plugins.
 
 If your plugin already has its own update mechanism built into it, we encourage that you move to using the official Sketch supported update mechanism.
 
-There is an additional entry in the "manifest.json" file contained within your plugin bundle that you need to define for updating to work. The entry is called `appcastURL`.
+There is an additional entry in the "manifest.json" file contained within your plugin bundle that you need to define for updating to work. The entry is called `appcastURL`, for further information see [plugin bundle](bundles#appcasturl).
+
+Currently Sketch only allows the user to update to the latest version, future versions of Sketch may provide additional options for the user to select which plugin version can be downloaded and installed.
 
 #### appcastURL
 
@@ -17,9 +19,11 @@ A string specifying the location of an appcast which contains information about 
 
 ### The Appcast
 
-The Appcast conforms to the appcast described in the [Sparkle Documentation](https://sparkle-project.org/documentation/) and on the [Publishing an Update page](https://sparkle-project.org/documentation/publishing/#publishing-an-update).
+The Appcast conforms to the Sparkle defined appcast described in the [Sparkle Documentation](https://sparkle-project.org/documentation/) and on the [Publishing an Update page](https://sparkle-project.org/documentation/publishing/#publishing-an-update).
 
 The minimum and maximum system version do not refer to the version of the operating system when used for plugins. Exactly how they will be used in a later version of Sketch is still undecided.
+
+The following Appcast example lists three different versions of the plugin. Each version has its own download link and brief description text.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
