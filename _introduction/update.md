@@ -13,6 +13,24 @@ There is an additional entry in the "manifest.json" file contained within your p
 
 Currently Sketch only allows the user to update to the latest version, future versions of Sketch may provide additional options for the user to select which plugin version can be downloaded and installed.
 
+#### How to be a good citizen of the Sketch developer plugin community
+
+##### Implementing the Startup and Shutdown methods in your Plugin
+
+If your plugin does anything that requires some initialization you should implement the Startup method as part of your plugin.
+
+The same goes for implementing the Shutdown method as part of your plugin.
+
+You should have already been implementing these methods prior to BohemianCoding providing a mechanism within Sketch for plugin updating. Implementing these methods is now more important than ever with Plugin updating.
+
+When a plugin is updated the version being updated will be sent the Shutdown action and the new version will be sent a Startup action.
+
+For example, if your plugin displays some user interface elements within Sketch you should remove those in the Shutdown method, this way the updated plugin will be able to show the updated user interface components with all of the old user interface elements having been removed.
+
+The same goes for any persistent data that your plugin maintains. Any unsaved information should be written to disk when Shutdown is called.
+
+Do not include code in the Startup method that could be run later. 
+
 #### appcastURL
 
 A string specifying the location of an appcast which contains information about available updates for a plugin.
