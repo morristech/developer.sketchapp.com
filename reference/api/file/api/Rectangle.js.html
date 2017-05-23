@@ -1,5 +1,5 @@
 ---
-title: api/Style.js | API Document
+title: api/Rectangle.js | API Document
 ---
 
 
@@ -41,121 +41,93 @@ title: api/Style.js | API Document
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">api/Style.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">api/Rectangle.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
-// # Style.js
+// # Rectangle.js
 // # Sketch Javascript API.
 //
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-import { WrappedObject } from &apos;./WrappedObject.js&apos;
-
-/// A solid fill/border.
-const BCFillTypeColor    = 0
-
-/// A gradient fill/border.
-const BCFillTypeGradient = 1
-
-/// A pattern fill/border.
-const BCFillTypePattern  = 4
-
-/// A noise fill/border.
-const BCFillTypeNoise    = 5
-
-
 /**
-  Represents a Sketch layer style.
+  Represents a rectangle.
  */
 
-export class Style extends WrappedObject {
+export class Rectangle {
+
+  /**
+    Return a new Rectangle object for a given x,y, width and height.
+
+    @param {number} x The x coordinate of the top-left corner of the rectangle.
+    @param {number} y The y coordinate of the top-left corner of the rectangle.
+    @param {number} width The width of the rectangle.
+    @param {number} height The height of the rectangle.
+    @return The new Rectangle object.
+  */
+
+  constructor(x, y, width, height) {
 
     /**
-      Make a new style object.
-
-      @param {MSStyle} style The underlying model object from Sketch.
+      The x coordinate of the top-left corner of the rectangle.
+      @type {number}
     */
 
-    constructor(style) {
-      if (!style) {
-        style = MSDefaultStyle.defaultStyle()
-      }
-
-      super(style)
-    }
+    this.x = x
 
     /**
-      Given a string description of a color, return an MSColor.
-      */
-
-    colorFromString(value) {
-      var immutable = MSImmutableColor.colorWithSVGString_(value)
-      return MSColor.alloc().initWithImmutableObject_(immutable)
-    }
-
-
-    /**
-      Set the borders to use for this style.
-
-      The value provided is a list of items, with each one representing a style.
-
-      Currently these values can only be strings with css-style color specifications
-      such as #ffee33 (alpha values are supported too, so #aabbccdd is valid).
-
-      These strings are used to create simple borders.
-
-      In the future the intention is to also support dictionaries allowing gradients
-      and other more complex border parameters to be specified.
-
-      @param {array} values A list of colors - each one representing a border to create.
-
+      The y coordinate of the top-left corner of the rectangle.
+      @type {number}
     */
 
-    set borders(value) {
-      var objects = []
-      for (var b in value) {
-        var color = this.colorFromString(value[b])
-        var border = MSStyleBorder.new()
-        border.setColor_(color)
-        border.setFillType_(BCFillTypeColor)
-        border.enabled = true
-
-        objects.push(border)
-      }
-      this.sketchObject.setBorders_(objects)
-    }
-
+    this.y = y
 
     /**
-      Set the fills to use for this style.
-
-      The value provided is a list of items, with each one representing a style.
-
-      Currently these values can only be strings with css-style color specifications
-      such as #ffee33 (alpha values are supported too, so #aabbccdd is valid).
-
-      These strings are used to create simple fills.
-
-      In the future the intention is to also support dictionaries allowing gradients
-      and other more complex fill parameters to be specified.
-
-      @param {array} values A list of colors - each one representing a fill to create.
-
+      The width of the rectangle.
+      @type {number}
     */
 
-    set fills(value) {
-      var objects = []
-      for (var b in value) {
-        var color = this.colorFromString(value[b])
-        var fill = MSStyleFill.new()
-        fill.setColor_(color)
-        fill.setFillType_(BCFillTypeColor)
-        fill.enabled = true
+    this.width = width
 
-        objects.push(fill)
-      }
-      this.sketchObject.setFills_(objects)
+    /**
+      The height of the rectangle.
+      @type {number}
+    */
+
+    this.height = height
+  }
+
+  /**
+    Adjust this rectangle by offsetting it.
+
+    @param {number} x The x offset to apply.
+    @param {number} y The y offset to apply.
+    */
+
+    offset(x, y) {
+      this.x += x
+      this.y += y
     }
+
+  /**
+    Return the Rectangle as a CGRect.
+
+    @return {CGRect} The rectangle.
+  */
+
+  asCGRect() {
+    return CGRectMake(this.x, this.y, this.width, this.height)
+  }
+
+  /**
+    Return a string description of the rectangle.
+
+    @return {string} Description of the rectangle.
+    */
+
+    toString() {
+      return &quot;{&quot; + this.x + &quot;, &quot; + this.y + &quot;, &quot; + this.width + &quot;, &quot; + this.height + &quot;}&quot;
+    }
+
 
 
     /**
@@ -167,16 +139,30 @@ export class Style extends WrappedObject {
     static tests() {
         return {
             &quot;tests&quot; : {
-                &quot;testBorders&quot; : function(tester) {
-                  var style = new Style()
-                  style.borders = [ &quot;#11223344&quot;, &quot;#1234&quot; ]
-                  tester.assertEqual(style.sketchObject.borders().count(), 2)
+                &quot;testConstructor&quot; : function(tester) {
+                  var r = new Rectangle(1, 2, 3, 4)
+                  tester.assertEqual(r.x, 1)
+                  tester.assertEqual(r.y, 2)
+                  tester.assertEqual(r.width, 3)
+                  tester.assertEqual(r.height, 4)
                 },
 
-                &quot;testFills&quot; : function(tester) {
-                  var style = new Style()
-                  style.borders = [ &quot;#11223344&quot;, &quot;#1234&quot; ]
-                  tester.assertEqual(style.sketchObject.borders().count(), 2)
+                &quot;testOffset&quot; : function(tester) {
+                  var r = new Rectangle(1, 2, 3, 4)
+                  r.offset(10, 10)
+                  tester.assertEqual(r.x, 11)
+                  tester.assertEqual(r.y, 12)
+                  tester.assertEqual(r.width, 3)
+                  tester.assertEqual(r.height, 4)
+                },
+
+                &quot;testCGRect&quot; : function(tester) {
+                  var r = new Rectangle(1, 2, 3, 4)
+                  var c = r.asCGRect()
+                  tester.assertEqual(c.origin.x, 1)
+                  tester.assertEqual(c.origin.y, 2)
+                  tester.assertEqual(c.size.width, 3)
+                  tester.assertEqual(c.size.height, 4)
                 },
 
             }

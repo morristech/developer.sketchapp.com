@@ -1,0 +1,270 @@
+---
+title: api/Document.js | API Document
+---
+
+
+
+<header>
+  <a href="/reference/api/./">Home</a>
+  
+  <a href="/reference/api/identifiers.html">Reference</a>
+  <a href="/reference/api/source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="/reference/api/image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Application.js~Application.html">Application</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Artboard.js~Artboard.html">Artboard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Image.js~Image.html">Image</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Page.js~Page.html">Page</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Rectangle.js~Rectangle.html">Rectangle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Tester.js~Tester.html">Tester</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">api/Document.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
+// # Document.js
+// # Sketch Javascript API.
+//
+// All code (C) 2016 Bohemian Coding.
+// ********************************
+
+import { WrappedObject } from &apos;./WrappedObject.js&apos;
+import { Layer } from &apos;./Layer.js&apos;
+import { Page } from &apos;./Page.js&apos;
+import { Selection } from &apos;./Selection.js&apos;
+
+/**
+A Sketch document.
+*/
+
+export class Document extends WrappedObject {
+  /**
+  Make a new document object.
+
+  @param {MSDocument} document The underlying MSDocument object.
+  @param {Application} application The application object.
+
+  Note that constructing one of these doesn&apos;t actually create
+  a Sketch document. Instead you pass in the underlying MSDocument
+  that this object represents.
+
+  If you do want to create a new document, you can do so with Application#newDocument.
+  */
+
+  constructor(document, application) {
+    super(document)
+
+    /**
+    The application that this document belongs to.
+
+    @type {Application}
+    */
+
+    this._application = application
+  }
+
+  /**
+  Return a wrapped version of a Sketch object.
+  We don&apos;t know about *all* Sketch object types, but
+  for some we will return a special subclass.
+  The fallback position is just to return an instance of WrappedObject.
+
+  @param {object} sketchObject The underlying sketch object that we&apos;re wrapping.
+  @return {WrappedObject} A javascript object (subclass of WrappedObject), which represents the Sketch object we were given.
+  */
+
+  wrapObject(sketchObject) {
+    return this._application.wrapObject(sketchObject, this)
+  }
+
+
+  /**
+  The layers that the user has selected in the currently selected page.
+
+  @return {Selection} A selection object representing the layers that the user has selected in the currently selected page.
+  */
+
+  get selectedLayers() {
+    return new Selection(this.selectedPage);
+  }
+
+  /**
+  The current page that the user has selected.
+
+  @return {Page} A page object representing the page that the user is currently viewing.
+  */
+
+  get selectedPage() {
+    return new Page(this._object.currentPage(), this)
+  }
+
+  /**
+  Returns a list of the pages in this document.
+
+  @return {list} The pages.
+  */
+
+  get pages() {
+    var result = [];
+    var loop = this._object.pages().objectEnumerator()
+    var item;
+    while (item = loop.nextObject()) {
+      result.push(new Page(item, this));
+    }
+    return result;
+  }
+
+  /**
+  Find the first layer in this document which has the given id.
+
+  @return {Layer} A layer object, if one was found.
+  */
+
+  layerWithID(layer_id) {
+    var layer = this._object.documentData().layerWithID_(layer_id);
+    if (layer)
+    return new Layer(layer, this);
+  }
+
+  /**
+  Find the first layer in this document which has the given name.
+
+  @return {Layer} A layer object, if one was found.
+  */
+
+  layerNamed(layer_name) {
+    // As it happens, layerWithID also matches names, so we can implement
+    // this method in the same way as layerWithID.
+    // That might not always be true though, which is why the JS API splits
+    // them into separate functions.
+
+    var layer = this._object.documentData().layerWithID_(layer_name);
+    if (layer)
+    return new Layer(layer, this);
+  }
+
+  /**
+      Iterate through a bunch of native Sketch layers, executing a block.
+      Used internally by Group and Selection.
+
+      @param {array} layers The layers to iterate over.
+      @param {function(layer: Layer)} filter A filter function to call for each layer. If it returns false, the layer is skipped.
+      @param {function(layer: Layer)} block The function to execute for each layer.
+  */
+
+  iterateWithNativeLayers(layers, filter, block) {
+    // if we&apos;re given a string as a filter, treat it as a function
+    // to call on the layer
+    var loopBlock = block
+    if (typeof filter === &apos;string&apos; || filter instanceof String) {
+        loopBlock = function(layer) {
+            if (layer[filter]) {
+                block(layer)
+            }
+        }
+    } else if (filter) {
+        loopBlock = function(layer) {
+            if (filter(layer)) {
+                block(layer)
+            }
+        }
+    }
+
+    var loop = layers.objectEnumerator();
+    var item
+    while (item = loop.nextObject()) {
+      var layer = this.wrapObject(item)
+      loopBlock(layer);
+    }
+  }
+
+  /**
+  Center the view of the document window on a given layer.
+
+  @param {Layer} layer The layer to center on.
+  */
+
+  centerOnLayer(layer) {
+    this._object.currentView().centerRect_(layer._object.rect())
+  }
+
+  /**
+  Return a list of tests to run for this class.
+
+  @return {dictionary} A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.
+  */
+
+  static tests() {
+    return {
+      &quot;tests&quot; : {
+        &quot;testPages&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var pages = document.pages
+
+          tester.assertEqual(pages.length, 1)
+          tester.assertEqual(pages[0].sketchObject, document.selectedPage.sketchObject)
+
+        },
+
+        &quot;testSelectedLayers&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var selection = document.selectedLayers
+          tester.assert(selection.isEmpty, &quot;should have an empty selection&quot;)
+
+          var page = document.selectedPage
+          var group = page.newGroup({ &apos;name&apos;: &quot;Test&quot;})
+          group.select()
+
+          tester.assert(!selection.isEmpty, &quot;should no longer have an empty selection&quot;)
+        },
+
+        &quot;testLayerWithID&quot; : function(tester) {
+          var document = tester.newTestDocument()
+          var page = document.selectedPage
+          var group = page.newGroup({ &apos;name&apos;: &quot;Test&quot;})
+          var id = group.id
+          var found = document.layerWithID(id)
+          tester.assertEqual(group.sketchObject, found.sketchObject)
+        }
+
+      }
+    };
+  }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="/reference/api/script//search_index.js"></script>
+<script src="/reference/api/script//search.js"></script>
+<script src="/reference/api/script//pretty-print.js"></script>
+<script src="/reference/api/script//inherited-summary.js"></script>
+<script src="/reference/api/script//test-summary.js"></script>
+<script src="/reference/api/script//inner-link.js"></script>
+<script src="/reference/api/script//patch-for-local.js"></script>

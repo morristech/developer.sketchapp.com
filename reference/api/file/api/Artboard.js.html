@@ -1,5 +1,5 @@
 ---
-title: api/Style.js | API Document
+title: api/Artboard.js | API Document
 ---
 
 
@@ -41,122 +41,44 @@ title: api/Style.js | API Document
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">api/Style.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">api/Artboard.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// ********************************
-// # Style.js
+// # Artboard.js
 // # Sketch Javascript API.
 //
 // All code (C) 2016 Bohemian Coding.
 // ********************************
 
-import { WrappedObject } from &apos;./WrappedObject.js&apos;
-
-/// A solid fill/border.
-const BCFillTypeColor    = 0
-
-/// A gradient fill/border.
-const BCFillTypeGradient = 1
-
-/// A pattern fill/border.
-const BCFillTypePattern  = 4
-
-/// A noise fill/border.
-const BCFillTypeNoise    = 5
-
+import { Group } from &apos;./Group.js&apos;
 
 /**
-  Represents a Sketch layer style.
- */
+    A Sketch artboard.
+*/
 
-export class Style extends WrappedObject {
+export class Artboard extends Group {
 
     /**
-      Make a new style object.
+        Make a new artboard.
 
-      @param {MSStyle} style The underlying model object from Sketch.
+        @param artboard {MSArtboardGroup} The underlying MSArtboardGroup model object from Sketch.
+        @param document The document that the artboard belongs to.
     */
 
-    constructor(style) {
-      if (!style) {
-        style = MSDefaultStyle.defaultStyle()
-      }
-
-      super(style)
+    constructor(artboard, document) {
+      super(artboard, document)
     }
 
     /**
-      Given a string description of a color, return an MSColor.
-      */
+        Is this an artboard?
 
-    colorFromString(value) {
-      var immutable = MSImmutableColor.colorWithSVGString_(value)
-      return MSColor.alloc().initWithImmutableObject_(immutable)
-    }
+        All Layer objects respond to this method, but only Artboard objects return true.
 
-
-    /**
-      Set the borders to use for this style.
-
-      The value provided is a list of items, with each one representing a style.
-
-      Currently these values can only be strings with css-style color specifications
-      such as #ffee33 (alpha values are supported too, so #aabbccdd is valid).
-
-      These strings are used to create simple borders.
-
-      In the future the intention is to also support dictionaries allowing gradients
-      and other more complex border parameters to be specified.
-
-      @param {array} values A list of colors - each one representing a border to create.
-
+        @return true for instances of Artboard, false for any other layer type.
     */
 
-    set borders(value) {
-      var objects = []
-      for (var b in value) {
-        var color = this.colorFromString(value[b])
-        var border = MSStyleBorder.new()
-        border.setColor_(color)
-        border.setFillType_(BCFillTypeColor)
-        border.enabled = true
-
-        objects.push(border)
-      }
-      this.sketchObject.setBorders_(objects)
+    get isArtboard() {
+      return true;
     }
-
-
-    /**
-      Set the fills to use for this style.
-
-      The value provided is a list of items, with each one representing a style.
-
-      Currently these values can only be strings with css-style color specifications
-      such as #ffee33 (alpha values are supported too, so #aabbccdd is valid).
-
-      These strings are used to create simple fills.
-
-      In the future the intention is to also support dictionaries allowing gradients
-      and other more complex fill parameters to be specified.
-
-      @param {array} values A list of colors - each one representing a fill to create.
-
-    */
-
-    set fills(value) {
-      var objects = []
-      for (var b in value) {
-        var color = this.colorFromString(value[b])
-        var fill = MSStyleFill.new()
-        fill.setColor_(color)
-        fill.setFillType_(BCFillTypeColor)
-        fill.enabled = true
-
-        objects.push(fill)
-      }
-      this.sketchObject.setFills_(objects)
-    }
-
 
     /**
      Return a list of tests to run for this class.
@@ -167,22 +89,16 @@ export class Style extends WrappedObject {
     static tests() {
         return {
             &quot;tests&quot; : {
-                &quot;testBorders&quot; : function(tester) {
-                  var style = new Style()
-                  style.borders = [ &quot;#11223344&quot;, &quot;#1234&quot; ]
-                  tester.assertEqual(style.sketchObject.borders().count(), 2)
+                &quot;testIsArtboard&quot; : function(tester) {
+                  var document = tester.newTestDocument()
+                  var page = document.selectedPage
+                  var artboard = page.newArtboard({&quot;name&quot; : &quot;Test&quot;})
+                  tester.assertTrue(artboard.isArtboard)
+                  tester.assertFalse(page.isArtboard)
                 },
-
-                &quot;testFills&quot; : function(tester) {
-                  var style = new Style()
-                  style.borders = [ &quot;#11223344&quot;, &quot;#1234&quot; ]
-                  tester.assertEqual(style.sketchObject.borders().count(), 2)
-                },
-
             }
         };
     }
-
 }
 </code></pre>
 

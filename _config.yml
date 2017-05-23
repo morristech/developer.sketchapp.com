@@ -1,8 +1,7 @@
 # Site settings
 title: Sketch Developers
 email: developer@sketchapp.com
-url: "http://developer.sketchapp.com"
-github_repo:  https://github.com/BohemianCoding/developer.sketchapp.com
+# url: "http://developer.sketchapp.com"
 
 # Build settings
 kramdown:
@@ -35,37 +34,25 @@ exclude:
   - package.json
   - .sass-cache
   - README.md
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - DEVNOTES.md
 
 # Dynamic Content
 collections:
-  classes:
-    output: true
-    permalink: /reference/class/:path/
-
   actions:
     output: true
     permalink: /reference/action/:path/
-
-  code-examples:
-    output: true
-    permalink: /examples/code/:path/
-
   introduction:
     output: true
     permalink: /introduction/:path/
-
   posts:
     output: true
     permalink: /blog/:path/
-
-  generated-api:
-    output: true
-    permalink: /reference/api/:path
-
   generated-plugins:
     output: true
     permalink: /examples/plugins/:path/
-
 
 # Defaults
 defaults:
@@ -74,12 +61,6 @@ defaults:
       path: ""
     values:
       layout: "single-page"
-  -
-    scope:
-      type: "classes"
-    values:
-      layout: "sidebar-page"
-      script: "/js/search.js"
   -
     scope:
       type: "actions"
@@ -105,7 +86,7 @@ defaults:
       layout: "docco-page"
   -
     scope:
-      type: "generated-api"
+      path: "reference/api"
     values:
       layout: "api-page"
   -

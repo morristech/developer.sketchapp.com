@@ -1,5 +1,5 @@
 ---
-title: Style | API Document
+title: WrappedObject | API Document
 ---
 
 
@@ -42,25 +42,25 @@ title: Style | API Document
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Style} from &apos;<span><a href="/reference/api/file/api/Style.js.html#lineNumber27">./api/Style.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {WrappedObject} from &apos;<span><a href="/reference/api/file/api/WrappedObject.js.html#lineNumber14">./api/WrappedObject.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="/reference/api/file/api/Style.js.html#lineNumber27">source</a></span></span>
+  <span data-ice="source">| <span><a href="/reference/api/file/api/WrappedObject.js.html#lineNumber14">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">Style</h1>
+  <h1 data-ice="name">WrappedObject</h1>
 
   
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span> &#x2192; Style</div></div>
   
-  
+  <div class="flat-list" data-ice="directSubclass"><h4>Direct Subclass:</h4><div><span><a href="/reference/api/class/api/Application.js~Application.html">Application</a></span>, <span><a href="/reference/api/class/api/Document.js~Document.html">Document</a></span>, <span><a href="/reference/api/class/api/Layer.js~Layer.html">Layer</a></span>, <span><a href="/reference/api/class/api/Selection.js~Selection.html">Selection</a></span>, <span><a href="/reference/api/class/api/Style.js~Style.html">Style</a></span></div></div>
+  <div class="flat-list" data-ice="indirectSubclass"><h4>Indirect Subclass:</h4><div><span><a href="/reference/api/class/api/Artboard.js~Artboard.html">Artboard</a></span>, <span><a href="/reference/api/class/api/Group.js~Group.html">Group</a></span>, <span><a href="/reference/api/class/api/Image.js~Image.html">Image</a></span>, <span><a href="/reference/api/class/api/Page.js~Page.html">Page</a></span>, <span><a href="/reference/api/class/api/Shape.js~Shape.html">Shape</a></span>, <span><a href="/reference/api/class/api/Text.js~Text.html">Text</a></span></div></div>
   
   
   
@@ -68,7 +68,8 @@ title: Style | API Document
 
   
   
-  <div class="description" data-ice="description"><p>Represents a Sketch layer style.</p>
+  <div class="description" data-ice="description"><p>Base class for all objects that
+wrap Sketch classes.</p>
 </div>
 
   
@@ -96,7 +97,7 @@ title: Style | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>dictionary</span></span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>dictionary</span></span>
         </p>
       </div>
       <div>
@@ -129,13 +130,13 @@ title: Style | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(style: <span>MSStyle</span>)</span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(object: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Make a new style object.</p>
+        <div data-ice="description"><p>Return a new wrapped object for a given Sketch model object.</p>
 </div>
       </div>
     </td>
@@ -152,125 +153,6 @@ title: Style | API Document
   <tbody>
   
   <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      <span class="kind" data-ice="kind">set</span>
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html#instance-set-borders">borders</a></span></span><span data-ice="signature">(values: <span>array</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Set the borders to use for this style.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      <span class="kind" data-ice="kind">set</span>
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html#instance-set-fills">fills</a></span></span><span data-ice="signature">(values: <span>array</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Set the fills to use for this style.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
-<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Style.js~Style.html#instance-method-colorFromString">colorFromString</a></span></span><span data-ice="signature">(value: <span>*</span>): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Given a string description of a color, return an MSColor.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
-
-<div class="inherited-summary" data-ice="inheritedSummary"><h2>Inherited Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3"><span class="toggle closed"></span> From class <span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html">WrappedObject</a></span></td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      <span data-ice="static">static</span>
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>dictionary</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Return a list of tests to run for this class.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -327,6 +209,9 @@ title: Style | API Document
 </div>
 
 
+
+
+
 <div data-ice="staticMethodDetails"><h2 data-ice="title">Static Public Methods</h2>
 
 <div class="detail" data-ice="detail">
@@ -340,7 +225,7 @@ title: Style | API Document
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Style.js.html#lineNumber123">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/WrappedObject.js.html#lineNumber54">source</a></span></span>
     </span>
   </h3>
 
@@ -350,7 +235,7 @@ title: Style | API Document
   <div data-ice="description"><p>Return a list of tests to run for this class.</p>
 </div>
 
-  <div data-ice="override"><h4>Override:</h4><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html#static-method-tests">WrappedObject#tests</a></span></div>
+  
 
   <div data-ice="properties">
 </div>
@@ -391,21 +276,21 @@ title: Style | API Document
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(style: <span>MSStyle</span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(object: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Style.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/WrappedObject.js.html#lineNumber22">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Make a new style object.</p>
+  <div data-ice="description"><p>Return a new wrapped object for a given Sketch model object.</p>
 </div>
 
-  <div data-ice="override"><h4>Override:</h4><span><a href="/reference/api/class/api/WrappedObject.js~WrappedObject.html#instance-constructor-constructor">WrappedObject#constructor</a></span></div>
+  
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>
@@ -416,10 +301,10 @@ title: Style | API Document
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">style</td>
-      <td data-ice="type"><span>MSStyle</span></td>
+      <td data-ice="name" data-depth="0">object</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The underlying model object from Sketch.</p>
+      <td data-ice="description"><p>The Sketch model object to wrap.</p>
 </td>
     </tr>
 </tbody>
@@ -446,150 +331,38 @@ title: Style | API Document
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-set-borders">
+  <h3 data-ice="anchor" id="instance-get-id">
     <span class="access" data-ice="access">public</span>
     
-    <span class="kind" data-ice="kind">set</span>
+    <span class="kind" data-ice="kind">get</span>
     
     
-    <span data-ice="name">borders</span><span data-ice="signature">(values: <span>array</span>): <span>*</span></span>
+    <span data-ice="name">id</span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Style.js.html#lineNumber70">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/WrappedObject.js.html#lineNumber43">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Set the borders to use for this style.</p>
-<p>The value provided is a list of items, with each one representing a style.</p>
-<p>Currently these values can only be strings with css-style color specifications
-such as #ffee33 (alpha values are supported too, so #aabbccdd is valid).</p>
-<p>These strings are used to create simple borders.</p>
-<p>In the future the intention is to also support dictionaries allowing gradients
-and other more complex border parameters to be specified.</p>
+  <div data-ice="description"><p>Returns the object ID of the wrapped Sketch model object.</p>
 </div>
 
   
 
   <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-set-fills">
-    <span class="access" data-ice="access">public</span>
-    
-    <span class="kind" data-ice="kind">set</span>
-    
-    
-    <span data-ice="name">fills</span><span data-ice="signature">(values: <span>array</span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="/reference/api/file/api/Style.js.html#lineNumber102">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Set the fills to use for this style.</p>
-<p>The value provided is a list of items, with each one representing a style.</p>
-<p>Currently these values can only be strings with css-style color specifications
-such as #ffee33 (alpha values are supported too, so #aabbccdd is valid).</p>
-<p>These strings are used to create simple fills.</p>
-<p>In the future the intention is to also support dictionaries allowing gradients
-and other more complex fill parameters to be specified.</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
-<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
-
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-colorFromString">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">colorFromString</span><span data-ice="signature">(value: <span>*</span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="/reference/api/file/api/Style.js.html#lineNumber47">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Given a string description of a color, return an MSColor.</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">value</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
 </div>
 
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>The id.</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -609,7 +382,49 @@ and other more complex fill parameters to be specified.</p>
   
   
 </div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-get-sketchObject">
+    <span class="access" data-ice="access">public</span>
+    
+    <span class="kind" data-ice="kind">get</span>
+    
+    
+    <span data-ice="name">sketchObject</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/WrappedObject.js.html#lineNumber32">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns the wrapped Sketch object.</p>
 </div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
+
 </div>
 
 <footer class="footer">

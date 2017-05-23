@@ -9,4 +9,3 @@ The pages below contain brief descriptions of all the actions that your plugin c
 
 - [Javascript API](/reference/api)
 - [Actions](/reference/action)
-- [Classes](/reference/class) (*deprecated*)
