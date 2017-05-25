@@ -128,7 +128,7 @@ Sketch uses this string internally to track the Plugin, store settings for it, e
 
 #### Appcast URL
 
-A string specifying a URL to the appcast file. The appcast file contains information about updates to the plugin, like the versions of available updates and where the updates can be downloaded from. Sketch downloads this file to determine if there are plugin updates avaiable.
+A string specifying a URL to the appcast file. The appcast file contains information about updates to the plugin, like the versions of available updates and where the updates can be downloaded from. Sketch downloads this file to determine if there are plugin updates available.
 
 #### Compatible Version
 
