@@ -56,7 +56,7 @@ Here’s an example:
   "homepage": "http://github.com/example/sketchplugins",
   "version": 1.0,
   "identifier": "com.example.sketch.shape-plugins",
-  "appcastURL": "https://excellent.sketchplugin.com/excellent-plugin-appcast.xml",
+  "appcast": "https://excellent.sketchplugin.com/excellent-plugin-appcast.xml",
   "compatibleVersion": 3,
   "bundleVersion": 1,
   "commands": [
@@ -90,7 +90,7 @@ Here’s an example:
 
 This Plugin is called “Select Shapes”. It defines three commands “All”, “Circles”, and “Rectangles”, which will be placed in a “Select Shapes” menu.
 
-This plugin can be updated by Sketch. Sketch will download the file at the location specified by appcastURL and use it to determine if an update is available or not.
+This plugin can be updated by Sketch. Sketch will download the file at the location specified by `appcast` and use it to determine if an update is available or not.
 
 Unpacking this file a bit further, here are the supported keys and what they are for:
 
@@ -126,7 +126,7 @@ Reverse-domain syntax is strongly encouraged, for example `com.example.sketch.sh
 
 Sketch uses this string internally to track the Plugin, store settings for it, etc.
 
-#### Appcast URL
+#### Appcast
 
 A string specifying a URL to the appcast file. The appcast file contains information about updates to the plugin, like the versions of available updates and where the updates can be downloaded from. Sketch downloads this file to determine if there are plugin updates available.
 
