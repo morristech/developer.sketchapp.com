@@ -15,7 +15,7 @@ On launch, we check for updates for all installed plugins, and if there’s any,
 
 There is an additional entry in the `manifest.json` file contained within your plugin bundle that you need to define for updating to work. 
 
-The entry is called `appcast`, and it is a string specifying a URL to the appcast file. The appcast file contains information about updates to the plugin, like the versions of available updates and where the updates can be downloaded from. Sketch downloads this file to determine if there are plugin updates available. For more details about the appcast format, see [plugin bundle](bundles#appcast).
+The entry is called `appcast`, and it is a string specifying a URL to the appcast file. The appcast file contains information about updates to the plugin, like the versions of available updates and where the updates can be downloaded from. Sketch downloads this file to determine if there are plugin updates available. For more details about the appcast format, see [plugin bundle](/introduction/plugin-bundles/#appcast).
 
 Currently Sketch only allows the user to update to the latest version. Future versions of Sketch may provide additional options for the user to select which plugin version can be downloaded and installed.
 
