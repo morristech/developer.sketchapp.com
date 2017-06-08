@@ -60,8 +60,7 @@ The following Appcast example lists three different versions of the plugin. Each
             </ul>
           ]]>
         </description>
-        <pubDate>Fri, 03 Mar 2017 11:49:11 +0000</pubDate>
-        <enclosure url="https://brillianthello.sketchplugins.com/files/HelloWorldSketchPluginTestv11.zip" sparkle:version="1.1" length="107758" type="application/octet-stream" />
+        <enclosure url="https://brillianthello.sketchplugins.com/files/HelloWorldSketchPluginTestv11.zip" sparkle:version="1.1" />
       </item>
       <item>
         <title>Version 1.2</title>
@@ -72,8 +71,7 @@ The following Appcast example lists three different versions of the plugin. Each
             </ul>
           ]]>
         </description>
-        <pubDate>Fri, 03 Mar 2017 11:53:00 +0000</pubDate>
-        <enclosure url="https://brillianthello.sketchplugins.com/files/HelloWorldSketchPluginTestv12.zip" sparkle:version="1.2" length="107821" type="application/octet-stream" />
+        <enclosure url="https://brillianthello.sketchplugins.com/files/HelloWorldSketchPluginTestv12.zip" sparkle:version="1.2" />
       </item>
       <item>
         <title>Version 2.0</title>
@@ -84,8 +82,7 @@ The following Appcast example lists three different versions of the plugin. Each
             </ul>
           ]]>
         </description>
-        <pubDate>Fri, 03 Mar 2017 11:58:00 +0000</pubDate>
-        <enclosure url="https://brillianthello.sketchplugins.com/files/HelloWorldSketchPluginTestv20.zip" sparkle:version="2.0" length="111042" type="application/octet-stream" />
+        <enclosure url="https://brillianthello.sketchplugins.com/files/HelloWorldSketchPluginTestv20.zip" sparkle:version="2.0" />
       </item>
   </channel>
 </rss>
