@@ -217,7 +217,7 @@ This is an array which lists the items to include in the menu.
 
 It can contain items of two types:
 
-- a string giving the the identifier of a command
+- a string giving the identifier of a command
 - a dictionary describing a sub-menu (containing "title" and "items")
 
 
@@ -225,7 +225,7 @@ It can contain items of two types:
 
 By default, the menu items listed in this dictionary will appear in a menu with the name specified by the *title* key.
 
-If the the isRoot key is specified, with a value of true, the items will instead be inserted at the root level of the Plugins menu, rather than in a subfolder.  In this case, the *title* key will be ignored.
+If the isRoot key is specified, with a value of true, the items will instead be inserted at the root level of the Plugins menu, rather than in a subfolder.  In this case, the *title* key will be ignored.
 
 *This key is ignored in sub-menus.*
 
