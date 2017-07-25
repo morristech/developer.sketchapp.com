@@ -20,7 +20,7 @@ It's a long list, and most haven't been documented yet, but we're providing it n
     <tr>
       <td><a href="{{action.url}}">{{action.title}}</a></td>
       <td>{{action.summary}}</td>
-    <tr>
+    </tr>
   {% endfor %}
   </tbody>
 </table>
