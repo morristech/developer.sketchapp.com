@@ -6,7 +6,7 @@ permalink: /resources/
 ## JavaScript
 
 ### Absolute beginners
-- Learn the fundamentals of JavaScript at [CodeAcademy](https://www.codecademy.com/tracks/javascript)
+- Learn the fundamentals of JavaScript at [Codecademy](https://www.codecademy.com/tracks/javascript)
 - [Eloquent JavaScript](http://eloquentjavascript.net), a book about JavaScript, programming, and the wonders of the digital.
 
 ### Experienced developers
