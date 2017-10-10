@@ -15,7 +15,7 @@ kramdown:
     span:
       disable: true
     block:
-      line_numbers: true
+      line_numbers: false
 
 gems:
   - jekyll-seo-tag
@@ -44,9 +44,9 @@ collections:
   actions:
     output: true
     permalink: /reference/action/:path/
-  introduction:
+  guides:
     output: true
-    permalink: /introduction/:path/
+    permalink: /guides/:path/
   posts:
     output: true
     permalink: /blog/:path/
@@ -75,7 +75,7 @@ defaults:
       script: "/js/search.js"
   -
     scope:
-      type: "introduction"
+      type: "guides"
     values:
       layout: "sidebar-page"
       script: "/js/search.js"

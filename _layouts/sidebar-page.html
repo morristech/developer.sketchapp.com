@@ -11,10 +11,10 @@ layout: base
         </header>
         <nav role="navigation">
           <ol>
-            {% if page.url contains '/introduction/' %}
-                {% assign introductions = site.introduction | sort:"order" %}
-                {% for introduction in introductions %}
-                  <li><a href="{{introduction.url}}" {% if page.url == introduction.url %} class="active"{% endif %}>{{introduction.title}}</a></li>
+            {% if page.url contains '/guides/' %}
+                {% assign guides = site.guides | sort:"order" %}
+                {% for guide in guides %}
+                  <li><a href="{{guide.url}}" {% if page.url == guide.url %} class="active"{% endif %}>{{guide.title}}</a></li>
                 {% endfor %}
             {% endif %}
             {% if page.url contains '/code/' %}
