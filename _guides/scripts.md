@@ -1,7 +1,7 @@
 ---
 title: Plugins, Scripts, and Commands
 summary: An introduction to writing plugin scripts.
-permalink: /introduction/plugin-scripts/
+permalink: /guides/plugin-scripts/
 order: 300
 ---
 
@@ -31,7 +31,7 @@ The basics are as follows:
 - you can read and write properties on custom Objective-C objects as you would in JS
 - you can call methods on custom Objective-C objects, using either the familiar JavaScript syntax, or the Objective-C square bracket syntax.
 
-(See the [More On CocoaScript](/introduction/cocoascript/) page for more details.)
+(See the [More On CocoaScript](/guides/cocoascript/) page for more details.)
 
 When your script is called by Sketch, you are passed some *context*, including the Objective-C objects representing the current Sketch document and selection.
 
@@ -79,7 +79,7 @@ You can use this interface to explore and experiment.
 
 Once you have a script that you want to develop into a proper Plugin, you can use the **Save…** button in the **Run Custom Script…** sheet.
 
-This will create a Plugin folder (known as a [Plugin Bundle](/introduction/plugin-bundles/)) and save your script into it.
+This will create a Plugin folder (known as a [Plugin Bundle](/guides/plugin-bundles/)) and save your script into it.
 
 The resulting Plugin will have a single command and a single script file. Executing the command will call the `onRun` function in the script, which will contain the code you entered.
 
@@ -89,4 +89,4 @@ You can add more code to your `onRun` function, add more functions, and even mor
 
 By editing the `manifest.json` file in the Plugin folder, you can customise the name of the command, enter a description, and even expand the Plugin to define multiple commands.
 
-For more information on this, see [Plugin Bundles](/introduction/plugin-bundles/).
+For more information on this, see [Plugin Bundles](/guides/plugin-bundles/).

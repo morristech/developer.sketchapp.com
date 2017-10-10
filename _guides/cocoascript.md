@@ -1,6 +1,6 @@
 ---
 title: More on CocoaScript
-permalink: /introduction/cocoascript/
+permalink: /guides/cocoascript/
 summary: Some more details on how to use CocoaScript
 order: 500
 ---

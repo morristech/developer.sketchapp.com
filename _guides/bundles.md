@@ -1,6 +1,6 @@
 ---
 title: Plugin Bundles
-permalink: /introduction/plugin-bundles/
+permalink: /guides/plugin-bundles/
 order: 200
 ---
 
