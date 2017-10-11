@@ -2,7 +2,7 @@
 title: Dev Environment
 summary: Some preferences to make developing Plugins a bit more pleasant
 permalink: /guides/preferences/
-order: 110
+order: 120
 ---
 
 If you spend non-trivial amounts of time developing Plugins for Sketch, there are some improvements you can make to your workflow using these preferences.
