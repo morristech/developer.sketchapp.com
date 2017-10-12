@@ -1,9 +1,11 @@
 ---
-title: Updating Plugins
-summary: How to setup a plugin to be updated by Sketch
-permalink: /guides/updating-plugins/
+title: Publishing Plugins
+summary: How to publish a plugin for the first and how to publish updates
+permalink: /guides/publishing-plugins/
 order: 150
 ---
+
+// TODO talk about the plugin directory and how to add one here. Talk about `skpm publish`.
 
 From Sketch v45 onwards Sketch provides an officially supported mechanism for updating plugins within the app.
 
