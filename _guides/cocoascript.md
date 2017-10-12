@@ -17,7 +17,7 @@ You can use two different styles when writing your scripts: **dot notation** and
 
 If you have spent some time writing JavaScript code, you already know about the dot notation:
 
-```
+```js
 var l = a.length()
 ```
 
@@ -25,13 +25,13 @@ Here, a dot is used to say: “Call the ‘length’ method on the ‘a’ objec
 
 However, if you come from a Cocoa background, you may be happy to learn that you can also use a bracket notation, very similar to that in Objective-C:
 
-```Objective-C
+```js
 var l = [a length]
 ```
 
 You can even mix and match dot and bracket notation:
 
-```Objective-C
+```js
 var l = [a length].toString()
 ```
 

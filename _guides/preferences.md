@@ -58,11 +58,15 @@ defaults write ~/Library/Preferences/com.bohemiancoding.sketch3.plist actionWild
 
 Once you do that, you can tell your Plugin to call a method for every action by adding a `*` key to your `handlers.actions` object in `manifest.json`:
 
-```json
-"handlers" : {
-  "actions": {
-    "*": "onAction"
+```diff
+{
+  ...
+  "handlers": {
++    "actions": {
++      "*": "onActionHandler"
++    }
   }
+  ...
 }
 ```
 

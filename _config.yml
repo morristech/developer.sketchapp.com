@@ -9,13 +9,6 @@ kramdown:
   auto_ids: true
   smart_quotes:   lsquo,rsquo,ldquo,rdquo
   syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    fenced_code_blocks: true
-    default_lang: javascript
-    span:
-      disable: true
-    block:
-      line_numbers: false
 
 gems:
   - jekyll-seo-tag
