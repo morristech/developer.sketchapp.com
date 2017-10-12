@@ -1,7 +1,7 @@
 ---
 title: Your First Plugin
 summary: Basic concepts for plugin users.
-permalink: /guides/first-plugin
+permalink: /guides/first-plugin/
 order: 110
 ---
 
@@ -63,13 +63,17 @@ Let's go through the purpose of all these files and explain what they do:
 
 ## The plugin manifest: manifest.json
 
-* Please read the manifest.json [manifest reference](/guides/plugin-bundles/)
+* Please read the manifest.json [manifest reference](/guides/plugin-bundles/#manifest)
 * Each Sketch plugin must have a manifest.json file that describes it and its capabilities.
 * Sketch reads this file during start-up.
 
 ## Debugging your Extension
 
+// TODO
+
 ## A Simple Change
+
+// TODO
 
 ## Publishing your Extension
 
