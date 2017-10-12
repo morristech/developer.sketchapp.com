@@ -50,6 +50,13 @@
   padding: 0
 }
 
+.toc-nav .separator {
+  padding-top:50px;
+  text-transform: uppercase;
+  color: $text-dark-high;
+  opacity: 0.5;
+}
+
 
   @include tablet-and-above {
     .toc-nav li:not(:first-child) h2,

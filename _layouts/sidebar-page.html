@@ -12,8 +12,12 @@ layout: base
         <nav role="navigation">
           <ol>
             {% if page.url contains '/guides/' %}
+              <li class="separator">Getting Started</li>
                 {% assign guides = site.guides | sort:"order" %}
                 {% for guide in guides %}
+                  {% if guide.order == 200 %}
+                  <li class="separator">Advanced</li>
+                  {% endif %}
                   <li><a href="{{guide.url}}" {% if page.url == guide.url %} class="active"{% endif %}>{{guide.title}}</a></li>
                 {% endfor %}
             {% endif %}
