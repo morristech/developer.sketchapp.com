@@ -5,8 +5,6 @@ permalink: /guides/first-plugin/
 order: 110
 ---
 
-## Your First Extension
-
 This document will take you through creating your first Sketch plugin ("Hello World") and will explain the basic Sketch extensibility concepts.
 
 In this walkthrough, you'll add a new command to Sketch which will display a simple "Hello World" message. Later in the walkthrough, you'll interact with the Sketch canvas and query for the user's currently selected layer.
@@ -14,7 +12,7 @@ In this walkthrough, you'll add a new command to Sketch which will display a sim
 ## Prerequisites
 You need [Node.js](https://nodejs.org/en/) installed and available in your `$PATH`. Node.js includes [npm](https://www.npmjs.com/), the Node.js Package Manager, which will be used to install the toolchain for sketch plugin developers.
 
-## Generate a New Plugin
+## Generate a new plugin
 
 The simplest way to add your own functionality to Sketch is through adding a command. A command registers a callback function which can be invoked from the Plugin menu or with a key binding.
 
@@ -36,7 +34,7 @@ skpm init
 * Choose `Plugins` > `my-plugin` > `My Command`
 * Congratulations! You've just created and executed your first Sketch command!
 
-## The Structure of a plugin
+## The structure of a plugin
 
 After running, the generated plugin should have the following structure:
 
@@ -71,7 +69,7 @@ Let's go through the purpose of all these files and explain what they do:
 
 // TODO
 
-## A Simple Change
+## A simple change
 
 // TODO
 
@@ -79,7 +77,7 @@ Let's go through the purpose of all these files and explain what they do:
 
 Read about how to [Share a plugin](/guides/publishing-plugins/).
 
-## Next Steps
+## Next steps
 In this walkthrough, we've seen a very simple plugin.
 
 If you'd like to read more generally about the plugin APIs, try these topics:

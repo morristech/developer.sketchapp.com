@@ -42,11 +42,11 @@ We also have great support for writing and running tests for your plugin. You ca
 
 -->
 
-### Extension Ideas
+### Extension ideas
 
 Lots of great community ideas for Sketch features are better implemented as plugins rather than as part of the core product. This way users can easily pick and choose the functionality they want, by installing the right set of plugins. The Sketch team tracks possible plugin as GitHub issues on the [plugin-request repository](https://github.com/sketchplugins/plugin-requests/issues). If you're looking for a great plugin to build, have a look at the issues.
 
-## Next Steps
+## Next steps
 
 * [Your First plugin](/guides/first-plugin) - Try creating a simple Hello World plugin.
 * [Extension API](/reference/) - Learn about the Sketch extensibility APIs.
@@ -54,4 +54,4 @@ Lots of great community ideas for Sketch features are better implemented as plug
 
 ### Help us improve!
 
-If you find any error or omission on the documentation, or you’d like us to cover or clarify something, just [file an issue](https://github.com/BohemianCoding/developer.sketchapp.com/issues) and we’ll try to fix it. Of course, since all the content on this site is open source, you can help us improve by [suggesting an edit on GitHub]({{site.github_repo}}) (there's also an "Improve this page" link at the bottom of every page, in case you find something wrong while browsing the site).
+If you find any error or omission on the documentation, or you’d like us to cover or clarify something, just [file an issue]({{site.github_repo}}/issues) and we’ll try to fix it. Of course, since all the content on this site is open source, you can help us improve by [suggesting an edit on GitHub]({{site.github_repo}}) (there's also an "Improve this page" link at the bottom of every page, in case you find something wrong while browsing the site).
