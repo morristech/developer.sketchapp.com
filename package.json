@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "This repository powers the development site for [Sketch](http://sketchapp.com), that lives at [developer.sketchapp.com](http://developer.sketchapp.com).",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "bundle install --path _vendor",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp",
+    "watch": "gulp watch",
+    "serve": "gulp serve"
   },
   "repository": {
     "type": "git",
