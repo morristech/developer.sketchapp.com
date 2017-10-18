@@ -20,16 +20,15 @@ We have written a small toolchain called [`skpm`](https://github.com/skpm/skpm) 
 
 ```
 npm install -g skpm
-mkdir my-plugin
-cd my-plugin
 
-skpm init
+skpm create my-plugin
+
+cd my-plugin
 ```
 
 ## Running your plugin
 
-* Build the plugin: `skpm build`
-* Add your plugin to Sketch (only do it once): `skpm link`
+* Build the plugin: `npm run build`
 * Launch Sketch, open a document
 * Choose `Plugins` > `my-plugin` > `My Command`
 * Congratulations! You've just created and executed your first Sketch command!
@@ -52,8 +51,7 @@ After running, the generated plugin should have the following structure:
 │       ├── Resources
 │       └── Sketch
 │           ├── manifest.json
-│           ├── my-command.js
-│           └── my-command.map.js
+│           └── my-command.js
 └── package.json
 ```
 
@@ -71,7 +69,24 @@ Let's go through the purpose of all these files and explain what they do:
 
 ## A simple change
 
-// TODO
+In `src/my-command.js`, try replacing the command implementation to show the number of layers selected:
+
+```js
+export default function (context) {
+  const selectedLayers = context.selection
+  const selectedCount = selectedLayers.length
+
+  if (selectedCount === 0) {
+    context.document.show('No layers are selected.')
+  } else {
+    context.document.show(`${selectedCount} layers selected.`)
+  }
+}
+```
+
+Rebuild the plugin by running `npm run build`. Open a Sketch document, select some layers. When you run the my-plugin command, you should now see the count of selected layers.
+
+> Pro tip: you can make it rebuild the plugin automatically by running `npm run watch`
 
 ## Publishing your Extension
 
