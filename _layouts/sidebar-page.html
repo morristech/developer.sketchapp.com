@@ -12,14 +12,27 @@ layout: base
         <nav role="navigation">
           <ol>
             {% if page.url contains '/guides/' %}
-              <li class="separator">Getting Started</li>
-                {% assign guides = site.guides | sort:"order" %}
-                {% for guide in guides %}
-                  {% if guide.order == 200 %}
-                  <li class="separator">Advanced</li>
-                  {% endif %}
-                  <li><a href="{{guide.url}}" {% if page.url == guide.url %} class="active"{% endif %}>{{guide.title}}</a></li>
-                {% endfor %}
+              {% assign guides = site.guides | sort:"order" %}
+              <li>
+                <h2>Getting Started</h2>
+                <ol>
+                  {% for guide in guides %}
+                    {% if guide.order < 200 %}
+                      <li><a href="{{guide.url}}" {% if page.url == guide.url %} class="active"{% endif %}>{{guide.title}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ol>
+              </li>
+              <li>
+                <h2>Advanced</h2>
+                <ol>
+                  {% for guide in guides %}
+                    {% if guide.order >= 200 %}
+                      <li><a href="{{guide.url}}" {% if page.url == guide.url %} class="active"{% endif %}>{{guide.title}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ol>
+              </li>
             {% endif %}
             {% if page.url contains '/code/' %}
                 {% assign examples = site.code-examples | sort:"order" %}
