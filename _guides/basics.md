@@ -33,6 +33,7 @@ By now, probably you’re wondering how to get started writing your own.
 The easiest way to get started with Plugins is to open Sketch, open a document and hit `control + shift + k` to open the `Run Script` panel. You don’t need to install anything; you can just open it and experiment there. If you’d rather use a real development environment (which you will need to in order to distribute your plugin), check out the [Development Environment](/guides/preferences) page.
 
 The smallest plugin example looks like this:
+
 ```js
 export default function (context) {
   context.document.showMessage('Hello, world!')
@@ -49,4 +50,4 @@ Sketch plugin are written in JavaScript, and so we assume that you have a basic 
 
 We also use some of the ES6 syntax in the examples. We try to use it sparingly because it’s still relatively new, but we encourage you to get familiar with [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements.
 
-The script doesn't run in a browser or node environment but in a [special environment](/guides/cocoascript/) in which every native MacOS and Sketch API are exposed. It is a bit advanced but necessessary to truly understand how to build more advanced stuff.
+The script doesn't run in a browser or node environment but in a [special environment](/guides/cocoascript/) in which every native MacOS and Sketch API are exposed. It is a bit advanced but necessary to truly understand how to build more advanced stuff.
