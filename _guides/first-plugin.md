@@ -7,18 +7,19 @@ order: 110
 
 This document will take you through creating your first Sketch plugin ("Hello World") and will explain the basic Sketch extensibility concepts.
 
-In this walkthrough, you'll add a new command to Sketch which will display a simple "Hello World" message. Later in the walkthrough, you'll interact with the Sketch canvas and query for the user's currently selected layer.
+In this walk-through, you'll add a new command to Sketch which will display a simple "Hello World" message. Later in the walk-through, you'll interact with the Sketch canvas and query for the user's currently selected layer.
 
 ## Prerequisites
-You need [Node.js](https://nodejs.org/en/) installed and available in your `$PATH`. Node.js includes [npm](https://www.npmjs.com/), the Node.js Package Manager, which will be used to install the toolchain for sketch plugin developers.
+
+You need [Node.js](https://nodejs.org/en/) installed and available in your `$PATH`. Node.js includes [npm](https://www.npmjs.com/), the Node.js Package Manager, which will be used to install the tool-chain for sketch plugin developers.
 
 ## Generate a new plugin
 
 The simplest way to add your own functionality to Sketch is through adding a command. A command registers a callback function which can be invoked from the Plugin menu or with a key binding.
 
-We have written a small toolchain called [`skpm`](https://github.com/skpm/skpm) to help get you started. Install `skpm` and scaffold a new plugin:
+We have written a small tool-chain called [`skpm`](https://github.com/skpm/skpm) to help get you started. Install `skpm` and scaffold a new plugin:
 
-```
+```bash
 npm install -g skpm
 
 skpm create my-plugin
@@ -93,9 +94,10 @@ Rebuild the plugin by running `npm run build`. Open a Sketch document, select so
 Read about how to [Share a plugin](/guides/publishing-plugins/).
 
 ## Next steps
-In this walkthrough, we've seen a very simple plugin.
+
+In this walk-through, we've seen a very simple plugin.
 
 If you'd like to read more generally about the plugin APIs, try these topics:
 
-* [Extension API Overview](/reference/) - Learn about the full VS Code extensibility model.
+* [Extension API Overview](/reference/) - Learn about the Sketch extensibility possibilities.
 * [Additional Plugin Examples](/examples/) - Take a look at our list of example plugin projects.
