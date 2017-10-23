@@ -43,7 +43,7 @@ It renders a toast saying “Hello, world!” at the bottom of the Sketch docume
 
 The next few guides will gradually introduce you to the inner workings of Plugins. We will examine the building blocks of plugins: [manifest](/guides/plugin-bundles/) and scripts. Once you master them, you can create complex plugins!
 
-## A Note on JavaScript
+## A note on JavaScript
 
 Sketch plugin are written in JavaScript, and so we assume that you have a basic understanding of the JavaScript language. If you don’t feel very confident, we recommend [refreshing your JavaScript knowledge](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) so you can follow along more easily.
 

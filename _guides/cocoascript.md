@@ -5,7 +5,7 @@ summary: Some more details on how to use CocoaScript
 order: 500
 ---
 
-Sketch Plugins are made possible by [CocoaScript](https://github.com/ccgus/CocoaScript), a bridge that lets you use Objective-C/Cocoa code from an external script written in JavaScript. The bridge takes care of the translation between JavaScript and Cocoa, so you can concentrate on the important parts (namely, making Sketch do awesome stuff).
+Sketch Plugins are made possible by [Mocha](https://github.com/logancollins/Mocha) and [CocoaScript](https://github.com/ccgus/CocoaScript), a bridge that lets you use Objective-C/Cocoa code from an external script written in JavaScript. The bridge takes care of the translation between JavaScript and Cocoa, so you can concentrate on the important parts (namely, making Sketch do awesome stuff).
 
 From CocoaScript’s README:
 
@@ -13,49 +13,64 @@ From CocoaScript’s README:
 >
 > CocoaScript also includes a bridge which lets you access Apple’s Cocoa frameworks from JavaScript. This means you have a ton wonderful classes and functions you can use in addition to the standard JavaScript library.
 
-You can use two different styles when writing your scripts: **dot notation** and **bracket notation**.
+## Accessing Cocoa and Sketch APIs
 
-If you have spent some time writing JavaScript code, you already know about the dot notation:
+You can access all Cocoa and Sketch APIs from CocoaScript.
+
+Objective-C properties behave as they should on the JavaScript side of the bridge.
+
+Objective-C methods are exposed as properties of the object's opaque JavaScript proxy.
+
+The following steps are taken when converting a selector name to the JavaScript property name:
+
+* All colons are converted to underscores.
+* Each component of the selector is concatenated into a single string with no separation.
+
+As such, a selector such as `executeOperation:withObject:error:` is converted to the function name `executeOperation_withObject_error_()`.
+
+For example, if you want to open a File Picker panel, you can use the [NSOpenPanel](https://developer.apple.com/documentation/appkit/nsopenpanel?language=objc) class:
 
 ```js
-var l = a.length()
-```
+var openPanel = NSOpenPanel.openPanel()
+openPanel.setCanChooseDirectories(false)
+openPanel.setCanChooseFiles(true)
+openPanel.setCanCreateDirectories(false)
+openPanel.setDirectoryURL(NSURL.fileURLWithPath('~/Documents/'))
 
-Here, a dot is used to say: “Call the ‘length’ method on the ‘a’ object”.
-
-However, if you come from a Cocoa background, you may be happy to learn that you can also use a bracket notation, very similar to that in Objective-C:
-
-```js
-var l = [a length]
-```
-
-You can even mix and match dot and bracket notation:
-
-```js
-var l = [a length].toString()
-```
-
-However, it’s probably a good idea to stick with just one style.
-
-## Accessing Cocoa
-
-You can access all Cocoa APIs from CocoaScript. For example, if you want to open a File Picker panel, you can use the [NSOpenPanel](https://developer.apple.com/library/mac/documentation/cocoa/reference/applicationkit/Classes/NSOpenPanel_Class/Reference/Reference.html) class:
-
-```Objective-C
-var openPanel = [NSOpenPanel openPanel]
-[openPanel setCanChooseDirectories:false]
-[openPanel setCanChooseFiles:true]
-[openPanel setCanCreateDirectories:false]
-[openPanel setDirectoryURL:[NSURL fileURLWithPath:"~/Documents/"]]
-
-[openPanel setTitle:"Choose a file"]
-[openPanel setPrompt:"Choose"]
-[openPanel runModal]
+openPanel.setTitle('Choose a file')
+openPanel.setPrompt('Choose')
+openPanel.runModal()
 ```
 
 If you need more information about Cocoa, check the [Resources](/resources/) section.
 
-## Other CocoaScript Syntax Notes
+## A few specific globals
 
-- Semicolons are optional in CocoaScript.
-- You can evaluate nullness by using `null` or `nil`
+### Pointer
+
+For some Obj-C selectors, you might need to pass a pointer. That doesn't exist in JavaScript so there is a global method to create one:
+
+```js
+var ptr = MOPointer.alloc().init();
+var ptrToSomething = MOPointer.alloc().initWithValue_(something)
+```
+
+### Long running script
+
+If your script is doing something asynchronous, we will need to tell Sketch to keep it around and to not garbage collect it.
+
+You can do so by accessing `COScript`:
+
+```js
+COScript.currentCOScript().shouldKeepAround = true
+```
+
+When the script has finished its work, don't forget to release it:
+
+```js
+COScript.currentCOScript().shouldKeepAround = false
+```
+
+## Next Steps
+
+For more information about how the bridge really works, take a look at the [Mocha Readme](https://github.com/ccgus/CocoaScript), it is really complete (but requires some notion of Obj-C).
