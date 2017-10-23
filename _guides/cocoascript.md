@@ -13,6 +13,17 @@ From CocoaScript’s README:
 >
 > CocoaScript also includes a bridge which lets you access Apple’s Cocoa frameworks from JavaScript. This means you have a ton wonderful classes and functions you can use in addition to the standard JavaScript library.
 
+## JavaScript environment
+
+Your plugin's script does not run in a browser but in a JavaScriptCore context. Hence the JavaScript environment it is running in is a bit uncommon.
+
+* The [JavaScript standard library](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects) is available.
+* Every thing else isn't. That means that `setTimeout`, `fetch`, etc. are not available.
+* `console` is available but will only log to the JavaScript context, as opposed to the Sketch logs.
+* NodeJS core modules are not available.
+
+That being said, if you use `skpm`, it will automatically polyfill some things for you: [`setTimeout`](https://github.com/skpm/sketch-polyfill-setTimeout), [`setInterval`](https://github.com/skpm/sketch-polyfill-setInterval), [`fetch`](https://github.com/skpm/sketch-polyfill-fetch) and it will make sure that `console` will log to both the JavaScript context and the Sketch logs.
+
 ## Accessing Cocoa and Sketch APIs
 
 You can access all Cocoa and Sketch APIs from CocoaScript.
@@ -23,10 +34,10 @@ Objective-C methods are exposed as properties of the object's opaque JavaScript 
 
 The following steps are taken when converting a selector name to the JavaScript property name:
 
-* All colons are converted to underscores.
+* All colons are converted to underscores (the latest underscore is optional).
 * Each component of the selector is concatenated into a single string with no separation.
 
-As such, a selector such as `executeOperation:withObject:error:` is converted to the function name `executeOperation_withObject_error_()`.
+As such, a selector such as `executeOperation:withObject:error:` is converted to the function name `executeOperation_withObject_error()`.
 
 For example, if you want to open a File Picker panel, you can use the [NSOpenPanel](https://developer.apple.com/documentation/appkit/nsopenpanel?language=objc) class:
 
@@ -52,7 +63,7 @@ For some Obj-C selectors, you might need to pass a pointer. That doesn't exist i
 
 ```js
 var ptr = MOPointer.alloc().init();
-var ptrToSomething = MOPointer.alloc().initWithValue_(something)
+var ptrToSomething = MOPointer.alloc().initWithValue(something)
 ```
 
 ### Long running script
