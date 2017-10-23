@@ -32,7 +32,7 @@ The easiest way to see Sketch plugins in action is via the [Plugin Directory](ht
 
 We created a small tool-chain which makes it very easy to create a new plugin. It is great for [starting out](/guides/first-plugin) and you can also find existing plugin [examples](/examples/).
 
-Extensions can be written in JavaScript. Sketch offers a small .
+Extensions can be written in JavaScript. Sketch offers a small REPL-like console in which you can experiment with its API before diving into building your plugin.
 
 <!--
 
