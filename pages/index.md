@@ -7,7 +7,7 @@ We’ve worked very hard to make Sketch the dream “designer toolbox”, but ev
 
 If you are interested in extending Sketch, you are in the right place. Here we present an outline of the Sketch extensibility documentation and how to quickly build your first Sketch plugin.
 
-If you just want to use existing plugin, see [Plugin Marketplace](https://sketchapp.com/extensions/plugins/).
+If you just want to use existing plugin, see the [Plugin Directory](https://sketchapp.com/extensions/plugins/).
 
 ### What can you do with plugins?
 
@@ -26,13 +26,13 @@ Plugins in Sketch can do anything a user can do (and even more!). For example:
 - [content generation](https://github.com/timuric/Content-generator-sketch-plugin)
 - [perspective transformations](https://github.com/jamztang/MagicMirror)
 
-The easiest way to see Sketch plugins in action is via the [Plugin Marketplace](https://sketchapp.com/extensions/plugins/). You can browse for useful plugins, install them to try them out and get an idea how you might extend Sketch for your own design scenarios.
+The easiest way to see Sketch plugins in action is via the [Plugin Directory](https://sketchapp.com/extensions/plugins/). You can browse for useful plugins, install them to try them out and get an idea how you might extend Sketch for your own design scenarios.
 
 ### Writing an Extension
 
-We created a small toolchain which makes it very easy to create a new plugin. It is great for starting out and you can also find existing plugin [examples](/examples/).
+We created a small tool-chain which makes it very easy to create a new plugin. It is great for [starting out](/guides/first-plugin) and you can also find existing plugin [examples](/examples/).
 
-Extensions can be written in either TypeScript or JavaScript. VS Code offers a first class extension development experience where you can develop, build, run, test and debug all from within VS Code itself.
+Extensions can be written in JavaScript. Sketch offers a small .
 
 <!--
 
@@ -48,10 +48,10 @@ Lots of great community ideas for Sketch features are better implemented as plug
 
 ## Next steps
 
-* [Your First plugin](/guides/first-plugin) - Try creating a simple Hello World plugin.
-* [Extension API](/reference/) - Learn about the Sketch extensibility APIs.
-* [Extension Examples](/examples/) - A list of extension samples you can review and build.
+- [Your First plugin](/guides/first-plugin) - Try creating a simple Hello World plugin.
+- [Extension API](/reference/) - Learn about the Sketch extensibility APIs.
+- [Extension Examples](/examples/) - A list of extension samples you can review and build.
 
-### Help us improve!
+### Help us improve
 
 If you find any error or omission on the documentation, or you’d like us to cover or clarify something, just [file an issue]({{site.github_repo}}/issues) and we’ll try to fix it. Of course, since all the content on this site is open source, you can help us improve by [suggesting an edit on GitHub]({{site.github_repo}}) (there's also an "Improve this page" link at the bottom of every page, in case you find something wrong while browsing the site).
