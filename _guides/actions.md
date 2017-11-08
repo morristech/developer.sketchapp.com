@@ -2,7 +2,7 @@
 title: Action API
 summary: API to let plugins react to events in the app.
 permalink: /guides/action-api/
-order: 130
+order: 140
 ---
 
 In Sketch 3.8, we introduced the Action API: a way to let plugins react to events in the app. Using it, plugin authors can write code that is executed when certain actions are triggered, like "opening a document", "saving", "adding an artboard"…
