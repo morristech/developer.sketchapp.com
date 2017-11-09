@@ -1,7 +1,7 @@
 ---
 title: Plugin Locations
 summary: Where plugins live, how to install/remove them
-permalink: /introduction/installing-plugins/
+permalink: /guides/installing-plugins/
 order: 350
 ---
 

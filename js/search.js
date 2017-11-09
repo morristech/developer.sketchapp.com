@@ -33,8 +33,8 @@ $(document).ready(function(){
       } else {
         //If we hit Esc, we close the search
         if (e.keyCode == 27) {
-           search_close();
-         }
+          search_close();
+        }
         $('.search-results').html('');
       }
     })

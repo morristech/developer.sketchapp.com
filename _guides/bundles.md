@@ -1,6 +1,6 @@
 ---
 title: Plugin Bundles
-permalink: /introduction/plugin-bundles/
+permalink: /guides/plugin-bundles/
 order: 200
 ---
 
@@ -193,7 +193,7 @@ The relative path within the Plugin bundle’s `Sketch` folder for the script th
 
 The name of the function with the script to call this command. The function must take a single `context` parameter, which is a dictionary with keys for things like the current document and selection. If unspecified the command is expected to be `onRun`:
 
-```javascript
+```js
 var onRun = function (context) {
   var doc = context.document;
   var selection = context.selection;
@@ -241,11 +241,11 @@ Here’s an example. It defines three commands in a menu called “My Plugin Men
       "command1-identifier",
       "command2-identifier",
       {
-         "title": "My Plugin Submenu",
-         "items": [
-           "command3-identifier"
-         ]
-       }
+        "title": "My Plugin Submenu",
+        "items": [
+          "command3-identifier"
+        ]
+      }
     ]
   }
 }
@@ -259,7 +259,7 @@ These are simply JavaScript functions which live in a `.cocoascript` file in the
 
 Here’s a simple example:
 
-```javascript
+```js
 var doMyCommand = function(context) {
   context.document.currentPage().deselectAllLayers();
 }

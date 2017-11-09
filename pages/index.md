@@ -1,19 +1,17 @@
 ---
-title: Hello, World
+title: Extending Sketch
 permalink: /
 ---
 
-Welcome to Sketch's Developer Site. We’ve worked very hard to make Sketch the dream “designer toolbox”, but everyone has slightly different needs, and there is a good chance that there’s a feature that you would like, which we’ve not implemented.
+We’ve worked very hard to make Sketch the dream “designer toolbox”, but everyone has slightly different needs, and there is a good chance that there’s a feature that you would like, which we’ve not implemented.
 
-Luckily, Sketch includes a plugin engine so that developers can extend its functionality.
+If you are interested in extending Sketch, you are in the right place. Here we present an outline of the Sketch extensibility documentation and how to quickly build your first Sketch plugin.
 
-For example, there are already plugins out there to do such diverse things as [design specs](https://github.com/utom/sketch-measure), [content generation](https://github.com/timuric/Content-generator-sketch-plugin) and [perspective transformations](https://github.com/jamztang/MagicMirror).
+If you just want to use existing plugin, see the [Plugin Directory](https://sketchapp.com/extensions/plugins/).
 
-Every week a new plugin comes out that does amazing stuff we hadn’t even thought possible!
+### What can you do with plugins?
 
-## What can you do with plugins?
-
-Plugins in Sketch can do anything a user can do. For example:
+Plugins in Sketch can do anything a user can do (and even more!). For example:
 
 - Select layers inside a document, based on complex rules
 - Manipulate layer properties
@@ -24,24 +22,36 @@ Plugins in Sketch can do anything a user can do. For example:
 - Interact with the clipboard
 - Manipulate Sketch’s environment (editing guides, zoom, etc…)
 - Automate existing features by calling menu options from plugins
+- [design specs](https://github.com/utom/sketch-measure)
+- [content generation](https://github.com/timuric/Content-generator-sketch-plugin)
+- [perspective transformations](https://github.com/jamztang/MagicMirror)
 
-With a bit of code (or in some cases, a lot of code!), you can extend Sketch with a plugin to do pretty much anything you need.
+The easiest way to see Sketch plugins in action is via the [Plugin Directory](https://sketchapp.com/extensions/plugins/). You can browse for useful plugins, install them to try them out and get an idea how you might extend Sketch for your own design scenarios.
 
-If you want to learn how to do that, you’ve come to the right place.
+### Writing an Extension
 
-<div class="embed-container">
-  <iframe src="https://www.youtube.com/embed/TlSfoGN6WRw?rel=0&amp;showinfo=0&amp;color=white" frameborder="0" allowfullscreen=""></iframe>
-</div>
+We created a small tool-chain which makes it very easy to create a new plugin. It is great for [starting out](/guides/first-plugin) and you can also find existing plugin [examples](/examples/).
 
-## Sections
+Extensions can be written in JavaScript. Sketch offers a small REPL-like console in which you can experiment with its API before diving into building your plugin.
 
-We’ve divided the contents into four parts:
+<!--
 
-1. **[Introduction](/introduction/)**, which is a general overview of the scripting features in Sketch.
-2. **[Examples](/examples/)**, some example plugins and code snippets which will help to get you started.
-3. **[Reference](/reference/)**, which is a detailed list of key classes, methods and actions that you can use.
-4. **[Resources](/resources/)**, with links and pointers to resources you may find useful as a plugin developer.
+### Testing Extensions
 
-## Help us improve!
+We also have great support for writing and running tests for your plugin. You can easily create integration tests which call the Sketch APIs and test your code in a running Sketch instance.
 
-If you find any error or omission on the documentation, or you’d like us to cover or clarify something, just [file an issue](https://github.com/BohemianCoding/developer.sketchapp.com/issues) and we’ll try to fix it. Of course, since all the content on this site is open source, you can help us improve by [suggesting an edit on GitHub]({{site.github_repo}}) (there's also an "Improve this page" link at the bottom of every page, in case you find something wrong while browsing the site).
+-->
+
+### Extension ideas
+
+Lots of great community ideas for Sketch features are better implemented as plugins rather than as part of the core product. This way users can easily pick and choose the functionality they want, by installing the right set of plugins. The Sketch team tracks possible plugin as GitHub issues on the [plugin-request repository](https://github.com/sketchplugins/plugin-requests/issues). If you're looking for a great plugin to build, have a look at the issues.
+
+## Next steps
+
+- [Your First plugin](/guides/first-plugin) - Try creating a simple Hello World plugin.
+- [Extension API](/reference/) - Learn about the Sketch extensibility APIs.
+- [Extension Examples](/examples/) - A list of extension samples you can review and build.
+
+### Help us improve
+
+If you find any error or omission on the documentation, or you’d like us to cover or clarify something, just [file an issue]({{site.github_repo}}/issues) and we’ll try to fix it. Of course, since all the content on this site is open source, you can help us improve by [suggesting an edit on GitHub]({{site.github_repo}}) (there's also an "Improve this page" link at the bottom of every page, in case you find something wrong while browsing the site).
