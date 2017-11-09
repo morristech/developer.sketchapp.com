@@ -15,15 +15,13 @@ If you want to get the site working locally, you'll need to have [node](https://
 Once you have them, run this:
 
 ```
-sudo npm install --global gulp
-bundle install --path _vendor
 npm install
 ```
 
 and then run
 
 ```
-gulp
+npm run start
 ```
 
 to start the server and open a browser automatically.

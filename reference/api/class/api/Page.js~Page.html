@@ -96,14 +96,13 @@ title: Page | API Document
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="/reference/api/class/api/Page.js~Page.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>dictionary</span></span>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Page.js~Page.html#static-method-tests">tests</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Return a list of tests to run for this class.</p>
-</div>
+        
       </div>
     </td>
     <td>
@@ -237,6 +236,58 @@ title: Page | API Document
   <tbody>
   
   <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Page.js~Page.html#instance-method-export">export</a></span></span><span data-ice="signature">(options: <span>dictionary</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Export this page, using the options supplied.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Page.js~Page.html#instance-method-exportArtboards">exportArtboards</a></span></span><span data-ice="signature">(options: <span>dictionary</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Export this layer (and the ones below it), using the options supplied.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -784,6 +835,58 @@ The layer at the back of the container (visualy) will be layer 0. The layer at t
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-export">export</a></span></span><span data-ice="signature">(options: <span>dictionary</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Export this layer (and the ones below it), using the options supplied.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-exportOptionsMergedWithDefaults">exportOptionsMergedWithDefaults</a></span></span><span data-ice="signature">(options: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a list of export options with any missing ones replaced by default values.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-localRectToPageRect">localRectToPageRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Application.js~Application.html#instance-member-Rectangle">Rectangle</a></span>): <span><a href="/reference/api/class/api/Application.js~Application.html#instance-member-Rectangle">Rectangle</a></span></span>
         </p>
       </div>
@@ -1266,19 +1369,18 @@ and sets it up using the supplied properties.</p>
     
     
     
-    <span data-ice="name">tests</span><span data-ice="signature">(): <span>dictionary</span></span>
+    <span data-ice="name">tests</span><span data-ice="signature">(): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Page.js.html#lineNumber84">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Page.js.html#lineNumber134">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Return a list of tests to run for this class.</p>
-</div>
+  
 
   <div data-ice="override"><h4>Override:</h4><span><a href="/reference/api/class/api/Group.js~Group.html#static-method-tests">Group#tests</a></span></div>
 
@@ -1289,9 +1391,8 @@ and sets it up using the supplied properties.</p>
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span>dictionary</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>A dictionary containing the tests to run. Each key is the name of a test, each value is a function which takes a Tester instance.</p>
-</td>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
+        
       </tr>
     </table>
     <div data-ice="returnProperties">
@@ -1542,6 +1643,122 @@ and sets it up using the supplied properties.</p>
 </div>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-export">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">export</span><span data-ice="signature">(options: <span>dictionary</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Page.js.html#lineNumber116">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Export this page, using the options supplied.</p>
+</div>
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-export">Layer#export</a></span></div>
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">options</td>
+      <td data-ice="type"><span>dictionary</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Options indicating which sizes and formats to use, etc.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-exportArtboards">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">exportArtboards</span><span data-ice="signature">(options: <span>dictionary</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Page.js.html#lineNumber128">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Export this layer (and the ones below it), using the options supplied.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">options</td>
+      <td data-ice="type"><span>dictionary</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Options indicating which layers to export, which sizes and formats to use, etc.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-newArtboard">
     <span class="access" data-ice="access">public</span>

@@ -846,14 +846,26 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "api/layer.js~layer#export",
+    "class/api/Layer.js~Layer.html#instance-method-export",
+    "api/Layer.js~Layer#export",
+    "method"
+  ],
+  [
+    "api/layer.js~layer#exportoptionsmergedwithdefaults",
+    "class/api/Layer.js~Layer.html#instance-method-exportOptionsMergedWithDefaults",
+    "api/Layer.js~Layer#exportOptionsMergedWithDefaults",
+    "method"
+  ],
+  [
     "api/layer.js~layer#frame",
-    "class/api/Layer.js~Layer.html#instance-set-frame",
+    "class/api/Layer.js~Layer.html#instance-get-frame",
     "api/Layer.js~Layer#frame",
     "member"
   ],
   [
     "api/layer.js~layer#frame",
-    "class/api/Layer.js~Layer.html#instance-get-frame",
+    "class/api/Layer.js~Layer.html#instance-set-frame",
     "api/Layer.js~Layer#frame",
     "member"
   ],
@@ -975,6 +987,18 @@ window.esdocSearchIndex = [
     "api/page.js~page#constructor",
     "class/api/Page.js~Page.html#instance-constructor-constructor",
     "api/Page.js~Page#constructor",
+    "method"
+  ],
+  [
+    "api/page.js~page#export",
+    "class/api/Page.js~Page.html#instance-method-export",
+    "api/Page.js~Page#export",
+    "method"
+  ],
+  [
+    "api/page.js~page#exportartboards",
+    "class/api/Page.js~Page.html#instance-method-exportArtboards",
+    "api/Page.js~Page#exportArtboards",
     "method"
   ],
   [

@@ -560,6 +560,58 @@ The layer at the back of the container (visualy) will be layer 0. The layer at t
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-export">export</a></span></span><span data-ice="signature">(options: <span>dictionary</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Export this layer (and the ones below it), using the options supplied.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-exportOptionsMergedWithDefaults">exportOptionsMergedWithDefaults</a></span></span><span data-ice="signature">(options: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a list of export options with any missing ones replaced by default values.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="/reference/api/class/api/Layer.js~Layer.html#instance-method-localRectToPageRect">localRectToPageRect</a></span></span><span data-ice="signature">(rect: <span><a href="/reference/api/class/api/Application.js~Application.html#instance-member-Rectangle">Rectangle</a></span>): <span><a href="/reference/api/class/api/Application.js~Application.html#instance-member-Rectangle">Rectangle</a></span></span>
         </p>
       </div>
@@ -861,7 +913,7 @@ The layer at the back of the container (visualy) will be layer 0. The layer at t
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber288">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber327">source</a></span></span>
     </span>
   </h3>
 
@@ -1132,7 +1184,7 @@ The new frame should be given in coordinates that are local to the parent of the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber220">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber215">source</a></span></span>
     </span>
   </h3>
 
@@ -1726,6 +1778,131 @@ A new identical layer will be inserted into the parent of this layer.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-export">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">export</span><span data-ice="signature">(options: <span>dictionary</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber314">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Export this layer (and the ones below it), using the options supplied.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">options</td>
+      <td data-ice="type"><span>dictionary</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Options indicating which layers to export, which sizes and formats to use, etc.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-exportOptionsMergedWithDefaults">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">exportOptionsMergedWithDefaults</span><span data-ice="signature">(options: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber286">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a list of export options with any missing ones replaced by default values.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">options</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-localRectToPageRect">
     <span class="access" data-ice="access">public</span>
     
@@ -1736,7 +1913,7 @@ A new identical layer will be inserted into the parent of this layer.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber265">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber264">source</a></span></span>
     </span>
   </h3>
 
@@ -1805,7 +1982,7 @@ A new identical layer will be inserted into the parent of this layer.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber277">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber276">source</a></span></span>
     </span>
   </h3>
 
@@ -1874,7 +2051,7 @@ A new identical layer will be inserted into the parent of this layer.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber253">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber252">source</a></span></span>
     </span>
   </h3>
 
@@ -1915,7 +2092,7 @@ A new identical layer will be inserted into the parent of this layer.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber237">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber234">source</a></span></span>
     </span>
   </h3>
 
@@ -1956,7 +2133,7 @@ A new identical layer will be inserted into the parent of this layer.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber245">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber243">source</a></span></span>
     </span>
   </h3>
 
@@ -1997,7 +2174,7 @@ A new identical layer will be inserted into the parent of this layer.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber229">source</a></span></span>
+      <span data-ice="source"><span><a href="/reference/api/file/api/Layer.js.html#lineNumber225">source</a></span></span>
     </span>
   </h3>
 
