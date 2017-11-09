@@ -1,8 +1,8 @@
 ---
-title: Scripting Preferences
+title: Dev Environment
 summary: Some preferences to make developing Plugins a bit more pleasant
-permalink: /introduction/preferences/
-order: 400
+permalink: /guides/preferences/
+order: 120
 ---
 
 If you spend non-trivial amounts of time developing Plugins for Sketch, there are some improvements you can make to your workflow using these preferences.
@@ -24,7 +24,7 @@ and relaunch Sketch, you'll see a couple of new menu items:
 
 ## Tweak the 'Custom Plugin…' editor
 
-To change the font used in the 'Custom Plugin…' panel (for example, to use SF Mono) you can do this:
+To change the font used in the 'Run Script…' panel (for example, to use SF Mono) you can do this:
 
 ```shell
 defaults write ~/Library/Preferences/com.bohemiancoding.sketch3.plist scriptEditorFont "SF Mono Light"
@@ -48,9 +48,9 @@ defaults write ~/Library/Preferences/com.bohemiancoding.sketch3.plist scriptEdit
   <strong>Warning:</strong> This is an extremely expensive operation, and will impact Sketch’s performance. Please use this <em>on your development system only</em> and <strong>never enable this on a customer’s computer</strong>.
 </p>
 
-When working with the new [Action API](/reference/action/) you'll probably want to listen to multiple events (specially when trying to find *which* event is the one you want to use).
+When working with the new [Action API](/reference/action/) you might want to listen to multiple events (specially when trying to find *which* event is the one you want to use).
 
-To do that, use the `actionWildcardsAllowed` preference. If set to YES, scripts are allowed to register a wildcard handler for events. This is off by default, and it could have a bad effect on performance, so handle it with care.
+To do that, use the `actionWildcardsAllowed` preference. If set to `YES`, scripts are allowed to register a wildcard handler for events. This is off by default, and it could have a bad effect on performance, so handle it with care.
 
 ```shell
 defaults write ~/Library/Preferences/com.bohemiancoding.sketch3.plist actionWildcardsAllowed -bool YES
@@ -58,11 +58,15 @@ defaults write ~/Library/Preferences/com.bohemiancoding.sketch3.plist actionWild
 
 Once you do that, you can tell your Plugin to call a method for every action by adding a `*` key to your `handlers.actions` object in `manifest.json`:
 
-```json
-"handlers" : {
-  "actions": {
-    "*": "onAction"
+```diff
+{
+  ...
+  "handlers": {
++    "actions": {
++      "*": "onActionHandler"
++    }
   }
+  ...
 }
 ```
 

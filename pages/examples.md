@@ -5,7 +5,6 @@ permalink: /examples/
 script: /js/search.js
 ---
 
-
 The following examples should help you to get up & running with Plugin development.
 
 Follow the main link for each one for an annotated view of the source code, or click on the links on the right to try the plugin out or view its github repo.

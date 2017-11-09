@@ -1,6 +1,6 @@
 ---
 title: Plugin Bundles
-permalink: /introduction/plugin-bundles/
+permalink: /guides/plugin-bundles/
 order: 200
 ---
 
@@ -54,10 +54,10 @@ Here’s an example:
   "description": "Plugins to select and deselect shapes",
   "author": "Joe Bloggs",
   "homepage": "http://github.com/example/sketchplugins",
-  "version": 1.0,
+  "version": "1.0",
   "identifier": "com.example.sketch.shape-plugins",
-  "appcastURL": "https://excellent.sketchplugin.com/excellent-plugin-appcast.xml",
-  "compatibleVersion": 3,
+  "appcast": "https://excellent.sketchplugin.com/excellent-plugin-appcast.xml",
+  "compatibleVersion": "3",
   "bundleVersion": 1,
   "commands": [
     {
@@ -90,7 +90,7 @@ Here’s an example:
 
 This Plugin is called “Select Shapes”. It defines three commands “All”, “Circles”, and “Rectangles”, which will be placed in a “Select Shapes” menu.
 
-This plugin can be updated by Sketch. Sketch will download the file at the location specified by appcastURL and use it to determine if an update is available or not.
+This plugin can be updated by Sketch. Sketch will download the file at the location specified by `appcast` and use it to determine if an update is available or not.
 
 Unpacking this file a bit further, here are the supported keys and what they are for:
 
@@ -126,9 +126,9 @@ Reverse-domain syntax is strongly encouraged, for example `com.example.sketch.sh
 
 Sketch uses this string internally to track the Plugin, store settings for it, etc.
 
-#### Appcast URL
+#### Appcast
 
-A string specifying a URL to the appcast file. The appcast file contains information about updates to the plugin, like the versions of available updates and where the updates can be downloaded from. Sketch downloads this file to determine if there are plugin updates avaiable.
+A string specifying a URL to the appcast file. The appcast file contains information about updates to the plugin, like the versions of available updates and where the updates can be downloaded from. Sketch downloads this file to determine if there are plugin updates available.
 
 #### Compatible Version
 
@@ -193,7 +193,7 @@ The relative path within the Plugin bundle’s `Sketch` folder for the script th
 
 The name of the function with the script to call this command. The function must take a single `context` parameter, which is a dictionary with keys for things like the current document and selection. If unspecified the command is expected to be `onRun`:
 
-```javascript
+```js
 var onRun = function (context) {
   var doc = context.document;
   var selection = context.selection;
@@ -217,7 +217,7 @@ This is an array which lists the items to include in the menu.
 
 It can contain items of two types:
 
-- a string giving the the identifier of a command
+- a string giving the identifier of a command
 - a dictionary describing a sub-menu (containing "title" and "items")
 
 
@@ -225,7 +225,7 @@ It can contain items of two types:
 
 By default, the menu items listed in this dictionary will appear in a menu with the name specified by the *title* key.
 
-If the the isRoot key is specified, with a value of true, the items will instead be inserted at the root level of the Plugins menu, rather than in a subfolder.  In this case, the *title* key will be ignored.
+If the isRoot key is specified, with a value of true, the items will instead be inserted at the root level of the Plugins menu, rather than in a subfolder.  In this case, the *title* key will be ignored.
 
 *This key is ignored in sub-menus.*
 
@@ -241,11 +241,11 @@ Here’s an example. It defines three commands in a menu called “My Plugin Men
       "command1-identifier",
       "command2-identifier",
       {
-         "title": "My Plugin Submenu",
-         "items": [
-           "command3-identifier"
-         ]
-       }
+        "title": "My Plugin Submenu",
+        "items": [
+          "command3-identifier"
+        ]
+      }
     ]
   }
 }
@@ -259,7 +259,7 @@ These are simply JavaScript functions which live in a `.cocoascript` file in the
 
 Here’s a simple example:
 
-```javascript
+```js
 var doMyCommand = function(context) {
   context.document.currentPage().deselectAllLayers();
 }

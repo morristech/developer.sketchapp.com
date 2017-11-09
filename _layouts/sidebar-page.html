@@ -11,11 +11,28 @@ layout: base
         </header>
         <nav role="navigation">
           <ol>
-            {% if page.url contains '/introduction/' %}
-                {% assign introductions = site.introduction | sort:"order" %}
-                {% for introduction in introductions %}
-                  <li><a href="{{introduction.url}}" {% if page.url == introduction.url %} class="active"{% endif %}>{{introduction.title}}</a></li>
-                {% endfor %}
+            {% if page.url contains '/guides/' %}
+              {% assign guides = site.guides | sort:"order" %}
+              <li>
+                <h2>Getting Started</h2>
+                <ol>
+                  {% for guide in guides %}
+                    {% if guide.order < 200 %}
+                      <li><a href="{{guide.url}}" {% if page.url == guide.url %} class="active"{% endif %}>{{guide.title}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ol>
+              </li>
+              <li>
+                <h2>Advanced</h2>
+                <ol>
+                  {% for guide in guides %}
+                    {% if guide.order >= 200 %}
+                      <li><a href="{{guide.url}}" {% if page.url == guide.url %} class="active"{% endif %}>{{guide.title}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ol>
+              </li>
             {% endif %}
             {% if page.url contains '/code/' %}
                 {% assign examples = site.code-examples | sort:"order" %}
