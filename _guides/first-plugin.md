@@ -58,15 +58,21 @@ After running, the generated plugin should have the following structure:
 
 Let's go through the purpose of all these files and explain what they do:
 
-## The plugin manifest: manifest.json
+### The plugin manifest: `manifest.json`
 
-* Please read the manifest.json [manifest reference](/guides/plugin-bundles/#manifest)
 * Each Sketch plugin must have a manifest.json file that describes it and its capabilities.
 * Sketch reads this file during start-up.
+* Please read the `manifest.json` [manifest reference](/guides/plugin-bundles/#manifest) for more information.
 
-## Debugging your Extension
+### `package.json`
 
-// TODO
+If you have looked at a nodejs package before, you must be familiar with `package.json`. It describes the dependencies of your package (plugin in this case) and contains some metadata about it.
+
+You will notice a special field inside: `skpm`. You can specify the metadata about your plugin here (instead of in the `manifest.json`). As a rule of thumb, I usually put the information about the commands in the `manifest.json` while putting everything else in the `package.json` (skpm will add those information to the manifest.json at compile time so that you don't have to duplicate them).
+
+### `src/my-command.js`
+
+This is where a plugin command is defined. It is referenced by the `manifest.json` and must export a function.
 
 ## A simple change
 
