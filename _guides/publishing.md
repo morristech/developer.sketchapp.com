@@ -29,7 +29,7 @@ You have two solution to opt-in this update mechanism:
 
 ### 1. Using `skpm`
 
-By running `skpm publish`, it will automatically publish the updated version of your plugin and make sure SKetch can pick it up.
+By running `skpm publish`, it will automatically publish the updated version of your plugin and make sure Sketch can pick it up.
 
 ### 2. Manual
 
