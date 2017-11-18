@@ -53,7 +53,7 @@ Here’s an example:
   "name": "Select Shapes",
   "description": "Plugins to select and deselect shapes",
   "author": "Joe Bloggs",
-  "homepage": "http://github.com/example/sketchplugins",
+  "homepage": "https://github.com/example/sketchplugins",
   "version": "1.0",
   "identifier": "com.example.sketch.shape-plugins",
   "appcast": "https://excellent.sketchplugin.com/excellent-plugin-appcast.xml",
