@@ -48,5 +48,3 @@ permalink: /resources/
 - [class-dump](http://stevenygard.com/projects/class-dump/). We do our best to document everything, but if you are of the adventurous type, you’ll probably want to play with this.
 - [Sketchpacks Relay](https://github.com/apps/sketchpacks-relay/), by [Sketchpacks](https://sketchpacks.com). Publish your Sketch plugins to the Sketchpacks Plugin Registry. Automatically [serve your Appcast Feeds](https://docs.sketchpacks.com/developers/publishing/appcast.html) for native plugin updates.
 - [Sketch Plugin Manager](https://skpm.io) - A utility to create, build and publish sketch plugins.
-
-
