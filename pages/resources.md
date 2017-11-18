@@ -33,7 +33,6 @@ permalink: /resources/
 
 - Some example plugins are [available on Github](https://github.com/BohemianCoding/ExampleSketchPlugins)
 - A template/example Sketch plugin with a UI built in Interface Builder and connected to CocoaScript through black magic: [Sketch-NibUITemplatePlugin](https://github.com/romannurik/Sketch-NibUITemplatePlugin)
-- [Sketch Plugins Cookbook](https://github.com/turbobabr/Sketch-Plugins-Cookbook) - A collection of recipes for Sketch App plugins developers
 
 ## 3rd Party Plugins
 
