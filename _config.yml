@@ -46,6 +46,8 @@ collections:
   generated-plugins:
     output: true
     permalink: /examples/plugins/:path/
+  api-references:
+    output: false
 
 # Defaults
 defaults:
@@ -77,11 +79,6 @@ defaults:
       type: "generated-plugins"
     values:
       layout: "docco-page"
-  -
-    scope:
-      path: "reference/api"
-    values:
-      layout: "api-page"
   -
     scope:
       type: "posts"
