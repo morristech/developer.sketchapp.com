@@ -2,7 +2,9 @@
 layout: base
 ---
 {% assign language_tabs = page.language_tabs | default: [] %}
-{% assign sections = site.api-references | sort: 'order' | group_by:'section' %}
+{% assign references = site.api-references | where_exp:"item",
+"item.hidden != true" | sort: 'order' %}
+{% assign sections = references | group_by:'section' %}
 <link href="/css/slate/screen.css" media="screen" rel="stylesheet" type="text/css">
 <link href="/css/slate/print.css" media="print" rel="stylesheet" type="text/css">
 
@@ -37,7 +39,7 @@ layout: base
 
 <div class="page-wrapper">
   <div class="dark-box"></div>
-  <div class="content" id="content" data-languages='{{ language_tabs | jsonify }}' data-sections='&#123;{% for ref in site.api-references %}"{{ref.title | slugify}}": "{{ref.section}}"{% if forloop.last %}{% else %},{% endif %}{% endfor %}&#125;'>
+  <div class="content" id="content" data-languages='{{ language_tabs | jsonify }}' data-sections='&#123;{% for ref in references %}"{{ref.title | slugify}}": "{{ref.section}}"{% if forloop.last %}{% else %},{% endif %}{% endfor %}&#125;'>
     {{ content }}
   </div>
 </div>

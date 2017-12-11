@@ -10,7 +10,8 @@ toc_footers:
 
 slate: true
 ---
-{% assign references = site.api-references | sort: 'order' %}
+{% assign references = site.api-references | where_exp:"item",
+"item.hidden != true" | sort: 'order' %}
 {% for ref in references %}
 # {{ref.title}}
 
