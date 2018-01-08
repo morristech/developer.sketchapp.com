@@ -2,6 +2,7 @@
 title: Dev Environment
 summary: Some preferences to make developing Plugins a bit more pleasant
 permalink: /guides/preferences/
+redirect_from: /introduction/preferences/
 order: 120
 ---
 
