@@ -1,6 +1,7 @@
 ---
 title: Plugin Bundles
 permalink: /guides/plugin-bundles/
+redirect_from: /introduction/plugin-bundles/
 order: 200
 ---
 

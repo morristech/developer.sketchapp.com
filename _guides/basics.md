@@ -2,6 +2,7 @@
 title: Plugin Basics
 summary: Basic concepts for plugin users.
 permalink: /guides/
+redirect_from: /introduction/
 order: 100
 ---
 
