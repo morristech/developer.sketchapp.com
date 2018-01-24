@@ -32,7 +32,7 @@ permalink: /resources/
 ## Sample Plugins
 
 - Some example plugins are [available on Github](https://github.com/BohemianCoding/ExampleSketchPlugins)
-- A template/example Sketch plugin with a UI built in Interface Builder and connected to CocoaScript through black magic: <https://github.com/romannurik/Sketch-NibUITemplatePlugin>
+- A template/example Sketch plugin with a UI built in Interface Builder and connected to CocoaScript through black magic: [Sketch-NibUITemplatePlugin](https://github.com/romannurik/Sketch-NibUITemplatePlugin)
 
 ## 3rd Party Plugins
 
@@ -43,6 +43,8 @@ permalink: /resources/
 
 ## Tools
 
+- [SketchTool](https://sketchapp.com/tool) - An OS X command-line app for exporting Pages and Slices out of .sketch documents.
 - [Sketch Scripter](https://github.com/timuric/sketchapp-scripter), by Timur Carpeev. an Atom package for running Sketch scripts from the Atom editor.
 - [class-dump](http://stevenygard.com/projects/class-dump/). We do our best to document everything, but if you are of the adventurous type, you’ll probably want to play with this.
 - [Sketchpacks Relay](https://github.com/apps/sketchpacks-relay/), by [Sketchpacks](https://sketchpacks.com). Publish your Sketch plugins to the Sketchpacks Plugin Registry. Automatically [serve your Appcast Feeds](https://docs.sketchpacks.com/developers/publishing/appcast.html) for native plugin updates.
+- [Sketch Plugin Manager](https://skpm.io) - A utility to create, build and publish sketch plugins.

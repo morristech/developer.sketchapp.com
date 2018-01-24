@@ -1,16 +1,18 @@
 # Site settings
 title: Sketch Developers
 email: developer@sketchapp.com
-# url: "http://developer.sketchapp.com"
+url: "http://developer.sketchapp.com"
+show_dir_listing: false
 
 # Build settings
+incremental: true
 kramdown:
   input: GFM
   auto_ids: true
   smart_quotes:   lsquo,rsquo,ldquo,rdquo
   syntax_highlighter: rouge
 
-gems:
+plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
@@ -24,6 +26,7 @@ paginate_path: "/blog/page:num/"
 
 sass:
   style: compressed
+
 exclude:
   - node_modules
   - gulpfile.js
