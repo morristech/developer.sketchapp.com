@@ -36,7 +36,7 @@ You can access those information with some introspection methods defined by the 
 ```js
 String(context.document.class()) // MSDocument
 
-var mocha = context.document().class().mocha()
+var mocha = context.document.class().mocha()
 
 mocha.properties() // array of MSDocument specific properties defined on a MSDocument instance
 mocha.propertiesWithAncestors() // array of all the properties defined on a MSDocument instance

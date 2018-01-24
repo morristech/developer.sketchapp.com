@@ -4,3 +4,4 @@ node_modules
 _vendor
 .jekyll-metadata
 _wip
+.bundle

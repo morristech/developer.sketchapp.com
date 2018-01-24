@@ -38,7 +38,7 @@ We're telling our plugin that we want to run the `onOpenDocument` function when 
 
 ```js
 export function onOpenDocument (context) {
-  context.document.show('Document Opened')
+  context.document.showMessage('Document Opened')
 }
 ```
 

@@ -1,9 +1,8 @@
 ---
 layout: base
 ---
-{% assign language_tabs = page.language_tabs | default: [] %}
-{% assign references = site.api-references | where_exp:"item",
-"item.hidden != true" | sort: 'order' %}
+{% assign language_tabs = page.language_tabs %}
+{% assign references = site.api-references | where_exp:"item", "item.hidden != true" | sort: 'order' %}
 {% assign sections = references | group_by:'section' %}
 <link href="/css/slate/screen.css" media="screen" rel="stylesheet" type="text/css">
 <link href="/css/slate/print.css" media="print" rel="stylesheet" type="text/css">
