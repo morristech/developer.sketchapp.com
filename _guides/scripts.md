@@ -2,6 +2,7 @@
 title: Plugins, Scripts, and Commands
 summary: An introduction to writing plugin scripts.
 permalink: /guides/plugin-scripts/
+redirect_from: /introduction/plugin-scripts/
 order: 300
 ---
 

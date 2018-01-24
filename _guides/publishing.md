@@ -2,6 +2,7 @@
 title: Publishing Plugins
 summary: How to publish a plugin for the first time and how to publish updates
 permalink: /guides/publishing-plugins/
+redirect_from: /introduction/updating-plugins/
 order: 150
 ---
 
