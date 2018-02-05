@@ -52,7 +52,7 @@ collections:
   generated-plugins:
     output: true
     permalink: /examples/plugins/:path/
-  api-references:
+  api-references: # this comes from the SketchAPI repo
     output: false
 
 # Defaults
