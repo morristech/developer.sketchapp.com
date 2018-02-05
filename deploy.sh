@@ -1,5 +1,5 @@
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-PUBLISH_BRANCH=gh-pages-test
+PUBLISH_BRANCH=gh-pages
 BRANCH_TO_DEPLOY=develop
 
 API_DOCS_FOLDER=../SketchAPI/docs
