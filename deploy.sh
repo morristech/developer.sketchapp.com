@@ -13,9 +13,10 @@ git checkout $PUBLISH_BRANCH
 
 # update it with the latest changes
 echo "Getting the latest changes..."
-git merge $BRANCH_TO_DEPLOY
+git merge $BRANCH_TO_DEPLOY --no-edit
 rm -rf $LOCAL_DOCS_FOLDER
 cp -r $API_DOCS_FOLDER $LOCAL_DOCS_FOLDER
+git add .
 
 # commit and push
 echo "Publishing the changes..."
