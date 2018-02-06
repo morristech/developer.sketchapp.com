@@ -1,5 +1,5 @@
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-PUBLISH_BRANCH=gh-pages-test
+PUBLISH_BRANCH=gh-pages
 BRANCH_TO_DEPLOY=develop
 
 SKETCH_API_REPO=https://github.com/BohemianCoding/SketchAPI
@@ -14,20 +14,21 @@ git checkout $PUBLISH_BRANCH
 
 # update it with the latest changes
 echo "Getting the latest changes..."
-git merge $BRANCH_TO_DEPLOY --no-edit
+# git merge $BRANCH_TO_DEPLOY --no-edit
 rm -rf $LOCAL_DOCS_FOLDER
 git clone $SKETCH_API_REPO $API_DOCS_FOLDER
 cp -r $API_DOCS_FOLDER/docs $LOCAL_DOCS_FOLDER
-git add .
+rm -rf $API_DOCS_FOLDER
 
 # commit and push
 echo "Publishing the changes..."
+git add .
 git commit -m 'publish new version of the docs :tada:'
+git push
 
 # go back to previous state
 echo "Cleaning up..."
 git checkout $CURRENT_BRANCH
 rm -rf $LOCAL_DOCS_FOLDER
-rm -rf $API_DOCS_FOLDER
 
 echo "All done ✨"
