@@ -14,7 +14,7 @@ git checkout $PUBLISH_BRANCH
 
 # update it with the latest changes
 echo "Getting the latest changes..."
-# git merge $BRANCH_TO_DEPLOY --no-edit
+git merge $BRANCH_TO_DEPLOY --no-edit
 rm -rf $LOCAL_DOCS_FOLDER
 git clone $SKETCH_API_REPO $API_DOCS_FOLDER
 cp -r $API_DOCS_FOLDER/docs $LOCAL_DOCS_FOLDER
