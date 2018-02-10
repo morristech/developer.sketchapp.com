@@ -7,7 +7,7 @@ script: /js/search.js
 
 The plugin system in Sketch gives you full access to the app's internals and the core frameworks in macOS. So you have an immense power to build almost _anything_.
 
-With great power comes great responsibility, tough, so you'll need to keep an eye on your code with each Sketch release. We change Sketch's internals from time to time when refactoring, and as a result your plugins may be calling some methods that were renamed or removed.
+With great power comes great responsibility, though, so you'll need to keep an eye on your code with each Sketch release. We change Sketch's internals from time to time when refactoring, and as a result your plugins may be calling some methods that were renamed or removed.
 
 We do realise that this is not of course ideal. That is why we support JavaScript API sitting between the internals and your plugin. We hope that it covers 90% of the use cases. If it doesn't, you can always tap into the internals at your own risks.
 
