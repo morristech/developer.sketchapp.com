@@ -83,4 +83,4 @@ COScript.currentCOScript().shouldKeepAround = false
 
 ## Next Steps
 
-For more information about how the bridge really works, take a look at the [Mocha Readme](https://github.com/ccgus/CocoaScript), it is really complete (but requires some notion of Obj-C).
+For more information about how the bridge really works, take a look at the [Mocha Readme](https://github.com/logancollins/Mocha), it is really complete (but requires some notion of Obj-C).
